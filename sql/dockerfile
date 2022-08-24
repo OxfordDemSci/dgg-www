@@ -1,0 +1,4 @@
+FROM postgres
+ENV POSTGRES_PASSWORD dgg
+ENV POSTGRES_DB dggpanel
+COPY dgg_initial.sql /docker-entrypoint-initdb.d/
