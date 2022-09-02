@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: dgg-db
+    restart: always
+    env_file: docker.env
+    volumes:
+      - ./sql/dgg_initial.sql:/docker-entrypoint-initdb.d/dgg_initial.sql
+    ports:
+      - 5432:5432
+
+  api:
+    container_name: api
+    restart: always
+    env_file: docker.env
+    command: [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+    build: ./api/
+    ports:
+      - 5000:5000
