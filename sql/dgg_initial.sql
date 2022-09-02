@@ -13,4 +13,5 @@ CREATE TABLE dgg(
 	    Mobile_Online_Offline_model_prediction numeric  ,
 	    Mobile_Offline_model_prediction numeric
 );
+ALTER TABLE dgg ADD CONSTRAINT unique_date_country UNIQUE (date, country, ISO3Code, ISO2Code);
 COMMIT;
