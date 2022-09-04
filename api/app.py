@@ -1,6 +1,7 @@
 import time
 from flask import Flask, request, jsonify
-from src import db_query
+import utils
+from docker.api import  endpoints
 app = Flask(__name__)
 
 
@@ -18,18 +19,16 @@ def page_not_found(e):
 def query():
     args = dict(request.args)
     if len(args) > 0:
-        result = db_query.query_db(args)
+        result = utils.query_db(args)
         df = result.get('data').to_dict()
         return df, result.get("status")
     else:
         return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
                400
-
-"""
-args = {"date":202206,'iso2code':'AT'}
-result = query_db(args)
-data = result.get('data')
-
-"""
+@app.route('/initial',methods=['GET'])
+def query_national():
+    args = dict(request.args)
+    result = endpoints.query_national(args)
+    return result
 if __name__ == '__main__':
     app.run()
