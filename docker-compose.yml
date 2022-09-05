@@ -7,9 +7,13 @@ services:
     restart: always
     env_file: docker.env
     volumes:
+      - ./sql/initial_data:/var/lib/postgresql/initial_data
       - ./sql/dgg_initial.sql:/docker-entrypoint-initdb.d/dgg_initial.sql
+
     ports:
       - 5432:5432
+    networks:
+      - net
 
   api:
     container_name: api
@@ -19,3 +23,7 @@ services:
     build: ./api/
     ports:
       - 5000:5000
+    networks:
+      - net
+networks:
+  net:
