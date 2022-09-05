@@ -1,7 +1,10 @@
-import time
-from flask import Flask, request, jsonify
+# import time
+# from flask import jsonify
+
+from flask import Flask, request
 import utils
-from docker.api import  endpoints
+import endpoints
+
 app = Flask(__name__)
 
 
@@ -30,5 +33,6 @@ def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
     return result
+
 if __name__ == '__main__':
     app.run()

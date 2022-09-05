@@ -1,9 +1,10 @@
-import numpy as np
+# import numpy as np
+# import csv
+# from src import params
+# from io import StringIO
+
 from psycopg2 import connect
-import csv
 import pandas as pd
-from src import params
-from io import StringIO
 
 def conn_to_database():
     conn = connect(
