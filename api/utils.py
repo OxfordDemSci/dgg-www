@@ -1,8 +1,3 @@
-# import numpy as np
-# import csv
-# from src import params
-# from io import StringIO
-
 from psycopg2 import connect
 import pandas as pd
 
@@ -10,7 +5,7 @@ def conn_to_database():
     conn = connect(
         dbname="dggpanel",
         user="postgres",
-        host="localhost", #10.131.129.27
+        host="postgres", #10.131.129.27
         password="dgg"
     )
     cursor = conn.cursor()

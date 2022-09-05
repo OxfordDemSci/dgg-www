@@ -1,10 +1,7 @@
-# import time
-# from flask import jsonify
 
 from flask import Flask, request
 import utils
 import endpoints
-
 app = Flask(__name__)
 
 
@@ -28,11 +25,9 @@ def query():
     else:
         return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
                400
-@app.route('/initial',methods=['GET'])
+@app.route('/query_national',methods=['GET'])
 def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
     return result
 
-if __name__ == '__main__':
-    app.run()
