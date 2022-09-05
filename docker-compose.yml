@@ -3,7 +3,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:latest
-    container_name: dgg-db
+    container_name: postgres
     restart: always
     env_file: docker.env
     volumes:
@@ -13,7 +13,7 @@ services:
     ports:
       - 5432:5432
     networks:
-      - net
+      - docker_net
 
   api:
     container_name: api
@@ -24,6 +24,6 @@ services:
     ports:
       - 5000:5000
     networks:
-      - net
+      - docker_net
 networks:
-  net:
+  docker_net:
