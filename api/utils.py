@@ -1,12 +1,13 @@
-from psycopg2 import connect
+import os
 import pandas as pd
+from psycopg2 import connect
 
 def conn_to_database():
     conn = connect(
-        dbname="dggpanel",
-        user="postgres",
-        host="postgres", #10.131.129.27
-        password="dgg"
+        dbname=os.environ.get('POSTGRES_DB'),
+        host=os.environ.get('POSTGRES_HOST'),
+        user=os.environ.get('POSTGRES_USER'),
+        password=os.environ.get('POSTGRES_PASSWORD')
     )
     cursor = conn.cursor()
     return conn, cursor
@@ -93,5 +94,6 @@ def query_db(args):
         data = pd.DataFrame()
         status = 500
         message = 'Internal Server Error: Error returned from PostgreSQL server on SELECT.'
+
     return {'data': data, "status": status, 'message': message}
 

@@ -3,7 +3,7 @@ import utils
 
 def query_national(args):
 
-    args = {'iso2code':'AT'}
+    # args = {'iso2code':'AT'}
 
     if len(args) > 0:
         result = utils.query_db(args)
