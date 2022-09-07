@@ -1,11 +1,11 @@
+import utils
 import pandas as pd
-from utils import conn_to_database
 
 def init():
 
     result = {}
 
-    conn = conn_to_database()
+    conn = utils.conn_to_database()
 
     # list models
     sql = 'SELECT * FROM dgg LIMIT 0;'
@@ -36,10 +36,10 @@ def query_national(args):
 
     # args = {'iso2code':'AT'}
 
-    if len(args) > 0:
+    if len(args) == 0:
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments.", \
+               400
+    else:
         result = utils.query_db(args)
         df = result.get('data').to_json(orient='columns')
         return df, result.get("status")
-    else:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
-               400

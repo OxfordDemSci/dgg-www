@@ -97,7 +97,7 @@ def query_db(args):
         print(sql_query)
 
     try:
-        conn, cursor = conn_to_database()
+        conn = conn_to_database()
         data = pd.read_sql(sql_query, conn,index_col=['date'])
 
         message = 'OK: Data successfully selected from database.'
