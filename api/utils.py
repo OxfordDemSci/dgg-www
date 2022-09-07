@@ -1,16 +1,25 @@
 import os
 import pandas as pd
-from psycopg2 import connect
+from sqlalchemy import create_engine
+from dotenv import load_dotenv
+load_dotenv()
 
 def conn_to_database():
-    conn = connect(
-        dbname=os.environ.get('POSTGRES_DB'),
-        host=os.environ.get('POSTGRES_HOST'),
-        user=os.environ.get('POSTGRES_USER'),
-        password=os.environ.get('POSTGRES_PASSWORD')
-    )
-    cursor = conn.cursor()
-    return conn, cursor
+
+    # conn = connect(
+    #     host=os.environ.get('POSTGRES_HOST'),
+    #     dbname=os.environ.get('POSTGRES_DB'),
+    #     user=os.environ.get('POSTGRES_USER'),
+    #     password=os.environ.get('POSTGRES_PASSWORD')
+    # )
+
+    engine = create_engine('postgresql+psycopg2://' +
+                           os.environ.get('POSTGRES_USER') + ':' +
+                           os.environ.get('POSTGRES_PASSWORD') + '@' +
+                           os.environ.get('POSTGRES_HOST') + ':5432/' +
+                           os.environ.get('POSTGRES_DB'))
+
+    return engine
 
 
 def length_of_arg_check(args,key,permit_length):
@@ -66,6 +75,8 @@ def check_args(args, required=[], required_oneof=[], optional=[]):
 # test zone
 
 def query_db(args):
+    # args = {'iso2code':'AT'}
+
     # check the args
     result = check_args(args, required=[], required_oneof=['iso3code', 'iso2code', 'country'], optional=[])
     args = result.get('args')
@@ -84,6 +95,7 @@ def query_db(args):
 
         sql_query = sql_query[:-5] + ';'
         print(sql_query)
+
     try:
         conn, cursor = conn_to_database()
         data = pd.read_sql(sql_query, conn,index_col=['date'])
