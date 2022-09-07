@@ -6,13 +6,6 @@ load_dotenv()
 
 def conn_to_database():
 
-    # conn = connect(
-    #     host=os.environ.get('POSTGRES_HOST'),
-    #     dbname=os.environ.get('POSTGRES_DB'),
-    #     user=os.environ.get('POSTGRES_USER'),
-    #     password=os.environ.get('POSTGRES_PASSWORD')
-    # )
-
     engine = create_engine('postgresql+psycopg2://' +
                            os.environ.get('POSTGRES_USER') + ':' +
                            os.environ.get('POSTGRES_PASSWORD') + '@' +
