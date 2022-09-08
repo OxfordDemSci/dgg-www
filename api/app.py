@@ -1,14 +1,23 @@
 
-from flask import Flask, request
+from flask import Flask, request, current_app
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import utils
 import endpoints
-app = Flask(__name__)
 
+def create_app():
+    app = Flask(__name__)
+    app.config["DEBUG"] = True
+    return app
+
+app = create_app()
+limiter = Limiter(app, key_func=get_remote_address)
+rate_limit = "30/minute"
 
 @app.route('/') # why get here?
 def home():
-    return '''<h1>Leverhulme Center for Demographic Science</h1>
-<p>A prototype API (v1) to infuse data science into demography.</p>'''
+    return current_app.send_static_file('docs.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -16,6 +25,7 @@ def page_not_found(e):
 
 # test page to query the database
 @app.route('/db_test',methods=['GET'])
+@limiter.limit(rate_limit)
 def query():
     args = dict(request.args)
     if len(args) > 0:
@@ -26,11 +36,13 @@ def query():
         return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
                400
 @app.route('/init',methods=['GET'])
+@limiter.limit(rate_limit)
 def init():
     result = endpoints.init()
     return result
 
 @app.route('/query_national',methods=['GET'])
+@limiter.limit(rate_limit)
 def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
