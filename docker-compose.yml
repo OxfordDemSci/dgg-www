@@ -1,6 +1,22 @@
 version: "3.9"
 
 services:
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    volumes:
+      - type: bind
+        source: ./www/conf.d/apps.conf
+        target: /etc/nginx/conf.d/apps.conf
+      - type: bind
+        source: ./www/public_html/
+        target: /var/www/public_html/
+    ports:
+      - "80:80"
+    # network_mode: 'host'
+
   postgres:
     image: postgres:latest
     container_name: postgres
@@ -10,7 +26,7 @@ services:
       - ./sql/initial_data:/var/lib/postgresql/initial_data
       - ./sql/dgg_initial.sql:/docker-entrypoint-initdb.d/dgg_initial.sql
     ports:
-      - 5432:5432
+      - "5432:5432"
     networks:
       - dgg_net
 
@@ -21,7 +37,11 @@ services:
     command: [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
     build: ./api/
     ports:
-      - 5000:5000
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: ./api/docs.html
+        target: /app/static/docs.html
     networks:
       - dgg_net
 
