@@ -3,14 +3,16 @@ from flask import Flask, request, current_app
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import utils, endpoints
-
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config["DEBUG"] = False
     return app
 
 app = create_app()
+
 limiter = Limiter(app, key_func=get_remote_address)
 rate_limit = "30/minute"
 
