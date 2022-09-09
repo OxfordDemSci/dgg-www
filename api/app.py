@@ -2,8 +2,9 @@
 from flask import Flask, request
 import utils
 import endpoints
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/') # why get here?
 def home():
@@ -27,7 +28,7 @@ def query():
                400
 @app.route('/init',methods=['GET'])
 def init():
-    result = endpoints.init()
+    result = endpoints.init() 
     return result
 
 @app.route('/query_national',methods=['GET'])
