@@ -15,7 +15,32 @@ services:
         target: /var/www/public_html/
     ports:
       - "80:80"
-    # network_mode: 'host'
+      - "443:443"
+#    network_mode: 'host'
+    networks:
+      - dgg_net
+    depends_on:
+      - api
+      - postgres
+
+  api:
+    container_name: api
+    restart: always
+    env_file: .env
+    # command: gunicorn --bind 0.0.0.0:5000 --forwarded-allow-ips="*" --config gunicorn.config.py wsgi:app
+    # command: ["gunicorn", "--bind", "0.0.0.0:5000", "--config", "gunicorn.config.py", "wsgi:app"]
+    command: [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+    build: ./api/
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: ./api/docs/docs.html
+        target: /app/static/docs.html
+    networks:
+      - dgg_net
+    depends_on:
+      - postgres
 
   postgres:
     image: postgres:latest
@@ -27,21 +52,6 @@ services:
       - ./sql/dgg_initial.sql:/docker-entrypoint-initdb.d/dgg_initial.sql
     ports:
       - "5432:5432"
-    networks:
-      - dgg_net
-
-  api:
-    container_name: api
-    restart: always
-    env_file: .env
-    command: [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-    build: ./api/
-    ports:
-      - "5000:5000"
-    volumes:
-      - type: bind
-        source: ./api/docs.html
-        target: /app/static/docs.html
     networks:
       - dgg_net
 
