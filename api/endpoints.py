@@ -1,8 +1,7 @@
-import utils
+from api import utils
 import pandas as pd
 
 def init():
-
     result = {}
 
     conn = utils.conn_to_database()
@@ -28,18 +27,17 @@ def init():
 
     # contact
     result['contact'] = 'info@digitalgendergaps.org'
-
     return result
 
 
 def query_national(args):
-
-    # args = {'iso2code':'AT'}
-
+    args = {'iso2code': 'AT'}
+    conn = utils.conn_to_database()
+    result = {}
     if len(args) == 0:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments.", \
-               400
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments.", 400
     else:
-        result = utils.query_db(args)
-        df = result.get('data').to_json(orient='columns')
-        return df, result.get("status")
+        sql = utils.generate_sql(args)
+        result['data'] = pd.read_sql(sql, conn)
+        data = result['data'] = pd.read_sql(sql, conn)
+        return result

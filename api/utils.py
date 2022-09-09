@@ -10,6 +10,7 @@ def conn_to_database():
                            os.environ.get('POSTGRES_USER') + ':' +
                            os.environ.get('POSTGRES_PASSWORD') + '@' +
                            os.environ.get('POSTGRES_HOST') + ':5432/' +
+                           'localhost'+ ':5432/' +
                            os.environ.get('POSTGRES_DB'))
 
     return engine
@@ -67,7 +68,7 @@ def check_args(args, required=[], required_oneof=[], optional=[]):
 
 # test zone
 
-def query_db(args):
+def generate_sql(args):
     # args = {'iso2code':'AT'}
 
     # check the args
@@ -87,18 +88,6 @@ def query_db(args):
                 sql_query += f"{key}=\'{args[key]}\' AND "
 
         sql_query = sql_query[:-5] + ';'
-        print(sql_query)
 
-    try:
-        conn = conn_to_database()
-        data = pd.read_sql(sql_query, conn,index_col=['date'])
-
-        message = 'OK: Data successfully selected from database.'
-        status = 200
-    except:
-        data = pd.DataFrame()
-        status = 500
-        message = 'Internal Server Error: Error returned from PostgreSQL server on SELECT.'
-
-    return {'data': data, "status": status, 'message': message}
+    return sql_query
 

@@ -5,12 +5,4 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
-# RUN pip3 install psycopg2-binary
-# RUN pip3 install pandas
-# RUN pip3 install dotenv
-
-#---- NOT NEEDED FOR NOW ----#
-# RUN pip3 install Flask-Limiter
-# RUN pip3 install docker
-
 COPY . .
