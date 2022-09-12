@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
 
-  nginx:
+  dgg_web:
     image: nginx:latest
-    container_name: nginx
+    container_name: dgg_web
     restart: always
     volumes:
       - type: bind
@@ -17,10 +17,10 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - api
+      - dgg_api
 
-  api:
-    container_name: api
+  dgg_api:
+    container_name: dgg_api
     restart: always
     env_file: .env
     # command: ["gunicorn", "--bind", "0.0.0.0:5000", "--config", "gunicorn.config.py", "wsgi:app"]
@@ -33,11 +33,11 @@ services:
         source: ./api/docs/docs.html
         target: /app/static/docs.html
     depends_on:
-      - postgres
+      - dgg_db
 
-  postgres:
+  dgg_db:
     image: postgres:latest
-    container_name: postgres
+    container_name: dgg_db
     restart: always
     env_file: .env
     volumes:
