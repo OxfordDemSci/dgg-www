@@ -2,46 +2,59 @@ version: "3.9"
 
 services:
 
-  dgg_web:
-    image: nginx:latest
+  dgg_nginx:
     container_name: dgg_web
-    restart: always
+    image: nginx:latest
     volumes:
       - type: bind
-        source: ./www/conf.d/apps.conf
-        target: /etc/nginx/conf.d/apps.conf
+        source: ./www/conf.d/nginx.conf
+        target: /etc/nginx/conf.d/nginx.conf
       - type: bind
         source: ./www/public_html/
         target: /var/www/public_html/
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - dgg_net
     depends_on:
-      - dgg_api
+      - dgg_flask
+    restart: unless-stopped
 
-  dgg_api:
+
+  dgg_flask:
     container_name: dgg_api
-    restart: always
     env_file: .env
-    # command: ["gunicorn", "--bind", "0.0.0.0:5000", "--config", "gunicorn.config.py", "wsgi:app"]
-    command: [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
     build: ./api/
-    ports:
-      - "5000:5000"
+    command: gunicorn --config gunicorn.config.py wsgi:app
+    # command: python3 -m flask run --host=0.0.0.0
     volumes:
       - type: bind
-        source: ./api/docs/docs.html
+        source: ./api/app/static/docs.html
         target: /app/static/docs.html
     depends_on:
-      - dgg_db
+      - dgg_postgres
+    networks:
+      - dgg_net
+    ports:
+      - "5000:5000"
+      - "8000:8000"
+    restart: unless-stopped
 
-  dgg_db:
-    image: postgres:latest
+
+  dgg_postgres:
     container_name: dgg_db
-    restart: always
+    image: postgres:latest
     env_file: .env
     volumes:
       - ./sql/initial_data:/var/lib/postgresql/initial_data
       - ./sql/dgg_initial.sql:/docker-entrypoint-initdb.d/dgg_initial.sql
+    networks:
+      - dgg_net
     ports:
       - "5432:5432"
+    restart: unless-stopped
+
+
+networks:
+  dgg_net:

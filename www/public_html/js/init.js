@@ -2,7 +2,7 @@ export function getInitSettings() {
 
     var result = "";
     $.ajax({
-        url: 'http://127.0.0.1:5000/init',
+        url: 'http://127.0.0.1/api/v1/init',
         async: false,
         type: 'get',
         dataType: 'json',
