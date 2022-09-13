@@ -42,6 +42,16 @@ services:
     restart: unless-stopped
 
 
+  dgg_memcached:
+    container_name: dgg_cache
+    image: memcached:latest
+    networks:
+      - dgg_net
+    ports:
+      - "11211:11211"
+    restart: unless-stopped
+
+
   dgg_postgres:
     container_name: dgg_db
     image: postgres:latest

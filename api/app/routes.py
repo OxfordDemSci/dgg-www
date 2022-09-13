@@ -5,8 +5,14 @@ from app import app, utils, endpoints
 
 
 # define rate limiting
-limiter = Limiter(app, key_func=get_remote_address)
-rate_limit = "30/minute"
+limiter = Limiter(app,
+                  key_func=get_remote_address,
+                  # application_limits=['60/minute', '1000/hour', '10000/day'],
+                  default_limits=['60/minute', '1000/hour', '10000/day'],
+                  strategy='fixed-window-elastic-expiry',
+                  storage_uri="memcached://dgg_memcached:11211",
+                  storage_options={}
+                  )
 
 
 @app.route('/')
@@ -16,18 +22,16 @@ def home():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "<h1>404 Error</h1><p>The resource could not be found.</p>", 404
+    return "<h1>404 Error</h1><p>The resource could not be found. {}</p>".format(e), 404
 
 
 @app.route('/init', methods=['GET'])
-@limiter.limit(rate_limit)
 def init():
     result = endpoints.init()
     return result
 
 
 @app.route('/query_national', methods=['GET'])
-@limiter.limit(rate_limit)
 def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
@@ -36,7 +40,6 @@ def query_national():
 
 # test page to query the database
 @app.route('/db_test', methods=['GET'])
-@limiter.limit(rate_limit)
 def query():
     args = dict(request.args)
     if len(args) > 0:
@@ -44,5 +47,5 @@ def query():
         df = result.get('data').to_dict()
         return df, result.get("status")
     else:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments.", \
                400
