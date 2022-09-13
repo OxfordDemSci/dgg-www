@@ -91,3 +91,13 @@ def generate_sql(args):
 
     return sql_query
 
+def rewrite_country_name_dict(result, colname):
+    """
+    convert the dict format of country related columns into one element only key-element pair
+    e.g. from {"country":{"202206.0":"Austria","202207.0":"Austria"}}
+         to {"country": "Austria"}
+    Args:
+        result: the dict need to be processed
+    """
+    result[colname] = list(result[colname].values())[0]
+    return result

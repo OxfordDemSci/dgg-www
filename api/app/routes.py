@@ -44,15 +44,15 @@ def query_national():
     return result
 
 
-# test page to query the database
-@app.route('/db_test', methods=['GET'])
+
+# query specific country
+@app.route('/query_specific_country', methods=['GET'])
 @limiter.limit(rate_limit)
-def query():
+def query_specific_country():
     args = dict(request.args)
     if len(args) > 0:
-        result = utils.query_db(args)
-        df = result.get('data').to_dict()
-        return df, result.get("status")
+        result = endpoints.query_specific_country(args)
+        return result['data'], result.get("status")
     else:
         return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
                400
