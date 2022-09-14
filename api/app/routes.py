@@ -4,16 +4,6 @@ from flask_limiter.util import get_remote_address
 from app import app, utils, endpoints
 
 
-
-def create_app():
-    app = Flask(__name__)
-    CORS(app)
-    app.config["DEBUG"] = False
-    return app
-
-app = create_app()
-
-
 # define rate limiting
 limiter = Limiter(app, key_func=get_remote_address)
 rate_limit = "30/minute"
@@ -50,9 +40,8 @@ def query_national():
 @limiter.limit(rate_limit)
 def query_specific_country():
     args = dict(request.args)
-    if len(args) > 0:
-        result = endpoints.query_specific_country(args)
-        return result['data'], result.get("status")
-    else:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
-               400
+    result = endpoints.query_specific_country(args)
+    return result
+
+
+
