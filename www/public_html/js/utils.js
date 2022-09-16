@@ -1,191 +1,190 @@
-function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
+import * as _ImageFromRGB from './createImageFromRGBdata.js?version=1'
+
+const zeroPad = (num, places) => String(num).padStart(places, '0')
+
+export function getSelectedParameters() {
+
+    var year = $("#datepicker").data('datepicker').getFormattedDate('yyyy');
+    var month = $("#datepicker").data('datepicker').getFormattedDate('mm');
+    var model = document.getElementById("select_models").value;
+
+    return([year, month, model]);
 }
 
 
-export function load_countries_to_menu(countries) {
-
-    $.getJSON("./data/countries.json?version=2", function () {
-        if (window.mdebug === true)
-            console.log("success loading geojson");
-    })
-            .done(function (data) {
-                
-                var select_country = document.getElementById('select_country');
-
-                var country_name;
-                var country_alpha;
-                for (var i = 0; i < countries.length; i++) {
-                        
-                        country_alpha = countries[i];
-                        
-                        if ((country_alpha !== undefined) && (country_alpha !== null) && (country_alpha !== "")){ 
-                             country_name = data.find(x => x["alpha-2"] === country_alpha)["name"];
-                             
-                            select_country.innerHTML = select_country.innerHTML +
-                                  '<option value="' + country_alpha + '">' + country_name + '</option>';                               
-                        }
-                }  
-   
-                // sort alphabetic    
-                var sel = $('#select_country');
-                var selected = sel.val(); // cache selected value, before reordering
-                var opts_list = sel.find('option');
-                opts_list.sort(function(a, b) { return $(a).text() > $(b).text() ? 1 : -1; });
-                sel.html('').append(opts_list);
-                sel.val(selected);     
-              
-                // unselect any elements
-                var elements = select_country.options;
-
-                for(var i = 0; i < elements.length; i++){
-                    elements[i].selected = false;
-                }
-                
-         
-                
-            })
-            .fail(function (e) {
-                if (window.mdebug === true)
-                    console.log(e);
-            })
-            .always(function () {
-                if (window.mdebug === true)
-                    console.log("complete loading geojson of countires");
-            });
-
-
-}
-
-export function load_month_to_menu(ymArray, yr) {
-
-    var monthArray = [];
-
-    for (let i = 0; i < ymArray.length; i++) {
-        var innerArrayLength = ymArray[i].length;
-        for (let j = 0; j < ymArray[i].length; j++) {
-            if (ymArray[i][j] === yr){
-                monthArray.push( [ ymArray[i][1] ] );
-            }    
-        }
+export function removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for (i = L; i >= 0; i--) {
+        selectElement.remove(i);
     }
-    
-    var monthArrayUnique = monthArray.filter(onlyUnique);
-    var select_month = document.getElementById('select_month');
-    
-    const monthArrayUnique_sorted = monthArrayUnique.sort();
-    
-    for (let i = 0; i < monthArrayUnique_sorted.length; i++) {
-                
-         select_month.innerHTML = select_month.innerHTML +
-                '<option value="' + monthArrayUnique_sorted[i] + '">' + monthArrayUnique_sorted[i] + '</option>';
-    }
-    
-    
-
 }
 
 
-export function load_year_to_menu(ymArray) {
-    
-    // select all years from matrix
-    var col0 = ymArray.map(d => d[0]);
-    // keeping only unique
-    var years = col0.filter(onlyUnique);
+export function isEmpty(value) {
+    return (value == null || value.length === 0);
+}
 
-    const years_sorted=years.sort(function(a,b){
-        if (a<b) return 1;
-        if (a>b) return -1;
+export function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
+export function progressMenuOn() {
+    document.getElementById("progressMenu").style.visibility = 'visible';
+    document.getElementById("progressMenu").style.display = 'block';
+}
+
+export function progressMenuOff() {
+
+    setTimeout(function () {
+        document.getElementById("progressMenu").style.visibility = 'hidden';
+        document.getElementById("progressMenu").style.display = 'none';
+    }, 500);//wait 1 seconds
+
+}
+
+export function hideCoverScreen() {
+
+    var coverScreen = document.getElementById('coverScreen');
+    coverScreen.style.visibility = 'hidden';
+
+    var sidebar = document.getElementById('sidebar');
+    sidebar.style.visibility = 'visible';
+}
+
+// select last year and month
+export function getLastDates(ymArray) {
+
+    var yrs = [];
+    for (var k in ymArray)
+        yrs.push(k);
+
+    var years = yrs.sort(function (a, b) {
+        if (a < b)
+            return 1;
+        if (a > b)
+            return -1;
     });
 
-    
-    var select_year = document.getElementById('select_year');
-    
-    for (let i = 0; i < years_sorted.length; i++) {
-        
-         select_year.innerHTML = select_year.innerHTML +
-                '<option value="' + years_sorted[i] + '">' + years_sorted[i] + '</option>';
-    } 
-    
-    load_month_to_menu(ymArray, years_sorted[0]);
+    var yr = years[0];
+
+    var monthArray = ymArray[yr];
+    var mn = monthArray.slice(-1)[0];
+
+    return([yr, mn]);
+}
+
+export function getFirstDates(ymArray) {
+
+    var yrs = [];
+    for (var k in ymArray)
+        yrs.push(k);
+
+    var years = yrs.sort(function (a, b) {
+        if (a < b)
+            return 1;
+        if (a > b)
+            return -1;
+    });
+
+    var yr = years.slice(-1)[0];
+
+    var monthArray = ymArray[yr];
+    var mn = monthArray[0];
+
+    return([yr, mn]);
+}
+
+
+export function MonthsYearsToDisable(ymArray, fyear, lyear) {
+
+    var ymrToDisable = [];
+    for (let i = fyear; i <= lyear; i++) {
+
+        var mArray = ymArray[i];
+
+        for (let k = 1; k <= 12; k++) {
+            if (!mArray.includes(k)) {
+                ymrToDisable.push(i + '-' + zeroPad(k, 2));
+            }
+        }
+
+    }
+    return(ymrToDisable);
+}
+
+export function toMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+
+    return date.toLocaleString('en-US', {
+        month: 'long'
+    });
+}
+
+function hexToRGB(hexStr) {
+    var col = {};
+    col.r = parseInt(hexStr.substr(1, 2), 16);
+    col.g = parseInt(hexStr.substr(3, 2), 16);
+    col.b = parseInt(hexStr.substr(5, 2), 16);
+    return col;
+}
+
+export function loadLagent(title, colors, breaks) {
+
+    var html = '<div style="width:100px">' + title + '</div>';
+    html += '<ul style="list-style-type: none;margin-top: 10px;padding-inline-start: 10px;">';
+    for (var i = 0, len = colors.length; i < len; i++) {
+        var rgb = hexToRGB(colors[i]);
+        var mCanvas = _ImageFromRGB.createImageFromRGBdata(rgb.r, rgb.g, rgb.b, 20, 20);
+
+        html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + breaks[i] + '</span></li>';
+    }
+    html += '</ul>';
+    document.getElementById('legend_data_info').innerHTML = html;
 
 }
 
 
-export function load_models_to_menu(models) {
+export function json2csv(djson, d_time) {
 
+    var models = [];
 
-    var select_models = document.getElementById('select_models');
-    
-    var model_name;
-    for (let i = 0; i < models.length; i++) {
-        
-         model_name = models[i].replace(/_/g, " ");
-         select_models.innerHTML = select_models.innerHTML +
-                '<option value="' + models[i] + '">' + model_name + '</option>';
-    } 
+    // getting first country in the data
+    var fCountry = Object.keys(djson)[0];
+    var fCountries = Object.keys(djson);
+
+    // getting the list of models
+    for (var k in djson[fCountry][d_time]) {
+        models.push(k);
+    }
+
+    var csv = "iso," + models.join(',') + '\r\n';
+
+    for (var k = 0; k < fCountries.length; k++) {
+        var iso = fCountries[k];
+        csv = csv + iso;
+        for (var i = 0; i < models.length; i++) {
+
+            csv = csv + ' , ' + djson[iso][d_time][models[i]];
+
+        }
+        csv = csv + '\r\n';
+    }
+
+    return(csv);
 
 }
 
 
-export function load_data_to_tb() {
+// download scv file d=data t=date fname=file name
+export function downloadCSV(d, t , fname) {
 
-    $.getJSON("./data/countries.json", function () {
-        if (window.debug === true)
-            console.log("success loading geojson");
-    })
-            .done(function (data) {
-                
-                var select_iso = document.getElementById('tb_container');
-                var tb_updated;
-tb_updated = `<div class="">
-<table class="table" >
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Country</th>
-      <th scope="col">Ground truth internet gg</th>
-      <th scope="col">Internet online model prediction</th>
-      <th scope="col">Internet online offline model prediction</th>
-      <th scope="col">Internet offline model prediction</th>
-      <th scope="col">Ground truth mobile gg</th>
-      <th scope="col">Mobile online model prediction</th>
-      <th scope="col">Mobile online offline modelprediction</th>
-      <th scope="col">Mobile offline model prediction</th>
-    </tr>
-  </thead>
-  <tbody>`;
+    var scv2download = json2csv(d, t);
 
-
-                for (var i = 0; i < data.length; i++) {
-                   tb_updated = tb_updated + `
-                            <tr>
-                                <td class="fib" style="background-image: url(../img/flags/4x3/`+data[i]["alpha-2"]+`.svg);background-size: 75% 75%;"></td>
-                                <td>`+data[i]["name"]+`</td>
-                                <td>1</td>
-                                <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                            </tr>`;
-                    
-                }   
-                
-tb_updated = tb_updated + `</tbody></table>`; 
-
-select_iso.innerHTML = tb_updated;                
-            })
-            .fail(function (e) {
-                if (window.mdebug === true)
-                    console.log(e);
-            })
-            .always(function () {
-                if (window.mdebug === true)
-                    console.log("complete loading geojson of countires");
-            });
-
+    var dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent((scv2download));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", fname);
+    dlAnchorElem.click();
 
 }

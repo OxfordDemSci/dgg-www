@@ -8,6 +8,13 @@ html, body, #map {
     font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
+.navbar{
+ background-color: #002147;    
+}
+
+.mousechangeHand:hover {
+  cursor:pointer
+}
 
 .footer {
   position: absolute;
@@ -16,6 +23,70 @@ html, body, #map {
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
+}
+
+#legend_data_info {
+    line-height: 18px;
+    color: #333333;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    padding: 6px 8px;
+    background: white;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    float: left;
+}    
+
+.fib {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+    margin-left: 10px;
+}
+
+.btn-circle:hover {
+      
+      box-shadow: 0 0 0 1px black;
+      transition: 0.7s;
+  }
+
+
+/* datepicker  Control Start */
+
+.datepicker table tr td span {
+    display: block;
+    width: 18%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.datepicker table tr td span.disabled, .datepicker table tr td span.disabled:hover {
+    background: 0 0;
+    color: #ccc;
+    cursor: default;
 }
 
 /* Select2  Control Start */
@@ -55,6 +126,8 @@ html, body, #map {
     filter: alpha(opacity=10);
 }
 
+
+
 @media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
         width: 280px;
@@ -70,17 +143,93 @@ html, body, #map {
 
 @media (min-width: 768px) and (max-width: 991px) {
     .sidebar-pane {
-        width: 236px;
-        max-width: 236px; } }
+        width: 240px;
+        max-width: 240px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar-pane {
-        width: 236px;
-        max-width: 236px; } }
+        width: 240px;
+        max-width: 240px; } }
 @media (min-width: 1200px) {
     .sidebar-pane{
-        width: 236px !important;
-        max-width: 236px; } }
+        width: 240px !important;
+        max-width: 240px; 
+        min-width: 240px} }
 
 /* Sidebar Control  End */
 
+.sidebar-header {
+    background-color: #002147;
+}
+
+.sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
+    color: #fff;
+    background-color: #122f53;
+}
+
 /* ======================================== */
+
+
+.LockOn {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    z-index: 999999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    vertical-align:bottom;
+    padding-top: 20%; 
+    filter: alpha(opacity=75); 
+    opacity: 0.75; 
+    font-weight:400;
+    background-image: url("../img/Misterious_spin.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#loading-content {
+  position: absolute;
+  top: 8%;
+  left: 1%;
+  text-align: center;
+  z-index: 100;
+  color: #aaa;
+}
+
+
+.progressMenu {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    z-index: 999999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    vertical-align:bottom;
+    padding-top: 20%; 
+    filter: alpha(opacity=75); 
+    opacity: 0.75; 
+    font-weight:400;
+/*    background-image: url("../img/icons8-dots-loading.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;*/
+}
+
+#progressMenu-content {
+  
+  height: 80%;
+  width: 100%;
+  z-index: 9999999;
+  border:0px solid black;
+  position: absolute;
+  background-size: 60px;
+  background-image: url("../img/icons8-dots-loading.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
