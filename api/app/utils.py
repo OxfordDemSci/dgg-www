@@ -1,4 +1,5 @@
 import os
+import re
 import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
@@ -76,14 +77,13 @@ def generate_sql(args,required_one_of):
     # result = check_args(args, required=[], required_one_of=required_one_of, optional=[])
     # args = result.get('args')
 
-
     # if result['status'] == 200:
-    cols = ["date","country","iso3code","iso2code","ground_truth_internet_gg","internet_online_model_prediction","internet_online_offline_model_prediction","internet_offline_model_prediction","ground_truth_mobile_gg","mobile_online_model_prediction","mobile_online_offline_model_prediction","mobile_offline_model_prediction"]
+    # cols = ["date","country","iso3code","iso2code","ground_truth_internet_gg","internet_online_model_prediction","internet_online_offline_model_prediction","internet_offline_model_prediction","ground_truth_mobile_gg","mobile_online_model_prediction","mobile_online_offline_model_prediction","mobile_offline_model_prediction"]
     model_set = ["ground_truth_internet_gg","internet_online_model_prediction","internet_online_offline_model_prediction","internet_offline_model_prediction","ground_truth_mobile_gg","mobile_online_model_prediction","mobile_online_offline_model_prediction","mobile_offline_model_prediction"]
     table = 'dgg'
 
     # deal with the columns
-    sql_query = "SELECT country,iso3code,iso2code,"
+    sql_query = "SELECT date,country,iso3code,iso2code,"
 
     if "model" in args.keys() and len(args['model'])>0:
 
@@ -98,12 +98,15 @@ def generate_sql(args,required_one_of):
     sql_query += " FROM " + table + " WHERE "
 
     for key in set(args.keys()).intersection(["date","country","iso3code","iso2code"]):
-        if key == 'date' and args !='ALL':
-            sql_query += f"date IN {args[key]} AND "
+        if key == 'date' and args != 'ALL':
+            dates_string = str(args["date"]).replace("[","(").replace("]",")")
+            sql_query += f"date IN {dates_string} AND "
 
             # sql_query += f"{key}={args[key]} AND "
         else:
             sql_query += f"{key}=\'{args[key]}\' AND "
+
+    # if date is not in the args.keys() -> add date column in the sql_query
 
     sql_query = sql_query[:-5] + ';'
     return sql_query
@@ -111,14 +114,65 @@ def generate_sql(args,required_one_of):
     #    return 'Internal Error'
 
 
+def args_check_model(args):
+    """
+    update the model args in the query
+    deal with 3 situations:
+    1. "model" in the arg: find and store the elements that are intersected with the models list (full list)
+    2. "model" in the arg but no element in the list -> update the args["model"] to the full model list
+    3. no "model" in the arg  -> update the args["model"] to the full model list
 
-def rewrite_country_name_dict(result, colname):
+    Returns: updated arg dict
+
     """
-    convert the dict format of country related columns into one element only key-element pair
-    e.g. from {"country":{"202206.0":"Austria","202207.0":"Austria"}}
-         to {"country": "Austria"}
+    models = ["ground_truth_internet_gg", "internet_online_model_prediction", "internet_online_offline_model_prediction", "internet_offline_model_prediction", "ground_truth_mobile_gg", "mobile_online_model_prediction", "mobile_online_offline_model_prediction", "mobile_offline_model_prediction"]
+
+    if "model" in args.keys():
+        models_found = re.findall("\"(\w+)\"", args['model'])
+        args['model'] = list(set(models).intersection(models_found))
+        if len(args['model']) ==0:
+            args['model'] = models
+    else:
+        args["model"] = models
+    return args
+
+def args_check_date(args,conn):
+    """
+    update the model args in the query
+    1. if there are date arg in the query
+        restore the dates in the args that were stored as string into a list of numeric dates
+    2. no date arg in the query:
+        get the latest date as the arg
+
+    """
+    if "date" in args.keys():
+        args["date"] = [int(x) for x in re.findall("(\d{6})", args['date'])]
+        # TODO: check the date format
+    else:
+        sql = "SELECT max(date) FROM  dgg;"
+        latest_date = int(pd.read_sql(sql, conn)['max'].values[0])
+        args["date"] = [latest_date]
+    return args
+
+
+def reformat_json(df,args):
+    """
+    change the returned dataframe to the format that the frontend needs
     Args:
-        result: the dict need to be processed
+        df: dataframe returned from the read_sql
     """
-    result[colname] = list(result[colname].values())[0]
-    return result
+    # dates check in the arg
+    df['date'] = df['date'].apply(int)
+    data = {}
+    for iso2code in df["iso2code"].unique():
+        date_dict = {}
+        for date in df['date'].unique():
+            model_dict = {}
+            for model in args["model"]:
+                try:
+                    model_dict[model] = df.loc[(df['date'] == date) & (df['iso2code'] == iso2code)][model].values[0]
+                except:
+                    model_dict[model] = None
+            date_dict[str(date)] = model_dict
+        data[iso2code] = date_dict
+    return data

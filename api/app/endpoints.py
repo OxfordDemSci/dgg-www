@@ -1,5 +1,6 @@
 from app import utils
 import pandas as pd
+from flask import jsonify
 import re
 
 def init():
@@ -30,40 +31,40 @@ def init():
     result['contact'] = 'info@digitalgendergaps.org'
     return result
 
-
-
-
+# args={"iso2code":"AT"}
 
 def query_specific_country(args):
+    """
+    query the database for one country at one time
+    - requires
+    valid query examples:
+    1. iso2code=AT&model=["ground_truth_mobile_gg"]
+
+    Returns:
+
+    """
     conn = utils.conn_to_database()
     result = {}
-    if len(args) == 0:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments.", 400
-    elif len(args) == 1:
-        sql = utils.generate_sql(args, required_one_of=['iso3code', 'iso2code', 'country'])
 
-        # dates
-        data = pd.read_sql(sql, conn)
+    args = utils.args_check_model(args)
+    sql = utils.generate_sql(args, required_one_of=['iso3code', 'iso2code', 'country'])
+    # update the sql sentence with date arg
 
-        data['date'] = data['date'].apply(int)
-        data.set_index(keys='date',drop=True,inplace=True)
-        result['data'] = data.to_dict()
+    df = pd.read_sql(sql, conn)
+    # post-process the json
+    result['data'] = df.to_dict()
+    data = utils.reformat_json(df=df, args=args)
 
-        for colname in ['country','iso3code','iso2code']:
-            result['data'] = utils.rewrite_country_name_dict(result['data'], colname)
-
-        result['status'] = 200
-        return result
-    else:
-        # TODO: do we need to allow multiple country query here?
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments."
+    result['data'] = data
+    result['status'] = 200
+    return result
 
 
 # data = pd.read_csv('/Users/valler/Python/RA/Gender_Inequality/dgg-www/sql/initial_data/mau_upper_monthly_model_2_2022-06.csv')
 
 # utils.generate_sql(args=)
 # args = {"model":'["ground_truth_internet_gg","internet_online_model_prediction"]',"date":'[202207,202206]'}
-# args = {"date":'[202207,202206]'，}
+# args = {"date":'[202207,202206]'}
 
 
 def query_national(args):
@@ -71,54 +72,17 @@ def query_national(args):
     # date must be list or empty
     conn = utils.conn_to_database()
     result = {}
-    models = ["ground_truth_internet_gg","internet_online_model_prediction","internet_online_offline_model_prediction","internet_offline_model_prediction","ground_truth_mobile_gg","mobile_online_model_prediction","mobile_online_offline_model_prediction","mobile_offline_model_prediction"]
 
-    # first clean up args -
-    if "model" in args.keys():
-        args["model"] = re.findall("\"(\w+)\"", args['model'])
-
-    else:
-        args["model"] = []
-
-    if "date" in args.keys():
-        dates = [int(x) for x in re.findall("(\d{6})", args['date'])]
-        args["date"] = args["date"].replace("[","(").replace("]",")")
-        # TODO: check the date format
-    else:
-        sql = "SELECT max(date) FROM  dgg;"
-        latest_date = int(pd.read_sql(sql, conn)['max'].values[0])
-        args["date"] = f"({latest_date})"
-        dates = [latest_date]
-
+    # check the args
+    # first check the model
+    args = utils.args_check_model(args)
+    args = utils.args_check_date(args, conn)
 
     # generate sql
     sql = utils.generate_sql(args, required_one_of=[])
     df = pd.read_sql(sql, conn)
 
-    # convert data into the required format
-
-    # restore date column where there is only one date
-    if 'date' not in df.columns:
-        df['date'] = [int(re.findall("(\d{6})",args["date"])[0])]*len(df)
-    df['date'] = df['date'].apply(int)
-
-    # update the model set
-    args['model']= set(models).intersection(df.columns)
-    # reformat the data
-    data = {}
-    for iso2code in df["iso2code"].unique():
-        date_dict = {}
-        for date in dates:
-            model_dict = {}
-            for model in args["model"]:
-                try:
-                    model_dict[model] = df.loc[(df['date']==date) & (df['iso2code']==iso2code)][model].values[0]
-                except:
-                    model_dict[model] = None
-            date_dict[date]=model_dict
-        data[iso2code]=date_dict
-
-    result['data'] = data
+    result['data'] = utils.reformat_json(df=df, args=args)
     result['status'] = 200
 
     return result
@@ -132,4 +96,8 @@ conn = create_engine('postgresql+psycopg2://'+
                            "dgg" + '@' +
                            "localhost"+ ':5432/' +
                            "dggpanel")
+args = args_check_model(args)
+args = args_check_date(args,conn)
+sql = generate_sql(args, required_one_of=[])
 """
+
