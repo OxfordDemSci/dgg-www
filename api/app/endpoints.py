@@ -14,9 +14,9 @@ def init():
     result['models'] = list(data.columns[4:])
 
     # list countries with national-level data
-    sql = 'SELECT DISTINCT iso2code FROM dgg;'
+    sql = 'SELECT DISTINCT iso2code,country FROM dgg;'
     data = pd.read_sql(sql, conn)
-    result['countries'] = data['iso2code'].tolist()
+    result['countries'] = [{"iso2code":x,"country":y} for x,y in zip(data['iso2code'],data["country"])]
 
     # list dates with data
     sql = 'SELECT DISTINCT date FROM dgg;'
@@ -99,5 +99,9 @@ conn = create_engine('postgresql+psycopg2://'+
 args = args_check_model(args)
 args = args_check_date(args,conn)
 sql = generate_sql(args, required_one_of=[])
+
+
 """
 
+sql = "SELECT DISTINCT iso2code,country FROM dgg;"
+df=pd.read_sql(sql, conn)

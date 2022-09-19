@@ -159,6 +159,7 @@ def reformat_json(df,args):
     """
     change the returned dataframe to the format that the frontend needs
     Args:
+        args:
         df: dataframe returned from the read_sql
     """
     # dates check in the arg
