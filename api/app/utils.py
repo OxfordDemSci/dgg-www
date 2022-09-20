@@ -1,5 +1,6 @@
 import os
 import re
+import json
 import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
@@ -176,4 +177,5 @@ def reformat_json(df,args):
                     model_dict[model] = None
             date_dict[str(date)] = model_dict
         data[iso2code] = date_dict
+    data = json.dumps(data)
     return data
