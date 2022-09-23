@@ -1,4 +1,4 @@
-from flask import request, current_app
+from flask import request, current_app,jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from app import app, utils, endpoints
@@ -31,16 +31,19 @@ def init():
 def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
+    result = jsonify(result)
+    result.status_code=200
     return result
 
 
 
-# query specific country
 @app.route('/query_specific_country', methods=['GET'])
 @limiter.limit(rate_limit)
 def query_specific_country():
     args = dict(request.args)
-    result = endpoints.query_specific_country(args)
+    result= endpoints.query_specific_country(args)
+    result = jsonify(result)
+    result.status_code=200
     return result
 
 

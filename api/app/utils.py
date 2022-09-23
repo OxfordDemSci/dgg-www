@@ -1,6 +1,5 @@
 import os
 import re
-import json
 import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
@@ -15,8 +14,6 @@ def conn_to_database():
                            os.environ.get('POSTGRES_DB'))
 
     return engine
-
-
 
 
 def length_of_arg_check(args,key,permit_length):
@@ -156,7 +153,7 @@ def args_check_date(args,conn):
     return args
 
 
-def reformat_json(df,args):
+def reformat_json(df, args):
     """
     change the returned dataframe to the format that the frontend needs
     Args:
@@ -177,5 +174,6 @@ def reformat_json(df,args):
                     model_dict[model] = None
             date_dict[str(date)] = model_dict
         data[iso2code] = date_dict
-    data = json.dumps(data)
+    # data = json.dumps(data)
+
     return data

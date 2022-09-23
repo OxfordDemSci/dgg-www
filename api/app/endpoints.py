@@ -99,10 +99,10 @@ conn = create_engine('postgresql+psycopg2://'+
 args = args_check_model(args)
 args = args_check_date(args,conn)
 sql = generate_sql(args, required_one_of=[])
+df = pd.read_sql(sql, conn)
 data = reformat_json(df=df, args=args)
 
-
-
 """
+
 
 
