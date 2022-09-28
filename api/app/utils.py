@@ -69,7 +69,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
 
 # test zone
 
-def generate_sql(args,required_one_of):
+def generate_sql(args,date_type,required_one_of):
     # args = {'iso2code':'AT'}
 
     # check the args
@@ -84,6 +84,7 @@ def generate_sql(args,required_one_of):
     # deal with the columns
     sql_query = "SELECT date,country,iso3code,iso2code,"
 
+    # model
     if "model" in args.keys() and len(args['model'])>0:
 
         for key in set(args['model']).intersection(model_set):
@@ -96,18 +97,21 @@ def generate_sql(args,required_one_of):
 
     sql_query += " FROM " + table + " WHERE "
 
-    for key in set(args.keys()).intersection(["date","country","iso3code","iso2code"]):
+    for key in set(args.keys()).intersection(["date", "country", "iso3code", "iso2code"]):
         if key == 'date' and args != 'ALL':
-            dates_string = str(args["date"]).replace("[","(").replace("]",")")
-            sql_query += f"date IN {dates_string} AND "
+            if date_type == "range":
+                sql_query += f" date >= {args['date'][0]} and date <= {args['date'][1]} AND "
+            if date_type == "list":
+                dates_string = str(args["date"]).replace("[","(").replace("]",")")
+                sql_query += f"date IN {dates_string} AND "
 
             # sql_query += f"{key}={args[key]} AND "
         else:
             sql_query += f"{key}=\'{args[key]}\' AND "
 
     # if date is not in the args.keys() -> add date column in the sql_query
-
-    sql_query = sql_query[:-5] + ';'
+    if sql_query.endswith(' AND '):
+        sql_query = sql_query[:-5] + ';'
     return sql_query
     # else:
     #    return 'Internal Error'

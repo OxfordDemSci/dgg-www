@@ -48,3 +48,11 @@ def query_specific_country():
 
 
 
+@app.route('/download_data_with_dates', methods=['GET'])
+@limiter.limit(rate_limit)
+def download_data_with_dates():
+    args = dict(request.args)
+    result= endpoints.download_data_with_dates(args)
+    result = jsonify(result)
+    result.status_code=200
+    return result
