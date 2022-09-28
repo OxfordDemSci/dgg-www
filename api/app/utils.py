@@ -1,5 +1,6 @@
 import os
 import re
+import numpy as np
 import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
@@ -162,6 +163,7 @@ def reformat_json(df, args):
     """
     # dates check in the arg
     df['date'] = df['date'].apply(int)
+    df.fillna(-999, inplace=True)
     data = {}
     for iso2code in df["iso2code"].unique():
         date_dict = {}
@@ -170,10 +172,10 @@ def reformat_json(df, args):
             for model in args["model"]:
                 try:
                     model_dict[model] = df.loc[(df['date'] == date) & (df['iso2code'] == iso2code)][model].values[0]
+                    # if np.isnan(model_dict[model]): model_dict[model] = None
+                    if model_dict[model] == -999: model_dict[model] = None
                 except:
                     model_dict[model] = None
             date_dict[str(date)] = model_dict
         data[iso2code] = date_dict
-    # data = json.dumps(data)
-
     return data
