@@ -1,8 +1,9 @@
 from app import utils
 import pandas as pd
+from flask import jsonify
+import re
 
 def init():
-
     result = {}
 
     conn = utils.conn_to_database()
@@ -13,9 +14,9 @@ def init():
     result['models'] = list(data.columns[4:])
 
     # list countries with national-level data
-    sql = 'SELECT DISTINCT iso2code FROM dgg;'
+    sql = 'SELECT DISTINCT iso2code,country FROM dgg;'
     data = pd.read_sql(sql, conn)
-    result['countries'] = data['iso2code'].tolist()
+    result['countries'] = [{"iso2code":x,"country":y} for x,y in zip(data['iso2code'],data["country"])]
 
     # list dates with data
     sql = 'SELECT DISTINCT date FROM dgg;'
@@ -28,18 +29,99 @@ def init():
 
     # contact
     result['contact'] = 'info@digitalgendergaps.org'
+    return result
 
+# args={"iso2code":"AT"}
+
+def query_specific_country(args):
+    """
+    query the database for one country at one time
+    - requires
+    valid query examples:
+    1. iso2code=AT&model=["ground_truth_mobile_gg"]
+    2. iso2code=AT
+    """
+    conn = utils.conn_to_database()
+    result = {}
+
+    args = utils.args_check_model(args)
+    sql = utils.generate_sql(args, date_type='list', required_one_of=['iso3code', 'iso2code', 'country'])
+    # update the sql sentence with date arg
+
+    df = pd.read_sql(sql, conn)
+    # post-process the json
+    result['data'] = df.to_dict()
+    data = utils.reformat_json(df=df, args=args)
+
+    result['data'] = data
+    result['status'] = 200
     return result
 
 
+# data = pd.read_csv('/Users/valler/Python/RA/Gender_Inequality/dgg-www/sql/initial_data/mau_upper_monthly_model_2_2022-06.csv')
+
+# utils.generate_sql(args=)
+# args = {"model":'["ground_truth_internet_gg","internet_online_model_prediction"]',"date":'[202207,202206]'}
+# args = {"date":'[202207,202206]'}
+
+
 def query_national(args):
+    # TODO: Better Error handle
+    # date must be list or empty
+    conn = utils.conn_to_database()
+    result = {}
 
-    # args = {'iso2code':'AT'}
+    # check the args
+    args = utils.args_check_model(args)
+    args = utils.args_check_date(args, conn)
 
-    if len(args) == 0:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments.", \
-               400
-    else:
-        result = utils.query_db(args)
-        df = result.get('data').to_json(orient='columns')
-        return df, result.get("status")
+    # generate sql
+    sql = utils.generate_sql(args, date_type='list', required_one_of=[])
+    df = pd.read_sql(sql, conn)
+
+    result['data'] = utils.reformat_json(df=df, args=args)
+    result['status'] = 200
+
+    return result
+
+# args = {"date":'[202202,202207]'}
+
+def download_data_with_dates(args):
+    """
+    enable the download function to download data by 2 dates (start dates and end dates)
+    """
+    # TODO: date arg check function?
+    conn = utils.conn_to_database()
+    result = {}
+
+    # check the args
+    args = utils.args_check_date(args, conn)
+    sql = utils.generate_sql(args, date_type="range", required_one_of=[])
+
+    df = pd.read_sql(sql, conn)
+
+    # add models in the args dict before passing the df to the reformat_json function (which need models in the args)
+    args = utils.args_check_model(args)
+    result['data'] = utils.reformat_json(df=df, args=args)
+
+    return result
+
+"""
+pd.read_sql(sql_query, conn)
+
+conn = create_engine('postgresql+psycopg2://'+
+                           "postgres" + ':' +
+                           "dgg" + '@' +
+                           "localhost"+ ':5432/' +
+                           "dggpanel")
+                           
+args = args_check_model(args)
+args = args_check_date(args,conn)
+sql = generate_sql(args,date_type="range", required_one_of=[])
+df = pd.read_sql(sql, conn)
+data = reformat_json(df=df, args=args)
+
+"""
+
+
+

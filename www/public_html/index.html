@@ -25,44 +25,50 @@
 
         <link rel="stylesheet" href="./utils/leaflet_control_bar/L.Control.Bar.css" /> 
         <link rel="stylesheet" href="./utils/leaflet_sidebar/css/leaflet-sidebar.css" /> 
-        <link href="./utils/select2_410/css/select2.css" rel="stylesheet"/>        
+        <link href="./utils/select2_410/css/select2.css" rel="stylesheet"/>      
 
-        <link rel="stylesheet" href="./css/style.css?v=4">
-<!--        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>-->
-<style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"/> 
 
-.fib {
-  background-size: contain;
-  background-position: 50%;
-  background-repeat: no-repeat;
-}
+        <link rel="stylesheet" href="./css/style.css?v=12">
+        <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>-->
 
-    
-</style>
+        <style>
+
+        </style>
 
     </head>
 
     <body >
-    <header>
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container-fluid">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <strong>Digital Gender Gaps</strong>
-                </a>
 
+        <div id="coverScreen"  class="LockOn">
+            <div id="loading-content">
+                Loading...
             </div>
-        </div>
-    </header> 
-        
-        
-<div id="sidebar" class="sidebar collapsed">
+        </div>  
+
+
+        <header>
+            <div class="navbar navbar-dark shadow-sm">
+                <div class="container-fluid">
+                    <a href="#" class="navbar-brand d-flex align-items-center">
+                        <strong>Digital Gender Gaps</strong>
+                    </a>
+                    <img id="img-header" src="./img/university_of_oxford_logo.png" style="height:40px;" />
+                </div>
+            </div>
+        </header> 
+
+
+        <div id="sidebar" class="sidebar collapsed" style="visibility: hidden;">
+            <div class="progressMenu" id="progressMenu"><div id="progressMenu-content" ></div></div>
             <!-- Nav tabs -->
             <div class="sidebar-tabs">
                 <ul role="tablist">
                     <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                     <li><a href="#profile" role="tab"><i class="fa fa-cog"></i></a></li>
-                    <li class="tableLink-item"><a href="" id="tableLink" role="tab" target="_blank"><i class="fa fa fa-table"></i></a></li>
+                    <li class="tableLink-item"><a href="" id="tableLink" role="tab" target="_blank"><i class="fa fa-table"></i></a></li>
                     <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                    <li><a class="button mousechangeHand" id="downloadBtn" role="tab" target="_blank"><i class="fa fa-download"></i></a></li>
                     <li><a href="" role="tab" target="_blank"><i class="fa fa-question-circle"></i></a></li>
                 </ul>
 
@@ -76,38 +82,45 @@
                 <div class="sidebar-pane" id="home">
                     <h1 class="sidebar-header">
                         Digital Gender Gaps
-                        <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                        <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
                     </h1>
                     <br/><br/>        
 
 
                     <label class="mb-3 fw-bold" >Model
-                    <select id="select_models" style="width:200px;background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
-<!--                        <option >Select year</option>-->
-                    </select>
+                        <select id="select_models" style="width:200px;background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
+                        </select>
                     </label>
-                    
+
                     <br/>
-                    <label class="mb-3 fw-bold">Year
-                    <select id="select_year" style="background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
-<!--                        <option >Select year</option>-->
-                    </select>
-                    </label> 
-                    
-                    <label class="mb-3 fw-bold">Month
-                    <select id="select_month" style="background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
-                    </select>
-                    </label> 
+
+                    <section class="container p-0 m-0">
+                        <form class="row">
+                            <label for="date" class="col-1 col-form-label pb-0 fw-bold">Date</label>
+                            <div class="col-12">
+                                <div class="input-group date" id="datepicker">
+                                    <input type="text" class="form-control" id="date"/>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text bg-light d-block">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </section>                   
+
+
                     <br/>
-                    
+
                     <p class="p-0 m-1">Select an country to zoom</p> 
                     <select id="select_country" style="width:200px;">
-                       <option></option> 
+                        <option></option> 
                     </select> 
-                    
+
                     <p class="mt-4">Some text</p>                    
 
-                    <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. .</p>
+                    <p class="lorem">Lorem ipsum dolor sit ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. .</p>
 
                 </div>
 
@@ -127,21 +140,38 @@
 
 
         <div id="map" style=""></div>
-        
+
         <div id="table_bottom"></div>
 
-    <footer class="footer">
-        <div class="container-fluid" style="">
-            <div class="row">
-                <div class="col">
-                    
-                </div>
-                <div class="col">
-                    <p class="ext-muted pt-4" style="font-size: 12px;text-align: right; ">&copy; 2022 <a href="#" style="text-decoration: none;">Digital Gender Gaps</a></p>
+        <footer class="footer">
+            <div class="container-fluid" style="">
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                    <div class="col">
+                        <p class="ext-muted mt-2 pt-4" style="font-size: 12px;text-align: right; ">&copy; 2022 <a href="#" style="text-decoration: none;">Digital Gender Gaps</a></p>
+                    </div>
                 </div>
             </div>
-      </div>
-    </footer>
+        </footer>
+        <a id="downloadAnchorElem" style="display:none"></a>    
+        
+        
+<!-- set up the modal to start hidden and fade in and out -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- dialog body -->
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                Hello world!
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+        </div>
+    </div>
+</div>        
         
     </body>
 </html>
@@ -153,52 +183,60 @@
 
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.0.1/leaflet-omnivore.min.js'></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.en-GB.min.js"></script>
+
+
+<script src="./utils/moment/moment.js"></script>
+<script src="./utils/bootbox/bootbox.min.js"></script>
+
 <script src="./utils/leaflet_sidebar/js/leaflet-sidebar.js"></script>
 <script src="./utils/select2_410/js/select2.js"></script>
 <script src="./utils/leaflet_control_bar/L.Control.Bar.js"></script>
 
 
 <script type="text/javascript">
-window.mdebug = true;
+    window.mdebug = true;
 </script>
-<script src="./js/main.js?version=2" type="module"></script>
+<script src="./js/main.js?version=11" type="module"></script>
+
 
 
 <script type="text/javascript">
-$(document).ready(function () {
-         
-                $(window).on("resize", function () {
-                    $("#map").height($(window).height() - 102);
-                    //map.invalidateSize();
-                    
-                    $(".leaflet-sidebar-pane").css({
-                        minWidth: "236px", 
-                        width: "236px"
-                    });
-                }).trigger("resize");
-                
-                
-                
-                $( "#tableLink" ).click(function() {
-                    event.preventDefault();
-                    if(window.controlBar.isVisible()){
-                        window.controlBar.hide();
-                        $( "li.tableLink-item" ).css( "background-color", "" );
-                    }else{
-                        window.controlBar.show(); 
-                        $( "li.tableLink-item" ).css( "background-color", "#A6ACAF" ); 
-                    }
-                });  
-                
-                
-                 $("#select_country").select2({
-                    placeholder: "Select an country",
-                    allowClear: true
-                });   
+    $(document).ready(function () {
 
-});
-            
+        $(window).on("resize", function () {
+            $("#map").height($(window).height() - 102);
+            //map.invalidateSize();
+
+            $(".leaflet-sidebar-pane").css({
+                minWidth: "236px",
+                width: "236px"
+            });
+        }).trigger("resize");
+
+
+
+        $("#tableLink").click(function () {
+            event.preventDefault();
+            if (window.controlTable_Bottom.isVisible()) {
+                window.controlTable_Bottom.hide();
+                $("li.tableLink-item").css("background-color", "");
+            } else {
+                window.controlTable_Bottom.show();
+                $("li.tableLink-item").css("background-color", "#A6ACAF");
+            }
+        });
+
+
+        $("#select_country").select2({
+            placeholder: "Select an country",
+            allowClear: true
+        });
+        
+
+
+    });
+
 
 </script>
-
-
