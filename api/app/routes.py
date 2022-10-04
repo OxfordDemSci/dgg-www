@@ -1,4 +1,4 @@
-from flask import request, current_app
+from flask import request, current_app,jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from app import app, utils, endpoints
@@ -31,18 +31,28 @@ def init():
 def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
+    result = jsonify(result)
+    result.status_code=200
     return result
 
 
-# test page to query the database
-@app.route('/db_test', methods=['GET'])
+
+@app.route('/query_specific_country', methods=['GET'])
 @limiter.limit(rate_limit)
-def query():
+def query_specific_country():
     args = dict(request.args)
-    if len(args) > 0:
-        result = utils.query_db(args)
-        df = result.get('data').to_dict()
-        return df, result.get("status")
-    else:
-        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. See <a href='http://10.131.129.27/api/social-media-audience.html#query'>API documentation</a> for more info.", \
-               400
+    result= endpoints.query_specific_country(args)
+    result = jsonify(result)
+    result.status_code=200
+    return result
+
+
+
+@app.route('/download_data_with_dates', methods=['GET'])
+@limiter.limit(rate_limit)
+def download_data_with_dates():
+    args = dict(request.args)
+    result= endpoints.download_data_with_dates(args)
+    result = jsonify(result)
+    result.status_code=200
+    return result
