@@ -4,6 +4,16 @@ from flask import jsonify
 import re
 
 def init():
+    """
+    API endpoint to initialize the front end
+
+    Parameters:
+        None
+
+    Returns:
+        result (dict): Contains a list of models (indicators), countries, dates with data, blurb, and contact.
+    """
+
     result = {}
 
     conn = utils.conn_to_database()
@@ -16,7 +26,7 @@ def init():
     # list countries with national-level data
     sql = 'SELECT DISTINCT iso2code,country FROM dgg;'
     data = pd.read_sql(sql, conn)
-    result['countries'] = [{"iso2code":x,"country":y} for x,y in zip(data['iso2code'],data["country"])]
+    result['countries'] = [{"iso2code": x, "country": y} for x, y in zip(data['iso2code'], data["country"])]
 
     # list dates with data
     sql = 'SELECT DISTINCT date FROM dgg;'
@@ -35,12 +45,20 @@ def init():
 
 def query_specific_country(args):
     """
-    query the database for one country at one time
-    - requires
-    valid query examples:
-    1. iso2code=AT&model=["ground_truth_mobile_gg"]
-    2. iso2code=AT
+    API endpoint to query the database for one country at one time
+
+    Parameters:
+        args (dict): A dictionary containing items str:iso2code and/or list:model
+
+    Examples:
+        - args = {"iso2code": "AT"}
+        - args = {"iso2code": "AT", "model": ["ground_truth_mobile_gg"]}
+
+    Returns:
+        result (dict): Contains a list of models (indicators), countries, dates with data, blurb, and
+        contact email.
     """
+
     conn = utils.conn_to_database()
     result = {}
 
@@ -66,8 +84,22 @@ def query_specific_country(args):
 
 
 def query_national(args):
+    """
+    API endpoint to query the database for all countries
+
+    Parameters:
+        args (dict): A dictionary containing items ??
+
+    Examples:
+        - ??
+
+    Returns:
+        result (json): Data
+    """
+
     # TODO: Better Error handle
     # date must be list or empty
+
     conn = utils.conn_to_database()
     result = {}
 
@@ -88,9 +120,20 @@ def query_national(args):
 
 def download_data_with_dates(args):
     """
-    enable the download function to download data by 2 dates (start dates and end dates)
+    Enable the download function to download data by 2 dates (start dates and end dates)
+
+    Parameters:
+        args (dict): A dictionary containing items ??
+
+    Examples:
+        - ??
+
+    Returns:
+        result (json): Data
     """
+
     # TODO: date arg check function?
+
     conn = utils.conn_to_database()
     result = {}
 
