@@ -1,6 +1,17 @@
 import * as _ImageFromRGB from './createImageFromRGBdata.js?version=1'
 
-const zeroPad = (num, places) => String(num).padStart(places, '0')
+const zeroPad = (num, places) => String(num).padStart(places, '0');
+
+// m - selected model, d- modeil list
+export function updateModelInfoonPanel(m, d) {
+
+  var titleModelName = document.getElementById('titleModelName');
+  titleModelName.innerHTML = d[m].name;
+
+  var titleModelDescription = document.getElementById('titleModelDescription');
+  titleModelDescription.innerHTML = d[m].description;
+
+}
 
 export function getSelectedParameters() {
 
@@ -132,6 +143,7 @@ function hexToRGB(hexStr) {
 export function loadLagent(title, colors, breaks) {
 
     var html = '<div style="width:100px">' + title + '</div>';
+    
     html += '<ul style="list-style-type: none;margin-top: 10px;padding-inline-start: 10px;">';
     for (var i = 0, len = colors.length; i < len; i++) {
         var rgb = hexToRGB(colors[i]);

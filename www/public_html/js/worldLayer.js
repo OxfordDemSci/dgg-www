@@ -160,9 +160,9 @@ export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countri
         var hilighted_country_style = '';
         if (_utils.isEmpty(iso)) {
             hilighted_country_style = '';
-            console.log("iso is emty " + iso);
+            //console.log("iso is emty " + iso);
         } else {
-            console.log("iso is not emty " + iso);
+            //console.log("iso is not emty " + iso);
             if (iso === k)
                 hilighted_country_style = 'style="background-color: #D7D4D4"';
         }
@@ -205,7 +205,8 @@ export function load_data_to_worldLayer(year, month, model, _map, _layer, json, 
    
     var m = String(month).padStart(2, '0');
     var year_month = year+m;
-    var model_title = year+' '+_utils.toMonthName(m)+'<hr style="padding:1px;margin:0">'+model.replace(/_/g, " ")+'' ;
+    //var model_title = year+' '+_utils.toMonthName(m)+'<hr style="padding:1px;margin:0">'+model.replace(/_/g, " ")+'' ;
+    var model_title = year+' '+_utils.toMonthName(m)+'<hr style="padding:1px;margin:0"><small>Internet/Mobile Gender Gap (F:M)</small>' ;
     
     //var query_national = _api.query_national(year, month);
 
@@ -217,7 +218,7 @@ export function load_data_to_worldLayer(year, month, model, _map, _layer, json, 
 //    var min_max_Array = [];
 
 
-    console.log("year_month " + year_month  + "model " + model);
+    //console.log("year_month " + year_month  + "model " + model);
 	
     for (var i = 0; i < json.features.length; i++) {
 			

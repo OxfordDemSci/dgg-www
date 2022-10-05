@@ -108,14 +108,20 @@ export function load_models_to_menu(models) {
 
 
     var select_models = document.getElementById('select_models');
-    
-    var model_name;
-    for (let i = 0; i < models.length; i++) {
-        
-         model_name = models[i].replace(/_/g, " ");
-         select_models.innerHTML = select_models.innerHTML +
-                '<option value="' + models[i] + '">' + model_name + '</option>';
-    } 
+
+    for (var m in models){
+        select_models.innerHTML = select_models.innerHTML +
+                '<option value="' + m + '">' + models[m].name + '</option>';
+    }
+//        
+//    
+//    
+//    for (let i = 0; i < models.length; i++) {
+//        
+//         model_name = models[i].replace(/_/g, " ");
+//         select_models.innerHTML = select_models.innerHTML +
+//                '<option value="' + models[i] + '">' + model_name + '</option>';
+//    } 
 
 }
 

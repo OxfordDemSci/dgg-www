@@ -3,7 +3,7 @@ var featureByName = {};
 
 import * as _init from './init.js?version=11'
 import * as _utils from './utils.js?version=11'
-import * as _worldLayer from './worldLayer.js?version=13'
+import * as _worldLayer from './worldLayer.js?version=14'
 import * as _api from './api_requests.js?version=3'
 import * as _plotxyLayer from './plotxyLayer.js?version=2'
 import * as _downloadData from './downloadData.js?version=2'
@@ -24,13 +24,14 @@ var initJSONSettings = _api.getSettings(API_URL);
 var ymDates = _init.getDates(initJSONSettings.dates);
 var countriesList = _init.getCountriesList(initJSONSettings.countries);
 
-console.log(initJSONSettings);
 
 if (window.mdebug === true){
     console.log("countriesList" + countriesList[1]["country"]);
 }
 
 var world_geo_json = _init.getWorld_geo();
+
+var modelsList = initJSONSettings.models;
 
 _init.load_models_to_menu(initJSONSettings.models);
 
@@ -57,7 +58,7 @@ if (window.mdebug === true){
 _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
 _init.loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
 
-const firstModelfromList = initJSONSettings.models[0];
+const firstModelfromList = Object.keys(modelsList)[0];
 
 
 var basemaps = {
@@ -167,7 +168,7 @@ var worldLayer = L.geoJson(null, {
                     
                     var sParams = _utils.getSelectedParameters();
                     var iso2code = e.target.feature.properties.iso_a2;
-                    console.log("iso2code " + iso2code);
+                    //console.log("iso2code " + iso2code);
                     _api.query_model_promis(iso2code, sParams[2], API_URL)
                         .then((data) => {
                             _plotxyLayer.display("show");
@@ -193,7 +194,7 @@ L.control.zoom({
 
 _api.query_national_promis(lastYear, lastMonth)
         .then((data) => {
-            console.log(data);
+            //console.log(data);
             //var data_national = JSON.parse(data.data);
             _worldLayer.load_data_to_worldLayer(
                     lastYear,
@@ -205,6 +206,7 @@ _api.query_national_promis(lastYear, lastMonth)
                     countriesList,
                     data);
         }).then(() => {
+            _utils.updateModelInfoonPanel(firstModelfromList, modelsList);
             _utils.hideCoverScreen();
             })
         .catch((error) => {
@@ -237,7 +239,7 @@ $('#select_country').on('select2:select', function (e) {
 
     _api.query_national_promis(sParams[0], sParams[1])
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 //var data_national = JSON.parse(data.data);
                 _worldLayer.load_data_to_controlTable_Bottom(data,
                         sParams[0],
@@ -272,7 +274,7 @@ $('#select_models').on('change', function () {
 
     _api.query_national_promis(sParams[0], sParams[1])
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 //var data_national = JSON.parse(data.data);
                 _worldLayer.load_data_to_worldLayer(
                         sParams[0],
@@ -283,6 +285,8 @@ $('#select_models').on('change', function () {
                         world_geo_json,
                         countriesList,
                         data);
+            }).then(() => {
+                 _utils.updateModelInfoonPanel(select_model, modelsList);
             }).then(() => {
                  _utils.progressMenuOff();
             })
