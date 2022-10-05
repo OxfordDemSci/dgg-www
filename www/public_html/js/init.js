@@ -42,6 +42,12 @@ export function getDates(data) {
     return ymObject;
 }
 
+
+export function getCountriesList(countries) {
+    return countries;
+}
+
+
 export function getCountries_teamplate() {
 
     var result = "";
@@ -61,24 +67,23 @@ export function getCountries_teamplate() {
     return result;
 }
 
-export function load_countries_to_menu(countries, countriesTemplate_json) {
+
+export function load_countries_to_menu(countries) {
 
     var select_country = document.getElementById('select_country');
-
     var country_name;
     var country_alpha;
+    
     for (var i = 0; i < countries.length; i++) {
 
-        country_alpha = countries[i];
-
-        if ((country_alpha !== undefined) && (country_alpha !== null) && (country_alpha !== "")) {
-            country_name = countriesTemplate_json.find(x => x["alpha-2"] === country_alpha)["name"];
-
-            select_country.innerHTML = select_country.innerHTML +
+        country_name = countries[i]["country"];
+        country_alpha = countries[i]["iso2code"];
+        
+        select_country.innerHTML = select_country.innerHTML +
                     '<option value="' + country_alpha + '">' + country_name + '</option>';
-        }
-    }
 
+    }
+    
     // sort alphabetic    
     var sel = $('#select_country');
     var selected = sel.val(); // cache selected value, before reordering
@@ -94,7 +99,7 @@ export function load_countries_to_menu(countries, countriesTemplate_json) {
 
     for (var i = 0; i < elements.length; i++) {
         elements[i].selected = false;
-    }
+    }    
 
 
 }
@@ -119,7 +124,7 @@ export function getWorld_geo() {
 
     var result = "";
     $.ajax({
-        url: './data/world_low.geo.json',
+        url: './data/world_med.geo.json?version=2',
         async: false,
         type: 'get',
         dataType: 'json',
@@ -157,3 +162,42 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
 
 }
 
+export function loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable) {
+
+
+    $("#datepicker_start_date").datepicker({
+        format: "yyyy-mm",
+        minViewMode: "months",
+        startDate:  firstYear+ '-' + firstMonth,
+        endDate: lastYear+ '-' + lastMonth,
+        useCurrent: false,
+        autoclose: true,
+        fontAwesome: true,
+        beforeShowMonth: function (date) {
+            //alert(date);
+            var formattedDate = moment(date).format('YYYY-MM');
+            return $.inArray(formattedDate, monthsToDisable) < 0;
+        }
+    });
+
+    $('#datepicker_start_date').datepicker('setDate', firstYear + '-' + firstMonth);
+    
+    
+    $("#datepicker_end_date").datepicker({
+        format: "yyyy-mm",
+        minViewMode: "months",
+        startDate:  firstYear+ '-' + firstMonth,
+        endDate: lastYear+ '-' + lastMonth,
+        useCurrent: false,
+        autoclose: true,
+        fontAwesome: true,
+        beforeShowMonth: function (date) {
+            //alert(date);
+            var formattedDate = moment(date).format('YYYY-MM');
+            return $.inArray(formattedDate, monthsToDisable) < 0;
+        }
+    });
+
+    $('#datepicker_end_date').datepicker('setDate', lastYear + '-' + lastMonth);    
+
+}
