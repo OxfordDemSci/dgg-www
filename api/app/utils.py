@@ -1,10 +1,60 @@
 import os
 import re
-import numpy as np
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 load_dotenv()
+
+
+# list of models (indicators)
+models_desc = {
+        'internet_online_model_prediction': {
+            'name': 'Internet GG - Online',
+            'description': 'Estimated ratios of female-to-male internet use from our daily Facebook Gender Gap Index '
+                           '(best coverage; daily data frequency; best estimation accuracy).'
+        },
+        'internet_online_offline_model_prediction': {
+            'name': 'Internet GG - Combined',
+            'description': 'Estimated ratios of female-to-male internet use estimated using our daily Facebook Gender '
+                           'Gap Index (moderate coverage; annual data frequency; good estimation accuracy).'
+        },
+        'internet_offline_model_prediction': {
+            'name': 'Internet GG - Offline',
+            'description': 'Estimated ratio of female-to-male internet use estimated using only offline indicators on '
+                           'the country’s development status such as its Human Development Index '
+                           '(moderate coverage; annual data frequency; low accuracy).'
+        },
+        'ground_truth_internet_gg': {
+            'name': 'Internet GG - ITU',
+            'description': 'Observed ratio of female-to-male internet use from International Telecommunication Union '
+                           '(ITU) statistics (lowest coverage; annual data frequency; observed survey data).'
+        },
+        'mobile_online_model_prediction': {
+            'name': 'Mobile GG - Online',
+            'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender Gap Index '
+                           '(best coverage; daily data frequency; moderate estimation accuracy).'
+        },
+        'mobile_online_offline_model_prediction': {
+            'name': 'Mobile GG - Combined',
+            'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender '
+                           'Gap Index combined with offline indicators such as the Human Development Index '
+                           '(moderate coverage; annual data frequency; best estimation accuracy).'
+        },
+        'mobile_offline_model_prediction': {
+            'name': 'Mobile GG - Offline',
+            'description': 'Estimated ratios of female-to-male mobile phone use from offline indicators '
+                           'such as the Human Development Index '
+                           '(moderate coverage; annual data frequency; moderate estimation accuracy).'
+        },
+        'ground_truth_mobile_gg': {
+            'name': 'Mobile GG - GSMA',
+            'description': 'Observed ratio of female-to-male mobile phone use from published Global System for Mobile '
+                           'Communications Association (GSMA) reports '
+                           '(low coverage; annual data frequency; observed survey data). '
+        }
+    }
+
 
 def conn_to_database():
 
@@ -33,7 +83,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
         dict: http response compatible with json format along with modified args object
     """
 
-    length_check_args_dict = {'date':6,'iso3code':3,'iso2code':2}
+    length_check_args_dict = {'date': 6, 'iso3code': 3, 'iso2code': 2}
     status = 200
     message = ""
 
@@ -69,7 +119,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
 
 # test zone
 
-def generate_sql(args,date_type,required_one_of):
+def generate_sql(args, date_type, required_one_of):
     # args = {'iso2code':'AT'}
 
     # check the args
@@ -77,8 +127,13 @@ def generate_sql(args,date_type,required_one_of):
     # args = result.get('args')
 
     # if result['status'] == 200:
-    # cols = ["date","country","iso3code","iso2code","ground_truth_internet_gg","internet_online_model_prediction","internet_online_offline_model_prediction","internet_offline_model_prediction","ground_truth_mobile_gg","mobile_online_model_prediction","mobile_online_offline_model_prediction","mobile_offline_model_prediction"]
-    model_set = ["ground_truth_internet_gg","internet_online_model_prediction","internet_online_offline_model_prediction","internet_offline_model_prediction","ground_truth_mobile_gg","mobile_online_model_prediction","mobile_online_offline_model_prediction","mobile_offline_model_prediction"]
+    # cols = ["date", "country", "iso3code", "iso2code",
+    #         "ground_truth_internet_gg", "internet_online_model_prediction",
+    #         "internet_online_offline_model_prediction", "internet_offline_model_prediction",
+    #         "ground_truth_mobile_gg", "mobile_online_model_prediction",
+    #         "mobile_online_offline_model_prediction", "mobile_offline_model_prediction"]
+
+    models = list(models_desc.keys())
     table = 'dgg'
 
     # deal with the columns
@@ -87,7 +142,7 @@ def generate_sql(args,date_type,required_one_of):
     # model
     if "model" in args.keys() and len(args['model'])>0:
 
-        for key in set(args['model']).intersection(model_set):
+        for key in set(args['model']).intersection(models):
             sql_query += f" {key},"
 
         if sql_query.endswith(","):
@@ -128,7 +183,8 @@ def args_check_model(args):
     Returns: updated arg dict
 
     """
-    models = ["ground_truth_internet_gg", "internet_online_model_prediction", "internet_online_offline_model_prediction", "internet_offline_model_prediction", "ground_truth_mobile_gg", "mobile_online_model_prediction", "mobile_online_offline_model_prediction", "mobile_offline_model_prediction"]
+
+    models = list(models_desc.keys())
 
     if "model" in args.keys():
         models_found = re.findall("\"(\w+)\"", args['model'])
@@ -139,7 +195,7 @@ def args_check_model(args):
         args["model"] = models
     return args
 
-def args_check_date(args,conn):
+def args_check_date(args, conn):
     """
     update the model args in the query
     1. if there are date arg in the query
@@ -183,3 +239,72 @@ def reformat_json(df, args):
             date_dict[str(date)] = model_dict
         data[iso2code] = date_dict
     return data
+
+def palette(n=6):
+    """
+    Color palette for mapping results.
+
+    Parameters:
+        n (int): Number of colors in palette. Must be 6, 8, or 10.
+
+    Returns:
+        pal (dict): Color palette with hex codes and break points
+
+    """
+
+    #---- color ramp ----#
+    colors = ["#e76254",  # dark red
+              "#ef8a47",
+              "#f7aa58",
+              "#ffd06f",
+              "#ffe6b7",  # light red
+              "#aadce0",  # light blue
+              "#72bcd5",
+              "#528fad",
+              "#376795",
+              "#1e466e"  # dark blue
+              ]
+
+    if n not in [6, 8, 10]:
+        n = 6
+
+    if n == 6:
+        colors = [colors[i] for i in [0, 1, 3, 5, 6, 8]]
+    elif n == 8:
+        colors = [colors[i] for i in [0, 1, 3, 4, 5, 6, 8, 9]]
+
+    #---- breaks (modified from GISRede's function) ----#
+    models = list(models_desc.keys())
+
+    conn = conn_to_database()
+
+    sql = 'SELECT DISTINCT date FROM dgg;'
+    data = pd.read_sql(sql, conn)
+
+    latest_date = str(int(max(data['date'])))
+
+    sql = 'SELECT ' + ",".join(models) + ' FROM dgg WHERE date = ' + latest_date + ';'
+    df = pd.read_sql(sql, conn)
+
+    breaks = {}
+    for model in models:
+        x = df[model]
+        x = x[x > -999]
+
+        b = [None] * (n + 1)
+        b[0] = 0
+        b[len(b)-1] = 1.0  # float('inf')
+        b[int(n/2)] = np.median(x)
+        for i in range(1, int(n/2)):
+            b[i] = np.quantile(a=x[x < np.median(x)], q=i * (2 / n))
+            b[i+int(n/2)] = np.quantile(a=x[x > np.median(x)], q=i * (2 / n))
+
+        breaks[model] = b
+
+    pal = {
+        "colors": colors,
+        "breaks": breaks
+    }
+
+    return pal
+

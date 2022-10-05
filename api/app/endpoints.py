@@ -17,52 +17,7 @@ def init():
     conn = utils.conn_to_database()
 
     # list models
-    result['models'] = {
-        'internet_online_model_prediction': {
-            'name': 'Internet GG - Online',
-            'description': 'Estimated ratios of female-to-male internet use from our daily Facebook Gender Gap Index '
-                           '(best coverage; daily data frequency; best estimation accuracy).'
-        },
-        'internet_online_offline_model_prediction': {
-            'name': 'Internet GG - Combined',
-            'description': 'Estimated ratios of female-to-male internet use estimated using our daily Facebook Gender '
-                           'Gap Index (moderate coverage; annual data frequency; good estimation accuracy).'
-        },
-        'internet_offline_model_prediction': {
-            'name': 'Internet GG - Offline',
-            'description': 'Estimated ratio of female-to-male internet use estimated using only offline indicators on '
-                           'the country’s development status such as its Human Development Index '
-                           '(moderate coverage; annual data frequency; low accuracy).'
-        },
-        'ground_truth_internet_gg': {
-            'name': 'Internet GG - ITU',
-            'description': 'Observed ratio of female-to-male internet use from International Telecommunication Union '
-                           '(ITU) statistics (lowest coverage; annual data frequency; observed survey data).'
-        },
-        'mobile_online_model_prediction': {
-            'name': 'Mobile GG - Online',
-            'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender Gap Index '
-                           '(good coverage; daily data frequency; moderate estimation accuracy).'
-        },
-        'mobile_online_offline_model_prediction': {
-            'name': 'Mobile GG - Combined',
-            'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender '
-                           'Gap Index combined with offline indicators such as the Human Development Index '
-                           '(moderate coverage; annual data frequency; best estimation accuracy).'
-        },
-        'mobile_offline_model_prediction': {
-            'name': 'Mobile GG - Offline',
-            'description': 'Estimated ratios of female-to-male mobile phone use from offline indicators '
-                           'such as the Human Development Index '
-                           '(moderate coverage; annual data frequency; moderate estimation accuracy).'
-        },
-        'ground_truth_mobile_gg': {
-            'name': 'Mobile GG - GSMA',
-            'description': 'Observed ratio of female-to-male mobile phone use from published Global System for Mobile '
-                           'Communications Association (GSMA) reports '
-                           '(low coverage; annual data frequency; observed survey data). '
-        }
-    }
+    result['models'] = utils.models_desc
 
     # list countries with national-level data
     sql = 'SELECT DISTINCT iso2code,country FROM dgg;'
@@ -75,8 +30,12 @@ def init():
     result['dates'] = data['date'].tolist()
     result['dates'] = [int(x) for x in result['dates']]
 
+    # color palette
+    result['palette'] = utils.palette(n=6)
+
     # contact
     result['contact'] = 'info@digitalgendergaps.org'
+
     return result
 
 

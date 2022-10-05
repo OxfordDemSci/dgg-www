@@ -28,6 +28,8 @@ def page_not_found(e):
 @app.route('/init', methods=['GET'])
 def init():
     result = endpoints.init()
+    result = jsonify(result)
+    result.status_code = 200
     return result
 
 
