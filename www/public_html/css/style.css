@@ -25,6 +25,7 @@ html, body, #map {
   background-color: #f5f5f5;
 }
 
+
 #legend_data_info {
     line-height: 18px;
     color: #333333;
@@ -35,6 +36,7 @@ html, body, #map {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
     float: left;
+/*    z-index: 8000 !important;*/
 }    
 
 .fib {
@@ -106,6 +108,8 @@ html, body, #map {
 .leaflet-control-bar-bottom.leaflet-control-bar {
     height: 400px;
     bottom: -400px;
+    overflow-y: hidden;  
+    overflow-x: hidden; 
 }
 
 /*  overflow-y: auto;
@@ -116,7 +120,7 @@ html, body, #map {
 
 .sidebar {
     width: 280px;
-    height: 500px;
+    height: 400px;
     top: 60px;
 }
 
@@ -144,11 +148,13 @@ html, body, #map {
 @media (min-width: 768px) and (max-width: 991px) {
     .sidebar-pane {
         width: 240px;
-        max-width: 240px; } }
+        max-width: 240px;
+        min-width: 240px} }
 @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar-pane {
         width: 240px;
-        max-width: 240px; } }
+        max-width: 240px;
+        min-width: 240px} }
 @media (min-width: 1200px) {
     .sidebar-pane{
         width: 240px !important;
@@ -204,7 +210,7 @@ html, body, #map {
     display: none;
     visibility: hidden;
     position: absolute;
-    z-index: 999999;
+    z-index: 9999;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -225,7 +231,7 @@ html, body, #map {
   
   height: 80%;
   width: 100%;
-  z-index: 9999999;
+  z-index: 9999;
   border:0px solid black;
   position: absolute;
   background-size: 60px;
@@ -233,3 +239,36 @@ html, body, #map {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.leaflet-control-plotxy
+{
+    z-index: 10000 !important;
+    width: 350px;
+    background-repeat: no-repeat;
+    display: block;
+    padding: 3px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
+    cursor: auto;
+    background-color: #FFFFFF;
+    opacity: .9;
+    filter: alpha(opacity=10);
+}
+
+#plotxy_span_close{
+    cursor:pointer;
+    position:absolute;
+    top:0;
+    right:0;
+    height:20px;
+    margin-right: 2px; 
+    padding: 3px;
+}
+
+
+@media (max-width: 400px) {
+    #legend_data_info { display: none; }
+}
+

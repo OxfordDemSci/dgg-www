@@ -29,8 +29,10 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"/> 
 
-        <link rel="stylesheet" href="./css/style.css?v=12">
+        <link rel="stylesheet" href="./css/style.css?v=31">
         <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>-->
+
+        <link rel="stylesheet" type="text/css" href="./utils/DataTables/datatables.min.css"/>
 
         <style>
 
@@ -48,14 +50,44 @@
 
 
         <header>
-            <div class="navbar navbar-dark shadow-sm">
+        
+            <div class="navbar navbar-dark shadow-sm navbar-expand-lg">
+<div class="container-fluid">
+    <a class="navbar-brand" href="#">Digital Gender Gaps</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+<!--<div class="collapse navbar-collapse  justify-content-end" id="navbarText">    -->
+<!--<ul class="navbar-nav pr-5">    -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="#">Menu1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Menu2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+      <span class="navbar-text p-0 m-0">
+        <img id="img-header" src="./img/university_of_oxford_logo.png" style="height:40px;" />
+      </span>
+    </div>
+  </div>
+            </div>            
+            
+<!--       <div class="navbar navbar-dark shadow-sm">
                 <div class="container-fluid">
                     <a href="#" class="navbar-brand d-flex align-items-center">
                         <strong>Digital Gender Gaps</strong>
                     </a>
                     <img id="img-header" src="./img/university_of_oxford_logo.png" style="height:40px;" />
                 </div>
-            </div>
+            </div>-->
+            
+            
         </header> 
 
 
@@ -65,16 +97,20 @@
             <div class="sidebar-tabs">
                 <ul role="tablist">
                     <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-                    <li><a href="#profile" role="tab"><i class="fa fa-cog"></i></a></li>
+                    <li><a class="button mousechangeHand" id="AboutBtn"  role="tab" target="_blank"><i class="fa fa-question-circle"></i></a></li>
                     <li class="tableLink-item"><a href="" id="tableLink" role="tab" target="_blank"><i class="fa fa-table"></i></a></li>
+                    
+                    <li><a href="#download" role="tab"><i class="fa fa-download"></i></a></li>
+                    <li><a href="#settings" role="tab"><i class="fa fa-cog"></i></a></li>
+                    
                     <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-                    <li><a class="button mousechangeHand" id="downloadBtn" role="tab" target="_blank"><i class="fa fa-download"></i></a></li>
-                    <li><a href="" role="tab" target="_blank"><i class="fa fa-question-circle"></i></a></li>
+<!--                    <li><a class="button mousechangeHand" id="downloadBtn" role="tab" target="_blank"><i class="fa fa-download"></i></a></li>-->
+                    
                 </ul>
 
-                <ul role="tablist">
+<!--                <ul role="tablist">
                     <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-                </ul>
+                </ul>-->
             </div>
 
             <!-- Tab panes -->
@@ -84,10 +120,9 @@
                         Digital Gender Gaps
                         <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
                     </h1>
-                    <br/><br/>        
+     
 
-
-                    <label class="mb-3 fw-bold" >Model
+                    <label class="mb-3 mt-4  fw-bold" >Model
                         <select id="select_models" style="width:200px;background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
                         </select>
                     </label>
@@ -120,9 +155,57 @@
 
                     <p class="mt-4">Some text</p>                    
 
-                    <p class="lorem">Lorem ipsum dolor sit ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. .</p>
+                    <p class="lorem">Lorem ipsum dolor sit ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
 
                 </div>
+                
+                <div class="sidebar-pane" id="download">
+                    <h1 class="sidebar-header">Download<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                    
+                    <p class="fw-light mt-4">To download a data please select starting and ending dates.</p>
+                    
+                    <section class="container p-0 m-0">
+                        <form class="row">
+                            <label for="date" class="col-6 col-form-label pb-0 fw-bold">Start date</label>
+                            <div class="col-12">
+                                <div class="input-group date" id="datepicker_start_date">
+                                    <input type="text" class="form-control" id="date"/>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text bg-light d-block">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </section> 
+                    
+
+                    <section class="container p-0 m-0">
+                        <form class="row">
+                            <label for="date" class="col-6 col-form-label pb-0 fw-bold">End date</label>
+                            <div class="col-12">
+                                <div class="input-group date" id="datepicker_end_date">
+                                    <input type="text" class="form-control" id="date"/>
+                                    <span class="input-group-append">
+                                        <span class="input-group-text bg-light d-block">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </section>   
+                    
+                    <button type="button" id="btnDownloadData" class="btn btn-dark btn-sm mt-4">Download</button>
+                    
+                    <div id="errorDownload" class="mt-4 alert alert-danger alert-dismissible " style="display: none;">
+                         <strong>Error!</strong> 
+                            Please select the starting date before ending date
+                        <button type="button" class="btn-close" id="errorDownloadClose"></button>
+                    </div>           
+                    
+                </div>                
 
                 <div class="sidebar-pane" id="profile">
                     <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -134,6 +217,22 @@
 
                 <div class="sidebar-pane" id="settings">
                     <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                    
+                    <div class="pt-4">  
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="chCountryLabels" checked>
+                            <label class="form-check-label" for="chCountryLabels">Show country name labels</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="chLegend" checked>
+                            <label class="form-check-label" for="chLegend">Show legend </label>
+                        </div>                        
+                    </div> 
+                    <div class="pt-4">  
+                            <label for="customRangeOpacity" class="form-label">Opacity</label>
+                            <input type="range" class="form-range" min="0" max="1" step="0.1" value="0.9" id="customRangeOpacity">
+                    </div>                     
+                    
                 </div>
             </div>
         </div>
@@ -158,25 +257,80 @@
         <a id="downloadAnchorElem" style="display:none"></a>    
         
         
-<!-- set up the modal to start hidden and fade in and out -->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- dialog body -->
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                Hello world!
+        <div class="modal fade "  data-backdrop="false"  id="idMdAbout" tabindex="-1"  aria-labelledby="ModalAbout" style="opacity: 0.8;">
+            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" id="idModalSetting-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 0.5rem;cursor: move;">
+                        <h5 class="modal-title" id="ModalAboutLabel">About</h5>                 
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!--Modal select-->
+                    <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
+                        <div class="container">
+
+                            <div style="font-size: 12px;"> <!-- select-->
+                                <h4 class="text-center">Using Digital Traces to Measure Digital Gender Inequality in Real-Time</h4>
+                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">
+                                    The tremendous expansion of information and communication technologies (ICTs) has transformed the ways in which individuals seek information, 
+                                    communicate and participate in their communities. Participating in the digital revolution is more important than ever across different spheres 
+                                    of life. Despite the rapid expansion of ICTs worldwide, 
+                                    <a href="https://www.itu.int/en/ITU-D/Statistics/Documents/facts/ICTFactsFigures2017.pdf" target="_blank">women lag behind men in access and use of the internet and mobile phones in many parts of the world, particularly in low- and middle-income countries.</a>
+                                </p>
+                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">
+                                    Gender equality in internet and mobile phone access, and improving digital literacy are 
+                                    <a href="https://sustainabledevelopment.un.org/content/documents/10789Chapter3_GSDR2016.pdf" target="_blank">important targets</a> within the 
+                                    United Nations' (UN) Sustainable Development Goals (SDGs). Acknowledging the tremendous and wide-ranging potential of these technologies, 
+                                    the UN SDG 5 to achieve gender equality pledges to “enhance the use of…information and communication technology to promote the empowerment 
+                                    of women" (Goal 5b). In March 2013, the International Telecommunications Union (ITU) and the United Nations Educational, 
+                                    Scientific and Cultural Organization (UNESCO) 
+                                    <a href="https://www.broadbandcommission.org/Pages/default.aspx" target="_blank">Broadband Commission for Digital Development</a> 
+                                    further endorsed a target calling for <a href="https://es.unesco.org/node/83355" target="_blank">gender equality in access to broadband by 2020</a>.
+                                </p> 
+                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">
+                                    <a href="https://broadbandcommission.org/Documents/publications/DigitalGenderDivideProgressReport2018.pdf">Tracking progress on gender inequalities in internet and mobile access and use</a> – digital gender gaps –&nbsp;is very important to ensure that women benefit from the opportunities afforded by the digital revolution. But measuring and sizing this gender gap has proven to be challenging <a href="https://www.data2x.org/what-is-gender-data/gender-data-gaps/">due to significant gender data gaps</a>. There are limited data from surveys or population-level data sources that examine digital inequalities.
+                                </p> 
+                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">How can we better measure digital gender gaps? In which countries are women most “invisible” online and not participating equally in the digital revolution?</p>
+                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">With support from the Data2X and as a part of <a href="https://www.data2x.org/big-data-challenge-awards/#digital">“Big Data for Gender Challenge”</a>, our project “The Digital Traces of the Gender Digital Divide” based at the University of Oxford and collaborating with the Qatar Computing Research Institute has been exploring how big data innovations can help us measure women’s participation in the digital revolution in real-time. We are also exploring how digital traces gathered from big data can help measure gender gaps in other domains such as education and occupations.</p>
+
+                            </div> <!-- end select-->
+
+                            <div class="mw-100"> 
+                                <div class="form-group col-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END select-->
+                    <div class="modal-footer p-1" >
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" data-bs-dismiss="modal">Close</button> 
+                    </div>                    
+                </div>
             </div>
-            <!-- dialog buttons -->
-            <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+        </div>                             
+        <!--  Modal About -->     
+        
+   <div class="toast-container"  style="position: absolute; top: 20px; right: 10px; z-index: 10000; background-color: #fff ; opacity: 0.9;filter: alpha(opacity=10);">
+    <div class="toast" id="ToastDownloadCompleted">
+        <div class="toast-header">
+            <strong class="me-auto"><i class="bi-globe"></i>  Message </strong>
+            <small></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            Download completed.
         </div>
     </div>
-</div>        
+
+
+</div>      
+        
         
     </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js'></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -188,17 +342,21 @@
 
 
 <script src="./utils/moment/moment.js"></script>
+
+
 <script src="./utils/bootbox/bootbox.min.js"></script>
+<script src="./utils/bootbox/bootbox.locales.min.js"></script>
 
 <script src="./utils/leaflet_sidebar/js/leaflet-sidebar.js"></script>
 <script src="./utils/select2_410/js/select2.js"></script>
 <script src="./utils/leaflet_control_bar/L.Control.Bar.js"></script>
 
+<script type="text/javascript" src="./utils/DataTables/datatables.min.js"></script>
 
 <script type="text/javascript">
     window.mdebug = true;
 </script>
-<script src="./js/main.js?version=11" type="module"></script>
+<script src="./js/main.js?version=15" type="module"></script>
 
 
 
@@ -234,9 +392,32 @@
             allowClear: true
         });
         
-
-
+        $("#select_country_download").select2({
+            placeholder: "Select an country",
+            allowClear: false
+        });
+        $("#select_country_download").val('1').trigger('change');
+        
+        
+        $("#AboutBtn").click(function(e) {
+            $('#idMdAbout').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }); 
+   
     });
 
 
+
 </script>
+
+<script>
+$(function() {
+   $(document).on('click', '#errorDownloadClose', function() {
+       $(this).parent().hide();
+   });
+});
+</script>
+
+

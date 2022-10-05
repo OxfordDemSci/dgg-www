@@ -38,7 +38,7 @@ export function progressMenuOff() {
     setTimeout(function () {
         document.getElementById("progressMenu").style.visibility = 'hidden';
         document.getElementById("progressMenu").style.display = 'none';
-    }, 500);//wait 1 seconds
+    }, 100);//wait 1 seconds
 
 }
 
@@ -144,47 +144,3 @@ export function loadLagent(title, colors, breaks) {
 
 }
 
-
-export function json2csv(djson, d_time) {
-
-    var models = [];
-
-    // getting first country in the data
-    var fCountry = Object.keys(djson)[0];
-    var fCountries = Object.keys(djson);
-
-    // getting the list of models
-    for (var k in djson[fCountry][d_time]) {
-        models.push(k);
-    }
-
-    var csv = "iso," + models.join(',') + '\r\n';
-
-    for (var k = 0; k < fCountries.length; k++) {
-        var iso = fCountries[k];
-        csv = csv + iso;
-        for (var i = 0; i < models.length; i++) {
-
-            csv = csv + ' , ' + djson[iso][d_time][models[i]];
-
-        }
-        csv = csv + '\r\n';
-    }
-
-    return(csv);
-
-}
-
-
-// download scv file d=data t=date fname=file name
-export function downloadCSV(d, t , fname) {
-
-    var scv2download = json2csv(d, t);
-
-    var dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent((scv2download));
-    var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", fname);
-    dlAnchorElem.click();
-
-}
