@@ -34,7 +34,7 @@ def init():
     result['palette'] = utils.palette(n=6)
 
     # contact
-    result['contact'] = 'info@digitalgendergaps.org'
+    result['contact'] = 'digitalgendergaps@gmail.com'
 
     return result
 
