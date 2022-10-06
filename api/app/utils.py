@@ -12,46 +12,46 @@ models_desc = {
         'internet_online_model_prediction': {
             'name': 'Internet GG - Online',
             'description': 'Estimated ratios of female-to-male internet use from our daily Facebook Gender Gap Index '
-                           '(best coverage; daily data frequency; best estimation accuracy).'
+                           '<br>(best coverage; daily data frequency; best estimation accuracy).'
         },
         'internet_online_offline_model_prediction': {
             'name': 'Internet GG - Combined',
             'description': 'Estimated ratios of female-to-male internet use estimated using our daily Facebook Gender '
-                           'Gap Index (moderate coverage; annual data frequency; good estimation accuracy).'
+                           'Gap Index <br>(moderate coverage; annual data frequency; good estimation accuracy).'
         },
         'internet_offline_model_prediction': {
             'name': 'Internet GG - Offline',
             'description': 'Estimated ratio of female-to-male internet use estimated using only offline indicators on '
                            'the country’s development status such as its Human Development Index '
-                           '(moderate coverage; annual data frequency; low accuracy).'
+                           '<br>(moderate coverage; annual data frequency; low accuracy).'
         },
         'ground_truth_internet_gg': {
             'name': 'Internet GG - ITU',
             'description': 'Observed ratio of female-to-male internet use from International Telecommunication Union '
-                           '(ITU) statistics (lowest coverage; annual data frequency; observed survey data).'
+                           '(ITU) statistics <br>(lowest coverage; annual data frequency; observed survey data).'
         },
         'mobile_online_model_prediction': {
             'name': 'Mobile GG - Online',
             'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender Gap Index '
-                           '(best coverage; daily data frequency; moderate estimation accuracy).'
+                           '<br>(best coverage; daily data frequency; moderate estimation accuracy).'
         },
         'mobile_online_offline_model_prediction': {
             'name': 'Mobile GG - Combined',
             'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender '
                            'Gap Index combined with offline indicators such as the Human Development Index '
-                           '(moderate coverage; annual data frequency; best estimation accuracy).'
+                           '<br>(moderate coverage; annual data frequency; best estimation accuracy).'
         },
         'mobile_offline_model_prediction': {
             'name': 'Mobile GG - Offline',
             'description': 'Estimated ratios of female-to-male mobile phone use from offline indicators '
                            'such as the Human Development Index '
-                           '(moderate coverage; annual data frequency; moderate estimation accuracy).'
+                           '<br>(moderate coverage; annual data frequency; moderate estimation accuracy).'
         },
         'ground_truth_mobile_gg': {
             'name': 'Mobile GG - GSMA',
             'description': 'Observed ratio of female-to-male mobile phone use from published Global System for Mobile '
                            'Communications Association (GSMA) reports '
-                           '(low coverage; annual data frequency; observed survey data). '
+                           '<br>(low coverage; annual data frequency; observed survey data). '
         }
     }
 
@@ -287,6 +287,7 @@ def palette(n=6):
     df = pd.read_sql(sql, conn)
 
     breaks = {}
+    labels = {}
     for model in models:
         x = df[model]
         x = x[x > -999]
@@ -301,9 +302,24 @@ def palette(n=6):
 
         breaks[model] = b
 
+        # bin labels for legend
+        rnd = 3
+        lab = [None] * (len(b) - 1)
+        for i in range(len(b)-1):
+            if i < (len(b) - 2):
+                lab[i] = str(format(round(b[i], 3), '.' + str(rnd) + 'f')) + \
+                         '-' + \
+                         str(format(round(b[i + 1], 3) - 0.001, '.' + str(rnd) + 'f'))
+            else:
+                lab[i] = str(format(round(b[i], 3), '.' + str(rnd) + 'f')) + \
+                         '-' + \
+                         str(format(round(b[i + 1], 3), '.' + str(rnd) + 'f'))
+        labels[model] = lab
+
     pal = {
         "colors": colors,
-        "breaks": breaks
+        "breaks": breaks,
+        "labels": labels
     }
 
     return pal
