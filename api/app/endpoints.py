@@ -16,6 +16,9 @@ def init():
 
     conn = utils.conn_to_database()
 
+    # list model types
+    result['types'] = ['internet', 'mobile']
+
     # list models
     result['models'] = utils.models_desc
 
