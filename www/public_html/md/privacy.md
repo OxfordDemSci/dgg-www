@@ -27,8 +27,8 @@ you, including any data you have provided to us. You could also request that we 
 you. This would not include any data we are obliged to keep for administrative, legal, or security purposes.
 
 ### Data license
-All visualisations and estimates generated as a part of the project are shared freely for academic, research and 
-informational purposes only. No commercial use is permitted.
+All visualisations and digital gender gap estimates generated as a part of the project are shared freely under the terms 
+of a [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
 
 ### Our contact information
 Contact us at [digitalgendergaps@gmail.com](mailto:digitalgendergaps@gmail.com) if you have any questions, concerns or 

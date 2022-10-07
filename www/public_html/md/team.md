@@ -1,7 +1,3 @@
-# Team
-
----
-
 ## Ridhi Kashyap
 ### Professor of Demography and Computational Social Science
 <img src="../img/staff/ridhi.jpg" alt="Photo of Ridhi" width="400">  
