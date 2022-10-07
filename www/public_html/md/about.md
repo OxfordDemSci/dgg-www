@@ -1,4 +1,4 @@
-# Using Digital Traces to Measure Digital Gender Inequality in Real-Time
+### Using Digital Traces to Measure Digital Gender Inequality in Real-Time
 The tremendous expansion of information and communication technologies (ICTs) has transformed the ways in which 
 individuals seek information, communicate and participate in their communities. Participating in the digital revolution 
 is more important than ever across different spheres of life. Despite the rapid expansion of ICTs worldwide, 

@@ -3,7 +3,7 @@ var featureByName = {};
 
 import * as _init from './init.js?version=11'
 import * as _utils from './utils.js?version=11'
-import * as _worldLayer from './worldLayer.js?version=14'
+import * as _worldLayer from './worldLayer.js?version=21'
 import * as _api from './api_requests.js?version=3'
 import * as _plotxyLayer from './plotxyLayer.js?version=2'
 import * as _downloadData from './downloadData.js?version=2'
@@ -23,8 +23,12 @@ const config_plot_xy_Chart = {
 var initJSONSettings = _api.getSettings(API_URL);
 var ymDates = _init.getDates(initJSONSettings.dates);
 var countriesList = _init.getCountriesList(initJSONSettings.countries);
+var palette = _init.getCountriesList(initJSONSettings.palette);
 
-
+ //console.log("palette" + palette["breaks"]["ground_truth_internet_gg"]);
+ 
+console.log(_worldLayer.getColor(1, palette, "ground_truth_internet_gg"));
+ 
 if (window.mdebug === true){
     console.log("countriesList" + countriesList[1]["country"]);
 }
@@ -149,8 +153,11 @@ map.addControl(controlTable_Bottom);
 controlTable_Bottom.setContent(`<div id="tb_container"></div>`);
 controlTable_Bottom.hide();
 
+
 var worldLayer = L.geoJson(null, {
-    style: _worldLayer.style,
+    style: function (feature){
+        _worldLayer.style(feature, palette, firstModelfromList);
+    },
     onEachFeature: function (feature, layer) {
 
         featureByName[feature.properties.iso_a3] = layer;
@@ -158,12 +165,10 @@ var worldLayer = L.geoJson(null, {
         layer.on({
             mouseover: _worldLayer.highlightFeature,
             mouseout: function (e) {
-                _worldLayer.resetHighlight(e.target, worldLayer);
+                _worldLayer.resetHighlight(e.target, worldLayer, palette);
             },
             click: function (e) {
-                  
                     _utils.progressMenuOn();
-                    
                     sidebar.open('home');
                     
                     var sParams = _utils.getSelectedParameters();
@@ -204,7 +209,8 @@ _api.query_national_promis(lastYear, lastMonth)
                     worldLayer,
                     world_geo_json,
                     countriesList,
-                    data);
+                    data,
+                    palette);
         }).then(() => {
             _utils.updateModelInfoonPanel(firstModelfromList, modelsList);
             _utils.hideCoverScreen();
@@ -284,7 +290,8 @@ $('#select_models').on('change', function () {
                         worldLayer,
                         world_geo_json,
                         countriesList,
-                        data);
+                        data,
+                        palette);
             }).then(() => {
                  _utils.updateModelInfoonPanel(select_model, modelsList);
             }).then(() => {
