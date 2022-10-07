@@ -521,7 +521,9 @@ $(function() {
 
 <script type="text/javascript">
 
-jQuery.get('./md/about.md', function(data) {
+var milliseconds = new Date().getTime();
+
+jQuery.get('./md/about.md?version='+milliseconds, function(data) {
 
     var aboutTabPopup = document.getElementById('aboutTabPopup');
 
@@ -533,7 +535,7 @@ jQuery.get('./md/about.md', function(data) {
 
 
 
-jQuery.get('./md/team.md', function(data) {
+jQuery.get('./md/team.md?version='+milliseconds, function(data) {
 
 var TeamTabPopup = document.getElementById('TeamTabPopup');
 
@@ -542,7 +544,7 @@ var TeamTabPopup = document.getElementById('TeamTabPopup');
         TeamTabPopup.innerHTML =html;
 });
 
-jQuery.get('./md/quickstart.md', function(data) {
+jQuery.get('./md/quickstart.md?version='+milliseconds, function(data) {
 
 var TeamTabPopup = document.getElementById('QuickStartTabPopup');
 
@@ -551,7 +553,7 @@ var TeamTabPopup = document.getElementById('QuickStartTabPopup');
         TeamTabPopup.innerHTML =html;
 });
 
-jQuery.get('./md/privacy.md', function(data) {
+jQuery.get('./md/privacy.md?version='+milliseconds, function(data) {
 
 var PrivacyTabPopup = document.getElementById('PrivacyTabPopup');
 
