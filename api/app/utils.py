@@ -342,17 +342,20 @@ def palette(n=6):
         rnd = 3
         lab = [None] * (len(b) - 1)
         for i in range(len(b)-1):
-            if i < (len(b) - 2):
-                lab[i] = str(format(round(b[i], 3), '.' + str(rnd) + 'f')) + \
-                         '-' + \
-                         str(format(round(b[i + 1], 3) - 0.001, '.' + str(rnd) + 'f'))
+            if i == 0:
+                lab[i] = str(format(round(np.min(x), rnd), '.' + str(rnd) + 'f')) + '-' + \
+                         str(format(round(b[i + 1], rnd) - 0.001, '.' + str(rnd) + 'f'))
+            elif i < (len(b) - 2):
+                lab[i] = str(format(round(b[i], rnd), '.' + str(rnd) + 'f')) + '-' + \
+                         str(format(round(b[i + 1], rnd) - 0.001, '.' + str(rnd) + 'f'))
             else:
-                lab[i] = str(format(round(b[i], 3), '.' + str(rnd) + 'f')) + \
-                         '-' + \
-                         str(format(round(b[i + 1], 3), '.' + str(rnd) + 'f'))
+                lab[i] = str(format(round(b[i], rnd), '.' + str(rnd) + 'f')) + '-Above'
+
         labels[model] = lab
 
     pal = {
+        "title": "Internet/Mobile Gender Gap (Women:Men)",
+        "subtitles": ["Less Equality", "More Equality"],
         "colors": colors,
         "breaks": breaks,
         "labels": labels
