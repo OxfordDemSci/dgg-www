@@ -11,47 +11,81 @@ load_dotenv()
 models_desc = {
         'internet_online_model_prediction': {
             'name': 'Internet GG - Online',
-            'description': 'Estimated ratios of female-to-male internet use from our daily Facebook Gender Gap Index '
-                           '<br>(best coverage; daily data frequency; best estimation accuracy).'
+            'type': 'internet',
+            'order': 1,
+            'description': 'Ratios of female-to-male internet use from our daily Facebook Gender Gap Index.'
+                           '<br><strong>Coverage:</strong> Best<br>'
+                           '<strong>Data Frequency:</strong> Daily<br>'
+                           '<strong>Accuracy:</strong> Best'
         },
         'internet_online_offline_model_prediction': {
             'name': 'Internet GG - Combined',
-            'description': 'Estimated ratios of female-to-male internet use estimated using our daily Facebook Gender '
-                           'Gap Index <br>(moderate coverage; annual data frequency; good estimation accuracy).'
+            'type': 'internet',
+            'order': 2,
+            'description': 'Ratios of female-to-male internet use estimated using our daily Facebook Gender '
+                           'Gap Index.<br>'
+                           '<strong>Coverage:</strong> Moderate<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Accuracy:</strong> Good'
         },
         'internet_offline_model_prediction': {
             'name': 'Internet GG - Offline',
-            'description': 'Estimated ratio of female-to-male internet use estimated using only offline indicators on '
-                           'the country’s development status such as its Human Development Index '
-                           '<br>(moderate coverage; annual data frequency; low accuracy).'
+            'type': 'internet',
+            'order': 3,
+            'description': 'Ratios of female-to-male internet use estimated using only offline indicators on '
+                           'the country’s development status (e.g. Human Development Index).<br>'
+                           '<strong>Coverage:</strong> Moderate<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Accuracy:</strong> Low'
         },
         'ground_truth_internet_gg': {
             'name': 'Internet GG - ITU',
-            'description': 'Observed ratio of female-to-male internet use from International Telecommunication Union '
-                           '(ITU) statistics <br>(lowest coverage; annual data frequency; observed survey data).'
-        },
+            'type': 'internet',
+            'order': 4,
+            'description': 'Ratios of female-to-male internet use from International Telecommunication Union '
+                           '(ITU) statistics.<br>'
+                           '<strong>Coverage:</strong> Lowest<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Accuracy:</strong> Observed survey data'
+       },
         'mobile_online_model_prediction': {
             'name': 'Mobile GG - Online',
-            'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender Gap Index '
-                           '<br>(best coverage; daily data frequency; moderate estimation accuracy).'
+            'type': 'mobile',
+            'order': 5,
+            'description': 'Ratios of female-to-male mobile phone use from our Facebook Gender Gap Index.<br>'
+                           '<strong>Coverage:</strong> Best<br>'
+                           '<strong>Data Frequency:</strong> Daily<br>'
+                           '<strong>Accuracy:</strong> Moderate'
         },
         'mobile_online_offline_model_prediction': {
             'name': 'Mobile GG - Combined',
-            'description': 'Estimated ratios of female-to-male mobile phone use from our Facebook Gender '
-                           'Gap Index combined with offline indicators such as the Human Development Index '
-                           '<br>(moderate coverage; annual data frequency; best estimation accuracy).'
+            'type': 'mobile',
+            'order': 6,
+            'description': 'Ratios of female-to-male mobile phone use from our Facebook Gender '
+                           'Gap Index and offline indicators (e.g Human Development Index).<br>'
+                           '<strong>Coverage:</strong> Moderate<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Accuracy:</strong> Best'
         },
         'mobile_offline_model_prediction': {
             'name': 'Mobile GG - Offline',
-            'description': 'Estimated ratios of female-to-male mobile phone use from offline indicators '
-                           'such as the Human Development Index '
-                           '<br>(moderate coverage; annual data frequency; moderate estimation accuracy).'
+            'type': 'mobile',
+            'order': 7,
+            'description': 'Ratios of female-to-male mobile phone use from offline indicators '
+                           'such as the Human Development Index.<br>'
+                           '<strong>Coverage:</strong> Moderate<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Accuracy:</strong> Moderate'
         },
         'ground_truth_mobile_gg': {
             'name': 'Mobile GG - GSMA',
-            'description': 'Observed ratio of female-to-male mobile phone use from published Global System for Mobile '
-                           'Communications Association (GSMA) reports '
-                           '<br>(low coverage; annual data frequency; observed survey data). '
+            'type': 'mobile',
+            'order': 8,
+            'description': 'Ratios of female-to-male mobile phone use published by the Global System for Mobile '
+                           'Communications Association (GSMA).<br>'
+                           '<strong>Coverage:</strong> Lowest<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Accuracy:</strong> Observed survey data'
         }
     }
 
@@ -252,7 +286,7 @@ def palette(n=6):
 
     """
 
-    #---- color ramp ----#
+    # ---- color ramp ---- #
     colors = ["#e76254",  # dark red
               "#ef8a47",
               "#f7aa58",
@@ -265,15 +299,17 @@ def palette(n=6):
               "#1e466e"  # dark blue
               ]
 
-    if n not in [6, 8, 10]:
+    if n not in [4, 6, 8, 10]:
         n = 6
 
-    if n == 6:
+    if n == 4:
+        colors = [colors[i] for i in [0, 2, 7, 9]]
+    elif n == 6:
         colors = [colors[i] for i in [0, 1, 3, 5, 6, 8]]
     elif n == 8:
         colors = [colors[i] for i in [0, 1, 3, 4, 5, 6, 8, 9]]
 
-    #---- breaks (modified from GISRede's function) ----#
+    # ---- breaks (modified from GISRede's function) ---- #
     models = list(models_desc.keys())
 
     conn = conn_to_database()
