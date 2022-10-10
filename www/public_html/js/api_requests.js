@@ -4,7 +4,7 @@ export function getSettings(api_url) {
 
     var result = "";
     $.ajax({
-        url: api_url+'/init',
+        url: api_url+'init',
         async: false,
         type: 'get',
         dataType: 'json',
@@ -19,7 +19,7 @@ export function getSettings(api_url) {
     return result;
 }
 
-export function query_national(y, month) {
+export function query_national(y, month, api_url) {
     
     //_utils.progressMenuOn();
     
@@ -31,7 +31,7 @@ export function query_national(y, month) {
         
     var result = "";
     $.ajax({
-        url: 'http://127.0.0.1/api/v1/query_national?date=['+ym+']',
+        url: api_url+'query_national?date=['+ym+']',
         async: false,
         type: 'get',
         dataType: 'json',
@@ -53,7 +53,7 @@ export function query_national(y, month) {
 }
 
 
-export function query_national_promis(y, month) {
+export function query_national_promis(y, month, api_url) {
 
     //_utils.progressMenuOn();
 
@@ -62,7 +62,7 @@ export function query_national_promis(y, month) {
 
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: "http://127.0.0.1/api/v1/query_national",
+            url: api_url+"query_national",
             type: 'get',
             data: {
                 date: ym

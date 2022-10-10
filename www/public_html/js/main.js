@@ -1,10 +1,10 @@
-var API_URL = "http://127.0.0.1/api/v1/";
+var API_URL = "./api/v1/";
 var featureByName = {};
 
 import * as _init from './init.js?version=11'
 import * as _utils from './utils.js?version=11'
 import * as _worldLayer from './worldLayer.js?version=21'
-import * as _api from './api_requests.js?version=3'
+import * as _api from './api_requests.js?version=4'
 import * as _plotxyLayer from './plotxyLayer.js?version=2'
 import * as _downloadData from './downloadData.js?version=2'
 
@@ -56,7 +56,7 @@ var monthsToDisable = _utils.MonthsYearsToDisable(ymDates,firstYear,lastYear);
 if (window.mdebug === true){
     console.log("lastYear " + lastYear + " lastMonth "+ lastMonth);
     console.log("firstYear " + firstYear + " firstMonth "+ firstMonth);
-    console.log("monthsToDisable " + monthsToDisable);
+    //console.log("monthsToDisable " + monthsToDisable);
 }
 
 _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
@@ -197,7 +197,7 @@ L.control.zoom({
 
 
 
-_api.query_national_promis(lastYear, lastMonth)
+_api.query_national_promis(lastYear, lastMonth, API_URL)
         .then((data) => {
             //console.log(data);
             //var data_national = JSON.parse(data.data);
@@ -243,7 +243,7 @@ $('#select_country').on('select2:select', function (e) {
 
     var sParams = _utils.getSelectedParameters();
 
-    _api.query_national_promis(sParams[0], sParams[1])
+    _api.query_national_promis(sParams[0], sParams[1], API_URL)
             .then((data) => {
                 //console.log(data);
                 //var data_national = JSON.parse(data.data);
@@ -278,7 +278,7 @@ $('#select_models').on('change', function () {
     var d_time = sParams[0] + sParams[1];
 
 
-    _api.query_national_promis(sParams[0], sParams[1])
+    _api.query_national_promis(sParams[0], sParams[1], API_URL)
             .then((data) => {
                 //console.log(data);
                 //var data_national = JSON.parse(data.data);
@@ -315,7 +315,7 @@ $('#datepicker').on('changeMonth', function (e) {
     var d_time = pickedYear + pickedMonth;
     var sParams = _utils.getSelectedParameters();
 
-    _api.query_national_promis(pickedYear, pickedMonth)
+    _api.query_national_promis(pickedYear, pickedMonth, API_URL)
             .then((data) => {
                 //console.log(data);
                 //var data_national = JSON.parse(data.data);
@@ -326,7 +326,8 @@ $('#datepicker').on('changeMonth', function (e) {
                         worldLayer,
                         world_geo_json,
                         countriesList,
-                        data);
+                        data,
+                        palette);
             }).then(() => {
                 _utils.progressMenuOff();
             })
