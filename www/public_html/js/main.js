@@ -3,7 +3,7 @@ var featureByName = {};
 
 import * as _init from './init.js?version=11'
 import * as _utils from './utils.js?version=11'
-import * as _worldLayer from './worldLayer.js?version=21'
+import * as _worldLayer from './worldLayer.js?version=22'
 import * as _api from './api_requests.js?version=4'
 import * as _plotxyLayer from './plotxyLayer.js?version=2'
 import * as _downloadData from './downloadData.js?version=2'

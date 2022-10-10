@@ -174,7 +174,7 @@ export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countri
 
         tb_updated = tb_updated + `
                             <tr ` + hilighted_country_style + `>
-                                <td class="fib" style="background-image: url(../img/flags/4x3/` + k + `.svg);background-size: 75% 75%;"></td>
+                                <td class="fib" style="background-image: url(../img/flags/4x3/` + k.toLowerCase() + `.svg);background-size: 75% 75%;"></td>
                                 <td>` + country_name + `</td>`;
 
         var country_date = data[k][d_time];
