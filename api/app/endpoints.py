@@ -117,17 +117,17 @@ def query_national(args):
 
     return result
 
-# args = {"date":'[202202,202207]'}
 
-def download_data_with_dates(args):
+def download_data_with_dates(args={}):
     """
     Enable the download function to download data by 2 dates (start dates and end dates)
 
     Parameters:
-        args (dict): A dictionary containing items ??
+        args (dict): A dictionary containing items: "date"
 
     Examples:
-        - ??
+        - args = {}
+        - args = {"date":'[202202, 202207]'}
 
     Returns:
         result (json): Data
@@ -144,28 +144,18 @@ def download_data_with_dates(args):
 
     df = pd.read_sql(sql, conn)
 
+    # rename columns using formatted model names
+    args['model'] = []
+    for model in list(set(utils.models_desc.keys()) & set(df.columns)):
+        model_name = utils.models_desc[model]['name']
+        df.rename(columns={model: model_name}, inplace=True)
+        args['model'].append(model_name)
+
     # add models in the args dict before passing the df to the reformat_json function (which need models in the args)
-    args = utils.args_check_model(args)
+    # args = utils.args_check_model(args)
+
+    # reformat to json
     result['data'] = utils.reformat_json(df=df, args=args)
 
     return result
-
-"""
-pd.read_sql(sql_query, conn)
-
-conn = create_engine('postgresql+psycopg2://'+
-                           "postgres" + ':' +
-                           "dgg" + '@' +
-                           "localhost"+ ':5432/' +
-                           "dggpanel")
-                           
-args = args_check_model(args)
-args = args_check_date(args,conn)
-sql = generate_sql(args,date_type="range", required_one_of=[])
-df = pd.read_sql(sql, conn)
-data = reformat_json(df=df, args=args)
-
-"""
-
-
 

@@ -92,9 +92,9 @@ models_desc = {
 
 def conn_to_database():
 
-    engine = create_engine('postgresql+psycopg2://dgg_reader:' +
-                           os.environ.get('POSTGRES_RPASS') + '@' +
-                           os.environ.get('POSTGRES_HOST') + ':5432/' +
+    engine = create_engine('postgresql+psycopg2://dgg_reader:' + \
+                           os.environ.get('POSTGRES_RPASS') + '@' + \
+                           os.environ.get('POSTGRES_HOST') + '/' + \
                            os.environ.get('POSTGRES_DB'))
 
     return engine
@@ -188,7 +188,7 @@ def generate_sql(args, date_type, required_one_of):
     for key in set(args.keys()).intersection(["date", "country", "iso3code", "iso2code"]):
         if key == 'date' and args != 'ALL':
             if date_type == "range":
-                sql_query += f" date >= {args['date'][0]} and date <= {args['date'][1]} AND "
+                sql_query += f" date >= {args['date'][0]} and date <= {args['date'][len(args['date'])-1]} AND "
             if date_type == "list":
                 dates_string = str(args["date"]).replace("[","(").replace("]",")")
                 sql_query += f"date IN {dates_string} AND "
