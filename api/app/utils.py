@@ -92,9 +92,8 @@ models_desc = {
 
 def conn_to_database():
 
-    engine = create_engine('postgresql+psycopg2://' +
-                           os.environ.get('POSTGRES_USER') + ':' +
-                           os.environ.get('POSTGRES_PASSWORD') + '@' +
+    engine = create_engine('postgresql+psycopg2://dgg_reader:' +
+                           os.environ.get('POSTGRES_RPASS') + '@' +
                            os.environ.get('POSTGRES_HOST') + ':5432/' +
                            os.environ.get('POSTGRES_DB'))
 
@@ -103,7 +102,7 @@ def conn_to_database():
 
 def length_of_arg_check(args,key,permit_length):
     length_to_check = len(str(args[key]))
-    return length_to_check==permit_length
+    return length_to_check == permit_length
 
 def check_args(args, required=[], required_one_of=[], optional=[]):
 

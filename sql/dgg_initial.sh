@@ -1,4 +1,10 @@
-BEGIN;
+#!/bin/bash
+
+psql -U $POSTGRES_USER -d $POSTGRES_DB -c \
+"
+CREATE ROLE dgg_reader LOGIN PASSWORD '${POSTGRES_RPASS}';
+
+CREATE ROLE dgg_writer LOGIN PASSWORD '${POSTGRES_WPASS}';
 
 CREATE TABLE national(
     date            numeric (6) not null,
@@ -16,6 +22,10 @@ CREATE TABLE national(
     UNIQUE (date, country, ISO3Code)
 );
 
+GRANT SELECT ON national TO dgg_reader;
+
+GRANT SELECT, INSERT ON national TO dgg_writer;
+
 COPY national(date, country, ISO3Code, ISO2Code,
     Ground_Truth_Internet_GG,Internet_Online_model_prediction,Internet_Online_Offline_model_prediction,Internet_Offline_model_prediction,
     Ground_Truth_Mobile_GG,Mobile_Online_model_prediction,Mobile_Online_Offline_model_prediction,Mobile_Offline_model_prediction)
@@ -29,5 +39,4 @@ COPY national(date, country, ISO3Code, ISO2Code,
 FROM '/var/lib/postgresql/initial_data/mau_upper_monthly_model_2_2022-07.csv'
 DELIMITER ','
 CSV HEADER;
-
-COMMIT;
+"
