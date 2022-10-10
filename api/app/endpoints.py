@@ -23,12 +23,13 @@ def init():
     result['models'] = utils.models_desc
 
     # list countries with national-level data
-    sql = 'SELECT DISTINCT iso2code,country FROM dgg;'
+    table = 'national'
+    sql = 'SELECT DISTINCT iso2code,country FROM ' + table + ';'
     data = pd.read_sql(sql, conn)
     result['countries'] = [{"iso2code": x, "country": y} for x, y in zip(data['iso2code'], data["country"])]
 
     # list dates with data
-    sql = 'SELECT DISTINCT date FROM dgg;'
+    sql = 'SELECT DISTINCT date FROM ' + table + ';'
     data = pd.read_sql(sql, conn)
     result['dates'] = data['date'].tolist()
     result['dates'] = [int(x) for x in result['dates']]

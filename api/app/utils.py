@@ -168,7 +168,7 @@ def generate_sql(args, date_type, required_one_of):
     #         "mobile_online_offline_model_prediction", "mobile_offline_model_prediction"]
 
     models = list(models_desc.keys())
-    table = 'dgg'
+    table = 'national'
 
     # deal with the columns
     sql_query = "SELECT date,country,iso3code,iso2code,"
@@ -238,11 +238,12 @@ def args_check_date(args, conn):
         get the latest date as the arg
 
     """
+    table = 'national'
     if "date" in args.keys():
         args["date"] = [int(x) for x in re.findall("(\d{6})", args['date'])]
         # TODO: check the date format
     else:
-        sql = "SELECT max(date) FROM  dgg;"
+        sql = "SELECT max(date) FROM " + table + ";"
         latest_date = int(pd.read_sql(sql, conn)['max'].values[0])
         args["date"] = [latest_date]
     return args
@@ -314,12 +315,13 @@ def palette(n=6):
 
     conn = conn_to_database()
 
-    sql = 'SELECT DISTINCT date FROM dgg;'
+    table = 'national'
+    sql = 'SELECT DISTINCT date FROM ' + table + ';'
     data = pd.read_sql(sql, conn)
 
     latest_date = str(int(max(data['date'])))
 
-    sql = 'SELECT ' + ",".join(models) + ' FROM dgg WHERE date = ' + latest_date + ';'
+    sql = 'SELECT ' + ",".join(models) + ' FROM ' + table + ' WHERE date = ' + latest_date + ';'
     df = pd.read_sql(sql, conn)
 
     breaks = {}
