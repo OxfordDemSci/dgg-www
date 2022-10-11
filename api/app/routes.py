@@ -28,36 +28,32 @@ def page_not_found(e):
 @app.route('/init', methods=['GET'])
 def init():
     result = endpoints.init()
-    result = jsonify(result)
-    result.status_code = 200
-    return result
+    return jsonify(result), result.get('status')
 
 
 @app.route('/query_national', methods=['GET'])
 def query_national():
     args = dict(request.args)
     result = endpoints.query_national(args)
-    result = jsonify(result)
-    result.status_code = 200
-    return result
-
+    return jsonify(result), result.get('status')
 
 
 @app.route('/query_specific_country', methods=['GET'])
 def query_specific_country():
     args = dict(request.args)
     result = endpoints.query_specific_country(args)
-    result = jsonify(result)
-    result.status_code = 200
-    return result
-
+    return jsonify(result), result.get('status')
 
 
 @app.route('/download_data_with_dates', methods=['GET'])
 def download_data_with_dates():
     args = dict(request.args)
     result = endpoints.download_data_with_dates(args)
-    result = jsonify(result)
-    result.status_code = 200
-    return result
+    return jsonify(result), result['status']
 
+
+@app.route('/write_national', methods=['GET'])
+def write_national():
+    args = dict(request.args)
+    result = endpoints.write_national(args)
+    return jsonify(result), result['status']

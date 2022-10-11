@@ -90,19 +90,23 @@ models_desc = {
     }
 
 
-def conn_to_database():
+def conn_to_database(mode='r'):
 
-    engine = create_engine('postgresql+psycopg2://dgg_reader:' + \
-                           os.environ.get('POSTGRES_RPASS') + '@' + \
+    if mode == 'w':
+        user = 'dgg_writer'
+        pw = os.environ.get('POSTGRES_WPASS')
+    else:
+        user = 'dgg_reader'
+        pw = os.environ.get('POSTGRES_RPASS')
+
+    engine = create_engine('postgresql+psycopg2://' + \
+                           user + ':' + \
+                           pw + '@' + \
                            os.environ.get('POSTGRES_HOST') + '/' + \
                            os.environ.get('POSTGRES_DB'))
 
     return engine
 
-
-def length_of_arg_check(args,key,permit_length):
-    length_to_check = len(str(args[key]))
-    return length_to_check == permit_length
 
 def check_args(args, required=[], required_one_of=[], optional=[]):
 
@@ -116,7 +120,19 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
         dict: http response compatible with json format along with modified args object
     """
 
-    length_check_args_dict = {'date': 6, 'iso3code': 3, 'iso2code': 2}
+    length_args = {'date': 6, 'start_date': 6, 'end_date': 6, 'iso2code': 2, 'iso2': 2}
+    int_args = ['date', 'start_date', 'end_date']
+    str_args = ['iso2code', 'iso2']
+    list_args = ['model']
+    float_args = ['Ground_Truth_Internet_GG',
+                  'Internet_Online_model_prediction',
+                  'Internet_Online_Offline_model_prediction',
+                  'Internet_Offline_model_prediction',
+                  'Ground_Truth_Mobile_GG',
+                  'Mobile_Online_model_prediction',
+                  'Mobile_Online_Offline_model_prediction',
+                  'Mobile_Offline_model_prediction']
+
     status = 200
     message = ""
 
@@ -129,126 +145,76 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
         status = 400
         message = "Bad Request: At least one of these arguments are required {}.".format(required_one_of)
 
-    # check length of data
-    for key in length_check_args_dict.keys():
-        if key in args.keys():
-            if not length_of_arg_check(args=args, key=key, permit_length=length_check_args_dict[key]):
-                status = 400
-                message = f"Bad Request: length of '{key}' must be {length_check_args_dict[key]}"
-    # deal with date
-    if 'date' in args.keys():
+    # ---- check data types ---- #
 
-        if not isinstance(args.get('date'), int):
+    # string
+    if status == 200:
+        for key in set(args.keys()).intersection(str_args):
             try:
-                args['date'] = int(args['date'])
+                args[key] = str(args[key])
+                if not isinstance(args.get(key), str):
+                    raise TypeError()
             except:
                 status = 400
-                message = "Bad Request: '{}' cannot be coerced to a int data YYYY-MM.".format(args['date'])
-        else:
-            args['date'] = 'ALL'  # all available dates
+                message = f"Bad Request: '{key}' cannot be coerced to str."
 
-    return {'status': status,'message': message, "args": args}
+    # int
+    if status == 200:
+        for key in set(args.keys()).intersection(int_args):
+            try:
+                args[key] = int(args[key])
+                if not isinstance(args.get(key), int):
+                    raise TypeError()
+            except:
+                status = 400
+                message = f"Bad Request: '{key}' cannot be coerced to int."
 
+    # float
+    if status == 200:
+        for key in set(args.keys()).intersection(float_args):
+            try:
+                args[key] = float(args[key])
+                if not isinstance(args.get(key), float):
+                    raise TypeError()
+            except:
+                status = 400
+                message = f"Bad Request: '{key}' cannot be coerced to float."
 
-# test zone
+    # list
+    if status == 200:
+        for key in set(args.keys()).intersection(list_args):
+            if not isinstance(args.get(key), list):
+                try:
+                    args[key] = list(args[key])
+                except:
+                    status = 400
+                    message = f"Bad Request: '{key}' could not be coerced to a list."
 
-def generate_sql(args, date_type, required_one_of):
-    # args = {'iso2code':'AT'}
+    # ---- check length ---- #
+    if status == 200:
+        for key in length_args.keys():
+            if key in args.keys():
+                if not len(str(args[key])) == length_args[key]:
+                    status = 400
+                    message = f"Bad Request: Length of '{key}' must be {length_args[key]}."
 
-    # check the args
-    # result = check_args(args, required=[], required_one_of=required_one_of, optional=[])
-    # args = result.get('args')
+    # ----  check model list ---- #
+    if status == 200:
+        if 'model' in args.keys():
 
-    # if result['status'] == 200:
-    # cols = ["date", "country", "iso3code", "iso2code",
-    #         "ground_truth_internet_gg", "internet_online_model_prediction",
-    #         "internet_online_offline_model_prediction", "internet_offline_model_prediction",
-    #         "ground_truth_mobile_gg", "mobile_online_model_prediction",
-    #         "mobile_online_offline_model_prediction", "mobile_offline_model_prediction"]
+            args['model'] = list(set(args['model']).intersection(models_desc.keys()))
 
-    models = list(models_desc.keys())
-    table = 'national'
+            if len(args['model']) == 0:
+                args['model'] = list(models_desc.keys())
 
-    # deal with the columns
-    sql_query = "SELECT date,country,iso3code,iso2code,"
+            if not isinstance(args.get('model'), list):
+                status = 400
+                message = "Bad Request: 'model' argument must be a list."
 
-    # model
-    if "model" in args.keys() and len(args['model'])>0:
-
-        for key in set(args['model']).intersection(models):
-            sql_query += f" {key},"
-
-        if sql_query.endswith(","):
-            sql_query = sql_query[:-1]
-    else:
-        sql_query = "SELECT *"
-
-    sql_query += " FROM " + table + " WHERE "
-
-    for key in set(args.keys()).intersection(["date", "country", "iso3code", "iso2code"]):
-        if key == 'date' and args != 'ALL':
-            if date_type == "range":
-                sql_query += f" date >= {args['date'][0]} and date <= {args['date'][len(args['date'])-1]} AND "
-            if date_type == "list":
-                dates_string = str(args["date"]).replace("[","(").replace("]",")")
-                sql_query += f"date IN {dates_string} AND "
-
-            # sql_query += f"{key}={args[key]} AND "
-        else:
-            sql_query += f"{key}=\'{args[key]}\' AND "
-
-    # if date is not in the args.keys() -> add date column in the sql_query
-    if sql_query.endswith(' AND '):
-        sql_query = sql_query[:-5] + ';'
-    return sql_query
-    # else:
-    #    return 'Internal Error'
+    return {'status': status, 'message': message, 'args': args}
 
 
-def args_check_model(args):
-    """
-    update the model args in the query
-    deal with 3 situations:
-    1. "model" in the arg: find and store the elements that are intersected with the models list (full list)
-    2. "model" in the arg but no element in the list -> update the args["model"] to the full model list
-    3. no "model" in the arg  -> update the args["model"] to the full model list
-
-    Returns: updated arg dict
-
-    """
-
-    models = list(models_desc.keys())
-
-    if "model" in args.keys():
-        models_found = re.findall("\"(\w+)\"", args['model'])
-        args['model'] = list(set(models).intersection(models_found))
-        if len(args['model']) ==0:
-            args['model'] = models
-    else:
-        args["model"] = models
-    return args
-
-def args_check_date(args, conn):
-    """
-    update the model args in the query
-    1. if there are date arg in the query
-        restore the dates in the args that were stored as string into a list of numeric dates
-    2. no date arg in the query:
-        get the latest date as the arg
-
-    """
-    table = 'national'
-    if "date" in args.keys():
-        args["date"] = [int(x) for x in re.findall("(\d{6})", args['date'])]
-        # TODO: check the date format
-    else:
-        sql = "SELECT max(date) FROM " + table + ";"
-        latest_date = int(pd.read_sql(sql, conn)['max'].values[0])
-        args["date"] = [latest_date]
-    return args
-
-
-def reformat_json(df, args):
+def reformat_json(df):
     """
     change the returned dataframe to the format that the frontend needs
     Args:
@@ -259,13 +225,13 @@ def reformat_json(df, args):
     df['date'] = df['date'].apply(int)
     df.fillna(-999, inplace=True)
     data = {}
-    for iso2code in df["iso2code"].unique():
+    for iso2code in df["iso2"].unique():
         date_dict = {}
         for date in df['date'].unique():
             model_dict = {}
-            for model in args["model"]:
+            for model in list(models_desc.keys()):
                 try:
-                    model_dict[model] = df.loc[(df['date'] == date) & (df['iso2code'] == iso2code)][model].values[0]
+                    model_dict[model] = df.loc[(df['date'] == date) & (df['iso2'] == iso2code)][model].values[0]
                     # if np.isnan(model_dict[model]): model_dict[model] = None
                     if model_dict[model] == -999: model_dict[model] = None
                 except:

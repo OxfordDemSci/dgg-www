@@ -3,37 +3,52 @@
 psql -U $POSTGRES_USER -d $POSTGRES_DB -c \
 "
 CREATE ROLE dgg_reader LOGIN PASSWORD '${POSTGRES_RPASS}';
-
 CREATE ROLE dgg_writer LOGIN PASSWORD '${POSTGRES_WPASS}';
 
+CREATE TABLE country_info(
+    iso2 CHAR(2) PRIMARY KEY,
+    iso3 CHAR(3) NOT NULL,
+    name VARCHAR(80) NOT NULL,
+    UNIQUE (iso2, iso3, name)
+);
+
+GRANT SELECT ON country_info TO dgg_reader;
+GRANT SELECT, INSERT ON country_info TO dgg_writer;
+
+COPY country_info(name, iso2, iso3)
+FROM '/var/lib/postgresql/initial_data/country_info.csv'
+DELIMITER ','
+CSV HEADER;
+
 CREATE TABLE national(
-    date            numeric (6) not null,
-    country         varchar(80) not null,
-    ISO3Code         char(3) not null,
-    ISO2Code         char(2),
-    Ground_Truth_Internet_GG  numeric  ,
-    Internet_Online_model_prediction numeric  ,
-    Internet_Online_Offline_model_prediction numeric  ,
-    Internet_Offline_model_prediction numeric ,
-    Ground_Truth_Mobile_GG numeric ,
-    Mobile_Online_model_prediction numeric,
-    Mobile_Online_Offline_model_prediction numeric,
-    Mobile_Offline_model_prediction numeric,
-    UNIQUE (date, country, ISO3Code)
+    id SERIAL PRIMARY KEY,
+    created TIMESTAMPTZ(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    iso2 CHAR(2) NOT NULL,
+    date numeric (6) NOT NULL,
+    Ground_Truth_Internet_GG NUMERIC,
+    Internet_Online_model_prediction NUMERIC,
+    Internet_Online_Offline_model_prediction NUMERIC,
+    Internet_Offline_model_prediction NUMERIC,
+    Ground_Truth_Mobile_GG NUMERIC,
+    Mobile_Online_model_prediction NUMERIC,
+    Mobile_Online_Offline_model_prediction NUMERIC,
+    Mobile_Offline_model_prediction NUMERIC,
+    UNIQUE (date, iso2),
+    FOREIGN KEY(iso2) REFERENCES country_info(iso2) ON DELETE SET NULL
 );
 
 GRANT SELECT ON national TO dgg_reader;
-
 GRANT SELECT, INSERT ON national TO dgg_writer;
+GRANT USAGE,SELECT ON SEQUENCE national_id_seq TO dgg_writer;
 
-COPY national(date, country, ISO3Code, ISO2Code,
+COPY national(date, iso2,
     Ground_Truth_Internet_GG,Internet_Online_model_prediction,Internet_Online_Offline_model_prediction,Internet_Offline_model_prediction,
     Ground_Truth_Mobile_GG,Mobile_Online_model_prediction,Mobile_Online_Offline_model_prediction,Mobile_Offline_model_prediction)
 FROM '/var/lib/postgresql/initial_data/mau_upper_monthly_model_2_2022-06.csv'
 DELIMITER ','
 CSV HEADER;
 
-COPY national(date, country, ISO3Code, ISO2Code,
+COPY national(date, iso2,
     Ground_Truth_Internet_GG,Internet_Online_model_prediction,Internet_Online_Offline_model_prediction,Internet_Offline_model_prediction,
     Ground_Truth_Mobile_GG,Mobile_Online_model_prediction,Mobile_Online_Offline_model_prediction,Mobile_Offline_model_prediction)
 FROM '/var/lib/postgresql/initial_data/mau_upper_monthly_model_2_2022-07.csv'
