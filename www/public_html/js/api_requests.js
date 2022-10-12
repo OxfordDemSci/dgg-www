@@ -106,7 +106,8 @@ export function download_data_with_dates(sd, ed, API_URL) {
             url: API_URL + "download_data_with_dates",
             type: 'get',
             data: {
-                date: '['+sd+','+ed+']'
+                start_date: sd,
+                end_date: ed
             },
             success: function (data) {
                 resolve(data);
