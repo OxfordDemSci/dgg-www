@@ -122,7 +122,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
 
     length_args = {'date': 6, 'start_date': 6, 'end_date': 6, 'iso2code': 2, 'iso2': 2}
     int_args = ['date', 'start_date', 'end_date']
-    str_args = ['iso2code', 'iso2']
+    str_args = ['iso2code', 'iso2', 'token']
     list_args = ['model']
     float_args = ['Ground_Truth_Internet_GG',
                   'Internet_Online_model_prediction',
@@ -140,10 +140,10 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
     args = {key: value for key, value in args.items() if key in required + required_one_of + optional}
     if not all(i in args.keys() for i in required):
         status = 400
-        message = "Bad Request: All of these arguments are required {}.".format(required)
+        message = "Bad Request: All of these arguments are required: {}.".format(', '.join(required))
     elif len(required_one_of) > 0 and not any(i in args.keys() for i in required_one_of):
         status = 400
-        message = "Bad Request: At least one of these arguments are required {}.".format(required_one_of)
+        message = "Bad Request: At least one of these arguments is required: {}.".format(', '.join(required_one_of))
 
     # ---- check data types ---- #
 
@@ -157,6 +157,14 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
             except:
                 status = 400
                 message = f"Bad Request: '{key}' cannot be coerced to str."
+
+    # validate token
+    if status == 200 and 'token' in args.keys():
+        if args.get('token') == os.environ.get('WRITE_TOKEN'):
+            args.pop('token')
+        else:
+            status = 401
+            message = 'Bad Request: Unauthorized for write access.'
 
     # int
     if status == 200:
@@ -229,11 +237,12 @@ def reformat_json(df):
         date_dict = {}
         for date in df['date'].unique():
             model_dict = {}
-            for model in list(models_desc.keys()):
+            for model in [x for x in df.columns if x not in ['date', 'iso2', 'iso3', 'name']]:
                 try:
                     model_dict[model] = df.loc[(df['date'] == date) & (df['iso2'] == iso2code)][model].values[0]
                     # if np.isnan(model_dict[model]): model_dict[model] = None
-                    if model_dict[model] == -999: model_dict[model] = None
+                    if model_dict[model] == -999:
+                        model_dict[model] = None
                 except:
                     model_dict[model] = None
             date_dict[str(date)] = model_dict

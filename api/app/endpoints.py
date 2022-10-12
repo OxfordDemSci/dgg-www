@@ -49,7 +49,7 @@ def init():
 
 def query_specific_country(args):
     """
-    API endpoint to query the database for one country at one time
+    API endpoint to query the database for all dates from one country
 
     Parameters:
         args (dict): A dictionary containing items iso2code (str) and model (list; optional)
@@ -62,26 +62,40 @@ def query_specific_country(args):
         result (dict):
     """
 
+    # add model argument if missing
     if 'model' not in args.keys():
         args['model'] = []
 
+    # check and format arguments
     result = utils.check_args(args, required=['iso2code'], optional=['model'])
+
+    # pop formatted arguments from result
     args = result.pop('args')
 
     if result.get('status') == 200:
 
         try:
+
+            # connect to database
             conn = utils.conn_to_database()
 
+            # construct sql statement
             sql = "SELECT date, iso2, iso3, name, " + ",".join(args.get("model")) + " " + \
                   "FROM national LEFT JOIN country_info USING (iso2) " + \
                   "WHERE iso2 = '" + args.get('iso2code') + "';"
+
+            # execute sql request and fetch result as data frame
             df = pd.read_sql(sql, conn)
 
+            # reformat data as json
             result['data'] = utils.reformat_json(df)
+
+            # http status message
             result['message'] = "OK: Data successfully selected from database."
 
         except:
+
+            # http status message and code
             result['status'] = 500
             result['message'] = 'Internal Server Error: Error returned from PostgreSQL server on SELECT.'
 
@@ -90,7 +104,7 @@ def query_specific_country(args):
 
 def query_national(args):
     """
-    API endpoint to query the database for all countries
+    API endpoint to query a single date for all countries
 
     Parameters:
         args (dict): A dictionary containing items date (int) and model (list)
@@ -103,27 +117,40 @@ def query_national(args):
         result (json): Data
     """
 
+    # add model argument if missing
     if 'model' not in args.keys():
         args['model'] = []
 
+    # check and format arguments
     result = utils.check_args(args, required=['date'], optional=['model'])
+
+    # pop formatted arguments from result
     args = result.pop('args')
 
     if result['status'] == 200:
 
         try:
+
+            # connect to database
             conn = utils.conn_to_database()
 
+            # construct sql statement
             sql = "SELECT date, iso2, iso3, name, " + ",".join(args.get("model")) + " " + \
                   "FROM national LEFT JOIN country_info USING (iso2) " + \
                   "WHERE date = " + str(args.get('date')) + ";"
 
+            # execute sql query and fetch result as data frame
             df = pd.read_sql(sql, conn)
 
+            # reformat data to json
             result['data'] = utils.reformat_json(df)
+
+            # http status message
             result['message'] = "OK: Data successfully selected from database."
 
         except:
+
+            # http status message and code
             result['status'] = 500
             result['message'] = "Internal Server Error: Error returned from PostgreSQL server on SELECT."
 
@@ -132,7 +159,7 @@ def query_national(args):
 
 def download_data_with_dates(args={}):
     """
-    Enable the download function to download data by 2 dates (start dates and end dates)
+    Enable the download function to download data between start date and end date
 
     Parameters:
         args (dict): A dictionary containing items start_date (int) and end_date (int)
@@ -144,28 +171,40 @@ def download_data_with_dates(args={}):
         result (json): Data
     """
 
+    # check and format arguments
     result = utils.check_args(args, required=['start_date', 'end_date'])
+
+    # pop arguments from result
     args = result.pop('args')
 
     if result['status'] == 200:
 
         try:
+
+            # connect to database
             conn = utils.conn_to_database()
 
+            # sql sub-statement to query columns and rename them in result
             col_names = [key + ' AS "' + utils.models_desc[key]['name'] + '"' for key in utils.models_desc.keys()]
 
+            # construct sql statement
             sql = "SELECT date, iso2, iso3, name, " + ",".join(col_names) + " " + \
                   "FROM national LEFT JOIN country_info USING (iso2) " + \
                   "WHERE date >= " + str(args.get('start_date')) + " AND " + \
                   "date <= " + str(args.get('end_date')) + ";"
 
+            # execute sql request and fetch result as data frame
             df = pd.read_sql(sql, conn)
 
             # reformat to json
             result['data'] = utils.reformat_json(df)
+
+            # http status message
             result['message'] = 'OK: Data successfully selected from database.'
 
         except:
+
+            # http status message and code
             result['status'] = 500
             result['message'] = "Internal Server Error: Error returned from PostgreSQL server on SELECT."
 
@@ -180,14 +219,15 @@ def write_national(args):
         args (dict): Names and values to be written into database.
 
     Examples:
-         - args = {'date': 202210, 'iso2': "'AT'", 'Ground_Truth_Internet_GG': 0.5}
+         - args = {'date': 202210, 'iso2': 'AT', 'Ground_Truth_Internet_GG': 0.5, 'token':'2tBGBpMeh'}
 
     Returns:
         dict: http status code (status) and error message (message).
 
     """
+    # check arguments
     result = utils.check_args(args,
-                              required=['date', 'iso2'],
+                              required=['date', 'iso2', 'token'],
                               optional=['Ground_Truth_Internet_GG',
                                         'Internet_Online_model_prediction',
                                         'Internet_Online_Offline_model_prediction',
@@ -196,20 +236,33 @@ def write_national(args):
                                         'Mobile_Online_model_prediction',
                                         'Mobile_Online_Offline_model_prediction',
                                         'Mobile_Offline_model_prediction'])
+
+    # pop reformatted arguments from result
     args = result.pop('args')
 
     if result['status'] == 200:
 
         try:
+            # connect to database
             conn = utils.conn_to_database(mode='w')
 
+            # add single quotes around string values to meet PostgreSQL format
+            for key in args.keys():
+                if isinstance(args.get(key), str):
+                    args[key] = f"'{args.get(key)}'"
+
+            # construct SQL statement
             sql = "INSERT INTO national({}) VALUES({});".format(','.join(args.keys()), ','.join([str(i) for i in args.values()]))
 
+            # execute SQL request
             conn.execute(sql)
 
+            # http status message
             result['message'] = 'OK: Data successfully written to database.'
 
         except:
+
+            # http status message and code
             result['status'] = 500
             result['message'] = "Internal Server Error: Error returned from PostgreSQL server on INSERT."
 
