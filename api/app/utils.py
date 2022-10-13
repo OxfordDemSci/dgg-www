@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
+from ast import literal_eval
 load_dotenv()
 
 
@@ -124,14 +125,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
     int_args = ['date', 'start_date', 'end_date']
     str_args = ['iso2code', 'iso2', 'token']
     list_args = ['model']
-    float_args = ['Ground_Truth_Internet_GG',
-                  'Internet_Online_model_prediction',
-                  'Internet_Online_Offline_model_prediction',
-                  'Internet_Offline_model_prediction',
-                  'Ground_Truth_Mobile_GG',
-                  'Mobile_Online_model_prediction',
-                  'Mobile_Online_Offline_model_prediction',
-                  'Mobile_Offline_model_prediction']
+    float_args = list(models_desc.keys())
 
     status = 200
     message = ""
@@ -193,7 +187,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
         for key in set(args.keys()).intersection(list_args):
             if not isinstance(args.get(key), list):
                 try:
-                    args[key] = list(args[key])
+                    args[key] = list(literal_eval(args[key]))
                 except:
                     status = 400
                     message = f"Bad Request: '{key}' could not be coerced to a list."
