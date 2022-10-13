@@ -187,7 +187,12 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
         for key in set(args.keys()).intersection(list_args):
             if not isinstance(args.get(key), list):
                 try:
-                    args[key] = list(literal_eval(args[key]))
+                    if args[key][0] == '[':
+                        args[key] = list(literal_eval(args[key]))
+                    else:
+                        args[key] = [args[key]]
+                    if not isinstance(args.get(key), list):
+                        raise TypeError()
                 except:
                     status = 400
                     message = f"Bad Request: '{key}' could not be coerced to a list."

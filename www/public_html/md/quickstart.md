@@ -11,3 +11,4 @@ women to men. We provide estimates of gender gaps using several different indica
 - **Trends through time** are plotted in the bottom-left of your screen once you have selected a country and date.
 - **Results can be viewed** in a spreadsheet by clicking the spreadsheet icon in the menu.
 - **Results can be downloaded** by clicking the download icon in the menu. 
+
