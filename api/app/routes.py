@@ -22,7 +22,7 @@ def home():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "<h1>404 Error</h1><p>The resource could not be found. {}</p>".format(e), 404
+    return f"<h1>404 Error</h1><p>The resource could not be found. {e}</p>", 404
 
 
 @app.route('/init', methods=['GET'])
@@ -34,26 +34,46 @@ def init():
 @app.route('/query_national', methods=['GET'])
 def query_national():
     args = dict(request.args)
-    result = endpoints.query_national(args)
-    return jsonify(result), result.get('status')
+    if len(args) == 0:
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. " \
+               "See <a href='./'>API documentation</a> for more information.", \
+               400
+    else:
+        result = endpoints.query_national(args)
+        return jsonify(result), result.get('status')
 
 
 @app.route('/query_specific_country', methods=['GET'])
 def query_specific_country():
     args = dict(request.args)
-    result = endpoints.query_specific_country(args)
-    return jsonify(result), result.get('status')
+    if len(args) == 0:
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. " \
+               "See <a href='./'>API documentation</a> for more information.", \
+               400
+    else:
+        result = endpoints.query_specific_country(args)
+        return jsonify(result), result.get('status')
 
 
 @app.route('/download_data_with_dates', methods=['GET'])
 def download_data_with_dates():
     args = dict(request.args)
-    result = endpoints.download_data_with_dates(args)
-    return jsonify(result), result['status']
+    if len(args) == 0:
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. " \
+               "See <a href='./'>API documentation</a> for more information.", \
+               400
+    else:
+        result = endpoints.download_data_with_dates(args)
+        return jsonify(result), result['status']
 
 
 @app.route('/write_national', methods=['GET'])
 def write_national():
     args = dict(request.args)
-    result = endpoints.write_national(args)
-    return jsonify(result), result['status']
+    if len(args) == 0:
+        return "<h1>400 Error</h1><p>Bad Request: This API endpoint requires arguments. " \
+               "See <a href='./'>API documentation</a> for more information.", \
+               400
+    else:
+        result = endpoints.write_national(args)
+        return jsonify(result), result['status']
