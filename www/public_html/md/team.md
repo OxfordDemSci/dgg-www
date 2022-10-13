@@ -12,9 +12,12 @@ computational innovations both in terms of modelling approaches and digital data
 can be applied to study social and demographic phenomena. She is especially interested in how big data can be used to 
 measure and monitor sustainable development goals.
 
-**Academic Profile:** [Prof. Ridhi Kashyap](https://www.nuffield.ox.ac.uk/people/profiles/ridhi-kashyap/)  
-**Twitter:** [ridhikash07](https://twitter.com/ridhikash07)  
-**LinkdIn:** [ridhi-kashyap](https://linkedin.com/in/ridhi-kashyap-88600b15b/)  
+**Academic Profile:** 
+<a href="https://www.nuffield.ox.ac.uk/people/profiles/ridhi-kashyap/" target="_blank">Prof. Ridhi Kashyap</a>  
+**Twitter:** 
+<a href="ridhikash07" target="_blank">https://twitter.com/ridhikash07</a>  
+**LinkdIn:** 
+<a href="https://linkedin.com/in/ridhi-kashyap-88600b15b/" target="_blank">ridhi-kashyap</a>  
 
 ---
 
@@ -29,8 +32,10 @@ sociologists, political scientists, demographers and medical professionals to ad
 gender gaps, to lifestyle diseases to improving population statistics. Prior to joining QCRI, Ingmar Weber was a 
 researcher at Yahoo! Research Barcelona where he pioneered the use of Big Data to monitor international migration.
 
-**Twitter:** [ingmarweber](https://twitter.com/ingmarweber)  
-**LinkdIn:** [ingmarweber](https://linkedin.com/in/ingmarweber)  
+**Twitter:** 
+<a href="https://twitter.com/ingmarweber" target="_blank">ingmarweber</a>  
+**LinkdIn:** 
+<a href="https://linkedin.com/in/ingmarweber" target="_blank">ingmarweber</a>  
 
 ---
 
@@ -46,7 +51,8 @@ visited QCRI as part of Princeton University’s International InternshipsProgra
 at Princeton University in 2018 where he majored in Operations Research with certificates (minors) in Statistics & 
 Machine Learning and Applications of Computing.
 
-**Twitter:** [MFatehkia](https://twitter.com/MFatehkia)  
+**Twitter:** 
+<a href="https://twitter.com/MFatehkia" target="_blank">MFatehkia</a>  
 
 ---
 
@@ -61,8 +67,10 @@ data sources from remote sensing, geospatial information, and digital traces (su
 traditional data from household surveys, census, and registry data. He has a PhD in Biological Sciences and 
 post-doctoral research experience at WorldPop and the Odum School of Ecology.
 
-**Academic Profile:** [Dr. Douglas Leasure](https://www.demographicscience.ox.ac.uk/douglas-leasure)  
-**GitHub:** [doug-leasure](https://github.com/doug-leasure)
+**Academic Profile:** 
+<a href="https://www.demographicscience.ox.ac.uk/douglas-leasure" target="_blank">Dr. Douglas Leasure</a>  
+**GitHub:** 
+<a href="https://github.com/doug-leasure" target="_blank">doug-leasure</a>
 
 ---
 
@@ -70,14 +78,16 @@ post-doctoral research experience at WorldPop and the Odum School of Ecology.
 ### Research Assistant
 <img src="../img/staff/jiani.jpg" alt="Photo of Jiani" width="400" width="400">
 
-Jiani is a DPhil student and research assistant in the Department of Sociology at the University of Oxford. She has an 
+Jiani is a DPhil student and research assistant in the Department of Sociology at the University of Oxford. She has a 
 Master of Philosophy in Sociology and Demography from the University of Oxford and a Master of Science in Financial 
 Economics from the University of Birmingham. Jiani works on a range of projects at the Leverhulme Centre for Demographic 
 Science providing programming expertise for web scraping, automated data collection, server development, 
 and data analysis.
 
-**LinkdIn:** [jiani-yan](https://uk.linkedin.com/in/jiani-yan-728921194)  
-**GitHub:** [vallerrr](https://github.com/vallerrr)
+**LinkdIn:** 
+<a href="https://uk.linkedin.com/in/jiani-yan-728921194" target="_blank">jiani-yan</a>  
+**GitHub:** 
+<a href="https://github.com/vallerrr" target="_blank">vallerrr</a>
 
 ---
 
@@ -85,7 +95,9 @@ and data analysis.
 ### Web Developer
 <img src="../img/staff/maksym.jpg" alt="Photo of Maksym" width="400" width="400">
 
-Maksym is co-founder and director of [GISRede](https://www.gisrede.com/), and he leads the Spatial Data 
+Maksym is co-founder and director of 
+<a href="https://www.gisrede.com/" target="_blank">GISRede</a>, 
+and he leads the Spatial Data 
 Infrastructure team of the WorldPop research group at the University of Southampton. He received an MSc in Applied 
 Mathematics in 2002 and a Master’s degree in Software Development in 2004 from Kharkiv State University, Ukraine. He 
 completed his PhD in Computational Mathematics (Fluid Dynamics), at the University of Southampton in 2008. During a 
@@ -93,8 +105,10 @@ research fellowship, he was in charge of managing the lifecycle of the High Ener
 project. HEPMDB acts as a central storage, calculation and dissemination point for the data produced by High Energy 
 Physics (HEP) tools. 
 
-**Academic Profile:** [Dr. Maksym Bondarenko](https://www.southampton.ac.uk/geography/about/staff/mb4.page)  
-**GitHub:** [GISRede](https://github.com/GISRede)
+**Academic Profile:** 
+<a href="https://www.southampton.ac.uk/geography/about/staff/mb4.page" target="_blank">Dr. Maksym Bondarenko</a>  
+**GitHub:** 
+<a href="https://github.com/GISRede" target="_blank">GISRede</a>
 
 ---
 
@@ -102,13 +116,16 @@ Physics (HEP) tools.
 ### Web Developer
 <img src="../img/staff/david.jpg" alt="Photo of David" width="400" width="400">
 
-David is co-founder and director of [GISRede](https://www.gisrede.com/), and he is a senior geospatial analyst for 
+David is co-founder and director of 
+<a href="https://www.gisrede.com/" target="_blank">GISRede</a>, and he is a senior geospatial analyst for 
 the UK Office of National Statistics. He received a master's degree in Geographic Information Science and Cartography 
 from the University of Leeds in 2018. He previously worked as a GIS application developer for the WorldPop research 
 group at the University of Southampton.
 
-**LinkdIn:** [david-kerr](https://uk.linkedin.com/in/david-kerr-58a247120)  
-**GitHub:** [GISRede](https://github.com/GISRede)  
+**LinkdIn:** 
+<a href="https://uk.linkedin.com/in/david-kerr-58a247120" target="_blank">david-kerr</a>  
+**GitHub:** 
+<a href="https://github.com/GISRede" target="_blank">GISRede</a>  
 
 ---
 
@@ -122,4 +139,5 @@ He has worked on projects that range from embedded device firmware and applicati
 and on to full stack web server development and operations. He developed the prototype version of the website backend, 
 frontend, and converted the visualisations to web formats.
 
-**GitHub:** [ianknowles](https://github.com/ianknowles)
+**GitHub:** 
+<a href="https://github.com/ianknowles" target="_blank">ianknowles</a>
