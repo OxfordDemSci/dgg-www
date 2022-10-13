@@ -1,6 +1,7 @@
 from app import utils
 import pandas as pd
 
+
 def init():
     """
     API endpoint to initialize the front end
@@ -17,12 +18,6 @@ def init():
     try:
         conn = utils.conn_to_database()
 
-        # list model types
-        result['types'] = ['internet', 'mobile']
-
-        # list models
-        result['models'] = utils.models_desc
-
         # list countries with national-level data
         sql = 'SELECT iso2,name FROM country_info;'
         data = pd.read_sql(sql, conn)
@@ -34,13 +29,25 @@ def init():
         result['dates'] = data['date'].tolist()
         result['dates'] = [int(x) for x in result['dates']]
 
+        # list models
+        result['models'] = utils.models_desc
+
+        # list model types
+        result['types'] = ['internet', 'mobile']
+
         # color palette
         result['palette'] = utils.palette(n=6)
 
         # contact
         result['contact'] = 'digitalgendergaps@gmail.com'
 
+        # http status code and message
+        result['status'] = 200
+        result['message'] = 'OK: Init endpoint successful.'
+
     except:
+
+        # http status code and message
         result['status'] = 500
         result['message'] = 'Internal Server Error: Init endpoint failed.'
 
@@ -61,6 +68,7 @@ def query_specific_country(args):
     Returns:
         result (dict):
     """
+
 
     # add model argument if missing
     if 'model' not in args.keys():
@@ -157,7 +165,7 @@ def query_national(args):
     return result
 
 
-def download_data_with_dates(args={}):
+def download_data_with_dates(args):
     """
     Enable the download function to download data between start date and end date
 
@@ -252,7 +260,9 @@ def write_national(args):
                     args[key] = f"'{args.get(key)}'"
 
             # construct SQL statement
-            sql = "INSERT INTO national({}) VALUES({});".format(','.join(args.keys()), ','.join([str(i) for i in args.values()]))
+            cols = ','.join(args.keys())
+            vals = ','.join([str(i) for i in args.values()])
+            sql = f"INSERT INTO national({cols}) VALUES({vals});"
 
             # execute SQL request
             conn.execute(sql)
