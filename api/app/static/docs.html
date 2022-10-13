@@ -1301,7 +1301,8 @@ The JSON response includes the following elements:</p>
 <tr class="odd">
 <td>countries</td>
 <td>A list of all countries with data. This includes country names and
-ISO2 country codes.</td>
+<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank">ISO-2
+country codes</a>.</td>
 </tr>
 <tr class="even">
 <td>dates</td>
@@ -1349,13 +1350,32 @@ responses
 <a href="https://duckduckgo.com/?q=json+beautifier" target="_blank">here</a>
 to view them in a cleaner format.</p>
 </blockquote>
-<p><strong>Arguments</strong><br />
-| Argument | Description | |—|—| | iso2code | (required) Country as a
-two character
-<a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank">ISO-2
-country code</a>. | | model | (optional) List of indicators to return.
-Note: Get possible values from keys of the “model” element returned from
-the “init” endpoint. |</p>
+<p><strong>Arguments</strong></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>iso2code</td>
+<td>(required) Country as a two character
+<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank">ISO-2
+country codes</a>.</td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>(optional) List of indicators to return. Note: Get possible values
+from keys of the “model” element returned from the “init” endpoint.</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Response</strong><br />
 The JSON response includes the following elements:</p>
 <table>
@@ -1393,12 +1413,30 @@ responses
 <a href="https://duckduckgo.com/?q=json+beautifier" target="_blank">here</a>
 to view them in a cleaner format.</p>
 </blockquote>
-<p><strong>Arguments</strong><br />
-| Argument | Description | |—|—| | date | (required) Date in format
-YYYYMM. |<br />
-| model | (optional) List of indicators to return. Note: Get possible
-values from keys of the “model” element returned from the “init”
-endpoint. |</p>
+<p><strong>Arguments</strong></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>date</td>
+<td>(required) Date in format YYYYMM.</td>
+</tr>
+<tr class="even">
+<td>model</td>
+<td>(optional) List of indicators to return. Note: Get possible values
+from keys of the “model” element returned from the “init” endpoint.</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Response</strong><br />
 The JSON response includes the following elements:</p>
 <table>
@@ -1435,10 +1473,25 @@ response
 <a href="https://duckduckgo.com/?q=json+beautifier" target="_blank">here</a>
 to view it in a cleaner format.</p>
 </blockquote>
-<p><strong>Arguments</strong><br />
-| Argument | Description | |—|—| | start_date | (required) Initial date
-in range in format YYYYMM. | | end_date | (required) Last date in range
-in format YYYYMM. |</p>
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>start_date</td>
+<td>(required) Initial date in range in format YYYYMM.</td>
+</tr>
+<tr class="even">
+<td>end_date</td>
+<td>(required) Last date in range in format YYYYMM.</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Response</strong><br />
 The JSON response includes the following elements:</p>
 <table>
@@ -1479,31 +1532,66 @@ single country and date.</p>
 <p><strong>Note:</strong> This endpoint requires an access token and is
 not available for public access.</p>
 </blockquote>
-<p><strong>Arguments</strong><br />
-| Argument | Description | |—|—| | token | (required) Access token. | |
-date | (required) Date in format YYYYMM. |<br />
-| iso2 | (required) Country as a two character
-<a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank">ISO-2
-country code</a>.| | internet_online_model_prediction | (optional) Value
-to write into database for this indicator. | |
-internet_online_offline_model_prediction | (optional) Value to write
-into database for this indicator. | | internet_offline_model_prediction
-| (optional) Value to write into database for this indicator. | |
-ground_truth_internet_gg | (optional) Value to write into database for
-this indicator. | | mobile_online_model_prediction | (optional) Value to
-write into database for this indicator. | |
-mobile_online_offline_model_prediction | (optional) Value to write into
-database for this indicator. | | mobile_offline_model_prediction |
-(optional) Value to write into database for this indicator. | |
-ground_truth_mobile_gg | (optional) Value to write into database for
-this indicator. |</p>
-<p><strong>Response</strong><br />
-The JSON response includes the following elements:</p>
+<p><strong>Arguments</strong></p>
 <table>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
 </colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>token</td>
+<td>(required) Access token.</td>
+</tr>
+<tr class="even">
+<td>date</td>
+<td>(required) Date in format YYYYMM.</td>
+</tr>
+<tr class="odd">
+<td>iso2</td>
+<td>(required) Country as a two character
+<a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank">ISO-2
+country code</a>.</td>
+</tr>
+<tr class="even">
+<td>internet_online_offline_model_prediction</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+<tr class="odd">
+<td>internet_offline_model_prediction</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+<tr class="even">
+<td>ground_truth_internet_gg</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+<tr class="odd">
+<td>mobile_online_model_prediction</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+<tr class="even">
+<td>mobile_online_offline_model_prediction</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+<tr class="odd">
+<td>mobile_offline_model_prediction</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+<tr class="even">
+<td>ground_truth_mobile_gg</td>
+<td>(optional) Value to write into database for this indicator.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong><br />
+The JSON response includes the following elements:</p>
+<table>
 <thead>
 <tr class="header">
 <th>Response</th>
@@ -1512,15 +1600,10 @@ The JSON response includes the following elements:</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td>data</td>
-<td>Digital gender gap estimates for each country, date, and
-indicator.</td>
-</tr>
-<tr class="even">
 <td>message</td>
 <td>Status message.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>status</td>
 <td>http status code.</td>
 </tr>

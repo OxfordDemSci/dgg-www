@@ -56,7 +56,7 @@ The JSON response includes the following elements:
 
 | Response  | Description | 
 |---|---|
-| countries | A list of all countries with data. This includes country names and ISO2 country codes. |   
+| countries | A list of all countries with data. This includes country names and <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank">ISO-2 country codes</a>. |   
 | dates     | A list of dates with data formatted as YYYYMM. |               
 | models    | An object containing descriptions of all indicators (i.e. models) including their name, formatted name, type, description, and display order. | 
 | types     | A list of indicator types (e.g. mobile, internet).|  
@@ -77,9 +77,10 @@ Returns data for all dates from a single country.
 > **Note:** Click the links above and paste the JSON responses <a href="https://duckduckgo.com/?q=json+beautifier" target="_blank">here</a> to view them in a cleaner format.
 
 **Arguments**  
+
 | Argument | Description |
 |---|---|
-| iso2code | (required) Country as a two character <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank">ISO-2 country code</a>. |
+| iso2code | (required) Country as a two character <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank">ISO-2 country codes</a>. |
 | model | (optional) List of indicators to return. Note: Get possible values from keys of the "model" element returned from the "init" endpoint. | 
 
 **Response**  
@@ -103,6 +104,7 @@ Returns data for all countries for a single date.
 > **Note:** Click the links above and paste the JSON responses <a href="https://duckduckgo.com/?q=json+beautifier" target="_blank">here</a> to view them in a cleaner format.
 
 **Arguments**  
+
 | Argument | Description  |
 |---|---|
 | date | (required) Date in format YYYYMM.  |                                                                  
@@ -127,6 +129,7 @@ Returns data for all countries within a range of dates.
 > **Note:** Click the link above and paste the JSON response <a href="https://duckduckgo.com/?q=json+beautifier" target="_blank">here</a> to view it in a cleaner format.
 
 **Arguments**  
+
 | Argument   | Description | 
 |---|---|
 | start_date | (required) Initial date in range in format YYYYMM. |
@@ -153,6 +156,7 @@ Writes new digital gender gap estimates into the database for a single country a
 > **Note:** This endpoint requires an access token and is not available for public access.
 
 **Arguments**  
+
 | Argument | Description | 
 |---|---|
 | token | (required) Access token.  |
@@ -171,7 +175,6 @@ The JSON response includes the following elements:
 
 | Response | Description | 
 |---|---|
-| data | Digital gender gap estimates for each country, date, and indicator.  | 
 | message | Status message. |  
 | status | http status code. |  
 
