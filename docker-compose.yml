@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 services:
 
@@ -58,7 +58,7 @@ services:
     env_file: .env
     volumes:
       - ./sql/initial_data:/var/lib/postgresql/initial_data
-      - ./sql/dgg_initial.sql:/docker-entrypoint-initdb.d/dgg_initial.sql
+      - ./sql/dgg_initial.sh:/docker-entrypoint-initdb.d/dgg_initial.sh
     networks:
       - dgg_net
     ports:

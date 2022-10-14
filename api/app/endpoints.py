@@ -1,7 +1,6 @@
 from app import utils
 import pandas as pd
-from flask import jsonify
-import re
+
 
 def init():
     """
@@ -14,157 +13,267 @@ def init():
         result (dict): Contains a list of models (indicators), countries, dates with data, blurb, and contact.
     """
 
-    result = {}
+    result = {'status': 200, 'message': 'OK: Successfully initialized.'}
 
-    conn = utils.conn_to_database()
+    try:
+        conn = utils.conn_to_database()
 
-    # list models
-    sql = 'SELECT * FROM dgg LIMIT 0;'
-    data = pd.read_sql(sql, conn)
-    result['models'] = list(data.columns[4:])
+        # list countries with national-level data
+        sql = 'SELECT iso2,name FROM country_info;'
+        data = pd.read_sql(sql, conn)
+        result['countries'] = [{'iso2code': x, 'country': y} for x, y in zip(data['iso2'], data['name'])]
 
-    # list countries with national-level data
-    sql = 'SELECT DISTINCT iso2code,country FROM dgg;'
-    data = pd.read_sql(sql, conn)
-    result['countries'] = [{"iso2code": x, "country": y} for x, y in zip(data['iso2code'], data["country"])]
+        # list dates with data
+        sql = 'SELECT DISTINCT date FROM national;'
+        data = pd.read_sql(sql, conn)
+        result['dates'] = data['date'].tolist()
+        result['dates'] = [int(x) for x in result['dates']]
 
-    # list dates with data
-    sql = 'SELECT DISTINCT date FROM dgg;'
-    data = pd.read_sql(sql, conn)
-    result['dates'] = data['date'].tolist()
-    result['dates'] = [int(x) for x in result['dates']]
+        # list models
+        result['models'] = utils.models_desc
 
-    # blurb
-    result['blurb'] = 'Yodel ay he hooo!'
+        # list model types
+        result['types'] = ['internet', 'mobile']
 
-    # contact
-    result['contact'] = 'info@digitalgendergaps.org'
+        # color palette
+        result['palette'] = utils.palette(n=6)
+
+        # contact
+        result['contact'] = 'digitalgendergaps@gmail.com'
+
+        # http status code and message
+        result['status'] = 200
+        result['message'] = 'OK: Init endpoint successful.'
+
+    except:
+
+        # http status code and message
+        result['status'] = 500
+        result['message'] = 'Internal Server Error: Init endpoint failed.'
+
     return result
 
-# args={"iso2code":"AT"}
 
 def query_specific_country(args):
     """
-    API endpoint to query the database for one country at one time
+    API endpoint to query the database for all dates from one country
 
     Parameters:
-        args (dict): A dictionary containing items str:iso2code and/or list:model
+        args (dict): A dictionary containing items iso2code (str) and model (list; optional)
 
     Examples:
         - args = {"iso2code": "AT"}
         - args = {"iso2code": "AT", "model": ["ground_truth_mobile_gg"]}
 
     Returns:
-        result (dict): Contains a list of models (indicators), countries, dates with data, blurb, and
-        contact email.
+        result (dict):
     """
 
-    conn = utils.conn_to_database()
-    result = {}
 
-    args = utils.args_check_model(args)
-    sql = utils.generate_sql(args, date_type='list', required_one_of=['iso3code', 'iso2code', 'country'])
-    # update the sql sentence with date arg
+    # add model argument if missing
+    if 'model' not in args.keys():
+        args['model'] = []
 
-    df = pd.read_sql(sql, conn)
-    # post-process the json
-    result['data'] = df.to_dict()
-    data = utils.reformat_json(df=df, args=args)
+    # check and format arguments
+    result = utils.check_args(args, required=['iso2code'], optional=['model'])
 
-    result['data'] = data
-    result['status'] = 200
+    # pop formatted arguments from result
+    args = result.pop('args')
+
+    if result.get('status') == 200:
+
+        try:
+
+            # connect to database
+            conn = utils.conn_to_database()
+
+            # construct sql statement
+            sql = "SELECT date, iso2, iso3, name, " + ",".join(args.get("model")) + " " + \
+                  "FROM national LEFT JOIN country_info USING (iso2) " + \
+                  "WHERE iso2 = '" + args.get('iso2code') + "';"
+
+            # execute sql request and fetch result as data frame
+            df = pd.read_sql(sql, conn)
+
+            # reformat data as json
+            result['data'] = utils.reformat_json(df)
+
+            # http status message
+            result['message'] = "OK: Data successfully selected from database."
+
+        except:
+
+            # http status message and code
+            result['status'] = 500
+            result['message'] = 'Internal Server Error: Error returned from PostgreSQL server on SELECT.'
+
     return result
-
-
-# data = pd.read_csv('/Users/valler/Python/RA/Gender_Inequality/dgg-www/sql/initial_data/mau_upper_monthly_model_2_2022-06.csv')
-
-# utils.generate_sql(args=)
-# args = {"model":'["ground_truth_internet_gg","internet_online_model_prediction"]',"date":'[202207,202206]'}
-# args = {"date":'[202207,202206]'}
 
 
 def query_national(args):
     """
-    API endpoint to query the database for all countries
+    API endpoint to query a single date for all countries
 
     Parameters:
-        args (dict): A dictionary containing items ??
+        args (dict): A dictionary containing items date (int) and model (list)
 
     Examples:
-        - ??
+        - args = {"date": 202207, "model": ["ground_truth_internet_gg"]}
+        - args = {"date": 202207}
 
     Returns:
         result (json): Data
     """
 
-    # TODO: Better Error handle
-    # date must be list or empty
+    # add model argument if missing
+    if 'model' not in args.keys():
+        args['model'] = []
 
-    conn = utils.conn_to_database()
-    result = {}
+    # check and format arguments
+    result = utils.check_args(args, required=['date'], optional=['model'])
 
-    # check the args
-    args = utils.args_check_model(args)
-    args = utils.args_check_date(args, conn)
+    # pop formatted arguments from result
+    args = result.pop('args')
 
-    # generate sql
-    sql = utils.generate_sql(args, date_type='list', required_one_of=[])
-    df = pd.read_sql(sql, conn)
+    if result['status'] == 200:
 
-    result['data'] = utils.reformat_json(df=df, args=args)
-    result['status'] = 200
+        try:
+
+            # connect to database
+            conn = utils.conn_to_database()
+
+            # construct sql statement
+            sql = "SELECT date, iso2, iso3, name, " + ",".join(args.get("model")) + " " + \
+                  "FROM national LEFT JOIN country_info USING (iso2) " + \
+                  "WHERE date = " + str(args.get('date')) + ";"
+
+            # execute sql query and fetch result as data frame
+            df = pd.read_sql(sql, conn)
+
+            # reformat data to json
+            result['data'] = utils.reformat_json(df)
+
+            # http status message
+            result['message'] = "OK: Data successfully selected from database."
+
+        except:
+
+            # http status message and code
+            result['status'] = 500
+            result['message'] = "Internal Server Error: Error returned from PostgreSQL server on SELECT."
 
     return result
 
-# args = {"date":'[202202,202207]'}
 
 def download_data_with_dates(args):
     """
-    Enable the download function to download data by 2 dates (start dates and end dates)
+    Enable the download function to download data between start date and end date
 
     Parameters:
-        args (dict): A dictionary containing items ??
+        args (dict): A dictionary containing items start_date (int) and end_date (int)
 
     Examples:
-        - ??
+        - args = {"start_date":202206, "end_date":202207}
 
     Returns:
         result (json): Data
     """
 
-    # TODO: date arg check function?
+    # check and format arguments
+    result = utils.check_args(args, required=['start_date', 'end_date'])
 
-    conn = utils.conn_to_database()
-    result = {}
+    # pop arguments from result
+    args = result.pop('args')
 
-    # check the args
-    args = utils.args_check_date(args, conn)
-    sql = utils.generate_sql(args, date_type="range", required_one_of=[])
+    if result['status'] == 200:
 
-    df = pd.read_sql(sql, conn)
+        try:
 
-    # add models in the args dict before passing the df to the reformat_json function (which need models in the args)
-    args = utils.args_check_model(args)
-    result['data'] = utils.reformat_json(df=df, args=args)
+            # connect to database
+            conn = utils.conn_to_database()
+
+            # sql sub-statement to query columns and rename them in result
+            col_names = [key + ' AS "' + utils.models_desc[key]['name'] + '"' for key in utils.models_desc.keys()]
+
+            # construct sql statement
+            sql = "SELECT date, iso2, iso3, name, " + ",".join(col_names) + " " + \
+                  "FROM national LEFT JOIN country_info USING (iso2) " + \
+                  "WHERE date >= " + str(args.get('start_date')) + " AND " + \
+                  "date <= " + str(args.get('end_date')) + ";"
+
+            # execute sql request and fetch result as data frame
+            df = pd.read_sql(sql, conn)
+
+            # reformat to json
+            result['data'] = utils.reformat_json(df)
+
+            # http status message
+            result['message'] = 'OK: Data successfully selected from database.'
+
+        except:
+
+            # http status message and code
+            result['status'] = 500
+            result['message'] = "Internal Server Error: Error returned from PostgreSQL server on SELECT."
 
     return result
 
-"""
-pd.read_sql(sql_query, conn)
 
-conn = create_engine('postgresql+psycopg2://'+
-                           "postgres" + ':' +
-                           "dgg" + '@' +
-                           "localhost"+ ':5432/' +
-                           "dggpanel")
-                           
-args = args_check_model(args)
-args = args_check_date(args,conn)
-sql = generate_sql(args,date_type="range", required_one_of=[])
-df = pd.read_sql(sql, conn)
-data = reformat_json(df=df, args=args)
+def write_national(args):
+    """
+    API endpoint to write new data into DGG website database.
 
-"""
+    Args:
+        args (dict): Names and values to be written into database.
 
+    Examples:
+         - args = {'date': 202210, 'iso2': 'AT', 'Ground_Truth_Internet_GG': 0.5, 'token':'2tBGBpMeh'}
 
+    Returns:
+        dict: http status code (status) and error message (message).
 
+    """
+    # check arguments
+    result = utils.check_args(args,
+                              required=['date', 'iso2', 'token'],
+                              optional=['Ground_Truth_Internet_GG',
+                                        'Internet_Online_model_prediction',
+                                        'Internet_Online_Offline_model_prediction',
+                                        'Internet_Offline_model_prediction',
+                                        'Ground_Truth_Mobile_GG',
+                                        'Mobile_Online_model_prediction',
+                                        'Mobile_Online_Offline_model_prediction',
+                                        'Mobile_Offline_model_prediction'])
+
+    # pop reformatted arguments from result
+    args = result.pop('args')
+
+    if result['status'] == 200:
+
+        try:
+            # connect to database
+            conn = utils.conn_to_database(mode='w')
+
+            # add single quotes around string values to meet PostgreSQL format
+            for key in args.keys():
+                if isinstance(args.get(key), str):
+                    args[key] = f"'{args.get(key)}'"
+
+            # construct SQL statement
+            cols = ','.join(args.keys())
+            vals = ','.join([str(i) for i in args.values()])
+            sql = f"INSERT INTO national({cols}) VALUES({vals});"
+
+            # execute SQL request
+            conn.execute(sql)
+
+            # http status message
+            result['message'] = 'OK: Data successfully written to database.'
+
+        except:
+
+            # http status message and code
+            result['status'] = 500
+            result['message'] = "Internal Server Error: Error returned from PostgreSQL server on INSERT."
+
+    return result

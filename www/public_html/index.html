@@ -51,7 +51,7 @@
 
         <header>
         
-            <div class="navbar navbar-dark shadow-sm navbar-expand-lg">
+<div class="navbar navbar-dark shadow-sm navbar-expand-lg" style="z-index: 2100">
 <div class="container-fluid">
     <a class="navbar-brand" href="#">Digital Gender Gaps</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,14 +62,17 @@
 <!--<ul class="navbar-nav pr-5">    -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="#">Menu1</a>
+          <a class="nav-link " aria-current="page" href="#" id="aBtnAbout">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Menu2</a>
+          <a class="nav-link" href="#" id="aBtnQuickStart">Quick Start</a>
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="aBtnTeam">Team</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
+          <a class="nav-link" href="#" id="aBtnPrivacy">Privacy</a>
+        </li>        
       </ul>
       <span class="navbar-text p-0 m-0">
         <img id="img-header" src="./img/university_of_oxford_logo.png" style="height:40px;" />
@@ -153,9 +156,13 @@
                         <option></option> 
                     </select> 
 
-                    <p class="mt-4">Some text</p>                    
+                    <p class="p-0 mt-4 mb-1 fw-bold" id="titleModelName">
+                    </p>                    
 
-                    <p class="lorem">Lorem ipsum dolor sit ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+                    <p class="p-0 m-0">
+                        <small id="titleModelDescription">
+                        </small>
+                    </p>
 
                 </div>
                 
@@ -256,43 +263,20 @@
         </footer>
         <a id="downloadAnchorElem" style="display:none"></a>    
         
-        
-        <div class="modal fade "  data-backdrop="false"  id="idMdAbout" tabindex="-1"  aria-labelledby="ModalAbout" style="opacity: 0.8;">
-            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" id="idModalSetting-dialog">
+        <!--  Modal QuickStart -->
+        <div class="modal fade "  data-backdrop="false"  id="idMdQuickStart" tabindex="-1"  aria-labelledby="ModalQuickStart" style="opacity: 0.90;z-index: 2200" >
+            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="padding: 0.5rem;cursor: move;">
-                        <h5 class="modal-title" id="ModalAboutLabel">About</h5>                 
+                        <h5 class="modal-title" id="ModalQuickStartLabel">Quick Start</h5>                 
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!--Modal select-->
+                    
                     <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
                         <div class="container">
 
-                            <div style="font-size: 12px;"> <!-- select-->
-                                <h4 class="text-center">Using Digital Traces to Measure Digital Gender Inequality in Real-Time</h4>
-                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">
-                                    The tremendous expansion of information and communication technologies (ICTs) has transformed the ways in which individuals seek information, 
-                                    communicate and participate in their communities. Participating in the digital revolution is more important than ever across different spheres 
-                                    of life. Despite the rapid expansion of ICTs worldwide, 
-                                    <a href="https://www.itu.int/en/ITU-D/Statistics/Documents/facts/ICTFactsFigures2017.pdf" target="_blank">women lag behind men in access and use of the internet and mobile phones in many parts of the world, particularly in low- and middle-income countries.</a>
-                                </p>
-                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">
-                                    Gender equality in internet and mobile phone access, and improving digital literacy are 
-                                    <a href="https://sustainabledevelopment.un.org/content/documents/10789Chapter3_GSDR2016.pdf" target="_blank">important targets</a> within the 
-                                    United Nations' (UN) Sustainable Development Goals (SDGs). Acknowledging the tremendous and wide-ranging potential of these technologies, 
-                                    the UN SDG 5 to achieve gender equality pledges to “enhance the use of…information and communication technology to promote the empowerment 
-                                    of women" (Goal 5b). In March 2013, the International Telecommunications Union (ITU) and the United Nations Educational, 
-                                    Scientific and Cultural Organization (UNESCO) 
-                                    <a href="https://www.broadbandcommission.org/Pages/default.aspx" target="_blank">Broadband Commission for Digital Development</a> 
-                                    further endorsed a target calling for <a href="https://es.unesco.org/node/83355" target="_blank">gender equality in access to broadband by 2020</a>.
-                                </p> 
-                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">
-                                    <a href="https://broadbandcommission.org/Documents/publications/DigitalGenderDivideProgressReport2018.pdf">Tracking progress on gender inequalities in internet and mobile access and use</a> – digital gender gaps –&nbsp;is very important to ensure that women benefit from the opportunities afforded by the digital revolution. But measuring and sizing this gender gap has proven to be challenging <a href="https://www.data2x.org/what-is-gender-data/gender-data-gaps/">due to significant gender data gaps</a>. There are limited data from surveys or population-level data sources that examine digital inequalities.
-                                </p> 
-                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">How can we better measure digital gender gaps? In which countries are women most “invisible” online and not participating equally in the digital revolution?</p>
-                                <p style="font-family: 'Poppins', sans-serif;color: black;font-size: 1.1em;">With support from the Data2X and as a part of <a href="https://www.data2x.org/big-data-challenge-awards/#digital">“Big Data for Gender Challenge”</a>, our project “The Digital Traces of the Gender Digital Divide” based at the University of Oxford and collaborating with the Qatar Computing Research Institute has been exploring how big data innovations can help us measure women’s participation in the digital revolution in real-time. We are also exploring how digital traces gathered from big data can help measure gender gaps in other domains such as education and occupations.</p>
-
-                            </div> <!-- end select-->
+                            <div style="font-size: 12px;" id="QuickStartTabPopup"> 
+                            </div> 
 
                             <div class="mw-100"> 
                                 <div class="form-group col-12">
@@ -300,14 +284,96 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END select-->
+                    
                     <div class="modal-footer p-1" >
                         <button type="button" class="btn btn-secondary btn-sm mr-2" data-bs-dismiss="modal">Close</button> 
                     </div>                    
                 </div>
             </div>
         </div>                             
-        <!--  Modal About -->     
+        <!--  Modal QuickStart -->
+        
+        <div class="modal fade "  data-backdrop="false"  id="idMdAbout" tabindex="-1"  aria-labelledby="ModalAbout" style="opacity: 0.8;z-index: 2200">
+            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" id="idModalSetting-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 0.5rem;cursor: move;">
+                        <h5 class="modal-title" id="ModalAboutLabel">About</h5>                 
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
+                        <div class="container">
+
+                            <div style="font-size: 12px;" id="aboutTabPopup">
+                            </div> 
+
+                            <div class="mw-100"> 
+                                <div class="form-group col-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer p-1" >
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" data-bs-dismiss="modal">Close</button> 
+                    </div>                    
+                </div>
+            </div>
+        </div>                             
+        <!--  Modal About -->
+        
+        <!--  Modal Team -->
+        <div class="modal fade "  data-backdrop="false"  id="idMdTeam" tabindex="-1"  aria-labelledby="ModalTeam" style="opacity: 0.95;z-index: 2200">
+            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" >
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 0.5rem;cursor: move;">
+                        <h5 class="modal-title" id="ModalTeamLabel">Team</h5>                 
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
+                        <div class="container">
+                            <div style="font-size: 12px;" id="TeamTabPopup">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer p-1" >
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" data-bs-dismiss="modal">Close</button> 
+                    </div>                    
+                </div>
+            </div>
+        </div>                             
+        <!--  Modal Team end -->  
+        
+        
+        <!--  Modal privacy -->
+        <div class="modal fade "  data-backdrop="false"  id="idMdPrivacy" tabindex="-1"  aria-labelledby="ModalPrivacy" style="opacity: 0.95;z-index: 2200">
+            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" >
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 0.5rem;cursor: move;">
+                        <h5 class="modal-title" id="ModalPrivacyLabel">Privacy Policy</h5>                 
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
+                        <div class="container">
+                            <div style="font-size: 12px;" id="PrivacyTabPopup">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer p-1" >
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" data-bs-dismiss="modal">Close</button> 
+                    </div>                    
+                </div>
+            </div>
+        </div>                             
+        <!--  Modal privacy end -->          
         
    <div class="toast-container"  style="position: absolute; top: 20px; right: 10px; z-index: 10000; background-color: #fff ; opacity: 0.9;filter: alpha(opacity=10);">
     <div class="toast" id="ToastDownloadCompleted">
@@ -353,10 +419,12 @@
 
 <script type="text/javascript" src="./utils/DataTables/datatables.min.js"></script>
 
+<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+
 <script type="text/javascript">
     window.mdebug = true;
 </script>
-<script src="./js/main.js?version=15" type="module"></script>
+<script src="./js/main.js?version=17" type="module"></script>
 
 
 
@@ -400,11 +468,41 @@
         
         
         $("#AboutBtn").click(function(e) {
-            $('#idMdAbout').modal('toggle');
+            $('#idMdQuickStart').modal('toggle');
             e.preventDefault();
             e.stopPropagation();
             return false;
         }); 
+        
+         $("#aBtnQuickStart").click(function(e) {
+            $('#idMdQuickStart').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });        
+        
+        $("#aBtnTeam").click(function(e) {
+            $('#idMdTeam').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });  
+        
+        
+        $("#aBtnAbout").click(function(e) {
+            $('#idMdAbout').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });  
+        
+        $("#aBtnPrivacy").click(function(e) {
+            $('#idMdPrivacy').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });        
+        
    
     });
 
@@ -421,3 +519,48 @@ $(function() {
 </script>
 
 
+<script type="text/javascript">
+
+var milliseconds = new Date().getTime();
+
+jQuery.get('./md/about.md?version='+milliseconds, function(data) {
+
+    var aboutTabPopup = document.getElementById('aboutTabPopup');
+
+    var converter = new showdown.Converter(),
+        html      = converter.makeHtml(data);
+        aboutTabPopup.innerHTML =html;
+    
+});
+
+
+
+jQuery.get('./md/team.md?version='+milliseconds, function(data) {
+
+var TeamTabPopup = document.getElementById('TeamTabPopup');
+
+    var converterTeam = new showdown.Converter(),
+        html      = converterTeam.makeHtml(data);
+        TeamTabPopup.innerHTML =html;
+});
+
+jQuery.get('./md/quickstart.md?version='+milliseconds, function(data) {
+
+var TeamTabPopup = document.getElementById('QuickStartTabPopup');
+
+    var converterQuickStart = new showdown.Converter(),
+        html = converterQuickStart.makeHtml(data);
+        TeamTabPopup.innerHTML =html;
+});
+
+jQuery.get('./md/privacy.md?version='+milliseconds, function(data) {
+
+var PrivacyTabPopup = document.getElementById('PrivacyTabPopup');
+
+    var converterPrivacy = new showdown.Converter(),
+        html = converterPrivacy.makeHtml(data);
+        PrivacyTabPopup.innerHTML =html;
+});
+
+
+</script>
