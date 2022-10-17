@@ -16,45 +16,75 @@ export function display(s) {
   }
 }
 
-export function updateData(c, d, iso2code, model) {
-    
+const zeroPad = (num, places) => String(num).padStart(places, '0');
 
-    document.getElementById('plotxy_title').innerText = model.replace(/_/g, " ") ;
-    
+export function updateData(c, d, iso2code, model, modelsList, countriesList) {
+
+    var country_name;
+    var country_alpha;
+
+    for (var i = 0; i < countriesList.length; i++) {
+
+        country_name = countriesList[i]["country"];
+        country_alpha = countriesList[i]["iso2code"];
+
+        if (country_alpha === iso2code) {
+            document.getElementById('plotxy_title').innerText = country_name;
+        }
+
+    }
+
     var labels = [];
     var dataArray = [];
-    
+    var ym;
     for (var k in d.data[iso2code]) {
-        labels.push(k);
+        ym = k.toString().substring(0, 4) + '-' + zeroPad(k.toString().substring(5, 6), 2);
+        labels.push(ym);
         dataArray.push(d.data[iso2code][k][model]);
     }
-    
-//    const labels = [
-//    '2000-01',
-//    '2000-02',
-//    '2000-03',
-//    '2000-04',
-//    '2000-05',
-//    '2000-06',
-//    '2000-07',
-//    '2000-11',
-//    '2001-01',
-//    '2002-01',
-//    '2003-01',
-//    '2004-01'
-//  ];
-//
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: '',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: dataArray
-    }]
-  };
-//    
-  c.data = data;
-  c.update();
+
+    const data = {
+        labels: labels,
+        datasets: [{
+                label: '',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: dataArray
+            }]
+    };
+
+
+    const options = {
+        scales: {
+            x: {
+                ticks: {
+                    maxRotation: 60,
+                    minRotation: 60
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false,
+                text: model
+            }, 
+            title: {
+                display: true,
+                text: modelsList[model].name,
+                position: "left",
+                font: {
+                    weight: 600
+                },
+                padding: {
+                    bottom: 10,
+                    left: 100
+                }
+            }
+        }
+    };
+
+    c.options = options;
+    c.data = data;
+    c.update();
 
 }

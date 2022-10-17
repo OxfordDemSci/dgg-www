@@ -106,22 +106,36 @@ export function load_countries_to_menu(countries) {
 
 export function load_models_to_menu(models) {
 
-
     var select_models = document.getElementById('select_models');
+    var modelsListArray = [];
 
-    for (var m in models){
-        select_models.innerHTML = select_models.innerHTML +
-                '<option value="' + m + '">' + models[m].name + '</option>';
+    for (var m in models) {
+
+        modelsListArray.push(
+                [
+                    models[m].order,
+                    m,
+                    models[m].name,
+                    models[m].description,
+                    models[m].type
+                ]
+                );
     }
-//        
-//    
-//    
-//    for (let i = 0; i < models.length; i++) {
-//        
-//         model_name = models[i].replace(/_/g, " ");
-//         select_models.innerHTML = select_models.innerHTML +
-//                '<option value="' + models[i] + '">' + model_name + '</option>';
-//    } 
+    modelsListArray = modelsListArray.sort((a, b) => a[0] - b[0]);
+
+    for (var i = modelsListArray.length - 1; i >= 0; i--) {
+
+        select_models.innerHTML = select_models.innerHTML +
+                '<option value="' + modelsListArray[i][1] + '">' + modelsListArray[i][2] + '</option>';
+    }
+    
+    // updated popover info for the indicatore in the menu
+    const popover = bootstrap.Popover.getOrCreateInstance('#lbIndicatorInfo', {"html":true});
+    popover.setContent({
+        '.popover-header': modelsListArray[modelsListArray.length - 1][2],
+        '.popover-body': modelsListArray[modelsListArray.length - 1][3]
+    });    
+
 
 }
 

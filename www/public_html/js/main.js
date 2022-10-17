@@ -1,34 +1,36 @@
 var API_URL = "./api/v1/";
 var featureByName = {};
 
-import * as _init from './init.js?version=11'
-import * as _utils from './utils.js?version=11'
-import * as _worldLayer from './worldLayer.js?version=22'
+import * as _init from './init.js?version=12'
+import * as _utils from './utils.js?version=22'
+import * as _worldLayer from './worldLayer.js?version=35'
 import * as _api from './api_requests.js?version=4'
-import * as _plotxyLayer from './plotxyLayer.js?version=2'
+import * as _plotxyLayer from './plotxyLayer.js?version=7'
 import * as _downloadData from './downloadData.js?version=2'
 
-const config_plot_xy_Chart = {
-    type: 'line',
-    data: {},
-    options: {
-        plugins: {
-            legend: {
-                display: false
+        const config_plot_xy_Chart = {
+            type: 'line',
+            data: {},
+            options: {
+                plugins: {
+                    legend: {
+                        title: {
+                            display: false,
+                            text: ''
+                        }
+                    }, subtitle: {
+                        display: false,
+                        text: ''
+                    }
+                }
             }
-        }
-    }
-};
+        };
 
 var initJSONSettings = _api.getSettings(API_URL);
 var ymDates = _init.getDates(initJSONSettings.dates);
 var countriesList = _init.getCountriesList(initJSONSettings.countries);
 var palette = _init.getCountriesList(initJSONSettings.palette);
 
- //console.log("palette" + palette["breaks"]["ground_truth_internet_gg"]);
- 
-console.log(_worldLayer.getColor(1, palette, "ground_truth_internet_gg"));
- 
 if (window.mdebug === true){
     console.log("countriesList" + countriesList[1]["country"]);
 }
@@ -37,7 +39,7 @@ var world_geo_json = _init.getWorld_geo();
 
 var modelsList = initJSONSettings.models;
 
-_init.load_models_to_menu(initJSONSettings.models);
+_init.load_models_to_menu(modelsList);
 
 _init.load_countries_to_menu(countriesList);
 
@@ -104,10 +106,14 @@ legendLayer.onAdd = function (map) {
     var legent_text = "legend ";
     var div = L.DomUtil.create('div', 'legend_data');
     div.innerHTML += '<div id="legend_data_info"></div>';
+    L.DomEvent.disableClickPropagation(div);
+    L.DomEvent.disableScrollPropagation(div);
     return div;
 };
+//var legendLayer = L.DomUtil.get('legendLayer');
 
 legendLayer.addTo(map);
+
 
 var scaleLayer = L.control.scale({position: 'bottomleft'});
 scaleLayer.addTo(map);
@@ -125,9 +131,11 @@ plotxyLayer.onAdd = function(map) {
         <span id="plotxy_span_close" style="">\n\
         <i class="fa fa-times"></i>\n\
         </span>\n\
-        <p class="text-center mt-2 fw-bold" id="plotxy_title"></p>\n\
-        <canvas id="plotxyChart"></canvas>\n\
+        <p class="text-center p-0 m-0 fw-bold" id="plotxy_title"></p>\n\
+        <canvas id="plotxyChart" style="padding-left:10px; "></canvas>\n\
         </div>';
+        L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.disableScrollPropagation(div);    
         return div;
 };
 
@@ -141,18 +149,28 @@ var xy_Chart = new Chart(
 );
 
 
-
-
 window.controlTable_Bottom = L.control.bar('table_bottom',{
     position:'bottom',
     visible:true
 });
 
+controlTable_Bottom.onAdd = function(map) {
+this._div = L.DomUtil.get('table_bottom')
+    return this._div
+};
+
 
 map.addControl(controlTable_Bottom);
-controlTable_Bottom.setContent(`<div id="tb_container"></div>`);
+controlTable_Bottom.setContent(`
+                                <a class="button mousechangeHand" id="lbTableMaximize" style="color: #444">
+                                <i class="p-2 fa fa-window-maximize" aria-hidden="true" id="iconTableMaximize"></i>
+                                </a>
+                                <div id="tb_container"></div>
+                               `);
 controlTable_Bottom.hide();
 
+L.DomEvent.disableClickPropagation(table_bottom);
+L.DomEvent.disableScrollPropagation(table_bottom);
 
 var worldLayer = L.geoJson(null, {
     style: function (feature){
@@ -176,14 +194,16 @@ var worldLayer = L.geoJson(null, {
                     //console.log("iso2code " + iso2code);
                     _api.query_model_promis(iso2code, sParams[2], API_URL)
                         .then((data) => {
+                            _utils.hilightRowTable(iso2code, countriesList);
                             _plotxyLayer.display("show");
-                            _plotxyLayer.updateData(xy_Chart, data, iso2code, sParams[2]);
+                            _plotxyLayer.updateData(xy_Chart, data, iso2code, sParams[2], modelsList, countriesList);
                             _worldLayer.zoomToFeature(e, map, data, countriesList);
                              }).then(() => {
                               _utils.progressMenuOff();  
                             }).catch((error) => {
                                  console.log(error);
-                            });                
+                            });
+                            
             }
         });
     }.bind(this)
@@ -210,7 +230,8 @@ _api.query_national_promis(lastYear, lastMonth, API_URL)
                     world_geo_json,
                     countriesList,
                     data,
-                    palette);
+                    palette,
+                    modelsList);
         }).then(() => {
             _utils.updateModelInfoonPanel(firstModelfromList, modelsList);
             _utils.hideCoverScreen();
@@ -247,12 +268,12 @@ $('#select_country').on('select2:select', function (e) {
             .then((data) => {
                 //console.log(data);
                 //var data_national = JSON.parse(data.data);
-                _worldLayer.load_data_to_controlTable_Bottom(data,
-                        sParams[0],
-                        sParams[1],
-                        countriesList,
-                        sParams[2],
-                        dataP.id);
+//                _worldLayer.load_data_to_controlTable_Bottom(data,
+//                        sParams[0],
+//                        sParams[1],
+//                        countriesList,
+//                        sParams[2],
+//                        dataP.id);
 
             }).then(() => {
                 _utils.progressMenuOff();
@@ -291,7 +312,8 @@ $('#select_models').on('change', function () {
                         world_geo_json,
                         countriesList,
                         data,
-                        palette);
+                        palette,
+                        modelsList);
             }).then(() => {
                  _utils.updateModelInfoonPanel(select_model, modelsList);
             }).then(() => {
@@ -327,7 +349,8 @@ $('#datepicker').on('changeMonth', function (e) {
                         world_geo_json,
                         countriesList,
                         data,
-                        palette);
+                        palette,
+                        modelsList);
             }).then(() => {
                 _utils.progressMenuOff();
             })
@@ -360,7 +383,7 @@ $("#btnDownloadData").click(function (event) {
                                           formattedDateEnd,
                                           API_URL)
             .then((data) => {
-                  _downloadData.downloadCSV(data, formattedDateStart, formattedDateEnd, countriesList);
+                  _downloadData.downloadCSV(data, formattedDateStart, formattedDateEnd, countriesList, modelsList);
     
             }).then(() => {
                 sidebar.open("home");
@@ -374,11 +397,7 @@ $("#btnDownloadData").click(function (event) {
         
 
     }else{
-        $("#errorDownload").show();
-        setTimeout(function() {
-            $("#errorDownload").hide();
-        }, 5000);
-        
+        $("#ToastRrrorDownload").toast("show"); 
     }
 });
 
@@ -406,4 +425,11 @@ $('#customRangeOpacity').change(function () {
             fillOpacity: $(this).val()
         });     
 });
+
+$("#mailtoLink").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = "mailto:"+initJSONSettings.contact;
+});
+
 

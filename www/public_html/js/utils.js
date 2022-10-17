@@ -5,13 +5,82 @@ const zeroPad = (num, places) => String(num).padStart(places, '0');
 // m - selected model, d- modeil list
 export function updateModelInfoonPanel(m, d) {
 
-  var titleModelName = document.getElementById('titleModelName');
-  titleModelName.innerHTML = d[m].name;
+    var titleModelName = document.getElementById('titleModelName');
+    //titleModelName.innerHTML = d[m].name;
 
-  var titleModelDescription = document.getElementById('titleModelDescription');
-  titleModelDescription.innerHTML = d[m].description;
+    var titleModelDescription = document.getElementById('titleModelDescription');
+    //titleModelDescription.innerHTML = d[m].description;
+
+    // updated popover info for the indicatore in the menu
+    const popover = bootstrap.Popover.getOrCreateInstance('#lbIndicatorInfo', {"html": true});
+    popover.setContent({
+        '.popover-header': d[m].name,
+        '.popover-body': d[m].description
+    });
+
 
 }
+
+export function hilightRowTable(iso2code, countriesList) {
+
+    var country_name;
+    var country_alpha;
+    var country_name_selected;
+    for (var i = 0; i < countriesList.length; i++) {
+
+        country_name = countriesList[i]["country"];
+        country_alpha = countriesList[i]["iso2code"];
+
+        if (country_alpha === iso2code) {
+            country_name_selected = country_name;
+        }
+
+    }
+    
+    var container_scrollHead = document.getElementsByClassName('dataTables_scrollHead')[0];
+    var container_filter = document.getElementsByClassName('dataTables_filter')[0];   
+    
+    var offsetRight =  $('#table_bottom').outerHeight() -  container_scrollHead.offsetHeight -  container_filter.offsetHeight -  $('#iconTableMaximize').outerHeight() - 30;
+
+
+    $("#tblBottom").dataTable().fnDestroy();
+    
+
+    var table = $('#tblBottom').DataTable({
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+
+            if (aData[1] === country_name_selected) {
+                $(nRow).css('background-color', '#D7D4D4');
+            } else {
+                $(nRow).css('background-color', '');
+            }
+        },
+                paging: true,
+                bInfo: false,
+                scrollY: offsetRight,
+                bDestroy: true,
+                deferRender:    true,
+                scroller:       true,  
+                sScrollX: true
+    });
+//        paging: true,
+//        scrollY: 280,
+//        bInfo: false,
+//        bDestroy: true,
+//        scroller: true
+
+
+    table.rows().data().map((row, index) => {
+        if (row[1] === country_name_selected) {
+            table.scroller().scrollToRow(index-1);
+        }
+    });
+
+
+}
+
+
+
 
 export function getSelectedParameters() {
 
@@ -140,7 +209,7 @@ function hexToRGB(hexStr) {
     return col;
 }
 
-export function loadLagent(title, colors, breaks) {
+export function loadLagent_deprecated(title, colors, breaks) {
 
     var html = '<div style="width:100px">' + title + '</div>';
     
@@ -150,6 +219,26 @@ export function loadLagent(title, colors, breaks) {
         var mCanvas = _ImageFromRGB.createImageFromRGBdata(rgb.r, rgb.g, rgb.b, 20, 20);
 
         html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + breaks[i] + '</span></li>';
+    }
+    html += '</ul>';
+    document.getElementById('legend_data_info').innerHTML = html;
+
+}
+
+
+export function loadLagent(title, colors, breaks, subtitles) {
+
+    var html = '<div style="width:120px">' + title + '</div>';
+    var subtitlesArray = Array(colors.length).fill('');
+    subtitlesArray[0] = subtitles[0];
+    subtitlesArray[colors.length-1] = subtitles[1];
+
+    html += '<ul style="list-style-type: none;margin-top: 10px;padding-inline-start: 10px;">';
+    for (var i = 0, len = colors.length; i < len; i++) {
+        var rgb = hexToRGB(colors[i]);
+        var mCanvas = _ImageFromRGB.createImageFromRGBdata(rgb.r, rgb.g, rgb.b, 20, 20);
+
+        html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + subtitlesArray[i] + '</span></li>';
     }
     html += '</ul>';
     document.getElementById('legend_data_info').innerHTML = html;

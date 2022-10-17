@@ -16,6 +16,10 @@ html, body, #map {
   cursor:pointer
 }
 
+.popover{
+  z-index: 2000;   
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -23,8 +27,9 @@ html, body, #map {
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
+  opacity: 0.7;
+  filter: alpha(opacity=10);  
 }
-
 
 #legend_data_info {
     line-height: 18px;
@@ -32,7 +37,7 @@ html, body, #map {
     font-family: 'Open Sans', Helvetica, sans-serif;
     padding: 6px 8px;
     background: white;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.91);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
     float: left;
@@ -101,13 +106,25 @@ html, body, #map {
     padding:0;
 }
 
+
 /* Select2  Control End */
+
+
+ #drag {
+    position: absolute;
+    left: 0;
+    top: -4px;
+    right: 0;
+    height: 12px;
+    cursor: n-resize;
+}
+
 
 /* ======================================== */
 /* Controle bar */
 .leaflet-control-bar-bottom.leaflet-control-bar {
     height: 400px;
-    bottom: -400px;
+    bottom: -440px;
     overflow-y: hidden;  
     overflow-x: hidden; 
 }
@@ -120,8 +137,8 @@ html, body, #map {
 
 .sidebar {
     width: 280px;
-    height: 400px;
-    top: 60px;
+    height: 300px;
+    top: 100px;
 }
 
 .sidebar-content
@@ -129,7 +146,6 @@ html, body, #map {
     opacity: 0.9;
     filter: alpha(opacity=10);
 }
-
 
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -246,14 +262,15 @@ html, body, #map {
     width: 350px;
     background-repeat: no-repeat;
     display: block;
-    padding: 3px;
+    padding: 4px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
+/*    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);*/
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
     cursor: auto;
     background-color: #FFFFFF;
-    opacity: .9;
+    opacity: .92;
     filter: alpha(opacity=10);
 }
 

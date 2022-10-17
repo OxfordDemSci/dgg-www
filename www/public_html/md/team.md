@@ -95,18 +95,13 @@ and data analysis.
 ### Web Developer
 <img src="../img/staff/maksym.jpg" alt="Photo of Maksym" width="400" width="400">
 
-Maksym is co-founder and director of 
-<a href="https://www.gisrede.com/" target="_blank">GISRede</a>, 
-and he leads the Spatial Data 
-Infrastructure team of the WorldPop research group at the University of Southampton. He received an MSc in Applied 
-Mathematics in 2002 and a Master’s degree in Software Development in 2004 from Kharkiv State University, Ukraine. He 
-completed his PhD in Computational Mathematics (Fluid Dynamics), at the University of Southampton in 2008. During a 
-research fellowship, he was in charge of managing the lifecycle of the High Energy Physics Model Database (HEPMDB) 
-project. HEPMDB acts as a central storage, calculation and dissemination point for the data produced by High Energy 
-Physics (HEP) tools. 
+Maksym Bondarenko is a co-founder and director of <a href="https://www.gisrede.com/" target="_blank">GISRede</a> and leads front-end development 
+as well as R&D of the company. He works with organisations to find solutions to visualise complex spatial and tabular data. 
+He has a background in deploying big data repositories for large organisations.  He has masters' degrees in Applied Mathematics and Software Development, 
+and a PhD in Computational Mathematics. 
 
-**Academic Profile:** 
-<a href="https://www.southampton.ac.uk/geography/about/staff/mb4.page" target="_blank">Dr. Maksym Bondarenko</a>  
+**LinkdIn:** 
+<a href="https://www.linkedin.com/in/maksymbondarenko/" target="_blank">maksymbondarenko</a>  
 **GitHub:** 
 <a href="https://github.com/GISRede" target="_blank">GISRede</a>
 
@@ -116,11 +111,8 @@ Physics (HEP) tools.
 ### Web Developer
 <img src="../img/staff/david.jpg" alt="Photo of David" width="400" width="400">
 
-David is co-founder and director of 
-<a href="https://www.gisrede.com/" target="_blank">GISRede</a>, and he is a senior geospatial analyst for 
-the UK Office of National Statistics. He received a master's degree in Geographic Information Science and Cartography 
-from the University of Leeds in 2018. He previously worked as a GIS application developer for the WorldPop research 
-group at the University of Southampton.
+David Kerr is a co-founder and director of <a href="https://www.gisrede.com/" target="_blank">GISRede</a> and leads backend development and data science aspects of the business. He works on a range of projects 
+to model data to solve real world problems. He has a masters’ degree in Geographic Information Systems.
 
 **LinkdIn:** 
 <a href="https://uk.linkedin.com/in/david-kerr-58a247120" target="_blank">david-kerr</a>  
