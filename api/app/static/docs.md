@@ -133,7 +133,8 @@ Returns data for all countries within a range of dates.
 | Argument   | Description | 
 |---|---|
 | start_date | (required) Initial date in range in format YYYYMM. |
-| end_date   | (required) Last date in range in format YYYYMM.    |     
+| end_date   | (required) Last date in range in format YYYYMM.    |
+| pretty_names | (optional) Return formatted column names (boolean; default = True) |
 
 
 **Response**  

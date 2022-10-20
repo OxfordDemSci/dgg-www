@@ -3,8 +3,8 @@ import re
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from dotenv import load_dotenv
 from ast import literal_eval
+from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -126,6 +126,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
     str_args = ['iso2code', 'iso2', 'token']
     list_args = ['model']
     float_args = list(models_desc.keys())
+    bool_args = ['pretty_names']
 
     status = 200
     message = ""
@@ -181,6 +182,23 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
             except:
                 status = 400
                 message = f"Bad Request: '{key}' cannot be coerced to float."
+
+    if status == 200:
+        for key in set(args.keys()).intersection(bool_args):
+            try:
+                if isinstance(args.get(key), str):
+                    args[key] = args.get(key).lower()
+                if args.get(key) in [True, 1, 'true', 't', 'yes', 'y', 'on']:
+                    args[key] = True
+                elif args.get(key) in [False, 0, 'false', 'f', 'no', 'n', 'off']:
+                    args[key] = False
+                else:
+                    args[key] = True
+                if not isinstance(args.get(key), bool):
+                    raise TypeError()
+            except:
+                status = 400
+                message = f"Bad Request: '{key}' cannot be coerced to boolean."
 
     # list
     if status == 200:
