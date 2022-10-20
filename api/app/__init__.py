@@ -10,3 +10,6 @@ CORS(app)
 
 # specify the Google Analytics key here
 app.config["GA_KEY"] = ''
+
+# don't sort JSON elements alphabetically
+app.config['JSON_SORT_KEYS'] = False
