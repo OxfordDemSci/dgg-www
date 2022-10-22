@@ -2,8 +2,8 @@ var API_URL = "./api/v1/";
 var featureByName = {};
 
 import * as _init from './init.js?version=12'
-import * as _utils from './utils.js?version=22'
-import * as _worldLayer from './worldLayer.js?version=35'
+import * as _utils from './utils.js?version=26'
+import * as _worldLayer from './worldLayer.js?version=48'
 import * as _api from './api_requests.js?version=4'
 import * as _plotxyLayer from './plotxyLayer.js?version=7'
 import * as _downloadData from './downloadData.js?version=2'
@@ -155,13 +155,13 @@ window.controlTable_Bottom = L.control.bar('table_bottom',{
 });
 
 controlTable_Bottom.onAdd = function(map) {
-this._div = L.DomUtil.get('table_bottom')
-    return this._div
+this._div = L.DomUtil.get('table_bottom');
+    return this._div;
 };
 
 
 map.addControl(controlTable_Bottom);
-controlTable_Bottom.setContent(`
+controlTable_Bottom.setContent(`<div class="progressMenuTable" id="progressMenuTable"><div id="progressMenuTable-content" ></div></div>
                                 <a class="button mousechangeHand" id="lbTableMaximize" style="color: #444">
                                 <i class="p-2 fa fa-window-maximize" aria-hidden="true" id="iconTableMaximize"></i>
                                 </a>
@@ -171,6 +171,8 @@ controlTable_Bottom.hide();
 
 L.DomEvent.disableClickPropagation(table_bottom);
 L.DomEvent.disableScrollPropagation(table_bottom);
+
+
 
 var worldLayer = L.geoJson(null, {
     style: function (feature){
@@ -187,7 +189,7 @@ var worldLayer = L.geoJson(null, {
             },
             click: function (e) {
                     _utils.progressMenuOn();
-                    sidebar.open('home');
+                    //sidebar.open('home');
                     
                     var sParams = _utils.getSelectedParameters();
                     var iso2code = e.target.feature.properties.iso_a2;
@@ -431,5 +433,18 @@ $("#mailtoLink").click(function (e) {
     e.stopPropagation();
     window.location.href = "mailto:"+initJSONSettings.contact;
 });
+
+
+//$('.link-table-zoom').on("click",  function (event) {
+//    event.preventDefault();
+//    alert("title");
+//    var self = $(this);
+////    var link = self.find(self.data('target')).attr('href');
+//    var title = self.attr('title');
+//    
+//    alert(title);
+//    event.stopPropagation();
+//});
+
 
 

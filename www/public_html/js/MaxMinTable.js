@@ -11,9 +11,12 @@ $(document).ready(function () {
         var height_container_table;
 
         if ($("#iconTableMaximize").hasClass("fa-window-minimize")) {
+            
+            var heightScreen = $(window).height()*40/100;
+            console.log(heightScreen);
 
-            height_tbl = 400 - container_scrollHead.offsetHeight - container_filter.offsetHeight - $('#iconTableMaximize').outerHeight();
-            height_container_table = 400 + $('#lbTableMaximize').outerHeight() + container_filter.offsetHeight;
+            height_tbl = heightScreen - container_scrollHead.offsetHeight - container_filter.offsetHeight - $('#iconTableMaximize').outerHeight();
+            height_container_table = heightScreen + $('#lbTableMaximize').outerHeight() + container_filter.offsetHeightm + $('#iconTableMaximize').outerHeight();
             container_table.setAttribute("style", "height:" + height_container_table + "px");
 
 
@@ -31,7 +34,14 @@ $(document).ready(function () {
                     bDestroy: true,
                     deferRender: true,
                     scroller: true,
-                    sScrollX: true
+                    sScrollX: true,
+                    columnDefs: [
+                    {
+                        target: 0,
+                        visible: false,
+                        searchable: true
+                    }
+                    ]
                 }
         );
 

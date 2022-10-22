@@ -121,20 +121,21 @@ export function load_models_to_menu(models) {
                 ]
                 );
     }
-    modelsListArray = modelsListArray.sort((a, b) => a[0] - b[0]);
+   // modelsListArray = modelsListArray.sort((a, b) => a[0] - b[0]);
 
-    for (var i = modelsListArray.length - 1; i >= 0; i--) {
+    //for (var i = modelsListArray.length - 1; i >= 0; i--) {
+    for (var i = 0 ; i < modelsListArray.length ; i++) {    
 
         select_models.innerHTML = select_models.innerHTML +
                 '<option value="' + modelsListArray[i][1] + '">' + modelsListArray[i][2] + '</option>';
     }
     
     // updated popover info for the indicatore in the menu
-    const popover = bootstrap.Popover.getOrCreateInstance('#lbIndicatorInfo', {"html":true});
-    popover.setContent({
-        '.popover-header': modelsListArray[modelsListArray.length - 1][2],
-        '.popover-body': modelsListArray[modelsListArray.length - 1][3]
-    });    
+//    const popover = bootstrap.Popover.getOrCreateInstance('#lbIndicatorInfo', {"html":true});
+//    popover.setContent({
+//        '.popover-header': modelsListArray[modelsListArray.length - 1][2],
+//        '.popover-body': modelsListArray[modelsListArray.length - 1][3]
+//    });    
 
 
 }
@@ -171,6 +172,7 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
         useCurrent: false,
         autoclose: true,
         fontAwesome: true,
+        orientation: "bottom",
         beforeShowMonth: function (date) {
             //alert(date);
             var formattedDate = moment(date).format('YYYY-MM');
@@ -193,6 +195,7 @@ export function loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYe
         useCurrent: false,
         autoclose: true,
         fontAwesome: true,
+        orientation: "bottom",
         beforeShowMonth: function (date) {
             //alert(date);
             var formattedDate = moment(date).format('YYYY-MM');
@@ -211,6 +214,7 @@ export function loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYe
         useCurrent: false,
         autoclose: true,
         fontAwesome: true,
+        orientation: "bottom",
         beforeShowMonth: function (date) {
             //alert(date);
             var formattedDate = moment(date).format('YYYY-MM');

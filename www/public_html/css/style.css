@@ -123,8 +123,8 @@ html, body, #map {
 /* ======================================== */
 /* Controle bar */
 .leaflet-control-bar-bottom.leaflet-control-bar {
-    height: 400px;
-    bottom: -440px;
+    height: calc(100vh *40/100);
+    bottom: calc(100vh *40/100 * -1);
     overflow-y: hidden;  
     overflow-x: hidden; 
 }
@@ -137,7 +137,7 @@ html, body, #map {
 
 .sidebar {
     width: 280px;
-    height: 300px;
+    height: 340px;
     top: 100px;
 }
 

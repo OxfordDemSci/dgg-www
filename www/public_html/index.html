@@ -20,7 +20,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"/> 
 
-        <link rel="stylesheet" href="./css/style.css?v=40">
+        <link rel="stylesheet" href="./css/style.css?v=47">
         <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>-->
 
         <link rel="stylesheet" type="text/css" href="./utils/DataTables/datatables.min.css"/>
@@ -29,6 +29,37 @@
         
         <style>
 
+.progressMenuTable {
+    display: none;
+    visibility: hidden;
+    z-index: 9999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    vertical-align:bottom;
+    filter: alpha(opacity=75); 
+    opacity: 0.70; 
+    font-weight:400;
+/*    background-image: url("../img/icons8-dots-loading.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;*/
+}
+
+#progressMenuTable-content {
+  
+  height: 80%;
+  width: 100%;
+  z-index: 9999;
+  border:0px solid black;
+  position: absolute;
+  background-size: 60px;
+  background-image: url("../img/icons8-dots-loading.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
         </style>
 
     </head>
@@ -87,6 +118,7 @@
                     <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                     <li><a class="button mousechangeHand" id="AboutBtn"  role="tab" target="_blank"><i class="fa fa-question-circle"></i></a></li>
                     <li class="tableLink-item"><a href="" id="tableLink" role="tab" target="_blank"><i class="fa fa-table"></i></a></li>
+                    <li><a href="#zoomtocountry" role="tab"><i class="fa fa-search"></i></a></li>
                     <li><a href="#download" role="tab"><i class="fa fa-download"></i></a></li>
                     <li><a href="#settings" role="tab"><i class="fa fa-cog"></i></a></li>
                     <li><a href="" id="mailtoLink" role="tab"><i class="fa fa-envelope"></i></a></li>
@@ -101,39 +133,9 @@
                         Digital Gender Gaps
                         <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
                     </h1>
-     
 
-<!--                    <label class="mb-3 mt-4  fw-bold" >
-                        <label for="Indicator" class="col-1 col-form-label pb-0 fw-bold">Indicator</label> <i class="fa fa-cog"></i>
-                        <select id="select_models" style="width:200px;background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
-                        </select>
-                    </label>-->
-
-                    <section class="container p-0 mt-2">
-                        <form class="row">
-                            <div style="display: inline !important;">
-                                <label id="lbIndicator" for="Indicator" class="col-form-label pb-0 fw-bold">Indicator</label>
-                                <a class="button mousechangeHand" id="lbIndicatorInfo" style="color: #444" 
-                                   tabindex="0"
-                                   data-bs-placement="bottom"
-                                   data-bs-trigger="focus"
-                                   data-bs-toggle="popover" 
-                                   title="Dismissible popover" 
-                                   data-bs-content="And here's some amazing content. It's very engaging. Right?">
-                                    <i class="fa fa-info-circle" style="font-size: 1.22em;"></i>
-                                </a>
-                            </div>    
-                                
-                            <div class="col-12">
-                                <select id="select_models" style="width:200px;background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
-                                </select>
-                            </div>
-                        </form>
-                    </section>                      
                     
-                    <br/>
-
-                    <section class="container p-0 m-0">
+                    <section class="container p-0 mt-2">
                         <form class="row">
                             <label for="date" class="col-1 col-form-label pb-0 fw-bold">Date</label>
                             <div class="col-12">
@@ -147,23 +149,41 @@
                                 </div>
                             </div>
                         </form>
-                    </section>                   
-
+                    </section>                       
+                    
+                    <br/>
+                    
+                    <section class="container p-0 ">
+                        <form class="row">
+                            <div style="display: inline !important;">
+                                <label id="lbIndicator" for="Indicator" class="col-form-label pb-0 fw-bold">Indicator</label>
+<!--                                <a class="button mousechangeHand" id="lbIndicatorInfo" style="color: #444" 
+                                   tabindex="0"
+                                   data-bs-placement="bottom"
+                                   data-bs-trigger="focus"
+                                   data-bs-toggle="popover" 
+                                   title="Dismissible popover" 
+                                   data-bs-content="And here's some amazing content. It's very engaging. Right?">
+                                    <i class="fa fa-info-circle" style="font-size: 1.22em;"></i>
+                                </a>-->
+                            </div>    
+                                
+                            <div class="col-12">
+                                <select id="select_models" style="width:200px;background-color: #fff; border: 1px solid #aaa; border-radius: 4px;font: 10pt 'Helvetica Neue', Arial, Helvetica, sans-serif; height: 28px;color: #444; line-height: 28px; display: block; padding-left: 8px; padding-right: 20px; text-overflow: ellipsis; white-space: nowrap;">
+                                </select>
+                            </div>
+                        </form>
+                    </section>                      
 
                     <br/>
 
-                    <p class="p-0 m-1">Select an country to zoom</p> 
-                    <select id="select_country" style="width:200px;">
-                        <option></option> 
-                    </select> 
 
-<!--                    <p class="p-0 mt-4 mb-1 fw-bold" id="titleModelName">
-                    </p>                    
+<!--                    <p class="p-0 mt-1 mb-1 fw-bold" id="titleModelName"></p>                    -->
 
                     <p class="p-0 m-0">
                         <small id="titleModelDescription">
                         </small>
-                    </p>-->
+                    </p>
 
                 </div>
                 
@@ -236,6 +256,21 @@
                     </div>                     
                     
                 </div>
+                
+                
+                <div class="sidebar-pane" id="zoomtocountry">
+                    <h1 class="sidebar-header">Select an country<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+
+                    <div class="pt-4">  
+                        <p class="p-0 m-1">Select an country to zoom</p> 
+                        <select id="select_country" style="width:200px;">
+                            <option></option> 
+                        </select>                       
+                    </div> 
+
+
+                </div>
+                
             </div>
         </div>
 
@@ -288,7 +323,7 @@
         </div>                             
         <!--  Modal QuickStart -->
         
-        <div class="modal fade "  data-backdrop="false"  id="idMdAbout" tabindex="-1"  aria-labelledby="ModalAbout" style="opacity: 0.8;z-index: 2200">
+        <div class="modal fade "  data-backdrop="false"  id="idMdAbout" tabindex="-1"  aria-labelledby="ModalAbout" style="opacity: 0.95;z-index: 2200">
             <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" id="idModalSetting-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="padding: 0.5rem;cursor: move;">
@@ -435,12 +470,13 @@
 <script type="text/javascript">
     window.mdebug = true;
 </script>
-<script src="./js/main.js?version=36" type="module"></script>
+<script src="./js/main.js?version=43" type="module"></script>
 
 
 
 <script type="text/javascript">
     $(document).ready(function () {
+
 
 
 $('#lbIndicatorInfo').popover({
@@ -525,7 +561,7 @@ $('#lbIndicatorInfo').popover({
             e.stopPropagation();
             return false;
         });        
-        
+   
    
     });
 
@@ -552,7 +588,7 @@ jQuery.get('./md/about.md?version='+milliseconds, function(data) {
 
     var converter = new showdown.Converter(),
         html      = converter.makeHtml(data);
-        aboutTabPopup.innerHTML =html;
+        aboutTabPopup.innerHTML =data;
     
 });
 
@@ -564,7 +600,7 @@ var TeamTabPopup = document.getElementById('TeamTabPopup');
 
     var converterTeam = new showdown.Converter(),
         html      = converterTeam.makeHtml(data);
-        TeamTabPopup.innerHTML =html;
+        TeamTabPopup.innerHTML =data;
 });
 
 jQuery.get('./md/quickstart.md?version='+milliseconds, function(data) {
@@ -573,7 +609,7 @@ var TeamTabPopup = document.getElementById('QuickStartTabPopup');
 
     var converterQuickStart = new showdown.Converter(),
         html = converterQuickStart.makeHtml(data);
-        TeamTabPopup.innerHTML =html;
+        TeamTabPopup.innerHTML =data;
 });
 
 jQuery.get('./md/privacy.md?version='+milliseconds, function(data) {
@@ -582,13 +618,20 @@ var PrivacyTabPopup = document.getElementById('PrivacyTabPopup');
 
     var converterPrivacy = new showdown.Converter(),
         html = converterPrivacy.makeHtml(data);
-        PrivacyTabPopup.innerHTML =html;
+        PrivacyTabPopup.innerHTML =data;
 });
 
 
- 
+// $(document).ready(function() {
+//    var table = $('#tblBottom').DataTable();
+// 
+//    $('#tblBottom tbody').on('click', 'tr', function () {
+//        var data = table.row( this ).data();
+//        alert( 'You clicked on '+data[0]+'\'s row' );
+//    } );
+//} );
 
 </script>
 
 
-<script src="./js/MaxMinTable.js?version=7"></script>
+<script src="./js/MaxMinTable.js?version=12"></script>
