@@ -84,6 +84,7 @@ var basemaps = {
         center: [15.320230, 32.507111],
         zoom: 3,
         maxZoom: 11,
+        maxBounds: [[90, -180],[-90, 230]],
         layers: [basemaps.OpenStreetMaps]
     };
 
