@@ -33,7 +33,7 @@ def init():
         result['models'] = utils.models_desc
 
         # list model types
-        result['types'] = ['internet', 'mobile']
+        # result['types'] = ['internet', 'mobile']
 
         # color palette
         result['palette'] = utils.palette(n=6)
