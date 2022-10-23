@@ -341,8 +341,8 @@ def palette(n=6):
         labels[model] = lab
 
     pal = {
-        "title": "Internet/Mobile Gender Gap (Women:Men)",
-        "subtitles": ["Less Equality", "More Equality"],
+        "title": "Digital Gender Gap",
+        "subtitles": ["Less Equality<br><em>female-to-male</em>", "More Equality"],
         "colors": colors,
         "breaks": breaks,
         "labels": labels

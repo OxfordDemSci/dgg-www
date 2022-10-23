@@ -279,13 +279,13 @@ export function loadLagent2(title, colors, breaks, subtitles) {
 
 export function loadLagent(title, colors, breaks, subtitles) {
 
-    var html = '<div style="width:100px">' + title + '</div>';
+    var html = '<div style="width:130px"><h5>' + title + '</h5></div>';
     
     var subtitlesArray = Array(colors.length).fill('');
     subtitlesArray[0] = subtitles[0];
     subtitlesArray[colors.length-1] = subtitles[1];    
     
-    html += '<div style="width:100px"><b>' + subtitles[0] + '</b></div>';
+    html += '<div style="width:100px">' + subtitles[0] + '</div>';
     
     html += '<ul style="list-style-type: none;margin-top: 2px;margin-bottom: 2px;padding-inline-start: 10px;">';
     for (var i = 0, len = colors.length; i < len; i++) {
@@ -295,7 +295,7 @@ export function loadLagent(title, colors, breaks, subtitles) {
         html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + breaks[i] + '</span></li>';
     }
     html += '</ul>';
-    html += '<div style="width:100px"><b>' + subtitles[1] + '</b></div>';
+    html += '<div style="width:100px">' + subtitles[1] + '</div>';
     document.getElementById('legend_data_info').innerHTML = html;
 
 }
