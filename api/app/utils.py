@@ -3,92 +3,86 @@ import re
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from dotenv import load_dotenv
 from ast import literal_eval
+from dotenv import load_dotenv
 load_dotenv()
 
 
 # list of models (indicators)
 models_desc = {
+        'ground_truth_internet_gg': {
+            'name': 'Internet GG - ITU',
+            'type': 'internet',
+            'description': '<strong>Description:</strong> Ratios of female-to-male internet use from International '
+                           'Telecommunication Union (ITU).<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Coverage:</strong> Lowest<br>'
+                           '<strong>Accuracy:</strong> Best'
+        },
         'internet_online_model_prediction': {
             'name': 'Internet GG - Online',
             'type': 'internet',
-            'order': 1,
-            'description': 'Ratios of female-to-male internet use from our daily Facebook Gender Gap Index.'
-                           '<br><strong>Coverage:</strong> Best<br>'
+            'description': '<strong>Description:</strong> Ratios of female-to-male internet use from our daily Facebook '
+                           'Gender Gap Index.<br>'
                            '<strong>Data Frequency:</strong> Daily<br>'
-                           '<strong>Accuracy:</strong> Best'
-        },
-        'internet_online_offline_model_prediction': {
-            'name': 'Internet GG - Combined',
-            'type': 'internet',
-            'order': 2,
-            'description': 'Ratios of female-to-male internet use estimated using our daily Facebook Gender '
-                           'Gap Index.<br>'
-                           '<strong>Coverage:</strong> Moderate<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Accuracy:</strong> Good'
+                           '<strong>Coverage:</strong> Best<br>'
+                           '<strong>Accuracy:</strong> Very good'
         },
         'internet_offline_model_prediction': {
             'name': 'Internet GG - Offline',
             'type': 'internet',
-            'order': 3,
-            'description': 'Ratios of female-to-male internet use estimated using only offline indicators on '
-                           'the country’s development status (e.g. Human Development Index).<br>'
-                           '<strong>Coverage:</strong> Moderate<br>'
+            'description': '<strong>Description:</strong> Ratios of female-to-male internet use estimated using only '
+                           'offline indicators (e.g. Human Development Index).<br>'
                            '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Coverage:</strong> Moderate<br>'
                            '<strong>Accuracy:</strong> Low'
         },
-        'ground_truth_internet_gg': {
-            'name': 'Internet GG - ITU',
+        'internet_online_offline_model_prediction': {
+            'name': 'Internet GG - Combined',
             'type': 'internet',
-            'order': 4,
-            'description': 'Ratios of female-to-male internet use from International Telecommunication Union '
-                           '(ITU) statistics.<br>'
-                           '<strong>Coverage:</strong> Lowest<br>'
+            'description': '<strong>Description:</strong> Ratios of female-to-male internet use estimated using our '
+                           'daily Facebook Gender Gap Index combined with offline indicators.<br>'
                            '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Accuracy:</strong> Observed survey data'
-       },
+                           '<strong>Coverage:</strong> Moderate<br>'
+                           '<strong>Accuracy:</strong> Good'
+        },
+        'ground_truth_mobile_gg': {
+            'name': 'Mobile GG - GSMA',
+            'type': 'mobile',
+            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use published by the '
+                           'Global System for Mobile Communications Association (GSMA).<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Coverage:</strong> Lowest<br>'
+                           '<strong>Accuracy:</strong> Best'
+        },
         'mobile_online_model_prediction': {
             'name': 'Mobile GG - Online',
             'type': 'mobile',
-            'order': 5,
-            'description': 'Ratios of female-to-male mobile phone use from our Facebook Gender Gap Index.<br>'
-                           '<strong>Coverage:</strong> Best<br>'
+            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use from our Facebook '
+                           'Gender Gap Index.<br>'
                            '<strong>Data Frequency:</strong> Daily<br>'
+                           '<strong>Coverage:</strong> Best<br>'
+                           '<strong>Accuracy:</strong> Moderate'
+        },
+        'mobile_offline_model_prediction': {
+            'name': 'Mobile GG - Offline',
+            'type': 'mobile',
+            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use from offline '
+                           'indicators such as the Human Development Index.<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
+                           '<strong>Coverage:</strong> Moderate<br>'
                            '<strong>Accuracy:</strong> Moderate'
         },
         'mobile_online_offline_model_prediction': {
             'name': 'Mobile GG - Combined',
             'type': 'mobile',
-            'order': 6,
-            'description': 'Ratios of female-to-male mobile phone use from our Facebook Gender '
-                           'Gap Index and offline indicators (e.g Human Development Index).<br>'
+            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use from our Facebook '
+                           'Gender Gap Index and offline indicators (e.g Human Development Index).<br>'
+                           '<strong>Data Frequency:</strong> Annual<br>'
                            '<strong>Coverage:</strong> Moderate<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Accuracy:</strong> Best'
-        },
-        'mobile_offline_model_prediction': {
-            'name': 'Mobile GG - Offline',
-            'type': 'mobile',
-            'order': 7,
-            'description': 'Ratios of female-to-male mobile phone use from offline indicators '
-                           'such as the Human Development Index.<br>'
-                           '<strong>Coverage:</strong> Moderate<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Accuracy:</strong> Moderate'
-        },
-        'ground_truth_mobile_gg': {
-            'name': 'Mobile GG - GSMA',
-            'type': 'mobile',
-            'order': 8,
-            'description': 'Ratios of female-to-male mobile phone use published by the Global System for Mobile '
-                           'Communications Association (GSMA).<br>'
-                           '<strong>Coverage:</strong> Lowest<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Accuracy:</strong> Observed survey data'
+                           '<strong>Accuracy:</strong> Very good'
         }
-    }
+}
 
 
 def conn_to_database(mode='r'):
@@ -126,6 +120,7 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
     str_args = ['iso2code', 'iso2', 'token']
     list_args = ['model']
     float_args = list(models_desc.keys())
+    bool_args = ['pretty_names']
 
     status = 200
     message = ""
@@ -181,6 +176,23 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
             except:
                 status = 400
                 message = f"Bad Request: '{key}' cannot be coerced to float."
+
+    if status == 200:
+        for key in set(args.keys()).intersection(bool_args):
+            try:
+                if isinstance(args.get(key), str):
+                    args[key] = args.get(key).lower()
+                if args.get(key) in [True, 1, 'true', 't', 'yes', 'y', 'on']:
+                    args[key] = True
+                elif args.get(key) in [False, 0, 'false', 'f', 'no', 'n', 'off']:
+                    args[key] = False
+                else:
+                    args[key] = True
+                if not isinstance(args.get(key), bool):
+                    raise TypeError()
+            except:
+                status = 400
+                message = f"Bad Request: '{key}' cannot be coerced to boolean."
 
     # list
     if status == 200:
@@ -329,8 +341,8 @@ def palette(n=6):
         labels[model] = lab
 
     pal = {
-        "title": "Internet/Mobile Gender Gap (Women:Men)",
-        "subtitles": ["Less Equality", "More Equality"],
+        "title": "Digital Gender Gap",
+        "subtitles": ["Less Equality<br><em>female-to-male</em>", "More Equality"],
         "colors": colors,
         "breaks": breaks,
         "labels": labels

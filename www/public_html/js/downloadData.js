@@ -2,38 +2,15 @@ export function isBeforeDate(date1, date2) {
   return date1 < date2;
 }
 
-export function json2csv(djson, countriesList) {
-
-//    var models = [];
-//    var dates = [];
-//
-//    // getting first country in the data
-//    var fCountry = Object.keys(djson)[0];
-//    var fCountries = Object.keys(djson);
-//
-//    // getting the list of models
-//    for (var k in djson[fCountry][d_time]) {
-//        models.push(k);
-//    }
-//
-//    var csv = "iso," + models.join(',') + '\r\n';
-//
-//    for (var k = 0; k < fCountries.length; k++) {
-//        var iso = fCountries[k];
-//        csv = csv + iso;
-//        for (var i = 0; i < models.length; i++) {
-//
-//            csv = csv + ' , ' + djson[iso][d_time][models[i]];
-//
-//        }
-//        csv = csv + '\r\n';
-//    }
+export function json2csv(djson, countriesList, modelsList) {
 
     var models = [];
     var fCountries = Object.keys(djson.data)[0];
     var fYear = Object.keys(djson.data[fCountries])[0];
 
+
     for (var k in djson.data[fCountries][fYear]) {
+        //models.push(modelsList[k].name);
         models.push(k);
     }
     var csv = "iso2code, country, Date, " + models.join(', ') + '\r\n';
@@ -56,9 +33,9 @@ export function json2csv(djson, countriesList) {
 }
 
 // download scv file d=data t=date fname=file name
-export function downloadCSV(d, DateStart, DateEnd, countriesList) {
+export function downloadCSV(d, DateStart, DateEnd, countriesList, modelsList) {
 
-    var scv2download = json2csv(d, countriesList);
+    var scv2download = json2csv(d, countriesList, modelsList);
     var fname_download = "Digital_Gender_Gaps_" + DateStart + "_"+DateEnd+".csv";
 
     var dataStr = "data:text/csv;charset=utf-8," + encodeURIComponent((scv2download));

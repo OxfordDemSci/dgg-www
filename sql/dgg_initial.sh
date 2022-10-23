@@ -1,5 +1,3 @@
-#!/bin/bash
-
 psql -U $POSTGRES_USER -d $POSTGRES_DB -c \
 "
 CREATE ROLE dgg_reader LOGIN PASSWORD '${POSTGRES_RPASS}';

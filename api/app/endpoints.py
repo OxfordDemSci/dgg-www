@@ -33,7 +33,7 @@ def init():
         result['models'] = utils.models_desc
 
         # list model types
-        result['types'] = ['internet', 'mobile']
+        # result['types'] = ['internet', 'mobile']
 
         # color palette
         result['palette'] = utils.palette(n=6)
@@ -179,8 +179,12 @@ def download_data_with_dates(args):
         result (json): Data
     """
 
+    # formatted names
+    if 'pretty_names' not in args.keys():
+        args['pretty_names'] = True
+
     # check and format arguments
-    result = utils.check_args(args, required=['start_date', 'end_date'])
+    result = utils.check_args(args, required=['start_date', 'end_date'], optional=['pretty_names'])
 
     # pop arguments from result
     args = result.pop('args')
@@ -192,8 +196,12 @@ def download_data_with_dates(args):
             # connect to database
             conn = utils.conn_to_database()
 
-            # sql sub-statement to query columns and rename them in result
-            col_names = [key + ' AS "' + utils.models_desc[key]['name'] + '"' for key in utils.models_desc.keys()]
+            if args.get('pretty_names'):
+                # sql sub-statement to query columns and rename them in result
+                col_names = [key + ' AS "' + utils.models_desc[key]['name'] + '"' for key in utils.models_desc.keys()]
+            else:
+                # use un-formatted column names
+                col_names = list(utils.models_desc.keys())
 
             # construct sql statement
             sql = "SELECT date, iso2, iso3, name, " + ",".join(col_names) + " " + \

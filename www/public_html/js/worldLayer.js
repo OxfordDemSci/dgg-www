@@ -4,9 +4,6 @@ import * as _api from './api_requests.js?version=1'
 //var breaks = [1, 0.2, 0.4, 0.6, 0.8, 1, 1.1, 1.2, 1.3, 1.4];
 //var colors = ["#e76254", "#ef8a47", "#f7aa58", "#ffd06f", "#ffe6b7", "#aadce0", "#72bcd5", "#528fad", "#376795", "#1e466e"];
 
-let breaks2 = [0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.95, 1.0];
-let colors2 = ["#e76254", "#ef8a47", "#f7aa58", "#ffd06f", "#ffe6b7", "#aadce0", "#72bcd5", "#528fad", "#376795", "#1e466e"];
-
 export function get_color(d) {
     for (let i = 0;
     i < breaks2.length; i++) {
@@ -23,7 +20,7 @@ export function style(feature, palette, model) {
         opacity: 1,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 0.7,
+        fillOpacity: 0.9,
         fillColor:  getColor(feature.properties.su_dif, palette, model)
     };
 }
@@ -108,11 +105,99 @@ export function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 
 
-export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countriesList, model_selected, iso=null) {
+
+export function zoomToCountryTable(iso2, _layer, _map, countriesList) {
+
+
+//     var table = $('#tblBottom').DataTable({
+//        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+//
+//            if (aData[0] === iso2) {
+//                $(nRow).css('background-color', '#D7D4D4');
+//            } else {
+//                $(nRow).css('background-color', '');
+//            }
+//        },
+//                paging: true,
+//                bInfo: false,
+//                scrollY: offsetRight,
+//                bDestroy: true,
+//                deferRender:    true,
+//                scroller:       true,  
+//                sScrollX: true,
+//                columnDefs: [
+//                {
+//                    target: 0,
+//                    visible: false,
+//                    searchable: true
+//                }
+//                ]
+//    });
+
+    function hilightRowTablePromise(iso2, countriesList) {
+
+        return new Promise((resolve, reject) => {
+
+            if (_utils.hilightRowTable(iso2, countriesList, false)) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+
+    }
+    ;
+
+
+
+    async function asyncCall() {
+
+        const result = await  hilightRowTablePromise(iso2, countriesList).then(() => {
+
+            _layer.eachLayer(function (layer) {
+                if (layer.feature.properties.iso_a2 === iso2) {
+                    _map.fitBounds(layer.getBounds(), {paddingBottomRight: [0, 110]});
+                }
+            });
+
+        }).then(() => {
+            _utils.progressMenuTableOff();
+        }).catch((error) => {
+            _utils.progressMenuTableOff();
+            console.log(error);
+        });
+
+    }
+    _utils.progressMenuTableOn();
+    asyncCall();
+
+//    
+//    
+//    
+//    hilightRowTablePromise(iso2, countriesList).then(() => {
+//
+//        _layer.eachLayer(function (layer) {
+//            if (layer.feature.properties.iso_a2 === iso2) {
+//                _map.fitBounds(layer.getBounds(), {paddingBottomRight: [0, 110]});
+//            }
+//        });
+//
+//    }).then(() => {
+//
+//        _utils.progressMenuTableOff();
+//
+//    }).catch((error) => {
+//        _utils.progressMenuTableOff();
+//        console.log(error);
+//    });
+
+
+}
+
+export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countriesList, model_selected, modelsList, _layer, _map,  iso=null) {
 
     var data = data_raw.data;  
     var tb_container = document.getElementById('tb_container');
@@ -129,15 +214,18 @@ export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countri
     }
 
 
-    var tb_updated = `<table id="tblBottom" data-order='[[ 1, "asc" ]]' class="table table-sm" style="width:100%">
+    var tb_updated = `<table id="tblBottom" data-order='[[ 2, "asc" ]]' class="table table-sm" style="width:100%">
     <colgroup>
+
     <col class=""></col>
     <col class=""></col>`;
 
     for (var i = 0; i < models.length; i++) {
 
-        if (models[i] === model_selected) {
-            tb_updated = tb_updated + '<col class="" style="background-color: #D7D4D4"></col>';
+        var model = models[i];
+        
+        if (model === model_selected) {
+            tb_updated = tb_updated + '<col style="background-color: #D7D4D4"></col>';
         } else {
             tb_updated = tb_updated + '<col></col>';
         }
@@ -147,13 +235,13 @@ export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countri
     tb_updated = tb_updated + `<thead>
             <tr>
                 <th class="no-sort"></th>
+                <th class="no-sort"></th>
                 <th>Country</th>`;
 
     for (var i = 0; i < models.length; i++) {
-        var nameModel = models[i].replace(/_/g, " ");
-
-        tb_updated = tb_updated + '<th scope="col" class="highlight">' + nameModel + '</th>';
+        tb_updated = tb_updated + '<th scope="col" class="highlight">' + modelsList[models[i]].name + '</th>';
     }
+    
     tb_updated = tb_updated + `</tr>
         </thead>
         <tbody>`;
@@ -174,8 +262,9 @@ export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countri
 
         tb_updated = tb_updated + `
                             <tr ` + hilighted_country_style + `>
+                                <td>`+k+`</td>
                                 <td class="fib" style="background-image: url(../img/flags/4x3/` + k.toLowerCase() + `.svg);background-size: 75% 75%;"></td>
-                                <td>` + country_name + `</td>`;
+                                <td style="cursor: pointer;">` + country_name + `</td>`;
 
         var country_date = data[k][d_time];
 
@@ -193,12 +282,87 @@ export function load_data_to_controlTable_Bottom(data_raw, ytime, mtime, countri
 
     tb_container.innerHTML = tb_updated;
 
+
     $('#tblBottom').dataTable({
-        paging: false,
-        scrollY: 280,
-        bInfo : false
+                paging: true,
+                bInfo: false,
+                scrollY: 280,
+                bDestroy: true,
+                deferRender: true,
+                scroller:   true,  
+                sScrollX: true,
+            initComplete: function () {
+            var api = this.api();
+            
+            api.$('td').click(function (row) {
+
+                var rowValuse = api.data()[row.delegateTarget._DT_CellIndex.row];
+                if (row.delegateTarget._DT_CellIndex.column === 2){
+//                $(this).css('background-color', '#D7D4D4');
+//                  _utils.progressMenuTableOn();  
+                  //zoomToCountryTable(rowValuse[0], _layer, _map, countriesList);
+                }
+            });
+        }
+    });    
+    
+    var container_scrollHead = document.getElementsByClassName('dataTables_scrollHead')[0];
+    var container_filter = document.getElementsByClassName('dataTables_filter')[0];   
+    
+    var offsetRight =  $('#table_bottom').outerHeight() -  container_scrollHead.offsetHeight -  container_filter.offsetHeight -  $('#iconTableMaximize').outerHeight() - 30;
+
+
+
+//    var datatable = $('#tblBottom').dataTable().api();
+//    //datatable.draw();
+    //datatable({scrollY: 200});
+//    $('#tblBottom').dataTable({
+//                paging: true,
+//                bInfo: false,
+//                scrollY: offsetRight,
+//                bDestroy: true,
+//                deferRender: true,
+//                scroller: true,  
+//                sScrollX: true,
+//                columnDefs: [
+//                {
+//                    target: 0,
+//                    visible: false,
+//                    searchable: true
+//                }
+//                ]
+//   });
+    
+    $('#tblBottom').dataTable({
+                paging: true,
+                bInfo: false,
+                scrollY: offsetRight,
+                bDestroy: true,
+                deferRender: true,
+                scroller:   true,  
+                sScrollX: true,
+                columnDefs: [
+                {
+                    target: 0,
+                    visible: false,
+                    searchable: true
+                }
+                ],
+            initComplete: function () {
+            var api = this.api();
+            
+            api.$('td').click(function (row) {
+
+                var rowValuse = api.data()[row.delegateTarget._DT_CellIndex.row];
+                if (row.delegateTarget._DT_CellIndex.column === 2){
+                  zoomToCountryTable(rowValuse[0], _layer, _map, countriesList);
+                }
+            });
+        }
     });
+
 }
+
 
 
 export function getColor(v, palette, model) {
@@ -219,7 +383,7 @@ export function getColor(v, palette, model) {
     } 
 
     for (let i = 0; i < lp-1 ; i++) {
-//            console.log(i + " " + breaks[i] + " " + breaks[i + 1]);
+
             if (v >= breaks[i] && v <= breaks[i + 1]) {
                 color = colors[i];
             }
@@ -239,25 +403,41 @@ export function restyleLayer(propertyName, _layer, palette, model) {
        var propertyValue = featureInstanceLayer.feature.properties[propertyName];
 
         var mFillColor = getColor(propertyValue, palette, model);
-
+        var Opacity = document.getElementById("customRangeOpacity").value;
         featureInstanceLayer.setStyle({
             fillColor: mFillColor,
-            fillOpacity: 0.8,
+            fillOpacity: Opacity,
             weight: 0.5
         });
     });
 }
 
 
-export function load_data_to_worldLayer(year, month, model, _map, _layer, json, countriesList, data_raw, palette) {
-    
+export function load_data_to_worldLayer(year, 
+                                        month, 
+                                        model, 
+                                        _map, 
+                                        _layer, 
+                                        json, 
+                                        countriesList, 
+                                        data_raw, 
+                                        palette,
+                                        modelsList) {
 
     var data_national = data_raw.data;
    
     var m = String(month).padStart(2, '0');
     var year_month = year+m;
     //var model_title = year+' '+_utils.toMonthName(m)+'<hr style="padding:1px;margin:0">'+model.replace(/_/g, " ")+'' ;
-    var model_title = year+' '+_utils.toMonthName(m)+'<hr style="padding:1px;margin:0"><small>Internet/Mobile Gender Gap (F:M)</small>' ;
+//    var model_title = year+' '+_utils.toMonthName(m) ;
+//    model_title = model_title + '<hr style="padding:1px;margin:0"><small>' ;
+//    model_title = model_title +  palette["title"];
+//    model_title = model_title + '</small>' ;
+    
+    var model_title =' ';
+    model_title = model_title + '<small>' ;
+    model_title = model_title +  palette["title"];
+    model_title = model_title + '</small><hr style="padding:1px;margin:2px">' ;    
     
     //var query_national = _api.query_national(year, month);
 
@@ -267,9 +447,7 @@ export function load_data_to_worldLayer(year, month, model, _map, _layer, json, 
 //    breaks = data_national.breaks;
 
 //    var min_max_Array = [];
-
-
-    //console.log("year_month " + year_month  + "model " + model);
+//    console.log("year_month " + year_month  + "model " + model);
 	
     for (var i = 0; i < json.features.length; i++) {
 			
@@ -284,10 +462,12 @@ export function load_data_to_worldLayer(year, month, model, _map, _layer, json, 
 
     let colors = palette["colors"];
     let labels = palette["labels"][model];
+    let subtitles = palette["subtitles"];
     
-   _utils.loadLagent(model_title, colors, labels);
+
+   _utils.loadLagent(model_title, colors, labels, subtitles);
    
-   load_data_to_controlTable_Bottom(data_raw, year, month, countriesList, model);
+   load_data_to_controlTable_Bottom(data_raw, year, month, countriesList, model, modelsList, _layer, _map);
 
    _map.removeLayer(_layer);
    _layer.addTo(_map);
