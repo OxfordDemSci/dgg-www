@@ -13,11 +13,6 @@ CREATE TABLE country_info(
 GRANT SELECT ON country_info TO dgg_reader;
 GRANT SELECT, INSERT ON country_info TO dgg_writer;
 
-COPY country_info(name, iso2, iso3)
-FROM '/var/lib/postgresql/initial_data/country_info.csv'
-DELIMITER ','
-CSV HEADER;
-
 CREATE TABLE national(
     id SERIAL PRIMARY KEY,
     created TIMESTAMPTZ(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
@@ -38,18 +33,19 @@ CREATE TABLE national(
 GRANT SELECT ON national TO dgg_reader;
 GRANT SELECT, INSERT ON national TO dgg_writer;
 GRANT USAGE,SELECT ON SEQUENCE national_id_seq TO dgg_writer;
+"
 
-COPY national(date, iso2,
-    Ground_Truth_Internet_GG,Internet_Online_model_prediction,Internet_Online_Offline_model_prediction,Internet_Offline_model_prediction,
-    Ground_Truth_Mobile_GG,Mobile_Online_model_prediction,Mobile_Online_Offline_model_prediction,Mobile_Offline_model_prediction)
-FROM '/var/lib/postgresql/initial_data/mau_upper_monthly_model_2_2022-06.csv'
+psql -U $POSTGRES_USER -d $POSTGRES_DB -c \
+"
+COPY country_info(name, iso2, iso3)
+FROM '/var/lib/postgresql/initial_data/country_info.csv'
 DELIMITER ','
 CSV HEADER;
 
 COPY national(date, iso2,
     Ground_Truth_Internet_GG,Internet_Online_model_prediction,Internet_Online_Offline_model_prediction,Internet_Offline_model_prediction,
     Ground_Truth_Mobile_GG,Mobile_Online_model_prediction,Mobile_Online_Offline_model_prediction,Mobile_Offline_model_prediction)
-FROM '/var/lib/postgresql/initial_data/mau_upper_monthly_model_2_2022-07.csv'
+FROM '/var/lib/postgresql/initial_data/national.csv'
 DELIMITER ','
 CSV HEADER;
 "
