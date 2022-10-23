@@ -252,17 +252,20 @@
                     </div> 
                     <div class="pt-4">  
                             <label for="customRangeOpacity" class="form-label">Opacity</label>
-                            <input type="range" class="form-range" min="0" max="1" step="0.1" value="0.9" id="customRangeOpacity">
+                            <input type="range" class="form-range" min="0" max="1" step="0.1" value="0.6" id="customRangeOpacity">
                     </div>                     
                     
                 </div>
                 
                 
                 <div class="sidebar-pane" id="zoomtocountry">
-                    <h1 class="sidebar-header">Select an country<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                    <h1 class="sidebar-header">Country Search
+                        <span class="sidebar-close">
+                        <i class="fa fa-caret-left"></i>
+                        </span></h1>
 
                     <div class="pt-4">  
-                        <p class="p-0 m-1">Select an country to zoom</p> 
+                        <p class="p-0 m-1">Search for Country</p>
                         <select id="select_country" style="width:200px;">
                             <option></option> 
                         </select>                       
@@ -515,12 +518,12 @@ $('#lbIndicatorInfo').popover({
 
 
         $("#select_country").select2({
-            placeholder: "Select an country",
+            placeholder: "Country name...",
             allowClear: true
         });
         
         $("#select_country_download").select2({
-            placeholder: "Select an country",
+            placeholder: "Country name...",
             allowClear: false
         });
         $("#select_country_download").val('1').trigger('change');
