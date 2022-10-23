@@ -316,12 +316,28 @@ def palette(n=6):
         x = x[x > -999]
 
         b = [None] * (n + 1)
-        b[0] = 0
-        b[len(b)-1] = 1.0  # float('inf')
-        b[int(n/2)] = np.median(x)
-        for i in range(1, int(n/2)):
-            b[i] = np.quantile(a=x[x < np.median(x)], q=i * (2 / n))
-            b[i+int(n/2)] = np.quantile(a=x[x > np.median(x)], q=i * (2 / n))
+
+        break_type = 'fixed'
+
+        if break_type == 'fixed':
+
+            if n == 4:
+                b = [0, 0.80, 0.90, 0.99, 1]
+            elif n == 6:
+                b = [0, 0.75, 0.85, 0.90, 0.95, 0.99, 1]
+            elif n == 8:
+                b = [0, 0.75, 0.80, 0.85, 0.90, 0.93, 0.96, 0.99, 1]
+            elif n == 10:
+                b = [0, 0.70, 0.75, 0.80, 0.85, 0.90, 0.92, 0.94, 0.96, 0.99, 1]
+
+        elif break_type == 'quantiles':
+
+            b[0] = 0
+            b[len(b) - 1] = 1.0  # float('inf')
+            b[int(n/2)] = np.median(x)
+            for i in range(1, int(n/2)):
+                b[i] = np.quantile(a=x[x < np.median(x)], q=i * (2 / n))
+                b[i+int(n/2)] = np.quantile(a=x[x > np.median(x)], q=i * (2 / n))
 
         breaks[model] = b
 
