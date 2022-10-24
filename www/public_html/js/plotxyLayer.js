@@ -61,6 +61,10 @@ export function updateData(c, d, iso2code, model, modelsList, countriesList) {
                     maxRotation: 60,
                     minRotation: 60
                 }
+            },
+            y: {
+                min: 0.2,
+                max: 1.0
             }
         },
         plugins: {
