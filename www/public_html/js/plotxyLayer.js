@@ -63,8 +63,8 @@ export function updateData(c, d, iso2code, model, modelsList, countriesList) {
                 }
             },
             y: {
-                min: 0.2,
-                max: 1.0
+                suggestedMin: 0.8,
+                suggestedMax: 1.0
             }
         },
         plugins: {
