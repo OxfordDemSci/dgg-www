@@ -227,7 +227,6 @@ def download_data_with_dates(args):
 
     return result
 
-# args={'token': '"E8EFp53F8Ag3Zcx4XyiUztOET9Ea0N6cmlhU29aifpupJHfu41kHO28JEH3AqIDjZ3cZ81zfUjUUiaNsuJ6byhGazCO5G1PbHKVObUrUJQNfW4rhNXa2BkoKk0RGmt1h"', 'date': 202210, 'iso2': 'US', 'internet_online_model_prediction': 1.0, 'internet_online_offline_model_prediction': 1.0, 'internet_offline_model_prediction': 0.979, 'ground_truth_internet_gg': 1.0, 'mobile_online_model_prediction': 1.0, 'mobile_online_offline_model_prediction': 1.0, 'mobile_offline_model_prediction': 1.0, 'ground_truth_mobile_gg': 0.956}
 
 def write_national(args):
     """
