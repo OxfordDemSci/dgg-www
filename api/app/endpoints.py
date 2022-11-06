@@ -246,7 +246,6 @@ def write_national(args):
     # check arguments
     result = utils.check_args(args,
                               required=['date', 'iso2', 'token'],
-                                        'Mobile_Online_model_prediction',
                               optional=["internet_online_model_prediction",
                                         "internet_online_offline_model_prediction",
                                         "internet_offline_model_prediction",
