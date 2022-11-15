@@ -9,7 +9,7 @@ export function getDates(data) {
         ymArray.push(
                 [
                     data[i].toString().substring(0, 4),
-                    data[i].toString().substring(5, 6)
+                    data[i].toString().substring(4, 6)
                 ]
                 );
 
