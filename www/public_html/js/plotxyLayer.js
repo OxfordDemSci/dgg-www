@@ -38,7 +38,7 @@ export function updateData(c, d, iso2code, model, modelsList, countriesList) {
     var dataArray = [];
     var ym;
     for (var k in d.data[iso2code]) {
-        ym = k.toString().substring(0, 4) + '-' + zeroPad(k.toString().substring(5, 6), 2);
+        ym = k.toString().substring(0, 4) + '-' + zeroPad(k.toString().substring(4, 6), 2);
         labels.push(ym);
         dataArray.push(d.data[iso2code][k][model]);
     }
