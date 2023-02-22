@@ -68,6 +68,7 @@ def download_data_with_dates():
 
 
 @app.route('/write_national', methods=['GET'])
+@limiter.exempt
 def write_national():
     args = dict(request.args)
     if len(args) == 0:
