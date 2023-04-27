@@ -46,9 +46,8 @@ of a
 
 <h5 class="fw-bold">Our contact information</h5>
 <p>
-Contact us at 
-<a href="(mailto:digitalgendergaps@gmail.com">if you have any questions, concerns or 
-data enquiries</a>.
+Contact us at <a href="(mailto:ridhi.kashyap@nuffield.ox.ac.uk">ridhi.kashyap@nuffield.ox.ac.uk</a> if you have any 
+questions, concerns or data enquiries.
 </p>
 
 

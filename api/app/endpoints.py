@@ -40,7 +40,7 @@ def init():
         result['palette'] = utils.palette(n=6)
 
         # contact
-        result['contact'] = 'digitalgendergaps@gmail.com'
+        result['contact'] = 'ridhi.kashyap@nuffield.ox.ac.uk'
 
         # http status code and message
         result['status'] = 200

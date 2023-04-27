@@ -13,72 +13,72 @@ models_desc = {
         'ground_truth_internet_gg': {
             'name': 'Internet GG - ITU',
             'type': 'internet',
-            'description': '<strong>Description:</strong> Ratios of female-to-male internet use from International '
+            'description': '<strong>Description:</strong> Ratio of female-to-male internet use from International '
                            'Telecommunication Union (ITU).<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Coverage:</strong> Lowest<br>'
-                           '<strong>Accuracy:</strong> Best'
+                           '<strong>Data Frequency:</strong> Every few years<br>'
+                           '<strong>Geographical Coverage:</strong> Lowest<br>'
+                           '<strong>Accuracy:</strong> High, but infrequently updated'
         },
         'internet_online_model_prediction': {
             'name': 'Internet GG - Online',
             'type': 'internet',
-            'description': '<strong>Description:</strong> Ratios of female-to-male internet use from our daily Facebook '
+            'description': '<strong>Description:</strong> Ratio of female-to-male internet use from our daily Facebook '
                            'Gender Gap Index.<br>'
-                           '<strong>Data Frequency:</strong> Daily<br>'
-                           '<strong>Coverage:</strong> Best<br>'
+                           '<strong>Data Frequency:</strong> Monthly<br>'
+                           '<strong>Geographical Coverage:</strong> Best<br>'
                            '<strong>Accuracy:</strong> Very good'
         },
         'internet_offline_model_prediction': {
             'name': 'Internet GG - Offline',
             'type': 'internet',
-            'description': '<strong>Description:</strong> Ratios of female-to-male internet use estimated using only '
-                           'offline indicators (e.g. Human Development Index).<br>'
+            'description': '<strong>Description:</strong> Ratio of female-to-male internet use estimated using only '
+                           'offline indicators on the country\'s development status such as its Human Development Index.<br>'
                            '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Coverage:</strong> Moderate<br>'
-                           '<strong>Accuracy:</strong> Low'
+                           '<strong>Geographical Coverage:</strong> Moderate<br>'
+                           '<strong>Accuracy:</strong> Good'
         },
         'internet_online_offline_model_prediction': {
             'name': 'Internet GG - Combined',
             'type': 'internet',
-            'description': '<strong>Description:</strong> Ratios of female-to-male internet use estimated using our '
-                           'daily Facebook Gender Gap Index combined with offline indicators.<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Coverage:</strong> Moderate<br>'
-                           '<strong>Accuracy:</strong> Good'
+            'description': '<strong>Description:</strong> Ratio of female-to-male internet use estimated using '
+                           'Facebook Gender Gap Index combined with offline indicators (e.g. HDI).<br>'
+                           '<strong>Data Frequency:</strong> Monthly<br>'
+                           '<strong>Geographical Coverage:</strong> Moderate<br>'
+                           '<strong>Accuracy:</strong> Best'
         },
         'ground_truth_mobile_gg': {
             'name': 'Mobile GG - GSMA',
             'type': 'mobile',
-            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use published by the '
+            'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use published by the '
                            'Global System for Mobile Communications Association (GSMA).<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Coverage:</strong> Lowest<br>'
-                           '<strong>Accuracy:</strong> Best'
+                           '<strong>Data Frequency:</strong> Every few years<br>'
+                           '<strong>Geographical Coverage:</strong> Lowest<br>'
+                           '<strong>Accuracy:</strong> Best, but infrequently updated'
         },
         'mobile_online_model_prediction': {
             'name': 'Mobile GG - Online',
             'type': 'mobile',
-            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use from our Facebook '
-                           'Gender Gap Index.<br>'
-                           '<strong>Data Frequency:</strong> Daily<br>'
-                           '<strong>Coverage:</strong> Best<br>'
-                           '<strong>Accuracy:</strong> Moderate'
+            'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use estimated using '
+                           'Facebook Gender Gap Index.<br>'
+                           '<strong>Data Frequency:</strong> Monthly<br>'
+                           '<strong>Geographical Coverage:</strong> Best<br>'
+                           '<strong>Accuracy:</strong> Good'
         },
         'mobile_offline_model_prediction': {
             'name': 'Mobile GG - Offline',
             'type': 'mobile',
-            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use from offline '
-                           'indicators such as the Human Development Index.<br>'
+            'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use estimated using '
+                           'offline indicators such as the Human Development Index.<br>'
                            '<strong>Data Frequency:</strong> Annual<br>'
-                           '<strong>Coverage:</strong> Moderate<br>'
+                           '<strong>Geographical Coverage:</strong> Moderate<br>'
                            '<strong>Accuracy:</strong> Moderate'
         },
         'mobile_online_offline_model_prediction': {
             'name': 'Mobile GG - Combined',
             'type': 'mobile',
-            'description': '<strong>Description:</strong> Ratios of female-to-male mobile phone use from our Facebook '
-                           'Gender Gap Index and offline indicators (e.g Human Development Index).<br>'
-                           '<strong>Data Frequency:</strong> Annual<br>'
+            'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use estimated using the '
+                           'Facebook Gender Gap Index together with offline indicators such as the Human Development Index.<br>'
+                           '<strong>Data Frequency:</strong> Monthly<br>'
                            '<strong>Coverage:</strong> Moderate<br>'
                            '<strong>Accuracy:</strong> Very good'
         }
