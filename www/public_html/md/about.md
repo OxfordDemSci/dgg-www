@@ -40,7 +40,8 @@ based at the University of Oxford and collaborating with Saarland University's S
 exploring how big data innovations can help us measure women’s participation in the digital revolution in real-time. 
 </p>
 
----
+
+<hr>
 
 <h5 class="fw-bold"> Digital Gender Gap Indicators</h5>
 
@@ -119,8 +120,10 @@ updated with an annual or longer frequency.
 </p>
 
 
+<hr>
+
 <h5 class="fw-bold"> Data Informing our Estimates</h5>
-<h6 class="fw-bold"> Facebook Gender Gap Index</h6>
+<h5 class="fw-bold"> Facebook Gender Gap Index</h5>
 <p>
 We collect data for countries globally on the aggregate numbers of monthly active female and male users of Facebook 
 available through the marketing API. Using these aggregate numbers, we generate the “Facebook Gender Gap Index”, an 
@@ -141,11 +144,23 @@ derived from Facebook data, are the ones shown on the platform as the online or 
 </p>
 Our dataset uses a number of country-level development indicators (e.g Human Development Index, Gross Domestic 
 Product (GDP) per capita) and global gender gap indicators in other domains (e.g literacy). For more information 
-see our paper and related publications.
+see our paper and related publications (see below).
 </p>
 
 
-<h5 class="fw-bold"> Publications</h5>
+<hr>
+
+<h5 class="fw-bold"> Funding</h5>
+<p>We are grateful to funding from the Bill and Melinda Gates Foundation (INV-045370), Economic and Social Research Council 
+(ESRC) Impact Acceleration Account (IAA) (2021-22), and to Data2X (2017-2020).</p>
+
+
+<h5 class="fw-bold"> Suggested Citation</h5>
+<p>When using the data, please acknowledge our website (www.digitalgendergaps.org) and our related publications, 
+Fatehkia et al (2018) and Kashyap et al (2020).</p>
+
+
+<h5 class="fw-bold"> Related Publications</h5>
 
 <ul style="list-style: circle;">
  <li style="margin:0 0 10px 0;">
@@ -166,6 +181,20 @@ see our paper and related publications.
 </ul>
 
 
+<h5 class="fw-bold"> Source Code</h5>
+<p>
+The source code for this web application is openly available from 
+<a href="https://github.com/OxfordDemSci/dgg-www" target="_blank">OxfordDemSci on GitHub</a>.
+</p>
+
+
+<h5 class="fw-bold"> Data license</h5>
+<p>
+You are free to share and adapt data accessed through this website under the terms of a 
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0 license</a>. 
+You must give appropriate credit, provide a link to the license, and indicate if changes were made. 
+</p>
+
 
 <h5 class="fw-bold"> Automated Data Requests via API</h5>
 <p>
@@ -178,23 +207,61 @@ on-the-fly based on user-defined settings.
 </p>
 
 
-<h5 class="fw-bold"> Data license</h5>
+
+
+<hr>
+
+<h5 class="fw-bold">Privacy Policy</h5>
+
+<h5 class="fw-bold">Cookies</h5>
+<p>No data is stored in cookies, or other forms of browser storage.</p>
+
+
+<h5 class="fw-bold">Embedded content from other websites</h5>
+<p>Our site has no embedded content so other sites should not be able to track your visit here.</p>
+
+<h5 class="fw-bold">Analytics</h5>
 <p>
-You are free to share and adapt data accessed through this website under the terms of a 
-<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0 license</a>. 
-You must give appropriate credit, provide a link to the license, and indicate if changes were made. 
+Our CDN (Cloudfront) records aggregate visitor stats to our site that includes visitor characteristics, these are 
+provided to us in aggregate form. Our CDN is not authorised by us to process any other data, or store any personal data 
+after it has been processed into aggregate statistics.
 </p>
 
-<h5 class="fw-bold"> Suggested Citation</h5>
-<p>When using the data, please acknowledge our website (www.digitalgendergaps.org) and our related publications, 
-Fatehkia et al (2018) and Kashyap et al (2020).</p>
-
-<h5 class="fw-bold"> Funding</h5>
-<p>We are grateful to funding from the Bill and Melinda Gates Foundation (INV-045370), Economic and Social Research Council 
-(ESRC) Impact Acceleration Account (IAA) (2021-22), and to Data2X (2017-2020).</p>
-
-<h5 class="fw-bold"> Source Code</h5>
+<h5 class="fw-bold">Facebook advertising data</h5>
 <p>
-The source code for this web application is openly available from 
-<a href="https://github.com/OxfordDemSci/dgg-www" target="_blank">OxfordDemSci on GitHub</a>.
+We collect aggregate, anonymous counts of Facebook users from the Facebook Marketing API. We receive only aggregate 
+counts of users, and we do not process or store any individual user identifiers..
 </p>
+<p>
+This data is then processed and combined with other data and used as inputs in our prediction models to generate the 
+gender gap estimates presented. 
+</p>
+
+
+<h5 class="fw-bold">Who we share your data with</h5>
+<p>
+No personal data is collected or shared by us.
+</p>
+
+
+<h5 class="fw-bold">What rights you have over your data</h5>
+<p>
+If we held any of your personal data, you could request to receive an exported file of the personal data we hold about 
+you, including any data you have provided to us. You could also request that we erase any personal data we hold about 
+you. This would not include any data we are obliged to keep for administrative, legal, or security purposes.
+</p>
+
+
+<h5 class="fw-bold">Data license</h5>
+<p>
+All visualisations and digital gender gap estimates generated as a part of the project are shared freely under the terms 
+of a 
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0 license</a>.
+</p>
+
+<h5 class="fw-bold">Our contact information</h5>
+<p>
+Contact us at <a href="(mailto:ridhi.kashyap@nuffield.ox.ac.uk">ridhi.kashyap@nuffield.ox.ac.uk</a> if you have any 
+questions, concerns or data enquiries.
+</p>
+

@@ -9,10 +9,13 @@ women to men. We provide estimates of gender gaps using several different indica
 
 <ul style="list-style: circle;">
  <li style="margin:0 0 10px 0;">
-    <strong>Select a country</strong> by clicking the map or from the drop-down menu in the control panel.
+    <strong>Select a date</strong> in the control panel. 
 </li>
  <li style="margin:0 0 10px 0;">
-    <strong>Select a date</strong> in the control panel. 
+    <strong>Select an indicator</strong> in the control panel. See the About tab for indicator definitions. 
+</li>
+ <li style="margin:0 0 10px 0;">
+    <strong>Select a country</strong> by clicking the map or the search icon in the control panel.
 </li>
 </ul>
 
