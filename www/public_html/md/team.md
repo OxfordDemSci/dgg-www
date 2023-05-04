@@ -131,7 +131,7 @@ Machine Learning and Applications of Computing.
                             <div>
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="https://www.demographicscience.ox.ac.uk/douglas-leasure" target="_blank" class="text-secondary">
+                                        <a href="https://www.demography.ox.ac.uk/people/douglas-leasure" target="_blank" class="text-secondary">
                                                 <i class="far  fa-address-card"></i>
                                         </a>        
                                     </li>
@@ -148,7 +148,7 @@ Machine Learning and Applications of Computing.
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title fw-bold">Doug Leasure</h5>
-        <h5 class="card-title">Senior Researcher / Senior Data Scientist</h5>
+        <h5 class="card-title">Senior Researcher and Data Scientist</h5>
         <p class="card-text">
 Doug is a senior data scientist for the Leverhulme Centre for Demographic Science at the University
 of Oxford. He is a member of the Department of Sociology and an affiliate member of Nuffield College. His research is 
