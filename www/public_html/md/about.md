@@ -156,24 +156,26 @@ see our paper and related publications (see below).
 
 
 <h5 class="fw-bold"> Suggested Citation</h5>
-<p>When using the data, please acknowledge our website (www.digitalgendergaps.org) and our related publications, 
-Fatehkia et al (2018) and Kashyap et al (2020).</p>
-
-
-<h5 class="fw-bold"> Related Publications</h5>
+<p>When using the data, please acknowledge our website (digitalgendergaps.org), cite its source code (Leasure et al 2023) 
+and/or cite our related academic publications, as appropriate.</p>
 
 <ul style="list-style: circle;">
- <li style="margin:0 0 10px 0;">
-    Kashyap R, Fatehkia M, Al Tamime R, Weber I. 2020. Monitoring global digital gender inequality using the online 
-    populations of Facebook and Google. <i>Demographic Research</i> 43: 779-816. 
-    <a href="https://www.jstor.org/stable/26967824" target="_blank">https://www.jstor.org/stable/26967824</a>
-</li>
- <li style="margin:0 0 10px 0;">
+<li style="margin:0 0 10px 0;">
     Fatehkia M, Kashyap R, Weber I. 2018. Using Facebook ad data to track the global digital gender gap. <i>World 
     Development</i> 107:189-209. 
     <a href="https://doi.org/10.1016/j.worlddev.2018.03.007" target="_blank">https://doi.org/10.1016/j.worlddev.2018.03.007</a> 
 </li>
- <li style="margin:0 0 10px 0;">
+<li style="margin:0 0 10px 0;">
+    Kashyap R, Fatehkia M, Al Tamime R, Weber I. 2020. Monitoring global digital gender inequality using the online 
+    populations of Facebook and Google. <i>Demographic Research</i> 43: 779-816. 
+    <a href="https://www.jstor.org/stable/26967824" target="_blank">https://www.jstor.org/stable/26967824</a>
+</li>
+<li style="margin:0 0 10px 0;">
+    Leasure DR, Yan J, Bondarenko M, Kerr D, Fatehkia M, Weber I, Kashyap R. 2023. Digital Gender Gaps Web Application. 
+    <i>Zenodo, GitHub</i>. doi:<a href="https://doi.org/10.5281/zenodo.7897491" target="_blank">10.5281/zenodo.7897491</a>. 
+    <a href="https://github.com/OxfordDemSci/dgg-www" target="_blank">https://github.com/OxfordDemSci/dgg-www</a>.
+</li>
+<li style="margin:0 0 10px 0;">
     Weber I, Kashyap R, Zagheni E. 2018. Using advertising audience estimates to improve global development statistics. 
     <i>ITU Journal: ICT Discoveries</i> 1(2). 
     <a href="https://ora.ox.ac.uk/objects/uuid:991b732a-2537-40ab-b045-1110fb175fac" target="_blank">https://ora.ox.ac.uk/objects/uuid:991b732a-2537-40ab-b045-1110fb175fac</a> 
