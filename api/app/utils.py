@@ -10,15 +10,6 @@ load_dotenv()
 
 # list of models (indicators)
 models_desc = {
-        'ground_truth_internet_gg': {
-            'name': 'Internet GG - ITU',
-            'type': 'internet',
-            'description': '<strong>Description:</strong> Ratio of female-to-male internet use from International '
-                           'Telecommunication Union (ITU).<br>'
-                           '<strong>Data Frequency:</strong> Every few years<br>'
-                           '<strong>Geographical Coverage:</strong> Lowest<br>'
-                           '<strong>Accuracy:</strong> High, but infrequently updated'
-        },
         'internet_online_model_prediction': {
             'name': 'Internet GG - Online',
             'type': 'internet',
@@ -46,14 +37,14 @@ models_desc = {
                            '<strong>Geographical Coverage:</strong> Moderate<br>'
                            '<strong>Accuracy:</strong> Best'
         },
-        'ground_truth_mobile_gg': {
-            'name': 'Mobile GG - GSMA',
-            'type': 'mobile',
-            'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use published by the '
-                           'Global System for Mobile Communications Association (GSMA).<br>'
+        'ground_truth_internet_gg': {
+            'name': 'Internet GG - ITU',
+            'type': 'internet',
+            'description': '<strong>Description:</strong> Ratio of female-to-male internet use from International '
+                           'Telecommunication Union (ITU).<br>'
                            '<strong>Data Frequency:</strong> Every few years<br>'
                            '<strong>Geographical Coverage:</strong> Lowest<br>'
-                           '<strong>Accuracy:</strong> Best, but infrequently updated'
+                           '<strong>Accuracy:</strong> High, but infrequently updated'
         },
         'mobile_online_model_prediction': {
             'name': 'Mobile GG - Online',
@@ -81,6 +72,15 @@ models_desc = {
                            '<strong>Data Frequency:</strong> Monthly<br>'
                            '<strong>Coverage:</strong> Moderate<br>'
                            '<strong>Accuracy:</strong> Very good'
+        },
+        'ground_truth_mobile_gg': {
+            'name': 'Mobile GG - GSMA',
+            'type': 'mobile',
+            'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use published by the '
+                           'Global System for Mobile Communications Association (GSMA).<br>'
+                           '<strong>Data Frequency:</strong> Every few years<br>'
+                           '<strong>Geographical Coverage:</strong> Lowest<br>'
+                           '<strong>Accuracy:</strong> Best, but infrequently updated'
         }
 }
 
