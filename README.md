@@ -1,7 +1,11 @@
 # dgg-www
-Digital Gender Gaps website
+<strong>Digital Gender Gaps Web Application</strong>
 
-## Components
+The Digital Gender Gaps Web Application provides an interactive map to explore national indicators of gender equality in access to the internet and mobile phones and their trends through time. The web application provides intuitive visualisations of spatial data, bulk data downloads, and an API to automate on-the-fly data requests for data scientists and web developers.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details (see LICENSE file or https://www.gnu.org/licenses/).
+
+### Components
 
 1. Leaflet front-end with interactive map.
 2. Flask API to query data
@@ -39,5 +43,21 @@ To stop the containers, use:
 docker-compose down
 ```
 
+## Suggested Citation
 
+If possible, please cite a specific [release version](<https://github.com/OxfordDemSci/dgg-www/releases>) 
+using the suggested citation in the release documentation which should include a version number and digital object 
+identifier (DOI).
+
+Otherwise, please use the following generic citation:   
+>Leasure DR, Yan J, Bondarenko M, Kerr D, Kashyap R. 2023. Digital Gender Gaps Web Application. GitHub. 
+https://github.com/OxfordDemSci/dgg-www
+
+## License
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public 
+License as published by the Free Software Foundation, either version 3 of the License, or any later version. This 
+program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details (see 
+LICENSE file or <https://www.gnu.org/licenses/>).
 
