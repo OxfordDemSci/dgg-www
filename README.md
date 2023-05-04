@@ -50,7 +50,7 @@ using the suggested citation in the release documentation which should include a
 identifier (DOI).
 
 Otherwise, please use the following generic citation:   
->Leasure DR, Yan J, Bondarenko M, Kerr D, Kashyap R. 2023. Digital Gender Gaps Web Application. GitHub. 
+>Leasure DR, Yan J, Bondarenko M, Kerr D, Fatehkia M, Weber I, Kashyap R. 2023. Digital Gender Gaps Web Application. GitHub. 
 https://github.com/OxfordDemSci/dgg-www
 
 ## License
