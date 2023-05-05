@@ -233,32 +233,48 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
     return {'status': status, 'message': message, 'args': args}
 
 
-def reformat_json(df):
+def reformat_json(df, prettyNames=False):
     """
     change the returned dataframe to the format that the frontend needs
     Args:
-        args:
         df: dataframe returned from the read_sql
     """
-    # dates check in the arg
+
     df['date'] = df['date'].apply(int)
     df.fillna(-999, inplace=True)
-    data = {}
-    for iso2code in df["iso2"].unique():
-        date_dict = {}
-        for date in df['date'].unique():
-            model_dict = {}
-            for model in [x for x in df.columns if x not in ['date', 'iso2', 'iso3', 'name']]:
+
+    # initialise json
+    dates = list(map(str, df['date'].unique()))
+    if prettyNames:
+        models = [models_desc[m]['name'] for m in models_desc.keys()]
+    else:
+        models = list(models_desc.keys())
+
+    data = dict.fromkeys(df["iso2"].unique())
+    for iso2code in data.keys():
+        data[iso2code] = dict.fromkeys(list(map(str, df['date'].unique())))
+        for date in dates:
+            data[iso2code][date] = dict.fromkeys(models)
+
+    # populate with data
+    for date in dates:
+        df_date = df.loc[df['date'] == int(date)]
+
+        for iso2code in df_date['iso2'].to_list():
+            df_date_iso2 = df_date.loc[df_date['iso2'] == iso2code]
+
+            for model in models:
                 try:
-                    model_dict[model] = df.loc[(df['date'] == date) & (df['iso2'] == iso2code)][model].values[0]
-                    # if np.isnan(model_dict[model]): model_dict[model] = None
-                    if model_dict[model] == -999:
-                        model_dict[model] = None
+                    x = df_date_iso2[model].values[0]
+                    if x == -999:
+                        data[iso2code][date][model] = None
+                    else:
+                        data[iso2code][date][model] = x
+                    del x
                 except:
-                    model_dict[model] = None
-            date_dict[str(date)] = model_dict
-        data[iso2code] = date_dict
+                    data[iso2code][date][model] = None
     return data
+
 
 def palette(n=6):
     """
