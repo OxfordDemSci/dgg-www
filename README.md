@@ -3,8 +3,6 @@
 
 The Digital Gender Gaps Web Application provides an interactive map to explore national indicators of gender equality in access to the internet and mobile phones and their trends through time. The web application provides intuitive visualisations of spatial data, bulk data downloads, and an API to automate on-the-fly data requests for data scientists and web developers.
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details (see LICENSE file or https://www.gnu.org/licenses/).
-
 ### Components
 
 1. Leaflet front-end with interactive map.
