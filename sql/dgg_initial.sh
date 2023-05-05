@@ -36,7 +36,6 @@ GRANT SELECT ON national TO dgg_reader;
 GRANT SELECT, INSERT ON national TO dgg_writer;
 GRANT USAGE,SELECT ON SEQUENCE national_id_seq TO dgg_writer;
 "
-
 psql -U $POSTGRES_USER -d $POSTGRES_DB -c \
 "
 COPY country_info(name, iso2, iso3)

@@ -233,11 +233,10 @@ def check_args(args, required=[], required_one_of=[], optional=[]):
     return {'status': status, 'message': message, 'args': args}
 
 
-def reformat_json(df):
+def reformat_json(df, prettyNames=False):
     """
     change the returned dataframe to the format that the frontend needs
     Args:
-        args:
         df: dataframe returned from the read_sql
     """
 
@@ -274,7 +273,6 @@ def reformat_json(df):
                     del x
                 except:
                     data[iso2code][date][model] = None
-
     return data
 
 

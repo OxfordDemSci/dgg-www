@@ -216,7 +216,7 @@ def download_data_with_dates(args):
             df = pd.read_sql(sql, conn)
 
             # reformat to json
-            result['data'] = utils.reformat_json(df)
+            result['data'] = utils.reformat_json(df, prettyNames=args.get('pretty_names'))
 
             # http status message
             result['message'] = 'OK: Data successfully selected from database.'
