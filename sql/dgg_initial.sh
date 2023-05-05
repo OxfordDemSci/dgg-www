@@ -30,6 +30,8 @@ CREATE TABLE national(
     FOREIGN KEY(iso2) REFERENCES country_info(iso2) ON DELETE SET NULL
 );
 
+CREATE INDEX idx_national_date ON national(date);
+
 GRANT SELECT ON national TO dgg_reader;
 GRANT SELECT, INSERT ON national TO dgg_writer;
 GRANT USAGE,SELECT ON SEQUENCE national_id_seq TO dgg_writer;
