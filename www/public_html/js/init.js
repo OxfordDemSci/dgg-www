@@ -1,6 +1,7 @@
 import * as _utils from './utils.js?version=6'
 
 export function getDates(data) {
+  
  
    var ymArray = [];
    
@@ -42,6 +43,17 @@ export function getDates(data) {
     return ymObject;
 }
 
+export function getDateSixMonthFromEnd(data) {
+
+   let ym;
+   if (data.length < 6){
+       ym = data[0];
+   }else{
+       ym = data[data.length-6];
+   }
+   let ym_format = ym.toString().substring(0, 4)+ '-' + ym.toString().substring(4, 6); 
+   return ym_format;
+}
 
 export function getCountriesList(countries) {
     return countries;
@@ -174,7 +186,6 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
         fontAwesome: true,
         orientation: "bottom",
         beforeShowMonth: function (date) {
-            //alert(date);
             var formattedDate = moment(date).format('YYYY-MM');
             return $.inArray(formattedDate, monthsToDisable) < 0;
         }
@@ -184,8 +195,41 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
 
 }
 
-export function loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable) {
+//export function getLastSixMonthDate(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable) {
+//   // getting the date of last 6 month from lastMonth and lastYear
+//   // cheecking if this date is not in monthsToDisable
+//   // if it is in monthsToDisable then taken increament and looking for next month etc
+//   
+//    let icount=6;
+//    let max_icount=18;
+//    let lastYM;
+//    let six_month_lastYM;
+//    let six_month_lastYM_Date;
+//   
+//   do {
+//        lastYM = new Date(lastYear+ '-' + lastMonth);
+//        // getting last "icount" month from "lastYM"
+//        six_month_lastYM = lastYM.setMonth(lastYM.getMonth() - icount);
+//        six_month_lastYM_Date = moment(six_month_lastYM).format('YYYY-MM');
+//        icount++;
+//        
+//        // avoiding infiniting loop if last 6 month in  monthsToDisable array 
+//        // so the check will be don maximum max_icount times
+//        // if did not pick last 6 month, the firstYear-firstMonth will be return
+//        if (max_icount < icount) {
+//            six_month_lastYM_Date=firstYear+ '-' + firstMonth;
+//            break;
+//        }        
+//    }
+//   while ($.inArray(six_month_lastYM_Date, monthsToDisable) > 0);
+//    
+//   return six_month_lastYM_Date;
+//}
 
+
+export function loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYear, ymSixMonthFromEnd,  monthsToDisable) {
+  
+    //var LastSixMonthDate=getLastSixMonthDate(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable).split("-");
 
     $("#datepicker_start_date").datepicker({
         format: "yyyy-mm",
@@ -203,7 +247,7 @@ export function loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYe
         }
     });
 
-    $('#datepicker_start_date').datepicker('setDate', firstYear + '-' + firstMonth);
+    $('#datepicker_start_date').datepicker('setDate', ymSixMonthFromEnd);
     
     
     $("#datepicker_end_date").datepicker({

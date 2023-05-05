@@ -22,13 +22,15 @@ def init():
         # list countries with national-level data
         sql = 'SELECT iso2,name FROM country_info;'
         data = pd.read_sql(sql, conn)
-        result['countries'] = [{'iso2code': x, 'country': y} for x, y in zip(data['iso2'], data['name'])]
+        result['countries'] = sorted([{'iso2code': x, 'country': y} for x, y in zip(data['iso2'], data['name'])],
+                                     key=lambda k: k['iso2code'])
 
         # list dates with data
         sql = 'SELECT DISTINCT date FROM national;'
         data = pd.read_sql(sql, conn)
         result['dates'] = data['date'].tolist()
         result['dates'] = [int(x) for x in result['dates']]
+        result['dates'].sort()
 
         # list models
         result['models'] = utils.models_desc
@@ -214,7 +216,7 @@ def download_data_with_dates(args):
             df = pd.read_sql(sql, conn)
 
             # reformat to json
-            result['data'] = utils.reformat_json(df)
+            result['data'] = utils.reformat_json(df, prettyNames=args.get('pretty_names'))
 
             # http status message
             result['message'] = 'OK: Data successfully selected from database.'

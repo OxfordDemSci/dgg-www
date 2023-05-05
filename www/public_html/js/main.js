@@ -62,7 +62,9 @@ if (window.mdebug === true){
 }
 
 _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
-_init.loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
+ 
+ const ymSixMonthFromEnd = _init.getDateSixMonthFromEnd(initJSONSettings.dates);
+_init.loadDatesToDownloadMenu(firstMonth, firstYear, lastMonth, lastYear, ymSixMonthFromEnd, monthsToDisable);
 
 const firstModelfromList = Object.keys(modelsList)[0];
 
