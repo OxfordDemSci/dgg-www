@@ -43,9 +43,9 @@ FROM '/var/lib/postgresql/initial_data/country_info.csv'
 DELIMITER ','
 CSV HEADER;
 
-COPY national(date, iso2,
-    Ground_Truth_Internet_GG,Internet_Online_model_prediction,Internet_Online_Offline_model_prediction,Internet_Offline_model_prediction,
-    Ground_Truth_Mobile_GG,Mobile_Online_model_prediction,Mobile_Online_Offline_model_prediction,Mobile_Offline_model_prediction)
+COPY national(iso2, date, 
+    ground_truth_internet_gg,internet_online_model_prediction,internet_online_offline_model_prediction,internet_offline_model_prediction,
+    ground_truth_mobile_gg,mobile_online_model_prediction,mobile_online_offline_model_prediction,mobile_offline_model_prediction)
 FROM '/var/lib/postgresql/initial_data/national.csv'
 DELIMITER ','
 CSV HEADER;
