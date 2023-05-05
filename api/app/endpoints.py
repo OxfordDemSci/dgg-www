@@ -176,7 +176,7 @@ def download_data_with_dates(args):
         args (dict): A dictionary containing items start_date (int) and end_date (int)
 
     Examples:
-        - args = {"start_date":201801, "end_date":202312}
+        - args = {"start_date":202206, "end_date":202207}
 
     Returns:
         result (json): Data
