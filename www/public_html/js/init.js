@@ -45,7 +45,12 @@ export function getDates(data) {
 
 export function getDateSixMonthFromEnd(data) {
 
-   let ym = data.slice(1).slice(-6);
+   let ym;
+   if (data.length < 6){
+       ym = data[0];
+   }else{
+       ym = data[data.length-6];
+   }
    let ym_format = ym.toString().substring(0, 4)+ '-' + ym.toString().substring(4, 6); 
    return ym_format;
 }
