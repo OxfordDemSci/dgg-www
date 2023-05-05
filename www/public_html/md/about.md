@@ -171,7 +171,7 @@ and/or cite our related academic publications, as appropriate.</p>
     <a href="https://www.jstor.org/stable/26967824" target="_blank">https://www.jstor.org/stable/26967824</a>
 </li>
 <li style="margin:0 0 10px 0;">
-    Leasure DR, Yan J, Bondarenko M, Kerr D, Fatehkia M, Weber I, Kashyap R. 2023. Digital Gender Gaps Web Application. 
+    Leasure DR, Yan J, Bondarenko M, Kerr D, Fatehkia M, Weber I, Kashyap R. 2023. Digital Gender Gaps Web Application, v1.0.0. 
     <i>Zenodo, GitHub</i>. doi:<a href="https://doi.org/10.5281/zenodo.7897491" target="_blank">10.5281/zenodo.7897491</a>. 
     <a href="https://github.com/OxfordDemSci/dgg-www" target="_blank">https://github.com/OxfordDemSci/dgg-www</a>.
 </li>
