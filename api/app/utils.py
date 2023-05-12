@@ -13,8 +13,8 @@ models_desc = {
         'internet_online_model_prediction': {
             'name': 'Internet GG - Online',
             'type': 'internet',
-            'description': '<strong>Description:</strong> Ratio of female-to-male internet use from our daily Facebook '
-                           'Gender Gap Index.<br>'
+            'description': '<strong>Description:</strong> Ratio of female-to-male internet use estimated using the '
+                           'Facebook Gender Gap Index.<br>'
                            '<strong>Data Frequency:</strong> Monthly<br>'
                            '<strong>Geographical Coverage:</strong> Best<br>'
                            '<strong>Accuracy:</strong> Very good'
@@ -50,7 +50,7 @@ models_desc = {
             'name': 'Mobile GG - Online',
             'type': 'mobile',
             'description': '<strong>Description:</strong> Ratio of female-to-male mobile phone use estimated using '
-                           'Facebook Gender Gap Index.<br>'
+                           'the Facebook Gender Gap Index.<br>'
                            '<strong>Data Frequency:</strong> Monthly<br>'
                            '<strong>Geographical Coverage:</strong> Best<br>'
                            '<strong>Accuracy:</strong> Good'
