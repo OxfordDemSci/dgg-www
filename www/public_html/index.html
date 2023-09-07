@@ -586,7 +586,7 @@ $(function() {
 
 var milliseconds = new Date().getTime();
 
-jQuery.get('./md/about.md?version='+milliseconds, function(data) {
+jQuery.get('./md/about.html?version='+milliseconds, function(data) {
 
     var aboutTabPopup = document.getElementById('aboutTabPopup');
 
@@ -598,7 +598,7 @@ jQuery.get('./md/about.md?version='+milliseconds, function(data) {
 
 
 
-jQuery.get('./md/team.md?version='+milliseconds, function(data) {
+jQuery.get('./md/team.html?version='+milliseconds, function(data) {
 
 var TeamTabPopup = document.getElementById('TeamTabPopup');
 
@@ -607,7 +607,7 @@ var TeamTabPopup = document.getElementById('TeamTabPopup');
         TeamTabPopup.innerHTML =data;
 });
 
-jQuery.get('./md/quickstart.md?version='+milliseconds, function(data) {
+jQuery.get('./md/quickstart.html?version='+milliseconds, function(data) {
 
 var TeamTabPopup = document.getElementById('QuickStartTabPopup');
 
@@ -616,7 +616,7 @@ var TeamTabPopup = document.getElementById('QuickStartTabPopup');
         TeamTabPopup.innerHTML =data;
 });
 
-jQuery.get('./md/privacy.md?version='+milliseconds, function(data) {
+jQuery.get('./md/privacy.html?version='+milliseconds, function(data) {
 
 var PrivacyTabPopup = document.getElementById('PrivacyTabPopup');
 
