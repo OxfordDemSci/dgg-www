@@ -91,6 +91,9 @@
         <li class="nav-item">
           <a class="nav-link " aria-current="page" href="#" id="aBtnAbout">About</a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="#" id="aBtnResearch">Research</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="aBtnTeam">Team</a>
         </li>
@@ -355,6 +358,33 @@
             </div>
         </div>                             
         <!--  Modal About -->
+
+        <!--  Modal Research -->
+        <div class="modal fade "  data-backdrop="false"  id="idMdResearch" tabindex="-1"  aria-labelledby="ModalResearch" style="opacity: 0.95;z-index: 2200">
+            <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" >
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 0.5rem;cursor: move;">
+                        <h5 class="modal-title" id="ModalResearchLabel">Research</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
+                        <div class="container">
+                            <div style="font-size: 12px;" id="ResearchTabPopup">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer p-1" >
+                        <button type="button" class="btn btn-secondary btn-sm mr-2" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Modal Research end -->
+
         
         <!--  Modal Team -->
         <div class="modal fade "  data-backdrop="false"  id="idMdTeam" tabindex="-1"  aria-labelledby="ModalTeam" style="opacity: 0.95;z-index: 2200">
@@ -549,8 +579,14 @@ $('#lbIndicatorInfo').popover({
             e.preventDefault();
             e.stopPropagation();
             return false;
-        });  
-        
+        });
+
+        $("#aBtnResearch").click(function(e) {
+            $('#idMdTeam').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });
         
         $("#aBtnAbout").click(function(e) {
             $('#idMdAbout').modal('toggle');
@@ -593,9 +629,8 @@ jQuery.get('./md/about.html?version='+milliseconds, function(data) {
     var converter = new showdown.Converter(),
         html      = converter.makeHtml(data);
         aboutTabPopup.innerHTML =data;
-    
-});
 
+});
 
 
 jQuery.get('./md/team.html?version='+milliseconds, function(data) {
@@ -605,6 +640,15 @@ var TeamTabPopup = document.getElementById('TeamTabPopup');
     var converterTeam = new showdown.Converter(),
         html      = converterTeam.makeHtml(data);
         TeamTabPopup.innerHTML =data;
+});
+
+jjQuery.get('./md/research.html?version='+milliseconds, function(data) {
+
+var ResearchTabPopup = document.getElementById('ResearchTabPopup');
+
+    var converterResearch = new showdown.Converter(),
+        html = converterResearch.makeHtml(data);
+        ResearchTabPopup.innerHTML = data;
 });
 
 jQuery.get('./md/quickstart.html?version='+milliseconds, function(data) {
