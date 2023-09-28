@@ -329,7 +329,8 @@
             </div>
         </div>                             
         <!--  Modal QuickStart -->
-        
+
+        <!--  Modal About -->
         <div class="modal fade "  data-backdrop="false"  id="idMdAbout" tabindex="-1"  aria-labelledby="ModalAbout" style="opacity: 0.95;z-index: 2200">
             <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document" id="idModalSetting-dialog">
                 <div class="modal-content">
@@ -371,9 +372,12 @@
                     <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto">
                         <div class="container">
                             <div style="font-size: 12px;" id="ResearchTabPopup">
-
                             </div>
 
+                            <div class="mw-100">
+                                <div class="form-group col-12">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -582,7 +586,7 @@ $('#lbIndicatorInfo').popover({
         });
 
         $("#aBtnResearch").click(function(e) {
-            $('#idMdTeam').modal('toggle');
+            $('#idMdResearch').modal('toggle');
             e.preventDefault();
             e.stopPropagation();
             return false;
@@ -642,7 +646,7 @@ var TeamTabPopup = document.getElementById('TeamTabPopup');
         TeamTabPopup.innerHTML =data;
 });
 
-jjQuery.get('./md/research.html?version='+milliseconds, function(data) {
+jQuery.get('./md/research.html?version='+milliseconds, function(data) {
 
 var ResearchTabPopup = document.getElementById('ResearchTabPopup');
 
