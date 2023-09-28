@@ -1,3 +1,4 @@
 .Rhistory
 .idea
 venv
+.DS_Store
