@@ -4,7 +4,7 @@
 # restore using:  pg_restore -Fc --clean --host=localhost --username=postgres --dbname=dgg /research/backup/dgg_db/dgg.dump
 
 # backup directory
-base_dir=/research/backup/dgg_db
+base_dir=~/ndph/J/backup/dgg_db
 past_backups=($(ls ${base_dir}))
 current_date=$(date +"%Y%m%d")
 backup_dir=${base_dir}/${current_date}
