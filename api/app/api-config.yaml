@@ -1,0 +1,595 @@
+openapi: 3.0.0
+info:
+  title: Digital Gender Gaps Dashboard API Version 2
+  version: 2.0.0
+servers:
+  - url: "/api/v2"
+    description: "API Version 2"
+tags:
+  - name: default
+    description: "Default operations"
+  - name: internal
+    description: "Internal use only operations"
+paths:
+  /init:
+    get:
+      tags:
+        - default
+      summary: "Initialize the dashboard"
+      x-swagger-router-controller: app.endpoints
+      operationId: init_data
+      responses:
+        "200":
+          description: "Successfully initialized"
+        "500":
+          description: "Internal server error"
+  /query_specific_country:
+    get:
+      tags:
+        - default
+      summary: "Query data for a specific country (ISO3 code)"
+      x-swagger-router-controller: app.endpoints
+      operationId: query_specific_country
+      parameters:
+        - name: country
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Country to query data for (ISO3 code)"
+        - name: indicators
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: "Indicator to query data for"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  
+  /query_specific_region:
+    get:
+      tags:
+        - default
+      summary: "Query data for a specific region (GADM gid_1 code)"
+      x-swagger-router-controller: app.endpoints
+      operationId: query_specific_region
+      parameters:
+        - name: region
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Region/admin id to query data for (GADM gid_1 code)"
+        - name: indicators
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: "Indicator(s) to get data for. Leave blank to get all indicators"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /get_national_data:
+    get:    
+      tags:
+        - default
+      summary: "Get data for the dashboard at the national level"
+      x-swagger-router-controller: app.endpoints
+      operationId: get_national_data
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Date to get data for (YYYY-MM)"
+        - name: indicators
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: "Indicator(s) to get data for. Leave blank to get all indicators"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+
+  /get_subnational_data:
+    get:
+      tags:
+        - default
+      summary: "Get data for the dashboard at the subnational level"
+      x-swagger-router-controller: app.endpoints
+      operationId: get_subnational_data
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Date to get data for (YYYY-MM)"
+        - name: country
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "Country to get data for (ISO3 code) - Leave blank to get data for all countries"
+        - name: indicators
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: "Indicator to get data for"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /download_national_data_with_dates:
+    get:    
+      tags:
+        - default
+      summary: "Download data for the dashboard at the national level with dates"
+      x-swagger-router-controller: app.endpoints
+      operationId: download_national_data_with_dates
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Start date to get data for (YYYY-MM)"
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "End date to get data for (YYYY-MM)"
+        - name: country
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "Country to get data for (ISO3 code) - Leave blank to get data for all countries"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /download_subnational_data_with_dates:
+    get:
+      tags:
+        - default
+      summary: "Download data for the dashboard at the subnational level with dates"
+      x-swagger-router-controller: app.endpoints
+      operationId: download_subnational_data_with_dates
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Start date to get data for (YYYY-MM)"
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "End date to get data for (YYYY-MM)"
+        - name: region
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "Adm1 region to get data for (gid_1 code) - Leave blank to get data for all regions for all countries"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /get_ground_truth_subnational:
+    get:
+      tags:
+        - default
+      summary: "Get ground truth data for the dashboard at the subnational level"
+      x-swagger-router-controller: app.endpoints
+      operationId: get_ground_truth_subnational
+      parameters:
+        - name: indicators
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: "Indicator(s) to get data for. Leave blank to get all indicators"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /get_ground_truth_national:
+    get:
+      tags:
+        - default
+      summary: "Get ground truth data for the dashboard at the national level"
+      x-swagger-router-controller: app.endpoints
+      operationId: get_ground_truth_national
+      parameters:
+        - name: indicators
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: "Indicator(s) to get data for. Leave blank to get all indicators"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /download_csv:
+    get:
+      tags:
+        - default
+      summary: "Download data for the dashboard in CSV format"
+      x-swagger-router-controller: app.endpoints
+      operationId: download_csv
+      parameters:
+        - name: level
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - national
+              - subnational
+          description: "Level to get data for"
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Start date to get data for (YYYY-MM)"
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "End date to get data for (YYYY-MM)"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /login:
+    post:
+      tags:
+        - internal
+      summary: User login
+      x-internal: true
+      x-swagger-router-controller: app.endpoints
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+        '401':
+          description: Unauthorized
+  /post_national_data:
+    post:
+      tags:
+        - internal
+      summary: "Post data for the dashboard at the national level"
+      x-internal: true
+      x-swagger-router-controller: app.endpoints
+      operationId: post_national_data
+      security:
+          - {}
+          - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  gid_0:
+                    type: string
+                  country:
+                    type: string
+                  outcome:
+                    type: string
+                  predicted:
+                    type: number
+                  predicted_error:
+                    type: number
+                  date:
+                    type: string
+                    pattern: "^\\d{4}-\\d{2}$"
+      responses:
+        "200":
+          description: "Successfully posted data"
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+
+  /post_subnational_data:
+    post:
+      tags:
+        - internal
+      summary: "Post data for the dashboard at the subnational level"
+      x-internal: true
+      x-swagger-router-controller: app.endpoints
+      operationId: post_subnational_data
+      security:
+          - {}
+          - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    gid_0:
+                      type: string
+                    gid_1:
+                      type: string
+                    country:
+                      type: string
+                    outcome:
+                      type: string
+                    predicted:
+                      type: number
+                    predicted_error:
+                      type: number
+                    date:
+                      type: string
+                      pattern: "^\\d{4}-\\d{2}$"
+      responses:
+        "200":
+          description: "Successfully posted data"
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /delete_national_data:
+    delete:
+      tags:
+        - internal
+      summary: "Delete data for the dashboard at the national level"
+      x-internal: true
+      x-swagger-router-controller: app.endpoints
+      operationId: delete_national_data
+      security:
+        - {}
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  gid_0:
+                    type: string
+                  country:
+                    type: string
+                  outcome:
+                    type: string
+                  date:
+                    type: string
+                    pattern: "^\\d{4}-\\d{2}$"
+      responses:
+        "200":
+          description: "Successfully deleted data"
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+  /delete_subnational_data:
+    delete:
+      tags:
+        - internal
+      summary: "Delete data for the dashboard at the subnational level"
+      x-internal: true
+      x-swagger-router-controller: app.endpoints
+      operationId: delete_subnational_data
+      security:
+        - {}
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  gid_0:
+                    type: string
+                  gid_1:
+                    type: string
+                  country:
+                    type: string
+                  outcome:
+                    type: string
+                  date:
+                    type: string
+                    pattern: "^\\d{4}-\\d{2}$"
+      responses:
+        "200":
+          description: "Successfully deleted data"
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+components:
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-bearerInfoFunc: app.endpoints.decodetoken

@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  dgg_postgres:
+    container_name: dgg_db
+    build: .
+    env_file: .env
+    networks:
+      - dgg_net
+    volumes:
+      - ./init-scripts/:/docker-entrypoint-initdb.d
+      - dgg_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  dgg_memcached:
+    container_name: dgg_cache
+    image: memcached:latest
+    networks:
+      - dgg_net
+    ports:
+      - "11211:11211"
+    restart: unless-stopped
+
+networks:
+  dgg_net:
+
+volumes:
+  dgg_db_data:
+    external: true

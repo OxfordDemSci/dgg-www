@@ -1,0 +1,73 @@
+version: "3.3"
+
+services:
+
+  dgg_nginx:
+    container_name: dgg_web
+    image: nginx:latest
+    volumes:
+      - type: bind
+        source: ./www/conf.d/nginx.conf
+        target: /etc/nginx/conf.d/nginx.conf
+      - type: bind
+        source: ./www/public_html/
+        target: /var/www/public_html/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - dgg_net
+    depends_on:
+      - dgg_flask
+    restart: unless-stopped
+
+
+  dgg_flask:
+    container_name: dgg_api
+    env_file: .env
+    build: ./api/
+    command: >
+      sh -c "find /app -type f -exec sed -i 's/\r$$//' {} + && gunicorn --config gunicorn.config.py --preload wsgi:app"
+    depends_on:
+      - dgg_postgres
+    networks:
+      - dgg_net
+    ports:
+      - "5000:5000"
+      - "8000:8000"
+    restart: unless-stopped
+
+
+  dgg_memcached:
+    container_name: dgg_cache
+    image: memcached:latest
+    networks:
+      - dgg_net
+    ports:
+      - "11211:11211"
+    restart: unless-stopped
+
+
+  dgg_postgres:
+    container_name: dgg_db
+    #image: postgis/postgis:15-3.4
+    build: ./sql/
+    env_file: 
+      .env
+    volumes:
+      #- ./sql/init-scripts:/docker-entrypoint-initdb.d
+      - dgg_db_data:/var/lib/postgresql/data
+    networks:
+      - dgg_net
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+
+networks:
+  dgg_net:
+
+
+volumes:
+  dgg_db_data:
+

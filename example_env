@@ -1,0 +1,14 @@
+POSTGRES_USER=oxford_dgg_admin
+POSTGRES_PASSWORD=x1D5m771ncP_
+POSTGRES_READONLY=oxford_dgg_readonly
+POSTGRES_READONLY_PASSWORD=P=!wg514mjC
+POSTGRES_DB=dgg
+POSTGRES_DB_TEST=dgg_test
+DATABASE_TABLES_DIR=app/data/db-data
+basedir="C:/Users/dkerr/Documents/GISRede/OXFORD_UNI_WORK/digitalGenderGaps"
+SECRET_KEY="p4+N>*!aXEzeMn,K+ehIkId6@rJ=7V"
+DATABASE_URL_LOCAL="postgresql://oxford_dgg_admin:x1D5m771ncP_@localhost:5432/dgg"
+DATABASE_URL_TEST="postgresql://oxford_dgg_admin:x1D5m771ncP_@localhost:5432/dgg_test"
+DATABASE_URL="postgresql://oxford_dgg_admin:x1D5m771ncP_@dgg_postgres:5432/dgg"
+DATABASE_URL_READONLY="postgresql://oxford_dgg_readonly:P=!wg514mjC@dgg_postgres:5432/dgg"
+ENV="dev"  # local, dev, prod, test

@@ -1,0 +1,2326 @@
+gid_0,country,gid_1,name_1
+AFG,Afghanistan,AFG.1_1,Badakhshan
+AFG,Afghanistan,AFG.2_1,Badghis
+AFG,Afghanistan,AFG.3_1,Baghlan
+AFG,Afghanistan,AFG.4_1,Balkh
+AFG,Afghanistan,AFG.5_1,Bamyan
+AFG,Afghanistan,AFG.6_1,Daykundi
+AFG,Afghanistan,AFG.7_1,Farah
+AFG,Afghanistan,AFG.8_1,Faryab
+AFG,Afghanistan,AFG.9_1,Ghazni
+AFG,Afghanistan,AFG.10_1,Ghor
+AFG,Afghanistan,AFG.11_1,Hilmand
+AFG,Afghanistan,AFG.12_1,Hirat
+AFG,Afghanistan,AFG.13_1,Jawzjan
+AFG,Afghanistan,AFG.14_1,Kabul
+AFG,Afghanistan,AFG.15_1,Kandahar
+AFG,Afghanistan,AFG.16_1,Kapisa
+AFG,Afghanistan,AFG.17_1,Khost
+AFG,Afghanistan,AFG.18_1,Kunar
+AFG,Afghanistan,AFG.19_1,Kunduz
+AFG,Afghanistan,AFG.20_1,Laghman
+AFG,Afghanistan,AFG.21_1,Logar
+AFG,Afghanistan,AFG.22_1,Nangarhar
+AFG,Afghanistan,AFG.23_1,Nimroz
+AFG,Afghanistan,AFG.24_1,Nuristan
+AFG,Afghanistan,AFG.25_1,Paktika
+AFG,Afghanistan,AFG.26_1,Paktya
+AFG,Afghanistan,AFG.27_1,Panjshir
+AFG,Afghanistan,AFG.28_1,Parwan
+AFG,Afghanistan,AFG.29_1,Samangan
+AFG,Afghanistan,AFG.30_1,Sari Pul
+AFG,Afghanistan,AFG.31_1,Takhar
+AFG,Afghanistan,AFG.32_1,Uruzgan
+AFG,Afghanistan,AFG.33_1,Wardak
+AFG,Afghanistan,AFG.34_1,Zabul
+AGO,Angola,AGO.1_1,Bengo
+AGO,Angola,AGO.2_1,Benguela
+AGO,Angola,AGO.3_1,Bié
+AGO,Angola,AGO.4_1,Cabinda
+AGO,Angola,AGO.5_1,Cuando Cubango
+AGO,Angola,AGO.6_1,Cuanza Norte
+AGO,Angola,AGO.7_1,Cuanza Sul
+AGO,Angola,AGO.8_1,Cunene
+AGO,Angola,AGO.9_1,Huambo
+AGO,Angola,AGO.10_1,Huíla
+AGO,Angola,AGO.11_1,Luanda
+AGO,Angola,AGO.12_1,Lunda Norte
+AGO,Angola,AGO.13_1,Lunda Sul
+AGO,Angola,AGO.14_1,Malanje
+AGO,Angola,AGO.15_1,Moxico
+AGO,Angola,AGO.16_1,Namibe
+AGO,Angola,AGO.17_1,Uíge
+AGO,Angola,AGO.18_1,Zaire
+ALB,Albania,ALB.1_1,Berat
+ALB,Albania,ALB.2_1,Dibër
+ALB,Albania,ALB.3_1,Durrës
+ALB,Albania,ALB.4_1,Elbasan
+ALB,Albania,ALB.5_1,Fier
+ALB,Albania,ALB.6_1,Gjirokastër
+ALB,Albania,ALB.7_1,Korçë
+ALB,Albania,ALB.8_1,Kukës
+ALB,Albania,ALB.9_1,Lezhë
+ALB,Albania,ALB.10_1,Shkodër
+ALB,Albania,ALB.11_1,Tiranë
+ALB,Albania,ALB.12_1,Vlorë
+ARG,Argentina,ARG.1_1,Buenos Aires
+ARG,Argentina,ARG.2_1,Catamarca
+ARG,Argentina,ARG.3_1,Chaco
+ARG,Argentina,ARG.4_1,Chubut
+ARG,Argentina,ARG.5_1,Ciudad de Buenos Aires
+ARG,Argentina,ARG.6_1,Córdoba
+ARG,Argentina,ARG.7_1,Corrientes
+ARG,Argentina,ARG.8_1,Entre Ríos
+ARG,Argentina,ARG.9_1,Formosa
+ARG,Argentina,ARG.10_1,Jujuy
+ARG,Argentina,ARG.11_1,La Pampa
+ARG,Argentina,ARG.12_1,La Rioja
+ARG,Argentina,ARG.13_1,Mendoza
+ARG,Argentina,ARG.14_1,Misiones
+ARG,Argentina,ARG.15_1,Neuquén
+ARG,Argentina,ARG.16_1,Río Negro
+ARG,Argentina,ARG.17_1,Salta
+ARG,Argentina,ARG.18_1,San Juan
+ARG,Argentina,ARG.19_1,San Luis
+ARG,Argentina,ARG.20_1,Santa Cruz
+ARG,Argentina,ARG.21_1,Santa Fe
+ARG,Argentina,ARG.22_1,Santiago del Estero
+ARG,Argentina,ARG.23_1,Tierra del Fuego
+ARG,Argentina,ARG.24_1,Tucumán
+ARM,Armenia,ARM.1_1,Aragatsotn
+ARM,Armenia,ARM.2_1,Ararat
+ARM,Armenia,ARM.3_1,Armavir
+ARM,Armenia,ARM.4_1,Erevan
+ARM,Armenia,ARM.5_1,Gegharkunik
+ARM,Armenia,ARM.6_1,Kotayk
+ARM,Armenia,ARM.7_1,Lori
+ARM,Armenia,ARM.8_1,Shirak
+ARM,Armenia,ARM.9_1,Syunik
+ARM,Armenia,ARM.10_1,Tavush
+ARM,Armenia,ARM.11_1,Vayots Dzor
+AZE,Azerbaijan,AZE.1_1,Absheron
+AZE,Azerbaijan,AZE.2_1,Aran
+AZE,Azerbaijan,AZE.3_1,Daglig-Shirvan
+AZE,Azerbaijan,AZE.4_1,Ganja-Qazakh
+AZE,Azerbaijan,AZE.5_1,Kalbajar-Lachin
+AZE,Azerbaijan,AZE.6_1,Lankaran
+AZE,Azerbaijan,AZE.7_1,Nakhchivan
+AZE,Azerbaijan,AZE.8_1,Quba-Khachmaz
+AZE,Azerbaijan,AZE.9_1,Shaki-Zaqatala
+AZE,Azerbaijan,AZE.10_1,Yukhari-Karabakh
+BDI,Burundi,BDI.1_1,Bubanza
+BDI,Burundi,BDI.2_1,Bujumbura Mairie
+BDI,Burundi,BDI.3_1,Bujumbura Rural
+BDI,Burundi,BDI.4_1,Bururi
+BDI,Burundi,BDI.5_1,Cankuzo
+BDI,Burundi,BDI.6_1,Cibitoke
+BDI,Burundi,BDI.7_1,Gitega
+BDI,Burundi,BDI.8_1,Karuzi
+BDI,Burundi,BDI.9_1,Kayanza
+BDI,Burundi,BDI.10_1,Kirundo
+BDI,Burundi,BDI.11_1,Makamba
+BDI,Burundi,BDI.12_1,Muramvya
+BDI,Burundi,BDI.13_1,Muyinga
+BDI,Burundi,BDI.14_1,Mwaro
+BDI,Burundi,BDI.15_1,Ngozi
+BDI,Burundi,BDI.16_1,Rutana
+BDI,Burundi,BDI.17_1,Ruyigi
+BEN,Benin,BEN.1_1,Alibori
+BEN,Benin,BEN.2_1,Atakora
+BEN,Benin,BEN.3_1,Atlantique
+BEN,Benin,BEN.4_1,Borgou
+BEN,Benin,BEN.5_1,Collines
+BEN,Benin,BEN.6_1,Donga
+BEN,Benin,BEN.7_1,Kouffo
+BEN,Benin,BEN.8_1,Littoral
+BEN,Benin,BEN.9_1,Mono
+BEN,Benin,BEN.10_1,Ouémé
+BEN,Benin,BEN.11_1,Plateau
+BEN,Benin,BEN.12_1,Zou
+BFA,Burkina Faso,BFA.1_1,Boucle du Mouhoun
+BFA,Burkina Faso,BFA.2_1,Cascades
+BFA,Burkina Faso,BFA.7_1,Centre
+BFA,Burkina Faso,BFA.3_1,Centre-Est
+BFA,Burkina Faso,BFA.4_1,Centre-Nord
+BFA,Burkina Faso,BFA.5_1,Centre-Ouest
+BFA,Burkina Faso,BFA.6_1,Centre-Sud
+BFA,Burkina Faso,BFA.8_1,Est
+BFA,Burkina Faso,BFA.9_1,Haut-Bassins
+BFA,Burkina Faso,BFA.10_1,Nord
+BFA,Burkina Faso,BFA.11_1,Plateau-Central
+BFA,Burkina Faso,BFA.12_1,Sahel
+BFA,Burkina Faso,BFA.13_1,Sud-Ouest
+BGD,Bangladesh,BGD.1_1,Barisal
+BGD,Bangladesh,BGD.2_1,Chittagong
+BGD,Bangladesh,BGD.3_1,Dhaka
+BGD,Bangladesh,BGD.4_1,Khulna
+BGD,Bangladesh,BGD.8_1,Mymensingh
+BGD,Bangladesh,BGD.5_1,Rajshahi
+BGD,Bangladesh,BGD.6_1,Rangpur
+BGD,Bangladesh,BGD.7_1,Sylhet
+BGR,Bulgaria,BGR.1_1,Blagoevgrad
+BGR,Bulgaria,BGR.2_1,Burgas
+BGR,Bulgaria,BGR.3_1,Dobrich
+BGR,Bulgaria,BGR.4_1,Gabrovo
+BGR,Bulgaria,BGR.5_1,Grad Sofiya
+BGR,Bulgaria,BGR.6_1,Haskovo
+BGR,Bulgaria,BGR.7_1,Kardzhali
+BGR,Bulgaria,BGR.8_1,Kyustendil
+BGR,Bulgaria,BGR.9_1,Lovech
+BGR,Bulgaria,BGR.10_1,Montana
+BGR,Bulgaria,BGR.11_1,Pazardzhik
+BGR,Bulgaria,BGR.12_1,Pernik
+BGR,Bulgaria,BGR.13_1,Pleven
+BGR,Bulgaria,BGR.14_1,Plovdiv
+BGR,Bulgaria,BGR.15_1,Razgrad
+BGR,Bulgaria,BGR.16_1,Ruse
+BGR,Bulgaria,BGR.17_1,Shumen
+BGR,Bulgaria,BGR.18_1,Silistra
+BGR,Bulgaria,BGR.19_1,Sliven
+BGR,Bulgaria,BGR.20_1,Smolyan
+BGR,Bulgaria,BGR.21_1,Sofia
+BGR,Bulgaria,BGR.22_1,Stara Zagora
+BGR,Bulgaria,BGR.23_1,Targovishte
+BGR,Bulgaria,BGR.24_1,Varna
+BGR,Bulgaria,BGR.25_1,Veliko Tarnovo
+BGR,Bulgaria,BGR.26_1,Vidin
+BGR,Bulgaria,BGR.27_1,Vratsa
+BGR,Bulgaria,BGR.28_1,Yambol
+BIH,Bosnia and Herzegovina,BIH.1_1,Brčko
+BIH,Bosnia and Herzegovina,BIH.2_1,Federacija Bosna i Hercegovina
+BIH,Bosnia and Herzegovina,BIH.3_1,Repuplika Srpska
+BLR,Belarus,BLR.1_1,Brest
+BLR,Belarus,BLR.2_1,Gomel
+BLR,Belarus,BLR.3_1,Grodno
+BLR,Belarus,BLR.5_1,Minsk
+BLR,Belarus,BLR.7_1,Minsk
+BLR,Belarus,BLR.4_1,Mogilev
+BLR,Belarus,BLR.6_1,Vitebsk
+BLZ,Belize,BLZ.1_1,Belize
+BLZ,Belize,BLZ.2_1,Cayo
+BLZ,Belize,BLZ.3_1,Corozal
+BLZ,Belize,BLZ.4_1,Orange Walk
+BLZ,Belize,BLZ.5_1,Stann Creek
+BLZ,Belize,BLZ.6_1,Toledo
+BOL,Bolivia,BOL.3_1,Beni
+BOL,Bolivia,BOL.1_1,Chuquisaca
+BOL,Bolivia,BOL.2_1,Cochabamba
+BOL,Bolivia,BOL.4_1,La Paz
+BOL,Bolivia,BOL.5_1,Oruro
+BOL,Bolivia,BOL.6_1,Pando
+BOL,Bolivia,BOL.7_1,Potosí
+BOL,Bolivia,BOL.8_1,Santa Cruz
+BOL,Bolivia,BOL.9_1,Tarija
+BRA,Brazil,BRA.1_1,Acre
+BRA,Brazil,BRA.2_1,Alagoas
+BRA,Brazil,BRA.3_1,Amapá
+BRA,Brazil,BRA.4_1,Amazonas
+BRA,Brazil,BRA.5_1,Bahia
+BRA,Brazil,BRA.6_1,Ceará
+BRA,Brazil,BRA.7_1,Distrito Federal
+BRA,Brazil,BRA.8_1,Espírito Santo
+BRA,Brazil,BRA.9_1,Goiás
+BRA,Brazil,BRA.10_1,Maranhão
+BRA,Brazil,BRA.12_1,Mato Grosso
+BRA,Brazil,BRA.11_1,Mato Grosso do Sul
+BRA,Brazil,BRA.13_1,Minas Gerais
+BRA,Brazil,BRA.14_1,Pará
+BRA,Brazil,BRA.15_1,Paraíba
+BRA,Brazil,BRA.16_1,Paraná
+BRA,Brazil,BRA.17_1,Pernambuco
+BRA,Brazil,BRA.18_1,Piauí
+BRA,Brazil,BRA.19_1,Rio de Janeiro
+BRA,Brazil,BRA.20_1,Rio Grande do Norte
+BRA,Brazil,BRA.21_1,Rio Grande do Sul
+BRA,Brazil,BRA.22_1,Rondônia
+BRA,Brazil,BRA.23_1,Roraima
+BRA,Brazil,BRA.24_1,Santa Catarina
+BRA,Brazil,BRA.25_1,São Paulo
+BRA,Brazil,BRA.26_1,Sergipe
+BRA,Brazil,BRA.27_1,Tocantins
+BTN,Bhutan,BTN.1_1,Bumthang
+BTN,Bhutan,BTN.2_1,Chhukha
+BTN,Bhutan,BTN.3_1,Dagana
+BTN,Bhutan,BTN.4_1,Gasa
+BTN,Bhutan,BTN.5_1,Haa
+BTN,Bhutan,BTN.6_1,Lhuentse
+BTN,Bhutan,BTN.7_1,Monggar
+BTN,Bhutan,BTN.8_1,Paro
+BTN,Bhutan,BTN.9_1,Pema Gatshel
+BTN,Bhutan,BTN.10_1,Punakha
+BTN,Bhutan,BTN.11_1,Samdrup Jongkhar
+BTN,Bhutan,BTN.12_1,Samtse
+BTN,Bhutan,BTN.13_1,Sarpang
+BTN,Bhutan,BTN.14_1,Thimphu
+BTN,Bhutan,BTN.19_1,Trashi Yangtse
+BTN,Bhutan,BTN.15_1,Trashigang
+BTN,Bhutan,BTN.16_1,Trongsa
+BTN,Bhutan,BTN.17_1,Tsirang
+BTN,Bhutan,BTN.18_1,Wangdue Phodrang
+BTN,Bhutan,BTN.20_1,Zhemgang
+BWA,Botswana,BWA.1_1,Central
+BWA,Botswana,BWA.2_1,Chobe
+BWA,Botswana,BWA.3_1,Francistown
+BWA,Botswana,BWA.4_1,Gaborone
+BWA,Botswana,BWA.5_1,Ghanzi
+BWA,Botswana,BWA.6_1,Jwaneng
+BWA,Botswana,BWA.7_1,Kgalagadi
+BWA,Botswana,BWA.8_1,Kgatleng
+BWA,Botswana,BWA.9_1,Kweneng
+BWA,Botswana,BWA.10_1,Lobatse
+BWA,Botswana,BWA.11_1,North-East
+BWA,Botswana,BWA.12_1,North-West
+BWA,Botswana,BWA.13_1,Selibe Phikwe
+BWA,Botswana,BWA.14_1,South-East
+BWA,Botswana,BWA.15_1,Southern
+BWA,Botswana,BWA.16_1,Sowa
+CAF,Central African Republic,CAF.1_1,Bamingui-Bangoran
+CAF,Central African Republic,CAF.2_1,Bangui
+CAF,Central African Republic,CAF.3_1,Basse-Kotto
+CAF,Central African Republic,CAF.4_1,Haut-Mbomou
+CAF,Central African Republic,CAF.5_1,Haute-Kotto
+CAF,Central African Republic,CAF.6_1,Kémo
+CAF,Central African Republic,CAF.7_1,Lobaye
+CAF,Central African Republic,CAF.8_1,Mambéré-Kadéï
+CAF,Central African Republic,CAF.9_1,Mbomou
+CAF,Central African Republic,CAF.10_1,Nana-Grébizi
+CAF,Central African Republic,CAF.11_1,Nana-Mambéré
+CAF,Central African Republic,CAF.12_1,Ombella-M'Poko
+CAF,Central African Republic,CAF.13_1,Ouaka
+CAF,Central African Republic,CAF.15_1,Ouham
+CAF,Central African Republic,CAF.14_1,Ouham-Pendé
+CAF,Central African Republic,CAF.16_1,Sangha-Mbaéré
+CAF,Central African Republic,CAF.17_1,Vakaga
+CIV,Côte d'Ivoire,CIV.1_1,Abidjan
+CIV,Côte d'Ivoire,CIV.2_1,Bas-Sassandra
+CIV,Côte d'Ivoire,CIV.3_1,Comoé
+CIV,Côte d'Ivoire,CIV.4_1,Denguélé
+CIV,Côte d'Ivoire,CIV.5_1,Gôh-Djiboua
+CIV,Côte d'Ivoire,CIV.6_1,Lacs
+CIV,Côte d'Ivoire,CIV.7_1,Lagunes
+CIV,Côte d'Ivoire,CIV.8_1,Montagnes
+CIV,Côte d'Ivoire,CIV.9_1,Sassandra-Marahoué
+CIV,Côte d'Ivoire,CIV.10_1,Savanes
+CIV,Côte d'Ivoire,CIV.11_1,Vallée du Bandama
+CIV,Côte d'Ivoire,CIV.12_1,Woroba
+CIV,Côte d'Ivoire,CIV.13_1,Yamoussoukro
+CIV,Côte d'Ivoire,CIV.14_1,Zanzan
+CMR,Cameroon,CMR.1_1,Adamaoua
+CMR,Cameroon,CMR.2_1,Centre
+CMR,Cameroon,CMR.3_1,Est
+CMR,Cameroon,CMR.4_1,Extrême-Nord
+CMR,Cameroon,CMR.5_1,Littoral
+CMR,Cameroon,CMR.7_1,Nord
+CMR,Cameroon,CMR.6_1,Nord-Ouest
+CMR,Cameroon,CMR.8_1,Ouest
+CMR,Cameroon,CMR.10_1,Sud
+CMR,Cameroon,CMR.9_1,Sud-Ouest
+COD,Democratic Republic of the Congo,COD.1_1,Bas-Uele
+COD,Democratic Republic of the Congo,COD.2_1,Équateur
+COD,Democratic Republic of the Congo,COD.3_1,Haut-Katanga
+COD,Democratic Republic of the Congo,COD.4_1,Haut-Lomami
+COD,Democratic Republic of the Congo,COD.5_1,Haut-Uele
+COD,Democratic Republic of the Congo,COD.6_1,Ituri
+COD,Democratic Republic of the Congo,COD.9_1,Kasaï
+COD,Democratic Republic of the Congo,COD.7_1,Kasaï-Central
+COD,Democratic Republic of the Congo,COD.8_1,Kasaï-Oriental
+COD,Democratic Republic of the Congo,COD.10_1,Kinshasa
+COD,Democratic Republic of the Congo,COD.11_1,Kongo-Central
+COD,Democratic Republic of the Congo,COD.12_1,Kwango
+COD,Democratic Republic of the Congo,COD.13_1,Kwilu
+COD,Democratic Republic of the Congo,COD.14_1,Lomami
+COD,Democratic Republic of the Congo,COD.15_1,Lualaba
+COD,Democratic Republic of the Congo,COD.16_1,Mai-Ndombe
+COD,Democratic Republic of the Congo,COD.17_1,Maniema
+COD,Democratic Republic of the Congo,COD.18_1,Mongala
+COD,Democratic Republic of the Congo,COD.19_1,Nord-Kivu
+COD,Democratic Republic of the Congo,COD.20_1,Nord-Ubangi
+COD,Democratic Republic of the Congo,COD.21_1,Sankuru
+COD,Democratic Republic of the Congo,COD.22_1,Sud-Kivu
+COD,Democratic Republic of the Congo,COD.23_1,Sud-Ubangi
+COD,Democratic Republic of the Congo,COD.24_1,Tanganyika
+COD,Democratic Republic of the Congo,COD.25_1,Tshopo
+COD,Democratic Republic of the Congo,COD.26_1,Tshuapa
+COG,Republic of the Congo,COG.1_1,Bouenza
+COG,Republic of the Congo,COG.2_1,Brazzaville
+COG,Republic of the Congo,COG.4_1,Cuvette
+COG,Republic of the Congo,COG.3_1,Cuvette-Ouest
+COG,Republic of the Congo,COG.5_1,Kouilou
+COG,Republic of the Congo,COG.6_1,Lékoumou
+COG,Republic of the Congo,COG.7_1,Likouala
+COG,Republic of the Congo,COG.8_1,Niari
+COG,Republic of the Congo,COG.9_1,Plateaux
+COG,Republic of the Congo,COG.10_1,Pointe Noire
+COG,Republic of the Congo,COG.11_1,Pool
+COG,Republic of the Congo,COG.12_1,Sangha
+COL,Colombia,COL.1_2,Amazonas
+COL,Colombia,COL.2_2,Antioquia
+COL,Colombia,COL.3_2,Arauca
+COL,Colombia,COL.4_2,Atlántico
+COL,Colombia,COL.5_2,Bogotá D.C.
+COL,Colombia,COL.6_2,Bolívar
+COL,Colombia,COL.7_2,Boyacá
+COL,Colombia,COL.8_2,Caldas
+COL,Colombia,COL.9_2,Caquetá
+COL,Colombia,COL.10_2,Casanare
+COL,Colombia,COL.11_2,Cauca
+COL,Colombia,COL.12_2,Cesar
+COL,Colombia,COL.13_2,Chocó
+COL,Colombia,COL.14_2,Córdoba
+COL,Colombia,COL.15_2,Cundinamarca
+COL,Colombia,COL.16_2,Guainía
+COL,Colombia,COL.17_2,Guaviare
+COL,Colombia,COL.18_2,Huila
+COL,Colombia,COL.19_2,La Guajira
+COL,Colombia,COL.20_2,Magdalena
+COL,Colombia,COL.21_2,Meta
+COL,Colombia,COL.22_2,Nariño
+COL,Colombia,COL.23_2,Norte de Santander
+COL,Colombia,COL.24_2,Putumayo
+COL,Colombia,COL.25_2,Quindío
+COL,Colombia,COL.26_2,Risaralda
+COL,Colombia,COL.27_1,San Andrés y Providencia
+COL,Colombia,COL.28_2,Santander
+COL,Colombia,COL.29_2,Sucre
+COL,Colombia,COL.30_2,Tolima
+COL,Colombia,COL.31_2,Valle del Cauca
+COL,Colombia,COL.32_2,Vaupés
+COL,Colombia,COL.33_2,Vichada
+COM,Comoros,COM.3_1,Mwali
+COM,Comoros,COM.2_1,Njazídja
+COM,Comoros,COM.1_1,Nzwani
+CPV,Cabo Verde,CPV.1_1,Boa Vista
+CPV,Cabo Verde,CPV.2_1,Brava
+CPV,Cabo Verde,CPV.3_1,Maio
+CPV,Cabo Verde,CPV.4_1,Mosteiros
+CPV,Cabo Verde,CPV.5_1,Paúl
+CPV,Cabo Verde,CPV.6_1,Porto Novo
+CPV,Cabo Verde,CPV.7_1,Praia
+CPV,Cabo Verde,CPV.8_1,Ribeira Brava
+CPV,Cabo Verde,CPV.9_1,Ribeira Grande
+CPV,Cabo Verde,CPV.10_1,Ribeira Grande de Santiago
+CPV,Cabo Verde,CPV.11_1,Sal
+CPV,Cabo Verde,CPV.12_1,Santa Catarina
+CPV,Cabo Verde,CPV.13_1,Santa Catarina do Fogo
+CPV,Cabo Verde,CPV.14_1,Santa Cruz
+CPV,Cabo Verde,CPV.15_1,São Domingos
+CPV,Cabo Verde,CPV.16_1,São Filipe
+CPV,Cabo Verde,CPV.17_1,São Lourenço dos Órgãos
+CPV,Cabo Verde,CPV.18_1,São Miguel
+CPV,Cabo Verde,CPV.19_1,São Salvador do Mundo
+CPV,Cabo Verde,CPV.20_1,São Vicente
+CPV,Cabo Verde,CPV.21_1,Tarrafal
+CPV,Cabo Verde,CPV.22_1,Tarrafal de São Nicolau
+CRI,Costa Rica,CRI.1_1,Alajuela
+CRI,Costa Rica,CRI.2_1,Cartago
+CRI,Costa Rica,CRI.3_1,Guanacaste
+CRI,Costa Rica,CRI.4_1,Heredia
+CRI,Costa Rica,CRI.5_1,Limón
+CRI,Costa Rica,CRI.6_1,Puntarenas
+CRI,Costa Rica,CRI.7_1,San José
+DJI,Djibouti,DJI.1_2,Ali Sabieh
+DJI,Djibouti,DJI.6_1,Arta
+DJI,Djibouti,DJI.2_1,Dikhil
+DJI,Djibouti,DJI.3_1,Djiboutii
+DJI,Djibouti,DJI.4_1,Obock
+DJI,Djibouti,DJI.5_1,Tadjoura
+DMA,Dominica,DMA.1_1,Saint Andrew
+DMA,Dominica,DMA.2_1,Saint David
+DMA,Dominica,DMA.3_1,Saint George
+DMA,Dominica,DMA.4_1,Saint John
+DMA,Dominica,DMA.5_1,Saint Joseph
+DMA,Dominica,DMA.6_1,Saint Luke
+DMA,Dominica,DMA.7_1,Saint Mark
+DMA,Dominica,DMA.8_1,Saint Patrick
+DMA,Dominica,DMA.9_1,Saint Paul
+DMA,Dominica,DMA.10_1,Saint Peter
+DOM,Dominican Republic,DOM.1_1,Azua
+DOM,Dominican Republic,DOM.2_1,Bahoruco
+DOM,Dominican Republic,DOM.3_1,Barahona
+DOM,Dominican Republic,DOM.4_1,Dajabón
+DOM,Dominican Republic,DOM.5_1,Distrito Nacional
+DOM,Dominican Republic,DOM.6_1,Duarte
+DOM,Dominican Republic,DOM.7_1,El Seybo
+DOM,Dominican Republic,DOM.8_1,Espaillat
+DOM,Dominican Republic,DOM.9_1,Hato Mayor
+DOM,Dominican Republic,DOM.10_1,Independencia
+DOM,Dominican Republic,DOM.11_1,La Altagracia
+DOM,Dominican Republic,DOM.12_1,La Estrelleta
+DOM,Dominican Republic,DOM.13_1,La Romana
+DOM,Dominican Republic,DOM.14_1,La Vega
+DOM,Dominican Republic,DOM.15_1,María Trinidad Sánchez
+DOM,Dominican Republic,DOM.16_1,Monseñor Nouel
+DOM,Dominican Republic,DOM.17_1,Monte Cristi
+DOM,Dominican Republic,DOM.18_1,Monte Plata
+DOM,Dominican Republic,DOM.19_1,Pedernales
+DOM,Dominican Republic,DOM.20_1,Peravia
+DOM,Dominican Republic,DOM.21_1,Puerto Plata
+DOM,Dominican Republic,DOM.22_1,Salcedo
+DOM,Dominican Republic,DOM.23_1,Samaná
+DOM,Dominican Republic,DOM.24_1,San Cristóbal
+DOM,Dominican Republic,DOM.25_1,San José de Ocoa
+DOM,Dominican Republic,DOM.26_1,San Juan
+DOM,Dominican Republic,DOM.27_1,San Pedro de Macorís
+DOM,Dominican Republic,DOM.28_1,Sánchez Ramírez
+DOM,Dominican Republic,DOM.30_1,Santiago
+DOM,Dominican Republic,DOM.29_1,Santiago Rodríguez
+DOM,Dominican Republic,DOM.31_1,Santo Domingo
+DOM,Dominican Republic,DOM.32_1,Valverde
+DZA,Algeria,DZA.1_1,Adrar
+DZA,Algeria,DZA.2_1,Aïn Defla
+DZA,Algeria,DZA.3_1,Aïn Témouchent
+DZA,Algeria,DZA.4_1,Alger
+DZA,Algeria,DZA.5_1,Annaba
+DZA,Algeria,DZA.6_1,Batna
+DZA,Algeria,DZA.7_1,Béchar
+DZA,Algeria,DZA.8_1,Béjaïa
+DZA,Algeria,DZA.9_1,Biskra
+DZA,Algeria,DZA.10_1,Blida
+DZA,Algeria,DZA.11_1,Bordj Bou Arréridj
+DZA,Algeria,DZA.12_1,Bouira
+DZA,Algeria,DZA.13_1,Boumerdès
+DZA,Algeria,DZA.14_1,Chlef
+DZA,Algeria,DZA.15_1,Constantine
+DZA,Algeria,DZA.16_1,Djelfa
+DZA,Algeria,DZA.17_1,El Bayadh
+DZA,Algeria,DZA.18_1,El Oued
+DZA,Algeria,DZA.19_1,El Tarf
+DZA,Algeria,DZA.20_1,Ghardaïa
+DZA,Algeria,DZA.21_1,Guelma
+DZA,Algeria,DZA.22_1,Illizi
+DZA,Algeria,DZA.23_1,Jijel
+DZA,Algeria,DZA.24_1,Khenchela
+DZA,Algeria,DZA.25_1,Laghouat
+DZA,Algeria,DZA.26_1,M'Sila
+DZA,Algeria,DZA.27_1,Mascara
+DZA,Algeria,DZA.28_1,Médéa
+DZA,Algeria,DZA.29_1,Mila
+DZA,Algeria,DZA.30_1,Mostaganem
+DZA,Algeria,DZA.31_1,Naâma
+DZA,Algeria,DZA.32_1,Oran
+DZA,Algeria,DZA.33_1,Ouargla
+DZA,Algeria,DZA.34_1,Oum el Bouaghi
+DZA,Algeria,DZA.35_1,Relizane
+DZA,Algeria,DZA.36_1,Saïda
+DZA,Algeria,DZA.37_1,Sétif
+DZA,Algeria,DZA.38_1,Sidi Bel Abbès
+DZA,Algeria,DZA.39_1,Skikda
+DZA,Algeria,DZA.40_1,Souk Ahras
+DZA,Algeria,DZA.41_1,Tamanghasset
+DZA,Algeria,DZA.42_1,Tébessa
+DZA,Algeria,DZA.43_1,Tiaret
+DZA,Algeria,DZA.44_1,Tindouf
+DZA,Algeria,DZA.45_1,Tipaza
+DZA,Algeria,DZA.46_1,Tissemsilt
+DZA,Algeria,DZA.47_1,Tizi Ouzou
+DZA,Algeria,DZA.48_1,Tlemcen
+ECU,Ecuador,ECU.1_1,Azuay
+ECU,Ecuador,ECU.2_1,Bolivar
+ECU,Ecuador,ECU.3_1,Cañar
+ECU,Ecuador,ECU.4_1,Carchi
+ECU,Ecuador,ECU.5_1,Chimborazo
+ECU,Ecuador,ECU.6_1,Cotopaxi
+ECU,Ecuador,ECU.7_1,El Oro
+ECU,Ecuador,ECU.8_1,Esmeraldas
+ECU,Ecuador,ECU.9_1,Galápagos
+ECU,Ecuador,ECU.10_1,Guayas
+ECU,Ecuador,ECU.11_1,Imbabura
+ECU,Ecuador,ECU.12_1,Loja
+ECU,Ecuador,ECU.13_1,Los Rios
+ECU,Ecuador,ECU.14_1,Manabi
+ECU,Ecuador,ECU.15_1,Morona Santiago
+ECU,Ecuador,ECU.16_1,Napo
+ECU,Ecuador,ECU.17_1,Orellana
+ECU,Ecuador,ECU.18_1,Pastaza
+ECU,Ecuador,ECU.19_1,Pichincha
+ECU,Ecuador,ECU.20_1,Santa Elena
+ECU,Ecuador,ECU.21_1,Santo Domingo de los Tsachilas
+ECU,Ecuador,ECU.22_1,Sucumbios
+ECU,Ecuador,ECU.23_1,Tungurahua
+ECU,Ecuador,ECU.24_1,Zamora Chinchipe
+EGY,Egypt,EGY.1_1,Ad Daqahliyah
+EGY,Egypt,EGY.2_1,Al Bahr al Ahmar
+EGY,Egypt,EGY.3_1,Al Buhayrah
+EGY,Egypt,EGY.4_1,Al Fayyum
+EGY,Egypt,EGY.5_1,Al Gharbiyah
+EGY,Egypt,EGY.6_1,Al Iskandariyah
+EGY,Egypt,EGY.7_1,Al Isma`iliyah
+EGY,Egypt,EGY.8_1,Al Jizah
+EGY,Egypt,EGY.9_1,Al Minufiyah
+EGY,Egypt,EGY.10_1,Al Minya
+EGY,Egypt,EGY.11_1,Al Qahirah
+EGY,Egypt,EGY.12_1,Al Qalyubiyah
+EGY,Egypt,EGY.13_1,Al Uqsur
+EGY,Egypt,EGY.14_1,Al Wadi al Jadid
+EGY,Egypt,EGY.15_1,As Suways
+EGY,Egypt,EGY.16_1,Ash Sharqiyah
+EGY,Egypt,EGY.17_1,Aswan
+EGY,Egypt,EGY.18_1,Asyut
+EGY,Egypt,EGY.19_1,Bani Suwayf
+EGY,Egypt,EGY.20_1,Bur Sa`id
+EGY,Egypt,EGY.21_1,Dumyat
+EGY,Egypt,EGY.22_1,Janub Sina'
+EGY,Egypt,EGY.23_1,Kafr ash Shaykh
+EGY,Egypt,EGY.24_1,Matrouh
+EGY,Egypt,EGY.25_1,Qina
+EGY,Egypt,EGY.26_1,Shamal Sina'
+EGY,Egypt,EGY.27_1,Suhaj
+ERI,Eritrea,ERI.6_1,Anseba
+ERI,Eritrea,ERI.5_1,Debub
+ERI,Eritrea,ERI.3_1,Debubawi Keyih Bahri
+ERI,Eritrea,ERI.4_1,Gash Barka
+ERI,Eritrea,ERI.1_1,Maekel
+ERI,Eritrea,ERI.2_1,Semenawi Keyih Bahri
+ETH,Ethiopia,ETH.1_1,Addis Abeba
+ETH,Ethiopia,ETH.2_1,Afar
+ETH,Ethiopia,ETH.3_1,Amhara
+ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz
+ETH,Ethiopia,ETH.5_1,Dire Dawa
+ETH,Ethiopia,ETH.6_1,Gambela Peoples
+ETH,Ethiopia,ETH.7_1,Harari People
+ETH,Ethiopia,ETH.8_1,Oromia
+ETH,Ethiopia,ETH.9_1,Somali
+ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities"
+ETH,Ethiopia,ETH.11_1,Tigray
+FSM,Micronesia,FSM.1_1,Chuuk
+FSM,Micronesia,FSM.2_1,Kosrae
+FSM,Micronesia,FSM.3_1,Pohnpei
+FSM,Micronesia,FSM.4_1,Yap
+GAB,Gabon,GAB.1_1,Estuaire
+GAB,Gabon,GAB.2_1,Haut-Ogooué
+GAB,Gabon,GAB.3_1,Moyen-Ogooué
+GAB,Gabon,GAB.4_1,Ngounié
+GAB,Gabon,GAB.5_1,Nyanga
+GAB,Gabon,GAB.6_1,Ogooué-Ivindo
+GAB,Gabon,GAB.7_1,Ogooué-Lolo
+GAB,Gabon,GAB.8_1,Ogooué-Maritime
+GAB,Gabon,GAB.9_1,Wouleu-Ntem
+GEO,Georgia,GEO.1_1,Abkhazia
+GEO,Georgia,GEO.2_1,Ajaria
+GEO,Georgia,GEO.3_1,Guria
+GEO,Georgia,GEO.4_1,Imereti
+GEO,Georgia,GEO.5_1,Kakheti
+GEO,Georgia,GEO.6_1,Kvemo Kartli
+GEO,Georgia,GEO.7_1,Mtskheta-Mtianeti
+GEO,Georgia,GEO.8_1,Racha-Lechkhumi-Kvemo Svaneti
+GEO,Georgia,GEO.9_1,Samegrelo-Zemo Svaneti
+GEO,Georgia,GEO.10_1,Samtskhe-Javakheti
+GEO,Georgia,GEO.11_1,Shida Kartli
+GEO,Georgia,GEO.12_1,Tbilisi
+GHA,Ghana,GHA1_2,Ahafo
+GHA,Ghana,GHA2_2,Ashanti
+GHA,Ghana,GHA3_2,Bono
+GHA,Ghana,GHA4_2,Bono East
+GHA,Ghana,GHA5_2,Central
+GHA,Ghana,GHA6_2,Eastern
+GHA,Ghana,GHA7_2,Greater Accra
+GHA,Ghana,GHA8_2,North East
+GHA,Ghana,GHA9_2,Northern
+GHA,Ghana,GHA10_2,Oti
+GHA,Ghana,GHA11_2,Savannah
+GHA,Ghana,GHA12_2,Upper East
+GHA,Ghana,GHA13_2,Upper West
+GHA,Ghana,GHA14_2,Volta
+GHA,Ghana,GHA15_2,Western
+GHA,Ghana,GHA16_2,Western North
+GIN,Guinea,GIN.1_1,Boké
+GIN,Guinea,GIN.2_1,Conakry
+GIN,Guinea,GIN.3_1,Faranah
+GIN,Guinea,GIN.4_1,Kankan
+GIN,Guinea,GIN.5_1,Kindia
+GIN,Guinea,GIN.6_1,Labé
+GIN,Guinea,GIN.7_1,Mamou
+GIN,Guinea,GIN.8_1,Nzérékoré
+GMB,Gambia,GMB.1_1,Banjul
+GMB,Gambia,GMB.2_1,Lower River
+GMB,Gambia,GMB.3_1,Maccarthy Island
+GMB,Gambia,GMB.4_1,North Bank
+GMB,Gambia,GMB.5_1,Upper River
+GMB,Gambia,GMB.6_1,Western
+GNB,Guinea-Bissau,GNB.1_1,Bafatá
+GNB,Guinea-Bissau,GNB.2_1,Biombo
+GNB,Guinea-Bissau,GNB.3_1,Bissau
+GNB,Guinea-Bissau,GNB.4_1,Bolama
+GNB,Guinea-Bissau,GNB.5_1,Cacheu
+GNB,Guinea-Bissau,GNB.6_1,Gabú
+GNB,Guinea-Bissau,GNB.7_1,Oio
+GNB,Guinea-Bissau,GNB.8_1,Quinara
+GNB,Guinea-Bissau,GNB.9_1,Tombali
+GNQ,Equatorial Guinea,GNQ.1_1,Annobón
+GNQ,Equatorial Guinea,GNQ.2_1,Bioko Norte
+GNQ,Equatorial Guinea,GNQ.3_1,Bioko Sur
+GNQ,Equatorial Guinea,GNQ.4_1,Centro Sur
+GNQ,Equatorial Guinea,GNQ.5_1,Kié-Ntem
+GNQ,Equatorial Guinea,GNQ.6_1,Litoral
+GNQ,Equatorial Guinea,GNQ.7_1,Wele-Nzas
+GRD,Grenada,GRD.1_1,Carriacou
+GRD,Grenada,GRD.2_1,Saint Andrew
+GRD,Grenada,GRD.3_1,Saint David
+GRD,Grenada,GRD.4_1,Saint George
+GRD,Grenada,GRD.5_1,Saint John
+GRD,Grenada,GRD.6_1,Saint Mark
+GRD,Grenada,GRD.7_1,Saint Patrick
+GTM,Guatemala,GTM.1_1,Alta Verapaz
+GTM,Guatemala,GTM.2_1,Baja Verapaz
+GTM,Guatemala,GTM.3_1,Chimaltenango
+GTM,Guatemala,GTM.4_1,Chiquimula
+GTM,Guatemala,GTM.5_1,El Progreso
+GTM,Guatemala,GTM.6_1,Escuintla
+GTM,Guatemala,GTM.7_1,Guatemala
+GTM,Guatemala,GTM.8_1,Huehuetenango
+GTM,Guatemala,GTM.9_1,Izabal
+GTM,Guatemala,GTM.10_1,Jalapa
+GTM,Guatemala,GTM.11_1,Jutiapa
+GTM,Guatemala,GTM.12_1,Petén
+GTM,Guatemala,GTM.13_1,Quezaltenango
+GTM,Guatemala,GTM.14_1,Quiché
+GTM,Guatemala,GTM.15_1,Retalhuleu
+GTM,Guatemala,GTM.16_1,Sacatepéquez
+GTM,Guatemala,GTM.17_1,San Marcos
+GTM,Guatemala,GTM.18_1,Santa Rosa
+GTM,Guatemala,GTM.19_1,Sololá
+GTM,Guatemala,GTM.20_1,Suchitepéquez
+GTM,Guatemala,GTM.21_1,Totonicapán
+GTM,Guatemala,GTM.22_1,Zacapa
+GUY,Guyana,GUY.1_1,Barima-Waini
+GUY,Guyana,GUY.2_1,Cuyuni-Mazaruni
+GUY,Guyana,GUY.3_1,Demerara-Mahaica
+GUY,Guyana,GUY.4_1,East Berbice-Corentyne
+GUY,Guyana,GUY.5_1,Essequibo Islands-West Demerara
+GUY,Guyana,GUY.6_1,Mahaica-Berbice
+GUY,Guyana,GUY.7_1,Pomeroon-Supenaam
+GUY,Guyana,GUY.8_1,Potaro-Siparuni
+GUY,Guyana,GUY.9_1,Upper Demerara-Berbice
+GUY,Guyana,GUY.10_1,Upper Takutu-Upper Essequibo
+HND,Honduras,HND.1_1,Atlántida
+HND,Honduras,HND.2_1,Choluteca
+HND,Honduras,HND.3_1,Colón
+HND,Honduras,HND.4_1,Comayagua
+HND,Honduras,HND.5_1,Copán
+HND,Honduras,HND.6_1,Cortés
+HND,Honduras,HND.7_1,El Paraíso
+HND,Honduras,HND.8_1,Francisco Morazán
+HND,Honduras,HND.9_1,Gracias a Dios
+HND,Honduras,HND.10_1,Intibucá
+HND,Honduras,HND.11_1,Islas de la Bahía
+HND,Honduras,HND.12_1,La Paz
+HND,Honduras,HND.13_1,Lempira
+HND,Honduras,HND.14_1,Ocotepeque
+HND,Honduras,HND.15_1,Olancho
+HND,Honduras,HND.16_1,Santa Bárbara
+HND,Honduras,HND.17_1,Valle
+HND,Honduras,HND.18_1,Yoro
+HTI,Haiti,HTI.1_1,Centre
+HTI,Haiti,HTI.2_1,Grand'Anse
+HTI,Haiti,HTI.3_1,L'Artibonite
+HTI,Haiti,HTI.4_1,Nippes
+HTI,Haiti,HTI.7_1,Nord
+HTI,Haiti,HTI.5_1,Nord-Est
+HTI,Haiti,HTI.6_1,Nord-Ouest
+HTI,Haiti,HTI.8_1,Ouest
+HTI,Haiti,HTI.10_1,Sud
+HTI,Haiti,HTI.9_1,Sud-Est
+IDN,Indonesia,IDN.1_1,Aceh
+IDN,Indonesia,IDN.2_1,Bali
+IDN,Indonesia,IDN.3_1,Bangka Belitung
+IDN,Indonesia,IDN.4_1,Banten
+IDN,Indonesia,IDN.5_1,Bengkulu
+IDN,Indonesia,IDN.6_1,Gorontalo
+IDN,Indonesia,IDN.7_1,Jakarta Raya
+IDN,Indonesia,IDN.8_1,Jambi
+IDN,Indonesia,IDN.9_1,Jawa Barat
+IDN,Indonesia,IDN.10_1,Jawa Tengah
+IDN,Indonesia,IDN.11_1,Jawa Timur
+IDN,Indonesia,IDN.12_1,Kalimantan Barat
+IDN,Indonesia,IDN.13_1,Kalimantan Selatan
+IDN,Indonesia,IDN.14_1,Kalimantan Tengah
+IDN,Indonesia,IDN.34_1,Kalimantan Timur
+IDN,Indonesia,IDN.35_1,Kalimantan Utara
+IDN,Indonesia,IDN.16_1,Kepulauan Riau
+IDN,Indonesia,IDN.17_1,Lampung
+IDN,Indonesia,IDN.19_1,Maluku
+IDN,Indonesia,IDN.18_1,Maluku Utara
+IDN,Indonesia,IDN.20_1,Nusa Tenggara Barat
+IDN,Indonesia,IDN.21_1,Nusa Tenggara Timur
+IDN,Indonesia,IDN.23_1,Papua
+IDN,Indonesia,IDN.22_1,Papua Barat
+IDN,Indonesia,IDN.24_1,Riau
+IDN,Indonesia,IDN.25_1,Sulawesi Barat
+IDN,Indonesia,IDN.26_1,Sulawesi Selatan
+IDN,Indonesia,IDN.27_1,Sulawesi Tengah
+IDN,Indonesia,IDN.28_1,Sulawesi Tenggara
+IDN,Indonesia,IDN.29_1,Sulawesi Utara
+IDN,Indonesia,IDN.30_1,Sumatera Barat
+IDN,Indonesia,IDN.31_1,Sumatera Selatan
+IDN,Indonesia,IDN.32_1,Sumatera Utara
+IDN,Indonesia,IDN.33_1,Yogyakarta
+IND,India,IND.1_1,Andaman and Nicobar
+IND,India,IND.2_1,Andhra Pradesh
+IND,India,IND.3_1,Arunachal Pradesh
+IND,India,IND.4_1,Assam
+IND,India,IND.5_1,Bihar
+IND,India,IND.6_1,Chandigarh
+IND,India,IND.7_1,Chhattisgarh
+IND,India,IND.8_1,Dadra and Nagar Haveli
+IND,India,IND.9_1,Daman and Diu
+IND,India,IND.10_1,Goa
+IND,India,IND.11_1,Gujarat
+IND,India,IND.12_1,Haryana
+IND,India,IND.13_1,Himachal Pradesh
+IND,India,IND.15_1,Jharkhand
+IND,India,IND.16_1,Karnataka
+IND,India,IND.17_1,Kerala
+IND,India,IND.18_1,Lakshadweep
+IND,India,IND.19_1,Madhya Pradesh
+IND,India,IND.20_1,Maharashtra
+IND,India,IND.21_1,Manipur
+IND,India,IND.22_1,Meghalaya
+IND,India,IND.23_1,Mizoram
+IND,India,IND.24_1,Nagaland
+IND,India,IND.25_1,NCT of Delhi
+IND,India,IND.26_1,Odisha
+IND,India,IND.27_1,Puducherry
+IND,India,IND.28_1,Punjab
+IND,India,IND.29_1,Rajasthan
+IND,India,IND.30_1,Sikkim
+IND,India,IND.31_1,Tamil Nadu
+IND,India,IND.32_1,Telangana
+IND,India,IND.33_1,Tripura
+IND,India,IND.34_1,Uttar Pradesh
+IND,India,IND.35_1,Uttarakhand
+IND,India,IND.36_1,West Bengal
+JAM,Jamaica,JAM.1_1,Clarendon
+JAM,Jamaica,JAM.2_1,Hanover
+JAM,Jamaica,JAM.3_1,Kingston
+JAM,Jamaica,JAM.4_1,Manchester
+JAM,Jamaica,JAM.5_1,Portland
+JAM,Jamaica,JAM.6_1,Saint Andrew
+JAM,Jamaica,JAM.7_1,Saint Ann
+JAM,Jamaica,JAM.8_1,Saint Catherine
+JAM,Jamaica,JAM.9_1,Saint Elizabeth
+JAM,Jamaica,JAM.10_1,Saint James
+JAM,Jamaica,JAM.11_1,Saint Mary
+JAM,Jamaica,JAM.12_1,Saint Thomas
+JAM,Jamaica,JAM.13_1,Trelawny
+JAM,Jamaica,JAM.14_1,Westmoreland
+KAZ,Kazakhstan,KAZ.1_1,Almaty
+KAZ,Kazakhstan,KAZ.2_1,Aqmola
+KAZ,Kazakhstan,KAZ.3_1,Aqtöbe
+KAZ,Kazakhstan,KAZ.4_1,Atyrau
+KAZ,Kazakhstan,KAZ.5_1,East Kazakhstan
+KAZ,Kazakhstan,KAZ.6_1,Mangghystau
+KAZ,Kazakhstan,KAZ.7_1,North Kazakhstan
+KAZ,Kazakhstan,KAZ.8_1,Pavlodar
+KAZ,Kazakhstan,KAZ.9_1,Qaraghandy
+KAZ,Kazakhstan,KAZ.10_1,Qostanay
+KAZ,Kazakhstan,KAZ.11_1,Qyzylorda
+KAZ,Kazakhstan,KAZ.12_1,South Kazakhstan
+KAZ,Kazakhstan,KAZ.13_1,West Kazakhstan
+KAZ,Kazakhstan,KAZ.14_1,Zhambyl
+KEN,Kenya,KEN.1_1,Baringo
+KEN,Kenya,KEN.2_1,Bomet
+KEN,Kenya,KEN.3_1,Bungoma
+KEN,Kenya,KEN.4_1,Busia
+KEN,Kenya,KEN.5_1,Elgeyo-Marakwet
+KEN,Kenya,KEN.6_1,Embu
+KEN,Kenya,KEN.7_1,Garissa
+KEN,Kenya,KEN.8_1,Homa Bay
+KEN,Kenya,KEN.9_1,Isiolo
+KEN,Kenya,KEN.10_1,Kajiado
+KEN,Kenya,KEN.11_1,Kakamega
+KEN,Kenya,KEN.12_1,Kericho
+KEN,Kenya,KEN.13_1,Kiambu
+KEN,Kenya,KEN.14_1,Kilifi
+KEN,Kenya,KEN.15_1,Kirinyaga
+KEN,Kenya,KEN.16_1,Kisii
+KEN,Kenya,KEN.17_1,Kisumu
+KEN,Kenya,KEN.18_1,Kitui
+KEN,Kenya,KEN.19_1,Kwale
+KEN,Kenya,KEN.20_1,Laikipia
+KEN,Kenya,KEN.21_1,Lamu
+KEN,Kenya,KEN.22_1,Machakos
+KEN,Kenya,KEN.23_1,Makueni
+KEN,Kenya,KEN.24_1,Mandera
+KEN,Kenya,KEN.25_1,Marsabit
+KEN,Kenya,KEN.26_1,Meru
+KEN,Kenya,KEN.27_1,Migori
+KEN,Kenya,KEN.28_1,Mombasa
+KEN,Kenya,KEN.29_1,Murang'a
+KEN,Kenya,KEN.30_1,Nairobi
+KEN,Kenya,KEN.31_1,Nakuru
+KEN,Kenya,KEN.32_1,Nandi
+KEN,Kenya,KEN.33_1,Narok
+KEN,Kenya,KEN.34_1,Nyamira
+KEN,Kenya,KEN.35_1,Nyandarua
+KEN,Kenya,KEN.36_1,Nyeri
+KEN,Kenya,KEN.37_1,Samburu
+KEN,Kenya,KEN.38_1,Siaya
+KEN,Kenya,KEN.39_1,Taita Taveta
+KEN,Kenya,KEN.40_1,Tana River
+KEN,Kenya,KEN.41_1,Tharaka-Nithi
+KEN,Kenya,KEN.42_1,Trans Nzoia
+KEN,Kenya,KEN.43_1,Turkana
+KEN,Kenya,KEN.44_1,Uasin Gishu
+KEN,Kenya,KEN.45_1,Vihiga
+KEN,Kenya,KEN.46_1,Wajir
+KEN,Kenya,KEN.47_1,West Pokot
+KGZ,Kyrgyzstan,KGZ.1_1,Batken
+KGZ,Kyrgyzstan,KGZ.2_1,Biškek
+KGZ,Kyrgyzstan,KGZ.3_1,Chüy
+KGZ,Kyrgyzstan,KGZ.4_1,Jalal-Abad
+KGZ,Kyrgyzstan,KGZ.5_1,Naryn
+KGZ,Kyrgyzstan,KGZ.7_1,Osh
+KGZ,Kyrgyzstan,KGZ.6_1,Osh (city)
+KGZ,Kyrgyzstan,KGZ.8_1,Talas
+KGZ,Kyrgyzstan,KGZ.9_1,Ysyk-Köl
+KHM,Cambodia,KHM.1_1,Bântéay Méanchey
+KHM,Cambodia,KHM.2_1,Batdâmbâng
+KHM,Cambodia,KHM.3_1,Kâmpóng Cham
+KHM,Cambodia,KHM.4_1,Kâmpóng Chhnang
+KHM,Cambodia,KHM.5_1,Kâmpóng Spœ
+KHM,Cambodia,KHM.6_1,Kâmpóng Thum
+KHM,Cambodia,KHM.7_1,Kâmpôt
+KHM,Cambodia,KHM.8_1,Kândal
+KHM,Cambodia,KHM.9_1,Kaôh Kong
+KHM,Cambodia,KHM.10_1,Kep
+KHM,Cambodia,KHM.11_1,Krâchéh
+KHM,Cambodia,KHM.12_1,Krong Pailin
+KHM,Cambodia,KHM.13_1,Krong Preah Sihanouk
+KHM,Cambodia,KHM.14_1,Môndól Kiri
+KHM,Cambodia,KHM.15_1,Otdar Mean Chey
+KHM,Cambodia,KHM.16_1,Phnom Penh
+KHM,Cambodia,KHM.17_1,Pouthisat
+KHM,Cambodia,KHM.18_1,Preah Vihéar
+KHM,Cambodia,KHM.19_1,Prey Vêng
+KHM,Cambodia,KHM.20_1,Rôtânôkiri
+KHM,Cambodia,KHM.21_1,Siemréab
+KHM,Cambodia,KHM.22_1,Stœng Trêng
+KHM,Cambodia,KHM.23_1,Svay Rieng
+KHM,Cambodia,KHM.24_1,Takêv
+KHM,Cambodia,KHM.25_1,Tbong Khmum
+LAO,Laos,LAO.1_1,Attapu
+LAO,Laos,LAO.2_1,Bokeo
+LAO,Laos,LAO.3_1,Bolikhamxai
+LAO,Laos,LAO.4_1,Champasak
+LAO,Laos,LAO.5_1,Houaphan
+LAO,Laos,LAO.6_1,Khammouan
+LAO,Laos,LAO.7_1,Louang Namtha
+LAO,Laos,LAO.8_1,Louangphrabang
+LAO,Laos,LAO.9_1,Oudômxai
+LAO,Laos,LAO.10_1,Phôngsali
+LAO,Laos,LAO.11_1,Saravan
+LAO,Laos,LAO.12_1,Savannakhét
+LAO,Laos,LAO.14_1,Vientiane
+LAO,Laos,LAO.13_1,Vientiane [prefecture]
+LAO,Laos,LAO.15_1,Xaignabouri
+LAO,Laos,LAO.16_1,Xaisômboun
+LAO,Laos,LAO.17_1,Xékong
+LAO,Laos,LAO.18_1,Xiangkhoang
+LBR,Liberia,LBR.1_1,Bomi
+LBR,Liberia,LBR.2_1,Bong
+LBR,Liberia,LBR.3_1,Gbapolu
+LBR,Liberia,LBR.5_1,Grand Bassa
+LBR,Liberia,LBR.4_1,Grand Cape Mount
+LBR,Liberia,LBR.6_1,Grand Gedeh
+LBR,Liberia,LBR.7_1,Grand Kru
+LBR,Liberia,LBR.8_1,Lofa
+LBR,Liberia,LBR.9_1,Margibi
+LBR,Liberia,LBR.10_1,Maryland
+LBR,Liberia,LBR.11_1,Montserrado
+LBR,Liberia,LBR.12_1,Nimba
+LBR,Liberia,LBR.14_1,River Gee
+LBR,Liberia,LBR.13_1,Rivercess
+LBR,Liberia,LBR.15_1,Sinoe
+LBY,Libya,LBY.1_1,Al Butnan
+LBY,Libya,LBY.2_1,Al Jabal al Akhdar
+LBY,Libya,LBY.3_1,Al Jabal al Gharbi
+LBY,Libya,LBY.4_1,Al Jifarah
+LBY,Libya,LBY.5_1,Al Jufrah
+LBY,Libya,LBY.6_1,Al Kufrah
+LBY,Libya,LBY.7_1,Al Marj
+LBY,Libya,LBY.8_1,Al Marqab
+LBY,Libya,LBY.9_1,Al Wahat
+LBY,Libya,LBY.10_1,An Nuqat al Khams
+LBY,Libya,LBY.11_1,Az Zawiyah
+LBY,Libya,LBY.12_1,Benghazi
+LBY,Libya,LBY.13_1,Darnah
+LBY,Libya,LBY.14_1,Ghat
+LBY,Libya,LBY.15_1,Misratah
+LBY,Libya,LBY.16_1,Murzuq
+LBY,Libya,LBY.17_1,Nalut
+LBY,Libya,LBY.18_1,Sabha
+LBY,Libya,LBY.19_1,Surt
+LBY,Libya,LBY.20_1,Tripoli
+LBY,Libya,LBY.21_1,Wadi al Hayat
+LBY,Libya,LBY.22_1,Wadi ash Shati'
+LCA,Saint Lucia,LCA.1_1,Anse-la-Raye
+LCA,Saint Lucia,LCA.2_1,Canaries
+LCA,Saint Lucia,LCA.3_1,Castries
+LCA,Saint Lucia,LCA.4_1,Choiseul
+LCA,Saint Lucia,LCA.5_1,Dennery
+LCA,Saint Lucia,LCA.6_1,Gros Islet
+LCA,Saint Lucia,LCA.7_1,Laborie
+LCA,Saint Lucia,LCA.8_1,Micoud
+LCA,Saint Lucia,LCA.9_1,Soufrière
+LCA,Saint Lucia,LCA.10_1,Vieux Fort
+LKA,Sri Lanka,LKA.1_1,Ampara
+LKA,Sri Lanka,LKA.2_1,Anuradhapura
+LKA,Sri Lanka,LKA.3_1,Badulla
+LKA,Sri Lanka,LKA.4_1,Batticaloa
+LKA,Sri Lanka,LKA.5_1,Colombo
+LKA,Sri Lanka,LKA.6_1,Galle
+LKA,Sri Lanka,LKA.7_1,Gampaha
+LKA,Sri Lanka,LKA.8_1,Hambantota
+LKA,Sri Lanka,LKA.9_1,Jaffna
+LKA,Sri Lanka,LKA.10_1,Kalutara
+LKA,Sri Lanka,LKA.11_1,Kandy
+LKA,Sri Lanka,LKA.12_1,Kegalle
+LKA,Sri Lanka,LKA.13_1,Kilinochchi
+LKA,Sri Lanka,LKA.14_1,Kurunegala
+LKA,Sri Lanka,LKA.15_1,Mannar
+LKA,Sri Lanka,LKA.16_1,Matale
+LKA,Sri Lanka,LKA.17_1,Matara
+LKA,Sri Lanka,LKA.18_1,Moneragala
+LKA,Sri Lanka,LKA.19_1,Mullaitivu
+LKA,Sri Lanka,LKA.20_1,Nuwara Eliya
+LKA,Sri Lanka,LKA.21_1,Polonnaruwa
+LKA,Sri Lanka,LKA.22_1,Puttalam
+LKA,Sri Lanka,LKA.23_1,Ratnapura
+LKA,Sri Lanka,LKA.24_1,Trincomalee
+LKA,Sri Lanka,LKA.25_1,Vavuniya
+LSO,Lesotho,LSO.1_1,Berea
+LSO,Lesotho,LSO.2_1,Butha-Buthe
+LSO,Lesotho,LSO.3_1,Leribe
+LSO,Lesotho,LSO.4_1,Mafeteng
+LSO,Lesotho,LSO.5_1,Maseru
+LSO,Lesotho,LSO.6_1,Mohale's Hoek
+LSO,Lesotho,LSO.7_1,Mokhotlong
+LSO,Lesotho,LSO.8_1,Qacha's Nek
+LSO,Lesotho,LSO.9_1,Quthing
+LSO,Lesotho,LSO.10_1,Thaba-Tseka
+MAR,Morocco,MAR.1_1,Chaouia - Ouardigha
+MAR,Morocco,MAR.2_1,Doukkala - Abda
+MAR,Morocco,MAR.3_1,Fès - Boulemane
+MAR,Morocco,MAR.4_1,Gharb - Chrarda - Béni Hssen
+MAR,Morocco,MAR.5_1,Grand Casablanca
+MAR,Morocco,MAR.6_1,Guelmim - Es-Semara
+MAR,Morocco,MAR.7_1,Laâyoune - Boujdour - Sakia El H
+MAR,Morocco,MAR.8_1,Marrakech - Tensift - Al Haouz
+MAR,Morocco,MAR.9_1,Meknès - Tafilalet
+MAR,Morocco,MAR.10_1,Oriental
+MAR,Morocco,MAR.11_1,Rabat - Salé - Zemmour - Zaer
+MAR,Morocco,MAR.12_1,Souss - Massa - Draâ
+MAR,Morocco,MAR.13_1,Tadla - Azilal
+MAR,Morocco,MAR.14_1,Tanger - Tétouan
+MAR,Morocco,MAR.15_1,Taza - Al Hoceima - Taounate
+MDA,Moldova,MDA.1_1,Anenii Noi
+MDA,Moldova,MDA.2_1,Bălţi
+MDA,Moldova,MDA.3_1,Basarabeasca
+MDA,Moldova,MDA.4_1,Bender
+MDA,Moldova,MDA.5_1,Briceni
+MDA,Moldova,MDA.6_1,Cahul
+MDA,Moldova,MDA.7_1,Calarasi
+MDA,Moldova,MDA.8_1,Cantemir
+MDA,Moldova,MDA.9_1,Causeni
+MDA,Moldova,MDA.10_1,Chişinău
+MDA,Moldova,MDA.11_1,Cimişlia
+MDA,Moldova,MDA.12_1,Criuleni
+MDA,Moldova,MDA.13_1,Donduseni
+MDA,Moldova,MDA.14_1,Drochia
+MDA,Moldova,MDA.15_1,Dubăsari
+MDA,Moldova,MDA.16_1,Edineţ
+MDA,Moldova,MDA.17_1,Făleşti
+MDA,Moldova,MDA.18_1,Floreşti
+MDA,Moldova,MDA.19_1,Găgăuzia
+MDA,Moldova,MDA.20_1,Glodeni
+MDA,Moldova,MDA.21_1,Hîncesti
+MDA,Moldova,MDA.22_1,Ialoveni
+MDA,Moldova,MDA.23_1,Leova
+MDA,Moldova,MDA.24_1,Nisporeni
+MDA,Moldova,MDA.25_1,Ocniţa
+MDA,Moldova,MDA.26_1,Orhei
+MDA,Moldova,MDA.27_1,Rezina
+MDA,Moldova,MDA.28_1,Rîşcani
+MDA,Moldova,MDA.29_1,Sîngerei
+MDA,Moldova,MDA.30_1,Şoldăneşti
+MDA,Moldova,MDA.31_1,Soroca
+MDA,Moldova,MDA.32_1,Ştefan Voda
+MDA,Moldova,MDA.33_1,Străşeni
+MDA,Moldova,MDA.34_1,Taraclia
+MDA,Moldova,MDA.35_1,Teleneşti
+MDA,Moldova,MDA.36_1,Transnistria
+MDA,Moldova,MDA.37_1,Ungheni
+MDG,Madagascar,MDG.1_1,Antananarivo
+MDG,Madagascar,MDG.2_1,Antsiranana
+MDG,Madagascar,MDG.3_1,Fianarantsoa
+MDG,Madagascar,MDG.4_1,Mahajanga
+MDG,Madagascar,MDG.5_1,Toamasina
+MDG,Madagascar,MDG.6_1,Toliary
+MEX,México,MEX.1_1,Aguascalientes
+MEX,México,MEX.3_1,Baja California
+MEX,México,MEX.2_1,Baja California Sur
+MEX,México,MEX.4_1,Campeche
+MEX,México,MEX.5_1,Chiapas
+MEX,México,MEX.6_1,Chihuahua
+MEX,México,MEX.7_1,Coahuila
+MEX,México,MEX.8_1,Colima
+MEX,México,MEX.9_1,Distrito Federal
+MEX,México,MEX.10_1,Durango
+MEX,México,MEX.11_1,Guanajuato
+MEX,México,MEX.12_1,Guerrero
+MEX,México,MEX.13_1,Hidalgo
+MEX,México,MEX.14_1,Jalisco
+MEX,México,MEX.15_1,México
+MEX,México,MEX.16_1,Michoacán
+MEX,México,MEX.17_1,Morelos
+MEX,México,MEX.18_1,Nayarit
+MEX,México,MEX.19_1,Nuevo León
+MEX,México,MEX.20_1,Oaxaca
+MEX,México,MEX.21_1,Puebla
+MEX,México,MEX.22_1,Querétaro
+MEX,México,MEX.23_1,Quintana Roo
+MEX,México,MEX.24_1,San Luis Potosí
+MEX,México,MEX.25_1,Sinaloa
+MEX,México,MEX.26_1,Sonora
+MEX,México,MEX.27_1,Tabasco
+MEX,México,MEX.28_1,Tamaulipas
+MEX,México,MEX.29_1,Tlaxcala
+MEX,México,MEX.30_1,Veracruz
+MEX,México,MEX.31_1,Yucatán
+MEX,México,MEX.32_1,Zacatecas
+MKD,North Macedonia,MKD.1_1,Aerodrom
+MKD,North Macedonia,MKD.2_1,Aracinovo
+MKD,North Macedonia,MKD.3_1,Berovo
+MKD,North Macedonia,MKD.4_1,Bitola
+MKD,North Macedonia,MKD.5_1,Bogdanci
+MKD,North Macedonia,MKD.6_1,Bogovinje
+MKD,North Macedonia,MKD.7_1,Bosilovo
+MKD,North Macedonia,MKD.8_1,Brvenica
+MKD,North Macedonia,MKD.9_1,Butel
+MKD,North Macedonia,MKD.10_1,Čair
+MKD,North Macedonia,MKD.11_1,Čaška
+MKD,North Macedonia,MKD.12_1,Centar
+MKD,North Macedonia,MKD.13_1,Centar župa
+MKD,North Macedonia,MKD.14_1,Češinovo-Obleševo
+MKD,North Macedonia,MKD.15_1,Čučer Sandevo
+MKD,North Macedonia,MKD.16_1,Debar
+MKD,North Macedonia,MKD.17_1,Debarca
+MKD,North Macedonia,MKD.18_1,Delčevo
+MKD,North Macedonia,MKD.19_1,Demir Hisar
+MKD,North Macedonia,MKD.20_1,Demir Kapija
+MKD,North Macedonia,MKD.21_1,Dolneni
+MKD,North Macedonia,MKD.23_1,Gazi Baba
+MKD,North Macedonia,MKD.24_1,Gevgelija
+MKD,North Macedonia,MKD.25_1,Gjorče Petrov
+MKD,North Macedonia,MKD.26_1,Gostivar
+MKD,North Macedonia,MKD.27_1,Gradsko
+MKD,North Macedonia,MKD.28_1,Ilinden
+MKD,North Macedonia,MKD.29_1,Jegunovtse
+MKD,North Macedonia,MKD.30_1,Karbinci
+MKD,North Macedonia,MKD.31_1,Karpoš
+MKD,North Macedonia,MKD.32_1,Kavadartsi
+MKD,North Macedonia,MKD.33_1,Kičevo
+MKD,North Macedonia,MKD.34_1,Kisela Voda
+MKD,North Macedonia,MKD.35_1,Kočani
+MKD,North Macedonia,MKD.36_1,Konče
+MKD,North Macedonia,MKD.37_1,Kratovo
+MKD,North Macedonia,MKD.38_1,Kriva Palanka
+MKD,North Macedonia,MKD.39_1,Krivogaštani
+MKD,North Macedonia,MKD.40_1,Kruševo
+MKD,North Macedonia,MKD.41_1,Kumanovo
+MKD,North Macedonia,MKD.42_1,Lake Ohrid
+MKD,North Macedonia,MKD.43_1,Lipkovo
+MKD,North Macedonia,MKD.44_1,Lozovo
+MKD,North Macedonia,MKD.45_1,Makedonska Kamenica
+MKD,North Macedonia,MKD.46_1,Makedonski Brod
+MKD,North Macedonia,MKD.47_1,Mavrovo and Rostuša
+MKD,North Macedonia,MKD.48_1,Mogila
+MKD,North Macedonia,MKD.49_1,Negotino
+MKD,North Macedonia,MKD.50_1,Novatsi
+MKD,North Macedonia,MKD.51_1,Novo Selo
+MKD,North Macedonia,MKD.52_1,Ohrid
+MKD,North Macedonia,MKD.54_1,Pehčevo
+MKD,North Macedonia,MKD.55_1,Petrovec
+MKD,North Macedonia,MKD.56_1,Plasnica
+MKD,North Macedonia,MKD.57_1,Prilep
+MKD,North Macedonia,MKD.58_1,Probištip
+MKD,North Macedonia,MKD.59_1,Radoviš
+MKD,North Macedonia,MKD.60_1,Rankovce
+MKD,North Macedonia,MKD.61_1,Resen
+MKD,North Macedonia,MKD.62_1,Rosoman
+MKD,North Macedonia,MKD.63_1,Saraj
+MKD,North Macedonia,MKD.64_1,Sopište
+MKD,North Macedonia,MKD.65_1,Star Dojran
+MKD,North Macedonia,MKD.66_1,Staro Nagoričane
+MKD,North Macedonia,MKD.67_1,Štip
+MKD,North Macedonia,MKD.68_1,Struga
+MKD,North Macedonia,MKD.69_1,Strumitsa
+MKD,North Macedonia,MKD.70_1,Studeničani
+MKD,North Macedonia,MKD.71_1,Šuto Orizari
+MKD,North Macedonia,MKD.72_1,Sveti Nikole
+MKD,North Macedonia,MKD.73_1,Tearce
+MKD,North Macedonia,MKD.74_1,Tetovo
+MKD,North Macedonia,MKD.75_1,Valandovo
+MKD,North Macedonia,MKD.76_1,Vasilevo
+MKD,North Macedonia,MKD.77_1,Veles
+MKD,North Macedonia,MKD.78_1,Vevčani
+MKD,North Macedonia,MKD.79_1,Vinitsa
+MKD,North Macedonia,MKD.81_1,Vrapčište
+MKD,North Macedonia,MKD.83_1,Zelenikovo
+MKD,North Macedonia,MKD.84_1,Želino
+MKD,North Macedonia,MKD.85_1,Zrnovci
+MLI,Mali,MLI.1_1,Bamako
+MLI,Mali,MLI.2_1,Gao
+MLI,Mali,MLI.3_1,Kayes
+MLI,Mali,MLI.4_1,Kidal
+MLI,Mali,MLI.5_1,Koulikoro
+MLI,Mali,MLI.6_1,Mopti
+MLI,Mali,MLI.7_1,Ségou
+MLI,Mali,MLI.8_1,Sikasso
+MLI,Mali,MLI.9_1,Timbuktu
+MMR,Myanmar,MMR.1_1,Ayeyarwady
+MMR,Myanmar,MMR.2_1,Bago
+MMR,Myanmar,MMR.3_1,Chin
+MMR,Myanmar,MMR.4_1,Kachin
+MMR,Myanmar,MMR.5_1,Kayah
+MMR,Myanmar,MMR.6_1,Kayin
+MMR,Myanmar,MMR.7_1,Magway
+MMR,Myanmar,MMR.8_1,Mandalay
+MMR,Myanmar,MMR.9_1,Mon
+MMR,Myanmar,MMR.10_1,Naypyitaw
+MMR,Myanmar,MMR.11_1,Rakhine
+MMR,Myanmar,MMR.12_1,Sagaing
+MMR,Myanmar,MMR.13_1,Shan
+MMR,Myanmar,MMR.14_1,Tanintharyi
+MMR,Myanmar,MMR.15_1,Yangon
+MNE,Montenegro,MNE.1_1,Andrijevica
+MNE,Montenegro,MNE.2_1,Bar
+MNE,Montenegro,MNE.3_1,Berane
+MNE,Montenegro,MNE.4_1,Bijelo Polje
+MNE,Montenegro,MNE.5_1,Budva
+MNE,Montenegro,MNE.6_1,Cetinje
+MNE,Montenegro,MNE.7_1,Danilovgrad
+MNE,Montenegro,MNE.8_1,Herceg Novi
+MNE,Montenegro,MNE.9_1,Kolašin
+MNE,Montenegro,MNE.10_1,Kotor
+MNE,Montenegro,MNE.11_1,Mojkovac
+MNE,Montenegro,MNE.12_1,Nikšic
+MNE,Montenegro,MNE.13_1,Plav
+MNE,Montenegro,MNE.14_1,Pljevlja
+MNE,Montenegro,MNE.15_1,Plužine
+MNE,Montenegro,MNE.16_1,Podgorica
+MNE,Montenegro,MNE.17_1,Rožaje
+MNE,Montenegro,MNE.18_1,Šavnik
+MNE,Montenegro,MNE.19_1,Tivat
+MNE,Montenegro,MNE.20_1,Ulcinj
+MNE,Montenegro,MNE.21_1,Žabljak
+MNG,Mongolia,MNG.1_1,Arhangay
+MNG,Mongolia,MNG.2_1,Bayan-Ölgiy
+MNG,Mongolia,MNG.3_1,Bayanhongor
+MNG,Mongolia,MNG.4_1,Bulgan
+MNG,Mongolia,MNG.5_1,Darhan-Uul
+MNG,Mongolia,MNG.6_1,Dornod
+MNG,Mongolia,MNG.7_1,Dornogovi
+MNG,Mongolia,MNG.8_1,Dundgovi
+MNG,Mongolia,MNG.9_1,Dzavhan
+MNG,Mongolia,MNG.10_1,Govi-Altay
+MNG,Mongolia,MNG.11_1,Govisümber
+MNG,Mongolia,MNG.12_1,Hentiy
+MNG,Mongolia,MNG.13_1,Hovd
+MNG,Mongolia,MNG.14_1,Hövsgöl
+MNG,Mongolia,MNG.15_1,Ömnögovi
+MNG,Mongolia,MNG.16_1,Orhon
+MNG,Mongolia,MNG.17_1,Övörhangay
+MNG,Mongolia,MNG.18_1,Selenge
+MNG,Mongolia,MNG.19_1,Sühbaatar
+MNG,Mongolia,MNG.20_1,Töv
+MNG,Mongolia,MNG.21_1,Ulaanbaatar
+MNG,Mongolia,MNG.22_1,Uvs
+MOZ,Mozambique,MOZ.1_1,Cabo Delgado
+MOZ,Mozambique,MOZ.2_1,Gaza
+MOZ,Mozambique,MOZ.3_1,Inhambane
+MOZ,Mozambique,MOZ.4_1,Manica
+MOZ,Mozambique,MOZ.6_1,Maputo
+MOZ,Mozambique,MOZ.5_1,Maputo City
+MOZ,Mozambique,MOZ.7_1,Nampula
+MOZ,Mozambique,MOZ.8_1,Nassa
+MOZ,Mozambique,MOZ.9_1,Sofala
+MOZ,Mozambique,MOZ.10_1,Tete
+MOZ,Mozambique,MOZ.11_1,Zambezia
+MRT,Mauritania,MRT.1_1,Adrar
+MRT,Mauritania,MRT.2_1,Assaba
+MRT,Mauritania,MRT.3_1,Brakna
+MRT,Mauritania,MRT.4_1,Dakhlet Nouadhibou
+MRT,Mauritania,MRT.5_1,Gorgol
+MRT,Mauritania,MRT.6_1,Guidimaka
+MRT,Mauritania,MRT.7_1,Hodh ech Chargui
+MRT,Mauritania,MRT.8_1,Hodh el Gharbi
+MRT,Mauritania,MRT.9_1,Inchiri
+MRT,Mauritania,MRT.10_1,Nouakchott
+MRT,Mauritania,MRT.11_1,Tagant
+MRT,Mauritania,MRT.12_1,Tiris Zemmour
+MRT,Mauritania,MRT.13_1,Trarza
+MUS,Mauritius,MUS.1_1,Agalega Islands
+MUS,Mauritius,MUS.2_1,Black River
+MUS,Mauritius,MUS.3_1,Flacq
+MUS,Mauritius,MUS.4_1,Grand Port
+MUS,Mauritius,MUS.5_1,Moka
+MUS,Mauritius,MUS.6_1,Pamplemousses
+MUS,Mauritius,MUS.7_1,Plaines Wilhems
+MUS,Mauritius,MUS.8_1,Port Louis
+MUS,Mauritius,MUS.9_1,Rivière du Rempart
+MUS,Mauritius,MUS.10_1,Rodriguez
+MUS,Mauritius,MUS.11_1,Saint Brandon
+MUS,Mauritius,MUS.12_1,Savanne
+MWI,Malawi,MWI.1_1,Balaka
+MWI,Malawi,MWI.2_1,Blantyre
+MWI,Malawi,MWI.3_1,Chikwawa
+MWI,Malawi,MWI.4_1,Chiradzulu
+MWI,Malawi,MWI.5_1,Chitipa
+MWI,Malawi,MWI.6_1,Dedza
+MWI,Malawi,MWI.7_1,Dowa
+MWI,Malawi,MWI.8_1,Karonga
+MWI,Malawi,MWI.9_1,Kasungu
+MWI,Malawi,MWI.10_1,Likoma
+MWI,Malawi,MWI.11_1,Lilongwe
+MWI,Malawi,MWI.12_1,Machinga
+MWI,Malawi,MWI.13_1,Mangochi
+MWI,Malawi,MWI.14_1,Mchinji
+MWI,Malawi,MWI.15_1,Mulanje
+MWI,Malawi,MWI.16_1,Mwanza
+MWI,Malawi,MWI.17_1,Mzimba
+MWI,Malawi,MWI.18_1,Neno
+MWI,Malawi,MWI.19_1,Nkhata Bay
+MWI,Malawi,MWI.20_1,Nkhotakota
+MWI,Malawi,MWI.21_1,Nsanje
+MWI,Malawi,MWI.22_1,Ntcheu
+MWI,Malawi,MWI.23_1,Ntchisi
+MWI,Malawi,MWI.24_1,Phalombe
+MWI,Malawi,MWI.25_1,Rumphi
+MWI,Malawi,MWI.26_1,Salima
+MWI,Malawi,MWI.27_1,Thyolo
+MWI,Malawi,MWI.28_1,Zomba
+MYS,Malaysia,MYS.1_1,Johor
+MYS,Malaysia,MYS.2_1,Kedah
+MYS,Malaysia,MYS.3_1,Kelantan
+MYS,Malaysia,MYS.4_1,Kuala Lumpur
+MYS,Malaysia,MYS.5_1,Labuan
+MYS,Malaysia,MYS.6_1,Melaka
+MYS,Malaysia,MYS.7_1,Negeri Sembilan
+MYS,Malaysia,MYS.8_1,Pahang
+MYS,Malaysia,MYS.9_1,Perak
+MYS,Malaysia,MYS.10_1,Perlis
+MYS,Malaysia,MYS.11_1,Pulau Pinang
+MYS,Malaysia,MYS.12_1,Putrajaya
+MYS,Malaysia,MYS.13_1,Sabah
+MYS,Malaysia,MYS.14_1,Sarawak
+MYS,Malaysia,MYS.15_1,Selangor
+MYS,Malaysia,MYS.16_1,Trengganu
+NAM,Namibia,NAM.1_1,!Karas
+NAM,Namibia,NAM.2_1,Erongo
+NAM,Namibia,NAM.3_1,Hardap
+NAM,Namibia,NAM.4_1,Kavango
+NAM,Namibia,NAM.5_1,Khomas
+NAM,Namibia,NAM.6_1,Kunene
+NAM,Namibia,NAM.7_1,Ohangwena
+NAM,Namibia,NAM.8_1,Omaheke
+NAM,Namibia,NAM.9_1,Omusati
+NAM,Namibia,NAM.10_1,Oshana
+NAM,Namibia,NAM.11_1,Oshikoto
+NAM,Namibia,NAM.12_1,Otjozondjupa
+NAM,Namibia,NAM.13_1,Zambezi
+NER,Niger,NER.1_1,Agadez
+NER,Niger,NER.2_1,Diffa
+NER,Niger,NER.3_1,Dosso
+NER,Niger,NER.4_1,Maradi
+NER,Niger,NER.5_1,Niamey
+NER,Niger,NER.6_1,Tahoua
+NER,Niger,NER.7_1,Tillabéry
+NER,Niger,NER.8_1,Zinder
+NGA,Nigeria,NGA.1_1,Abia
+NGA,Nigeria,NGA.2_1,Adamawa
+NGA,Nigeria,NGA.3_1,Akwa Ibom
+NGA,Nigeria,NGA.4_1,Anambra
+NGA,Nigeria,NGA.5_1,Bauchi
+NGA,Nigeria,NGA.6_1,Bayelsa
+NGA,Nigeria,NGA.7_1,Benue
+NGA,Nigeria,NGA.8_1,Borno
+NGA,Nigeria,NGA.9_1,Cross River
+NGA,Nigeria,NGA.10_1,Delta
+NGA,Nigeria,NGA.11_1,Ebonyi
+NGA,Nigeria,NGA.12_1,Edo
+NGA,Nigeria,NGA.13_1,Ekiti
+NGA,Nigeria,NGA.14_1,Enugu
+NGA,Nigeria,NGA.15_1,Federal Capital Territory
+NGA,Nigeria,NGA.16_1,Gombe
+NGA,Nigeria,NGA.17_1,Imo
+NGA,Nigeria,NGA.18_1,Jigawa
+NGA,Nigeria,NGA.19_1,Kaduna
+NGA,Nigeria,NGA.20_1,Kano
+NGA,Nigeria,NGA.21_1,Katsina
+NGA,Nigeria,NGA.22_1,Kebbi
+NGA,Nigeria,NGA.23_1,Kogi
+NGA,Nigeria,NGA.24_1,Kwara
+NGA,Nigeria,NGA.25_1,Lagos
+NGA,Nigeria,NGA.26_1,Nasarawa
+NGA,Nigeria,NGA.27_1,Niger
+NGA,Nigeria,NGA.28_1,Ogun
+NGA,Nigeria,NGA.29_1,Ondo
+NGA,Nigeria,NGA.30_1,Osun
+NGA,Nigeria,NGA.31_1,Oyo
+NGA,Nigeria,NGA.32_1,Plateau
+NGA,Nigeria,NGA.33_1,Rivers
+NGA,Nigeria,NGA.34_1,Sokoto
+NGA,Nigeria,NGA.35_1,Taraba
+NGA,Nigeria,NGA.36_1,Yobe
+NGA,Nigeria,NGA.37_1,Zamfara
+NIC,Nicaragua,NIC.1_1,Atlántico Norte
+NIC,Nicaragua,NIC.2_1,Atlántico Sur
+NIC,Nicaragua,NIC.3_1,Boaco
+NIC,Nicaragua,NIC.4_1,Carazo
+NIC,Nicaragua,NIC.5_1,Chinandega
+NIC,Nicaragua,NIC.6_1,Chontales
+NIC,Nicaragua,NIC.7_1,Estelí
+NIC,Nicaragua,NIC.8_1,Granada
+NIC,Nicaragua,NIC.9_1,Jinotega
+NIC,Nicaragua,NIC.10_1,Lago Nicaragua
+NIC,Nicaragua,NIC.11_1,León
+NIC,Nicaragua,NIC.12_1,Madriz
+NIC,Nicaragua,NIC.13_1,Managua
+NIC,Nicaragua,NIC.14_1,Masaya
+NIC,Nicaragua,NIC.15_1,Matagalpa
+NIC,Nicaragua,NIC.16_1,Nueva Segovia
+NIC,Nicaragua,NIC.17_1,Río San Juan
+NIC,Nicaragua,NIC.18_1,Rivas
+NPL,Nepal,NPL.1_1,Central
+NPL,Nepal,NPL.2_1,East
+NPL,Nepal,NPL.3_1,Far-Western
+NPL,Nepal,NPL.4_1,Mid-Western
+NPL,Nepal,NPL.5_1,West
+PAK,Pakistan,PAK.2_1,Balochistan
+PAK,Pakistan,PAK.3_1,Federally Administered Tribal Ar
+PAK,Pakistan,PAK.4_1,Islamabad
+PAK,Pakistan,PAK.5_1,Khyber-Pakhtunkhwa
+PAK,Pakistan,PAK.7_1,Punjab
+PAK,Pakistan,PAK.8_1,Sindh
+PER,Peru,PER.1_1,Amazonas
+PER,Peru,PER.2_1,Ancash
+PER,Peru,PER.3_1,Apurímac
+PER,Peru,PER.4_1,Arequipa
+PER,Peru,PER.5_1,Ayacucho
+PER,Peru,PER.6_1,Cajamarca
+PER,Peru,PER.7_1,Callao
+PER,Peru,PER.8_1,Cusco
+PER,Peru,PER.9_1,Huancavelica
+PER,Peru,PER.10_1,Huánuco
+PER,Peru,PER.11_1,Ica
+PER,Peru,PER.12_1,Junín
+PER,Peru,PER.13_1,La Libertad
+PER,Peru,PER.14_1,Lambayeque
+PER,Peru,PER.16_1,Lima
+PER,Peru,PER.15_1,Lima Province
+PER,Peru,PER.17_1,Loreto
+PER,Peru,PER.18_1,Madre de Dios
+PER,Peru,PER.19_1,Moquegua
+PER,Peru,PER.20_1,Pasco
+PER,Peru,PER.21_1,Piura
+PER,Peru,PER.22_1,Puno
+PER,Peru,PER.23_1,San Martín
+PER,Peru,PER.24_1,Tacna
+PER,Peru,PER.25_1,Tumbes
+PER,Peru,PER.26_1,Ucayali
+PHL,Philippines,PHL.1_1,Abra
+PHL,Philippines,PHL.2_1,Agusan del Norte
+PHL,Philippines,PHL.3_1,Agusan del Sur
+PHL,Philippines,PHL.4_1,Aklan
+PHL,Philippines,PHL.5_1,Albay
+PHL,Philippines,PHL.6_1,Antique
+PHL,Philippines,PHL.7_1,Apayao
+PHL,Philippines,PHL.8_1,Aurora
+PHL,Philippines,PHL.9_1,Basilan
+PHL,Philippines,PHL.10_1,Bataan
+PHL,Philippines,PHL.11_1,Batanes
+PHL,Philippines,PHL.12_1,Batangas
+PHL,Philippines,PHL.13_1,Benguet
+PHL,Philippines,PHL.14_1,Biliran
+PHL,Philippines,PHL.15_1,Bohol
+PHL,Philippines,PHL.16_1,Bukidnon
+PHL,Philippines,PHL.17_1,Bulacan
+PHL,Philippines,PHL.18_1,Cagayan
+PHL,Philippines,PHL.19_1,Camarines Norte
+PHL,Philippines,PHL.20_1,Camarines Sur
+PHL,Philippines,PHL.21_1,Camiguin
+PHL,Philippines,PHL.22_1,Capiz
+PHL,Philippines,PHL.23_1,Catanduanes
+PHL,Philippines,PHL.24_1,Cavite
+PHL,Philippines,PHL.25_1,Cebu
+PHL,Philippines,PHL.26_1,Compostela Valley
+PHL,Philippines,PHL.27_1,Davao del Norte
+PHL,Philippines,PHL.28_1,Davao del Sur
+PHL,Philippines,PHL.29_1,Davao Oriental
+PHL,Philippines,PHL.30_1,Dinagat Islands
+PHL,Philippines,PHL.31_1,Eastern Samar
+PHL,Philippines,PHL.32_1,Guimaras
+PHL,Philippines,PHL.33_1,Ifugao
+PHL,Philippines,PHL.34_1,Ilocos Norte
+PHL,Philippines,PHL.35_1,Ilocos Sur
+PHL,Philippines,PHL.36_1,Iloilo
+PHL,Philippines,PHL.37_1,Isabela
+PHL,Philippines,PHL.38_1,Kalinga
+PHL,Philippines,PHL.39_1,La Union
+PHL,Philippines,PHL.40_1,Laguna
+PHL,Philippines,PHL.41_1,Lanao del Norte
+PHL,Philippines,PHL.42_1,Lanao del Sur
+PHL,Philippines,PHL.43_1,Leyte
+PHL,Philippines,PHL.44_1,Maguindanao
+PHL,Philippines,PHL.45_1,Marinduque
+PHL,Philippines,PHL.46_1,Masbate
+PHL,Philippines,PHL.47_1,Metropolitan Manila
+PHL,Philippines,PHL.48_1,Misamis Occidental
+PHL,Philippines,PHL.49_1,Misamis Oriental
+PHL,Philippines,PHL.50_1,Mountain Province
+PHL,Philippines,PHL.51_1,Negros Occidental
+PHL,Philippines,PHL.52_1,Negros Oriental
+PHL,Philippines,PHL.53_1,North Cotabato
+PHL,Philippines,PHL.54_1,Northern Samar
+PHL,Philippines,PHL.55_1,Nueva Ecija
+PHL,Philippines,PHL.56_1,Nueva Vizcaya
+PHL,Philippines,PHL.57_1,Occidental Mindoro
+PHL,Philippines,PHL.58_1,Oriental Mindoro
+PHL,Philippines,PHL.59_1,Palawan
+PHL,Philippines,PHL.60_1,Pampanga
+PHL,Philippines,PHL.61_1,Pangasinan
+PHL,Philippines,PHL.62_1,Quezon
+PHL,Philippines,PHL.63_1,Quirino
+PHL,Philippines,PHL.64_1,Rizal
+PHL,Philippines,PHL.65_1,Romblon
+PHL,Philippines,PHL.66_1,Samar
+PHL,Philippines,PHL.67_1,Sarangani
+PHL,Philippines,PHL.68_1,Siquijor
+PHL,Philippines,PHL.69_1,Sorsogon
+PHL,Philippines,PHL.70_1,South Cotabato
+PHL,Philippines,PHL.71_1,Southern Leyte
+PHL,Philippines,PHL.72_1,Sultan Kudarat
+PHL,Philippines,PHL.73_1,Sulu
+PHL,Philippines,PHL.74_1,Surigao del Norte
+PHL,Philippines,PHL.75_1,Surigao del Sur
+PHL,Philippines,PHL.76_1,Tarlac
+PHL,Philippines,PHL.77_1,Tawi-Tawi
+PHL,Philippines,PHL.78_1,Zambales
+PHL,Philippines,PHL.79_1,Zamboanga del Norte
+PHL,Philippines,PHL.80_1,Zamboanga del Sur
+PHL,Philippines,PHL.81_1,Zamboanga Sibugay
+PLW,Palau,PLW.1_1,Aimeliik
+PLW,Palau,PLW.2_1,Airai
+PLW,Palau,PLW.3_1,Angaur
+PLW,Palau,PLW.4_1,Hatohobei
+PLW,Palau,PLW.5_1,Kayangel
+PLW,Palau,PLW.6_1,Koror
+PLW,Palau,PLW.7_1,Melekeok
+PLW,Palau,PLW.8_1,Ngaraard
+PLW,Palau,PLW.9_1,Ngarchelong
+PLW,Palau,PLW.10_1,Ngardmau
+PLW,Palau,PLW.11_1,Ngatpang
+PLW,Palau,PLW.12_1,Ngchesar
+PLW,Palau,PLW.13_1,Ngeremlengui
+PLW,Palau,PLW.14_1,Ngiwal
+PLW,Palau,PLW.15_1,Peleliu
+PLW,Palau,PLW.16_1,Sonsorol
+PRY,Paraguay,PRY.1_1,Alto Paraguay
+PRY,Paraguay,PRY.2_1,Alto Paraná
+PRY,Paraguay,PRY.3_1,Amambay
+PRY,Paraguay,PRY.4_1,Asunción
+PRY,Paraguay,PRY.5_1,Boquerón
+PRY,Paraguay,PRY.6_1,Caaguazú
+PRY,Paraguay,PRY.7_1,Caazapá
+PRY,Paraguay,PRY.8_1,Canindeyú
+PRY,Paraguay,PRY.9_1,Central
+PRY,Paraguay,PRY.10_1,Concepción
+PRY,Paraguay,PRY.11_1,Cordillera
+PRY,Paraguay,PRY.12_1,Guairá
+PRY,Paraguay,PRY.13_1,Itapúa
+PRY,Paraguay,PRY.14_1,Misiones
+PRY,Paraguay,PRY.15_1,Ñeembucú
+PRY,Paraguay,PRY.16_1,Paraguarí
+PRY,Paraguay,PRY.17_1,Presidente Hayes
+PRY,Paraguay,PRY.18_1,San Pedro
+RWA,Rwanda,RWA.1_1,Amajyaruguru
+RWA,Rwanda,RWA.2_1,Amajyepfo
+RWA,Rwanda,RWA.3_1,Iburasirazuba
+RWA,Rwanda,RWA.4_1,Iburengerazuba
+RWA,Rwanda,RWA.5_1,Umujyi wa Kigali
+SEN,Senegal,SEN.1_1,Dakar
+SEN,Senegal,SEN.2_1,Diourbel
+SEN,Senegal,SEN.3_1,Fatick
+SEN,Senegal,SEN.4_1,Kaffrine
+SEN,Senegal,SEN.5_1,Kaolack
+SEN,Senegal,SEN.6_1,Kédougou
+SEN,Senegal,SEN.7_1,Kolda
+SEN,Senegal,SEN.8_1,Louga
+SEN,Senegal,SEN.9_1,Matam
+SEN,Senegal,SEN.10_1,Saint-Louis
+SEN,Senegal,SEN.11_1,Sédhiou
+SEN,Senegal,SEN.12_1,Tambacounda
+SEN,Senegal,SEN.13_1,Thiès
+SEN,Senegal,SEN.14_1,Ziguinchor
+SLB,Solomon Islands,SLB.1_1,Central
+SLB,Solomon Islands,SLB.2_1,Choiseul
+SLB,Solomon Islands,SLB.3_1,Guadalcanal
+SLB,Solomon Islands,SLB.4_1,Honiara
+SLB,Solomon Islands,SLB.5_1,Isabel
+SLB,Solomon Islands,SLB.6_1,Makira Ulawa
+SLB,Solomon Islands,SLB.7_1,Malaita
+SLB,Solomon Islands,SLB.8_1,Rennell and Bellona
+SLB,Solomon Islands,SLB.9_1,Temotu
+SLB,Solomon Islands,SLB.10_1,Western
+SLE,Sierra Leone,SLE.1_1,Eastern
+SLE,Sierra Leone,SLE.2_1,Northern
+SLE,Sierra Leone,SLE.3_1,Southern
+SLE,Sierra Leone,SLE.4_1,Western
+SLV,El Salvador,SLV.1_1,Ahuachapán
+SLV,El Salvador,SLV.2_1,Cabañas
+SLV,El Salvador,SLV.3_1,Chalatenango
+SLV,El Salvador,SLV.4_1,Cuscatlán
+SLV,El Salvador,SLV.5_1,La Libertad
+SLV,El Salvador,SLV.6_1,La Paz
+SLV,El Salvador,SLV.7_1,La Unión
+SLV,El Salvador,SLV.8_1,Morazán
+SLV,El Salvador,SLV.9_1,San Miguel
+SLV,El Salvador,SLV.10_1,San Salvador
+SLV,El Salvador,SLV.11_1,San Vicente
+SLV,El Salvador,SLV.12_1,Santa Ana
+SLV,El Salvador,SLV.13_1,Sonsonate
+SLV,El Salvador,SLV.14_1,Usulután
+SOM,Somalia,SOM.1_1,Awdal
+SOM,Somalia,SOM.2_1,Bakool
+SOM,Somalia,SOM.3_1,Banaadir
+SOM,Somalia,SOM.4_1,Bari
+SOM,Somalia,SOM.5_1,Bay
+SOM,Somalia,SOM.6_1,Galguduud
+SOM,Somalia,SOM.7_1,Gedo
+SOM,Somalia,SOM.8_1,Hiiraan
+SOM,Somalia,SOM.9_1,Jubbada Dhexe
+SOM,Somalia,SOM.10_1,Jubbada Hoose
+SOM,Somalia,SOM.11_1,Mudug
+SOM,Somalia,SOM.12_1,Nugaal
+SOM,Somalia,SOM.13_1,Sanaag
+SOM,Somalia,SOM.14_1,Shabeellaha Dhexe
+SOM,Somalia,SOM.15_1,Shabeellaha Hoose
+SOM,Somalia,SOM.16_1,Sool
+SOM,Somalia,SOM.17_1,Togdheer
+SOM,Somalia,SOM.18_1,Woqooyi Galbeed
+SRB,Serbia,SRB.1_1,Borski
+SRB,Serbia,SRB.2_1,Braničevski
+SRB,Serbia,SRB.3_1,Grad Beograd
+SRB,Serbia,SRB.4_1,Jablanički
+SRB,Serbia,SRB.5_1,Južno-Bački
+SRB,Serbia,SRB.6_1,Južno-Banatski
+SRB,Serbia,SRB.7_1,Kolubarski
+SRB,Serbia,SRB.8_1,Mačvanski
+SRB,Serbia,SRB.9_1,Moravički
+SRB,Serbia,SRB.10_1,Nišavski
+SRB,Serbia,SRB.11_1,Pčinjski
+SRB,Serbia,SRB.12_1,Pirotski
+SRB,Serbia,SRB.13_1,Podunavski
+SRB,Serbia,SRB.14_1,Pomoravski
+SRB,Serbia,SRB.15_1,Rasinski
+SRB,Serbia,SRB.16_1,Raški
+SRB,Serbia,SRB.17_1,Severno-Bački
+SRB,Serbia,SRB.18_1,Severno-Banatski
+SRB,Serbia,SRB.19_1,Srednje-Banatski
+SRB,Serbia,SRB.20_1,Sremski
+SRB,Serbia,SRB.21_1,Šumadijski
+SRB,Serbia,SRB.22_1,Toplički
+SRB,Serbia,SRB.23_1,Zaječarski
+SRB,Serbia,SRB.24_1,Zapadno-Bački
+SRB,Serbia,SRB.25_1,Zlatiborski
+SSD,South Sudan,SSD.1_1,Central Equatoria
+SSD,South Sudan,SSD.2_1,Eastern Equatoria
+SSD,South Sudan,SSD.3_1,Jungoli
+SSD,South Sudan,SSD.4_1,Lakes
+SSD,South Sudan,SSD.5_1,North Bahr-al-Ghazal
+SSD,South Sudan,SSD.6_1,Unity
+SSD,South Sudan,SSD.7_1,Upper Nile
+SSD,South Sudan,SSD.8_1,Warap
+SSD,South Sudan,SSD.9_1,West Bahr-al-Ghazal
+SSD,South Sudan,SSD.10_1,West Equatoria
+STP,São Tomé and Príncipe,STP.1_1,Príncipe
+STP,São Tomé and Príncipe,STP.2_1,São Tomé
+SUR,Suriname,SUR.1_1,Brokopondo
+SUR,Suriname,SUR.2_1,Commewijne
+SUR,Suriname,SUR.3_1,Coronie
+SUR,Suriname,SUR.4_1,Marowijne
+SUR,Suriname,SUR.5_1,Nickerie
+SUR,Suriname,SUR.6_1,Para
+SUR,Suriname,SUR.7_1,Paramaribo
+SUR,Suriname,SUR.8_1,Saramacca
+SUR,Suriname,SUR.9_1,Sipaliwini
+SUR,Suriname,SUR.10_1,Wanica
+SWZ,Swaziland,SWZ.1_1,Hhohho
+SWZ,Swaziland,SWZ.2_1,Lubombo
+SWZ,Swaziland,SWZ.3_1,Manzini
+SWZ,Swaziland,SWZ.4_1,Shiselweni
+TCD,Chad,TCD.1_1,Barh el Ghazel
+TCD,Chad,TCD.2_1,Batha
+TCD,Chad,TCD.3_1,Borkou
+TCD,Chad,TCD.4_1,Chari-Baguirmi
+TCD,Chad,TCD.5_1,Ennedi Est
+TCD,Chad,TCD.6_1,Ennedi Ouest
+TCD,Chad,TCD.7_1,Guéra
+TCD,Chad,TCD.8_1,Hadjer-Lamis
+TCD,Chad,TCD.9_1,Kanem
+TCD,Chad,TCD.10_1,Lac
+TCD,Chad,TCD.11_1,Logone Occidental
+TCD,Chad,TCD.12_1,Logone Oriental
+TCD,Chad,TCD.13_1,Mandoul
+TCD,Chad,TCD.14_1,Mayo-Kebbi Est
+TCD,Chad,TCD.15_1,Mayo-Kebbi Ouest
+TCD,Chad,TCD.16_1,Moyen-Chari
+TCD,Chad,TCD.17_1,Ouaddaï
+TCD,Chad,TCD.18_1,Salamat
+TCD,Chad,TCD.19_1,Sila
+TCD,Chad,TCD.20_1,Tandjilé
+TCD,Chad,TCD.21_1,Tibesti
+TCD,Chad,TCD.22_1,Ville de N'Djamena
+TCD,Chad,TCD.23_1,Wadi Fira
+TGO,Togo,TGO.1_1,Centre
+TGO,Togo,TGO.2_1,Kara
+TGO,Togo,TGO.3_1,Maritime
+TGO,Togo,TGO.4_1,Plateaux
+TGO,Togo,TGO.5_1,Savanes
+THA,Thailand,THA.1_1,Amnat Charoen
+THA,Thailand,THA.2_1,Ang Thong
+THA,Thailand,THA.3_1,Bangkok Metropolis
+THA,Thailand,THA.4_1,Bueng Kan
+THA,Thailand,THA.5_1,Buri Ram
+THA,Thailand,THA.6_1,Chachoengsao
+THA,Thailand,THA.7_1,Chai Nat
+THA,Thailand,THA.8_1,Chaiyaphum
+THA,Thailand,THA.9_1,Chanthaburi
+THA,Thailand,THA.10_1,Chiang Mai
+THA,Thailand,THA.11_1,Chiang Rai
+THA,Thailand,THA.12_1,Chon Buri
+THA,Thailand,THA.13_1,Chumphon
+THA,Thailand,THA.14_1,Kalasin
+THA,Thailand,THA.15_1,Kamphaeng Phet
+THA,Thailand,THA.16_1,Kanchanaburi
+THA,Thailand,THA.17_1,Khon Kaen
+THA,Thailand,THA.18_1,Krabi
+THA,Thailand,THA.19_1,Lampang
+THA,Thailand,THA.20_1,Lamphun
+THA,Thailand,THA.21_1,Loei
+THA,Thailand,THA.22_1,Lop Buri
+THA,Thailand,THA.23_1,Mae Hong Son
+THA,Thailand,THA.24_1,Maha Sarakham
+THA,Thailand,THA.25_1,Mukdahan
+THA,Thailand,THA.26_1,Nakhon Nayok
+THA,Thailand,THA.27_1,Nakhon Pathom
+THA,Thailand,THA.28_1,Nakhon Phanom
+THA,Thailand,THA.29_1,Nakhon Ratchasima
+THA,Thailand,THA.30_1,Nakhon Sawan
+THA,Thailand,THA.31_1,Nakhon Si Thammarat
+THA,Thailand,THA.32_1,Nan
+THA,Thailand,THA.33_1,Narathiwat
+THA,Thailand,THA.34_1,Nong Bua Lam Phu
+THA,Thailand,THA.35_1,Nong Khai
+THA,Thailand,THA.36_1,Nonthaburi
+THA,Thailand,THA.37_1,Pathum Thani
+THA,Thailand,THA.38_1,Pattani
+THA,Thailand,THA.39_1,Phangnga
+THA,Thailand,THA.40_1,Phatthalung
+THA,Thailand,THA.41_1,Phayao
+THA,Thailand,THA.42_1,Phetchabun
+THA,Thailand,THA.43_1,Phetchaburi
+THA,Thailand,THA.44_1,Phichit
+THA,Thailand,THA.45_1,Phitsanulok
+THA,Thailand,THA.46_1,Phra Nakhon Si Ayutthaya
+THA,Thailand,THA.47_1,Phrae
+THA,Thailand,THA.48_1,Phuket
+THA,Thailand,THA.49_1,Prachin Buri
+THA,Thailand,THA.50_1,Prachuap Khiri Khan
+THA,Thailand,THA.51_1,Ranong
+THA,Thailand,THA.52_1,Ratchaburi
+THA,Thailand,THA.53_1,Rayong
+THA,Thailand,THA.54_1,Roi Et
+THA,Thailand,THA.55_1,Sa Kaeo
+THA,Thailand,THA.56_1,Sakon Nakhon
+THA,Thailand,THA.57_1,Samut Prakan
+THA,Thailand,THA.58_1,Samut Sakhon
+THA,Thailand,THA.59_1,Samut Songkhram
+THA,Thailand,THA.60_1,Saraburi
+THA,Thailand,THA.61_1,Satun
+THA,Thailand,THA.62_1,Si Sa Ket
+THA,Thailand,THA.63_1,Sing Buri
+THA,Thailand,THA.64_1,Songkhla
+THA,Thailand,THA.65_1,Sukhothai
+THA,Thailand,THA.66_1,Suphan Buri
+THA,Thailand,THA.67_1,Surat Thani
+THA,Thailand,THA.68_1,Surin
+THA,Thailand,THA.69_1,Tak
+THA,Thailand,THA.70_1,Trang
+THA,Thailand,THA.71_1,Trat
+THA,Thailand,THA.72_1,Ubon Ratchathani
+THA,Thailand,THA.73_1,Udon Thani
+THA,Thailand,THA.74_1,Uthai Thani
+THA,Thailand,THA.75_1,Uttaradit
+THA,Thailand,THA.76_1,Yala
+THA,Thailand,THA.77_1,Yasothon
+TJK,Tajikistan,TJK.5_1,Districts of Republican Subordin
+TJK,Tajikistan,TJK.1_1,Dushanbe
+TJK,Tajikistan,TJK.2_1,Gorno-Badakhshan
+TJK,Tajikistan,TJK.3_1,Khatlon
+TJK,Tajikistan,TJK.4_1,Sughd
+TKM,Turkmenistan,TKM.1_1,Ahal
+TKM,Turkmenistan,TKM.2_1,Aşgabat
+TKM,Turkmenistan,TKM.3_1,Balkan
+TKM,Turkmenistan,TKM.6_1,Daşoguz
+TKM,Turkmenistan,TKM.4_1,Lebap
+TKM,Turkmenistan,TKM.5_1,Mary
+TLS,Timor-Leste,TLS.1_1,Aileu
+TLS,Timor-Leste,TLS.2_1,Ainaro
+TLS,Timor-Leste,TLS.3_1,Ambeno
+TLS,Timor-Leste,TLS.4_1,Baucau
+TLS,Timor-Leste,TLS.5_1,Bobonaro
+TLS,Timor-Leste,TLS.6_1,Covalima
+TLS,Timor-Leste,TLS.7_1,Dili
+TLS,Timor-Leste,TLS.8_1,Ermera
+TLS,Timor-Leste,TLS.9_1,Lautém
+TLS,Timor-Leste,TLS.10_1,Liquiçá
+TLS,Timor-Leste,TLS.11_1,Manatuto
+TLS,Timor-Leste,TLS.12_1,Manufahi
+TLS,Timor-Leste,TLS.13_1,Viqueque
+TON,Tonga,TON.1_1,'Eua
+TON,Tonga,TON.2_1,Ha'apai
+TON,Tonga,TON.3_1,Niuas
+TON,Tonga,TON.4_1,Tongatapu
+TON,Tonga,TON.5_1,Vava'u
+TUN,Tunisia,TUN.1_1,Ariana
+TUN,Tunisia,TUN.2_1,Béja
+TUN,Tunisia,TUN.3_1,Ben Arous (Tunis Sud)
+TUN,Tunisia,TUN.4_1,Bizerte
+TUN,Tunisia,TUN.5_1,Gabès
+TUN,Tunisia,TUN.6_1,Gafsa
+TUN,Tunisia,TUN.7_1,Jendouba
+TUN,Tunisia,TUN.8_1,Kairouan
+TUN,Tunisia,TUN.9_1,Kassérine
+TUN,Tunisia,TUN.10_1,Kebili
+TUN,Tunisia,TUN.11_1,Le Kef
+TUN,Tunisia,TUN.12_1,Mahdia
+TUN,Tunisia,TUN.13_1,Manubah
+TUN,Tunisia,TUN.14_1,Médenine
+TUN,Tunisia,TUN.15_1,Monastir
+TUN,Tunisia,TUN.16_1,Nabeul
+TUN,Tunisia,TUN.17_1,Sfax
+TUN,Tunisia,TUN.18_1,Sidi Bou Zid
+TUN,Tunisia,TUN.19_1,Siliana
+TUN,Tunisia,TUN.20_1,Sousse
+TUN,Tunisia,TUN.21_1,Tataouine
+TUN,Tunisia,TUN.22_1,Tozeur
+TUN,Tunisia,TUN.23_1,Tunis
+TUN,Tunisia,TUN.24_1,Zaghouan
+TUR,Turkey,TUR.1_1,Adana
+TUR,Turkey,TUR.2_1,Adiyaman
+TUR,Turkey,TUR.3_1,Afyon
+TUR,Turkey,TUR.4_1,Agri
+TUR,Turkey,TUR.5_1,Aksaray
+TUR,Turkey,TUR.6_1,Amasya
+TUR,Turkey,TUR.7_1,Ankara
+TUR,Turkey,TUR.8_1,Antalya
+TUR,Turkey,TUR.9_1,Ardahan
+TUR,Turkey,TUR.10_1,Artvin
+TUR,Turkey,TUR.11_1,Aydin
+TUR,Turkey,TUR.12_1,Balikesir
+TUR,Turkey,TUR.13_1,Bartın
+TUR,Turkey,TUR.14_1,Batman
+TUR,Turkey,TUR.15_1,Bayburt
+TUR,Turkey,TUR.16_1,Bilecik
+TUR,Turkey,TUR.17_1,Bingöl
+TUR,Turkey,TUR.18_1,Bitlis
+TUR,Turkey,TUR.19_1,Bolu
+TUR,Turkey,TUR.20_1,Burdur
+TUR,Turkey,TUR.21_1,Bursa
+TUR,Turkey,TUR.22_1,Çanakkale
+TUR,Turkey,TUR.23_1,Çankiri
+TUR,Turkey,TUR.24_1,Çorum
+TUR,Turkey,TUR.25_1,Denizli
+TUR,Turkey,TUR.26_1,Diyarbakir
+TUR,Turkey,TUR.27_1,Düzce
+TUR,Turkey,TUR.28_1,Edirne
+TUR,Turkey,TUR.29_1,Elazığ
+TUR,Turkey,TUR.30_1,Erzincan
+TUR,Turkey,TUR.31_1,Erzurum
+TUR,Turkey,TUR.32_1,Eskisehir
+TUR,Turkey,TUR.33_1,Gaziantep
+TUR,Turkey,TUR.34_1,Giresun
+TUR,Turkey,TUR.35_1,Gümüshane
+TUR,Turkey,TUR.36_1,Hakkari
+TUR,Turkey,TUR.37_1,Hatay
+TUR,Turkey,TUR.38_1,Iğdır
+TUR,Turkey,TUR.39_1,Isparta
+TUR,Turkey,TUR.40_1,Istanbul
+TUR,Turkey,TUR.41_1,Izmir
+TUR,Turkey,TUR.42_1,K. Maras
+TUR,Turkey,TUR.43_1,Karabük
+TUR,Turkey,TUR.44_1,Karaman
+TUR,Turkey,TUR.45_1,Kars
+TUR,Turkey,TUR.46_1,Kastamonu
+TUR,Turkey,TUR.47_1,Kayseri
+TUR,Turkey,TUR.48_1,Kilis
+TUR,Turkey,TUR.49_1,Kinkkale
+TUR,Turkey,TUR.50_1,Kirklareli
+TUR,Turkey,TUR.51_1,Kirsehir
+TUR,Turkey,TUR.52_1,Kocaeli
+TUR,Turkey,TUR.53_1,Konya
+TUR,Turkey,TUR.54_1,Kütahya
+TUR,Turkey,TUR.55_1,Malatya
+TUR,Turkey,TUR.56_1,Manisa
+TUR,Turkey,TUR.57_1,Mardin
+TUR,Turkey,TUR.58_1,Mersin
+TUR,Turkey,TUR.59_1,Mugla
+TUR,Turkey,TUR.60_1,Mus
+TUR,Turkey,TUR.61_1,Nevsehir
+TUR,Turkey,TUR.62_1,Nigde
+TUR,Turkey,TUR.63_1,Ordu
+TUR,Turkey,TUR.64_1,Osmaniye
+TUR,Turkey,TUR.65_1,Rize
+TUR,Turkey,TUR.66_1,Sakarya
+TUR,Turkey,TUR.67_1,Samsun
+TUR,Turkey,TUR.68_1,Sanliurfa
+TUR,Turkey,TUR.69_1,Siirt
+TUR,Turkey,TUR.70_1,Sinop
+TUR,Turkey,TUR.71_1,Sirnak
+TUR,Turkey,TUR.72_1,Sivas
+TUR,Turkey,TUR.73_1,Tekirdag
+TUR,Turkey,TUR.74_1,Tokat
+TUR,Turkey,TUR.75_1,Trabzon
+TUR,Turkey,TUR.76_1,Tunceli
+TUR,Turkey,TUR.77_1,Usak
+TUR,Turkey,TUR.78_1,Van
+TUR,Turkey,TUR.79_1,Yalova
+TUR,Turkey,TUR.80_1,Yozgat
+TUR,Turkey,TUR.81_1,Zinguldak
+TUV,Tuvalu,TUV.1_1,Funafuti
+TUV,Tuvalu,TUV.2_1,Nanumanga
+TUV,Tuvalu,TUV.3_1,Nanumea
+TUV,Tuvalu,TUV.4_1,Niulakita
+TUV,Tuvalu,TUV.5_1,Niutao
+TUV,Tuvalu,TUV.6_1,Nui
+TUV,Tuvalu,TUV.7_1,Nukufetau
+TUV,Tuvalu,TUV.8_1,Nukulaelae
+TUV,Tuvalu,TUV.9_1,Vaitupu
+TZA,Tanzania,TZA.1_1,Arusha
+TZA,Tanzania,TZA.2_1,Dar es Salaam
+TZA,Tanzania,TZA.3_1,Dodoma
+TZA,Tanzania,TZA.4_1,Geita
+TZA,Tanzania,TZA.5_1,Iringa
+TZA,Tanzania,TZA.6_1,Kagera
+TZA,Tanzania,TZA.18_1,Kaskazini Pemba
+TZA,Tanzania,TZA.28_1,Kaskazini Unguja
+TZA,Tanzania,TZA.7_1,Katavi
+TZA,Tanzania,TZA.8_1,Kigoma
+TZA,Tanzania,TZA.9_1,Kilimanjaro
+TZA,Tanzania,TZA.19_1,Kusini Pemba
+TZA,Tanzania,TZA.29_1,Kusini Unguja
+TZA,Tanzania,TZA.10_1,Lindi
+TZA,Tanzania,TZA.11_1,Manyara
+TZA,Tanzania,TZA.12_1,Mara
+TZA,Tanzania,TZA.13_1,Mbeya
+TZA,Tanzania,TZA.30_1,Mjini Magharibi
+TZA,Tanzania,TZA.14_1,Morogoro
+TZA,Tanzania,TZA.15_1,Mtwara
+TZA,Tanzania,TZA.16_1,Mwanza
+TZA,Tanzania,TZA.17_1,Njombe
+TZA,Tanzania,TZA.20_1,Pwani
+TZA,Tanzania,TZA.21_1,Rukwa
+TZA,Tanzania,TZA.22_1,Ruvuma
+TZA,Tanzania,TZA.23_1,Shinyanga
+TZA,Tanzania,TZA.24_1,Simiyu
+TZA,Tanzania,TZA.25_1,Singida
+TZA,Tanzania,TZA.31_1,Songwe
+TZA,Tanzania,TZA.26_1,Tabora
+TZA,Tanzania,TZA.27_1,Tanga
+UGA,Uganda,UGA.1_1,Adjumani
+UGA,Uganda,UGA.2_1,Apac
+UGA,Uganda,UGA.3_1,Arua
+UGA,Uganda,UGA.4_1,Bugiri
+UGA,Uganda,UGA.5_1,Bundibugyo
+UGA,Uganda,UGA.6_1,Bushenyi
+UGA,Uganda,UGA.7_1,Busia
+UGA,Uganda,UGA.8_1,Gulu
+UGA,Uganda,UGA.9_1,Hoima
+UGA,Uganda,UGA.10_1,Iganga
+UGA,Uganda,UGA.11_1,Jinja
+UGA,Uganda,UGA.12_1,Kabale
+UGA,Uganda,UGA.13_1,Kabarole
+UGA,Uganda,UGA.14_1,Kaberamaido
+UGA,Uganda,UGA.15_1,Kalangala
+UGA,Uganda,UGA.16_1,Kampala
+UGA,Uganda,UGA.17_1,Kamuli
+UGA,Uganda,UGA.18_1,Kamwenge
+UGA,Uganda,UGA.19_1,Kanungu
+UGA,Uganda,UGA.20_1,Kapchorwa
+UGA,Uganda,UGA.21_1,Kasese
+UGA,Uganda,UGA.22_1,Katakwi
+UGA,Uganda,UGA.23_1,Kayunga
+UGA,Uganda,UGA.24_1,Kibale
+UGA,Uganda,UGA.25_1,Kiboga
+UGA,Uganda,UGA.26_1,Kisoro
+UGA,Uganda,UGA.27_1,Kitgum
+UGA,Uganda,UGA.28_1,Kotido
+UGA,Uganda,UGA.29_1,Kumi
+UGA,Uganda,UGA.30_1,Kyenjojo
+UGA,Uganda,UGA.31_1,Lake Albert
+UGA,Uganda,UGA.32_1,Lake Victoria
+UGA,Uganda,UGA.33_1,Lira
+UGA,Uganda,UGA.34_1,Luwero
+UGA,Uganda,UGA.35_1,Masaka
+UGA,Uganda,UGA.36_1,Masindi
+UGA,Uganda,UGA.37_1,Mayuge
+UGA,Uganda,UGA.38_1,Mbale
+UGA,Uganda,UGA.39_1,Mbarara
+UGA,Uganda,UGA.40_1,Moroto
+UGA,Uganda,UGA.41_1,Moyo
+UGA,Uganda,UGA.42_1,Mpigi
+UGA,Uganda,UGA.43_1,Mubende
+UGA,Uganda,UGA.44_1,Mukono
+UGA,Uganda,UGA.45_1,Nakapiripirit
+UGA,Uganda,UGA.46_1,Nakasongola
+UGA,Uganda,UGA.47_1,Nebbi
+UGA,Uganda,UGA.48_1,Ntungamo
+UGA,Uganda,UGA.49_1,Pader
+UGA,Uganda,UGA.50_1,Pallisa
+UGA,Uganda,UGA.51_1,Rakai
+UGA,Uganda,UGA.52_1,Rukungiri
+UGA,Uganda,UGA.53_1,Sembabule
+UGA,Uganda,UGA.54_1,Sironko
+UGA,Uganda,UGA.55_1,Soroti
+UGA,Uganda,UGA.56_1,Tororo
+UGA,Uganda,UGA.57_1,Wakiso
+UGA,Uganda,UGA.58_1,Yumbe
+UKR,Ukraine,?,?
+UKR,Ukraine,UKR.1_1,Cherkasy
+UKR,Ukraine,UKR.2_1,Chernihiv
+UKR,Ukraine,UKR.3_1,Chernivtsi
+UKR,Ukraine,UKR.4_1,Crimea
+UKR,Ukraine,UKR.5_1,Dnipropetrovs'k
+UKR,Ukraine,UKR.6_1,Donets'k
+UKR,Ukraine,UKR.7_1,Ivano-Frankivs'k
+UKR,Ukraine,UKR.8_1,Kharkiv
+UKR,Ukraine,UKR.9_1,Kherson
+UKR,Ukraine,UKR.10_1,Khmel'nyts'kyy
+UKR,Ukraine,UKR.12_1,Kiev
+UKR,Ukraine,UKR.11_1,Kiev City
+UKR,Ukraine,UKR.13_1,Kirovohrad
+UKR,Ukraine,UKR.14_1,L'viv
+UKR,Ukraine,UKR.15_1,Luhans'k
+UKR,Ukraine,UKR.16_1,Mykolayiv
+UKR,Ukraine,UKR.17_1,Odessa
+UKR,Ukraine,UKR.18_1,Poltava
+UKR,Ukraine,UKR.19_1,Rivne
+UKR,Ukraine,UKR.20_1,Sevastopol'
+UKR,Ukraine,UKR.21_1,Sumy
+UKR,Ukraine,UKR.22_1,Ternopil'
+UKR,Ukraine,UKR.24_1,Vinnytsya
+UKR,Ukraine,UKR.25_1,Volyn
+UKR,Ukraine,UKR.23_1,Zakarpattia
+UKR,Ukraine,UKR.26_1,Zaporizhia
+UKR,Ukraine,UKR.27_1,Zhytomyr
+UZB,Uzbekistan,UZB.1_1,Andijon
+UZB,Uzbekistan,UZB.2_1,Buxoro
+UZB,Uzbekistan,UZB.3_1,Farg'ona
+UZB,Uzbekistan,UZB.4_1,Jizzax
+UZB,Uzbekistan,UZB.8_1,Namangan
+UZB,Uzbekistan,UZB.9_1,Navoiy
+UZB,Uzbekistan,UZB.5_1,Qaraqalpaqstan
+UZB,Uzbekistan,UZB.6_1,Qashqadaryo
+UZB,Uzbekistan,UZB.10_1,Samarqand'
+UZB,Uzbekistan,UZB.11_1,Sirdaryo
+UZB,Uzbekistan,UZB.12_1,Surxondaryo
+UZB,Uzbekistan,UZB.14_1,Toshkent
+UZB,Uzbekistan,UZB.13_1,Toshkent Shahri
+UZB,Uzbekistan,UZB.7_1,Xorazm
+VCT,Saint Vincent and the Grenadines,VCT.1_1,Charlotte
+VCT,Saint Vincent and the Grenadines,VCT.2_1,Grenadines
+VCT,Saint Vincent and the Grenadines,VCT.3_1,Saint Andrew
+VCT,Saint Vincent and the Grenadines,VCT.4_1,Saint David
+VCT,Saint Vincent and the Grenadines,VCT.5_1,Saint George
+VCT,Saint Vincent and the Grenadines,VCT.6_1,Saint Patrick
+VEN,Venezuela,VEN.1_1,Amazonas
+VEN,Venezuela,VEN.2_1,Anzoátegui
+VEN,Venezuela,VEN.3_1,Apure
+VEN,Venezuela,VEN.4_1,Aragua
+VEN,Venezuela,VEN.5_1,Barinas
+VEN,Venezuela,VEN.6_1,Bolívar
+VEN,Venezuela,VEN.7_1,Carabobo
+VEN,Venezuela,VEN.8_1,Cojedes
+VEN,Venezuela,VEN.9_1,Delta Amacuro
+VEN,Venezuela,VEN.10_1,Dependencias Federales
+VEN,Venezuela,VEN.11_1,Distrito Capital
+VEN,Venezuela,VEN.12_1,Falcón
+VEN,Venezuela,VEN.13_1,Guárico
+VEN,Venezuela,VEN.14_1,Lara
+VEN,Venezuela,VEN.15_1,Mérida
+VEN,Venezuela,VEN.16_1,Miranda
+VEN,Venezuela,VEN.17_1,Monagas
+VEN,Venezuela,VEN.18_1,Nueva Esparta
+VEN,Venezuela,VEN.19_1,Portuguesa
+VEN,Venezuela,VEN.20_1,Sucre
+VEN,Venezuela,VEN.21_1,Táchira
+VEN,Venezuela,VEN.22_1,Trujillo
+VEN,Venezuela,VEN.23_1,Vargas
+VEN,Venezuela,VEN.24_1,Yaracuy
+VEN,Venezuela,VEN.25_1,Zulia
+VNM,Vietnam,VNM.1_1,An Giang
+VNM,Vietnam,VNM.7_1,Bà Rịa - Vũng Tàu
+VNM,Vietnam,VNM.3_1,Bắc Giang
+VNM,Vietnam,VNM.4_1,Bắc Kạn
+VNM,Vietnam,VNM.2_1,Bạc Liêu
+VNM,Vietnam,VNM.5_1,Bắc Ninh
+VNM,Vietnam,VNM.6_1,Bến Tre
+VNM,Vietnam,VNM.8_1,Bình Định
+VNM,Vietnam,VNM.9_1,Bình Dương
+VNM,Vietnam,VNM.10_1,Bình Phước
+VNM,Vietnam,VNM.11_1,Bình Thuận
+VNM,Vietnam,VNM.13_1,Cà Mau
+VNM,Vietnam,VNM.12_1,Cần Thơ
+VNM,Vietnam,VNM.14_1,Cao Bằng
+VNM,Vietnam,VNM.19_1,Đà Nẵng
+VNM,Vietnam,VNM.15_1,Đắk Lắk
+VNM,Vietnam,VNM.16_1,Đắk Nông
+VNM,Vietnam,VNM.20_1,Điện Biên
+VNM,Vietnam,VNM.17_1,Đồng Nai
+VNM,Vietnam,VNM.18_1,Đồng Tháp
+VNM,Vietnam,VNM.21_1,Gia Lai
+VNM,Vietnam,VNM.26_1,Hà Giang
+VNM,Vietnam,VNM.28_1,Hà Nam
+VNM,Vietnam,VNM.27_1,Hà Nội
+VNM,Vietnam,VNM.29_1,Hà Tĩnh
+VNM,Vietnam,VNM.22_1,Hải Dương
+VNM,Vietnam,VNM.23_1,Hải Phòng
+VNM,Vietnam,VNM.24_1,Hậu Giang
+VNM,Vietnam,VNM.25_1,Hồ Chí Minh
+VNM,Vietnam,VNM.30_1,Hoà Bình
+VNM,Vietnam,VNM.31_1,Hưng Yên
+VNM,Vietnam,VNM.32_1,Khánh Hòa
+VNM,Vietnam,VNM.33_1,Kiên Giang
+VNM,Vietnam,VNM.34_1,Kon Tum
+VNM,Vietnam,VNM.36_1,Lai Châu
+VNM,Vietnam,VNM.37_1,Lâm Đồng
+VNM,Vietnam,VNM.35_1,Lạng Sơn
+VNM,Vietnam,VNM.38_1,Lào Cai
+VNM,Vietnam,VNM.39_1,Long An
+VNM,Vietnam,VNM.40_1,Nam Định
+VNM,Vietnam,VNM.41_1,Nghệ An
+VNM,Vietnam,VNM.42_1,Ninh Bình
+VNM,Vietnam,VNM.43_1,Ninh Thuận
+VNM,Vietnam,VNM.44_1,Phú Thọ
+VNM,Vietnam,VNM.45_1,Phú Yên
+VNM,Vietnam,VNM.46_1,Quảng Bình
+VNM,Vietnam,VNM.47_1,Quảng Nam
+VNM,Vietnam,VNM.48_1,Quảng Ngãi
+VNM,Vietnam,VNM.49_1,Quảng Ninh
+VNM,Vietnam,VNM.50_1,Quảng Trị
+VNM,Vietnam,VNM.51_1,Sóc Trăng
+VNM,Vietnam,VNM.52_1,Sơn La
+VNM,Vietnam,VNM.53_1,Tây Ninh
+VNM,Vietnam,VNM.55_1,Thái Bình
+VNM,Vietnam,VNM.56_1,Thái Nguyên
+VNM,Vietnam,VNM.57_1,Thanh Hóa
+VNM,Vietnam,VNM.54_1,Thừa Thiên Huế
+VNM,Vietnam,VNM.58_1,Tiền Giang
+VNM,Vietnam,VNM.59_1,Trà Vinh
+VNM,Vietnam,VNM.60_1,Tuyên Quang
+VNM,Vietnam,VNM.61_1,Vĩnh Long
+VNM,Vietnam,VNM.62_1,Vĩnh Phúc
+VNM,Vietnam,VNM.63_1,Yên Bái
+VUT,Vanuatu,VUT.1_1,Malampa
+VUT,Vanuatu,VUT.2_1,Penama
+VUT,Vanuatu,VUT.3_1,Sanma
+VUT,Vanuatu,VUT.4_1,Shefa
+VUT,Vanuatu,VUT.5_1,Tafea
+VUT,Vanuatu,VUT.6_1,Torba
+WSM,Samoa,WSM.1_1,A'ana
+WSM,Samoa,WSM.2_1,Aiga-i-le-Tai
+WSM,Samoa,WSM.3_1,Atua
+WSM,Samoa,WSM.4_1,Fa'asaleleaga
+WSM,Samoa,WSM.5_1,Gaga'emauga
+WSM,Samoa,WSM.6_1,Gagaifomauga
+WSM,Samoa,WSM.7_1,Palauli
+WSM,Samoa,WSM.8_1,Satupa'itea
+WSM,Samoa,WSM.9_1,Tuamasaga
+WSM,Samoa,WSM.10_1,Va'a-o-Fonoti
+WSM,Samoa,WSM.11_1,Vaisigano
+ZAF,South Africa,ZAF.1_1,Eastern Cape
+ZAF,South Africa,ZAF.2_1,Free State
+ZAF,South Africa,ZAF.3_1,Gauteng
+ZAF,South Africa,ZAF.4_1,KwaZulu-Natal
+ZAF,South Africa,ZAF.5_1,Limpopo
+ZAF,South Africa,ZAF.6_1,Mpumalanga
+ZAF,South Africa,ZAF.7_1,North West
+ZAF,South Africa,ZAF.8_1,Northern Cape
+ZAF,South Africa,ZAF.9_1,Western Cape
+ZMB,Zambia,ZMB.1_1,Central
+ZMB,Zambia,ZMB.2_1,Copperbelt
+ZMB,Zambia,ZMB.3_1,Eastern
+ZMB,Zambia,ZMB.4_1,Luapula
+ZMB,Zambia,ZMB.5_1,Lusaka
+ZMB,Zambia,ZMB.6_1,Muchinga
+ZMB,Zambia,ZMB.7_1,North-Western
+ZMB,Zambia,ZMB.8_1,Northern
+ZMB,Zambia,ZMB.9_1,Southern
+ZMB,Zambia,ZMB.10_1,Western
+ZWE,Zimbabwe,ZWE.1_1,Bulawayo
+ZWE,Zimbabwe,ZWE.2_1,Harare
+ZWE,Zimbabwe,ZWE.3_1,Manicaland
+ZWE,Zimbabwe,ZWE.4_1,Mashonaland Central
+ZWE,Zimbabwe,ZWE.5_1,Mashonaland East
+ZWE,Zimbabwe,ZWE.6_1,Mashonaland West
+ZWE,Zimbabwe,ZWE.7_1,Masvingo
+ZWE,Zimbabwe,ZWE.8_1,Matabeleland North
+ZWE,Zimbabwe,ZWE.9_1,Matabeleland South
+ZWE,Zimbabwe,ZWE.10_1,Midlands
+ABW,Aruba,ABW,Aruba
+AIA,Anguilla,AIA,Anguilla
+ALA,Åland,ALA,Åland
+AND,Andorra,AND,Andorra
+ARE,United Arab Emirates,ARE,United Arab Emirates
+ASM,American Samoa,ASM,American Samoa
+ATA,Antarctica,ATA,Antarctica
+ATF,French Southern Territories,ATF,French Southern Territories
+ATG,Antigua and Barbuda,ATG,Antigua and Barbuda
+AUS,Australia,AUS,Australia
+AUT,Austria,AUT,Austria
+BEL,Belgium,BEL,Belgium
+BES,"Bonaire, Sint Eustatius and Saba",BES,"Bonaire, Sint Eustatius and Saba"
+BHR,Bahrain,BHR,Bahrain
+BHS,Bahamas,BHS,Bahamas
+BLM,Saint-Barthélemy,BLM,Saint-Barthélemy
+BMU,Bermuda,BMU,Bermuda
+BRB,Barbados,BRB,Barbados
+BRN,Brunei,BRN,Brunei
+BVT,Bouvet Island,BVT,Bouvet Island
+CAN,Canada,CAN,Canada
+CCK,Cocos Islands,CCK,Cocos Islands
+CHE,Switzerland,CHE,Switzerland
+CHL,Chile,CHL,Chile
+CHN,China,CHN,China
+Z02,China,Z02,China
+Z03,China,Z03,China
+Z08,China,Z08,China
+COK,Cook Islands,COK,Cook Islands
+CUB,Cuba,CUB,Cuba
+CUW,Curaçao,CUW,Curaçao
+CXR,Christmas Island,CXR,Christmas Island
+CYM,Cayman Islands,CYM,Cayman Islands
+CYP,Cyprus,CYP,Cyprus
+CZE,Czechia,CZE,Czechia
+DEU,Germany,DEU,Germany
+DNK,Denmark,DNK,Denmark
+ESH,Western Sahara,ESH,Western Sahara
+ESP,Spain,ESP,Spain
+EST,Estonia,EST,Estonia
+FIN,Finland,FIN,Finland
+FJI,Fiji,FJI,Fiji
+FLK,Falkland Islands,FLK,Falkland Islands
+FRA,France,FRA,France
+FRO,Faroe Islands,FRO,Faroe Islands
+GBR,United Kingdom,GBR,United Kingdom
+GGY,Guernsey,GGY,Guernsey
+GIB,Gibraltar,GIB,Gibraltar
+GLP,Guadeloupe,GLP,Guadeloupe
+GRC,Greece,GRC,Greece
+GRL,Greenland,GRL,Greenland
+GUF,French Guiana,GUF,French Guiana
+GUM,Guam,GUM,Guam
+HMD,Heard Island and McDonald Island,HMD,Heard Island and McDonald Island
+HRV,Croatia,HRV,Croatia
+HUN,Hungary,HUN,Hungary
+IMN,Isle of Man,IMN,Isle of Man
+Z01,India,Z01,India
+Z04,India,Z04,India
+Z05,India,Z05,India
+Z07,India,Z07,India
+Z09,India,Z09,India
+IOT,British Indian Ocean Territory,IOT,British Indian Ocean Territory
+IRL,Ireland,IRL,Ireland
+IRN,Iran,IRN,Iran
+IRQ,Iraq,IRQ,Iraq
+ISL,Iceland,ISL,Iceland
+ISR,Israel,ISR,Israel
+ITA,Italy,ITA,Italy
+JEY,Jersey,JEY,Jersey
+JOR,Jordan,JOR,Jordan
+JPN,Japan,JPN,Japan
+KIR,Kiribati,KIR,Kiribati
+KNA,Saint Kitts and Nevis,KNA,Saint Kitts and Nevis
+KOR,South Korea,KOR,South Korea
+KWT,Kuwait,KWT,Kuwait
+LBN,Lebanon,LBN,Lebanon
+LIE,Liechtenstein,LIE,Liechtenstein
+LTU,Lithuania,LTU,Lithuania
+LUX,Luxembourg,LUX,Luxembourg
+LVA,Latvia,LVA,Latvia
+MAF,Saint-Martin,MAF,Saint-Martin
+MCO,Monaco,MCO,Monaco
+MDV,Maldives,MDV,Maldives
+MHL,Marshall Islands,MHL,Marshall Islands
+MLT,Malta,MLT,Malta
+MNP,Northern Mariana Islands,MNP,Northern Mariana Islands
+MSR,Montserrat,MSR,Montserrat
+MTQ,Martinique,MTQ,Martinique
+MYT,Mayotte,MYT,Mayotte
+NCL,New Caledonia,NCL,New Caledonia
+NFK,Norfolk Island,NFK,Norfolk Island
+NIU,Niue,NIU,Niue
+NLD,Netherlands,NLD,Netherlands
+NOR,Norway,NOR,Norway
+NRU,Nauru,NRU,Nauru
+NZL,New Zealand,NZL,New Zealand
+OMN,Oman,OMN,Oman
+Z06,Pakistan,Z06,Pakistan
+PAN,Panama,PAN,Panama
+PCN,Pitcairn Islands,PCN,Pitcairn Islands
+PNG,Papua New Guinea,PNG,Papua New Guinea
+POL,Poland,POL,Poland
+PRI,Puerto Rico,PRI,Puerto Rico
+PRK,North Korea,PRK,North Korea
+PRT,Portugal,PRT,Portugal
+PSE,Palestine,PSE,Palestine
+PYF,French Polynesia,PYF,French Polynesia
+QAT,Qatar,QAT,Qatar
+REU,Réunion,REU,Réunion
+ROU,Romania,ROU,Romania
+RUS,Russia,RUS,Russia
+SAU,Saudi Arabia,SAU,Saudi Arabia
+SDN,Sudan,SDN,Sudan
+SGP,Singapore,SGP,Singapore
+SGS,South Georgia and the South Sand,SGS,South Georgia and the South Sand
+SHN,"Saint Helena, Ascension and Tris",SHN,"Saint Helena, Ascension and Tris"
+SJM,Svalbard and Jan Mayen,SJM,Svalbard and Jan Mayen
+SMR,San Marino,SMR,San Marino
+SPM,Saint Pierre and Miquelon,SPM,Saint Pierre and Miquelon
+SVK,Slovakia,SVK,Slovakia
+SVN,Slovenia,SVN,Slovenia
+SWE,Sweden,SWE,Sweden
+SXM,Sint Maarten,SXM,Sint Maarten
+SYC,Seychelles,SYC,Seychelles
+SYR,Syria,SYR,Syria
+TCA,Turks and Caicos Islands,TCA,Turks and Caicos Islands
+TKL,Tokelau,TKL,Tokelau
+TTO,Trinidad and Tobago,TTO,Trinidad and Tobago
+TWN,Taiwan,TWN,Taiwan
+UMI,United States Minor Outlying Isl,UMI,United States Minor Outlying Isl
+URY,Uruguay,URY,Uruguay
+USA,United States,USA,United States
+VAT,Vatican City,VAT,Vatican City
+VGB,British Virgin Islands,VGB,British Virgin Islands
+VIR,"Virgin Islands, U.S.",VIR,"Virgin Islands, U.S."
+WLF,Wallis and Futuna,WLF,Wallis and Futuna
+XAD,Akrotiri and Dhekelia,XAD,Akrotiri and Dhekelia
+XCA,Caspian Sea,XCA,Caspian Sea
+XCL,Clipperton Island,XCL,Clipperton Island
+XKO,Kosovo,XKO,Kosovo
+XPI,Paracel Islands,XPI,Paracel Islands
+XSP,Spratly Islands,XSP,Spratly Islands
+YEM,Yemen,YEM,Yemen
+ZNC,Northern Cyprus,ZNC,Northern Cyprus
