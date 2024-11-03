@@ -210,7 +210,7 @@ html, body, #map {
     filter: alpha(opacity=75); 
     opacity: 0.75; 
     font-weight:400;
-    background-image: url("./img/Misterious_spin.gif");
+    background-image: url("../img/Misterious_spin.gif");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -255,7 +255,7 @@ html, body, #map {
   border:0px solid black;
   position: absolute;
   background-size: 60px;
-  background-image: url("./img/icons8-dots-loading.gif");
+  background-image: url("../img/icons8-dots-loading.gif");
   background-repeat: no-repeat;
   background-position: center;
 }
