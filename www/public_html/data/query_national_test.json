@@ -1,0 +1,69 @@
+{
+  "palette": [
+    "#e76254",
+    "#ef8a47",
+    "#f7aa58",
+    "#ffd06f",
+    "#ffe6b7",
+    "#aadce0",
+    "#72bcd5",
+    "#528fad",
+    "#376795",
+    "#1e466e"
+  ],
+  "breaks": [
+    0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1,
+    1.1,
+    1.2,
+    1.3,
+    1.4,
+    1.5
+  ],
+  "data": {
+    "AT": {
+      "202206": {
+        "ground_truth_internet_gg": 0.7,
+        "internet_online_model_prediction": 0.7
+      },
+      "202207": {
+        "ground_truth_internet_gg": 0.7,
+        "internet_online_model_prediction": 0.7
+      }
+    },
+    "RU": {
+      "202206": {
+        "ground_truth_internet_gg": 0.6,
+        "internet_online_model_prediction": 0.6
+      },
+      "202207": {
+        "ground_truth_internet_gg": 0.6,
+        "internet_online_model_prediction": 0.6
+      }
+    },
+    "GB": {
+      "202206": {
+        "ground_truth_internet_gg": 0.3,
+        "internet_online_model_prediction": 0.2
+      },
+      "202207": {
+        "ground_truth_internet_gg": 0.6,
+        "internet_online_model_prediction": 0.8
+      }
+    }, 
+    "ES": {
+      "202206": {
+        "ground_truth_internet_gg": 0.1,
+        "internet_online_model_prediction": 1.2
+      },
+      "202207": {
+        "ground_truth_internet_gg": 1.4,
+        "internet_online_model_prediction": 0.8
+      }
+    }
+  }
+}
