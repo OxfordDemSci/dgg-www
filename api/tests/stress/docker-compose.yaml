@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  k6:
+    build: .
+    volumes:
+      - ./:/k6/scripts
+    command: run /k6/scripts/k6-script.js
