@@ -20,4 +20,4 @@ jobs:
       run: docker build -t stress-k6 ./api/tests/stress
 
     - name: Run k6 tests
-      run: docker run --rm stress-k6 run /api/tests/stress/k6-script.js
+      run: docker run --rm stress-k6 run /k6/scripts/k6-script.js
