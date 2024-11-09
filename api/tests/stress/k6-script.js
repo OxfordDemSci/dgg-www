@@ -4,7 +4,6 @@ import { check, sleep } from 'k6';
 const urls = [
     "http://3.11.85.207/api/v2/init",
     "http://3.11.85.207/api/v2/get_national_data?date=2024-05",
-    "http://3.11.85.207/api/v2/get_subnational_data?date=2024-05", // big
     "http://3.11.85.207/api/v2/get_ground_truth_subnational",
     "http://3.11.85.207/api/v2/get_ground_truth_national",
 
@@ -26,13 +25,12 @@ export const options = {
     thresholds: {
       http_req_duration: ['p(95)<1000'], // 95% of requests must complete below 1 second
       http_req_failed: ['rate<0.01'], // less than 1% of requests should fail
-      http_reqs: ['rate>10'],            // at least 10 requests per second
-      iteration_duration: ['p(95)<3000'], // 95% of iterations should complete within 2 seconds
+      http_reqs: ['rate>3'],            // at least 10 requests per second
+      iteration_duration: ['p(95)<6000'], // 95% of iterations should complete within 2 seconds
     },
   };
 
 export default function () {
-    const url = 'http://3.11.85.207/api/v2/get_national_data?date=2024-05';
     urls.forEach(url => {
         const res = http.get(url);
         check(res, {

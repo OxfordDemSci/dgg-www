@@ -9,4 +9,5 @@ COPY . /k6/scripts
 
 
 # Set the entrypoint to k6
-ENTRYPOINT ["k6"]
+#ENTRYPOINT ["k6"]
+ENTRYPOINT ["sh", "/k6/scripts/run-k6-test.sh"]

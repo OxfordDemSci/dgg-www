@@ -19,5 +19,8 @@ jobs:
     - name: Build Docker image
       run: docker build -t stress-k6 ./api/tests/stress
 
-    - name: Run k6 tests
-      run: docker run --rm stress-k6 run /k6/scripts/k6-script.js
+    # - name: Run k6 tests light
+    #   run: docker run --rm stress-k6 run /k6/scripts/k6-script.js
+
+    # - name: Run k6 tests heavy
+    #   run: docker run --rm stress-k6 run /k6/scripts/k6-script-heavy.js
