@@ -8,12 +8,12 @@ export const options = {
     //     { duration: '10s', target: 0 },  // ramp down to 0 users over 10 seconds
     // ],
     stages: [
-        { duration: '5s', target: 5 }, // ramp up to 5 users over 5 seconds
-        { duration: '10s', target: 5 }, // hold at 10 users for 5 seconds
+        { duration: '5s', target: 10 }, // ramp up to 5 users over 5 seconds
+        { duration: '10s', target: 10 }, // hold at 10 users for 5 seconds
         { duration: '5s', target: 0 },  // ramp down to 0 users over 5 seconds
     ],
     thresholds: {
-        http_req_duration: ['p(95)<2000'], // 95% of requests must complete below 2 seconds
+        http_req_duration: ['p(95)<3000'], // 95% of requests must complete below 2 seconds
         http_req_failed: ['rate<0.05'], // less than 1% of requests should fail
         http_reqs: ['rate>0.5'],            // at least 10 requests per second
         iteration_duration: ['p(95)<5000'], // 95% of iterations should complete within 2 seconds

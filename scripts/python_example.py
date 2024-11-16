@@ -40,7 +40,7 @@ def get_data():
 def get_csv_data():
     post_csv = BASE / "test_post_delete.csv"
     df = pd.read_csv(post_csv)
-    data = df.to_dict(orient="records")
+    data = df.to_dict(orient="records")  # Convert dataframe to list of dictionaries
     return data
 
 
