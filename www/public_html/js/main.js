@@ -156,6 +156,10 @@ legendLayer.addTo(map);
 var scaleLayer = L.control.scale({position: 'bottomleft'});
 scaleLayer.addTo(map);
 
+L.control.zoom({
+    position: 'topleft'
+}).addTo(map);
+
 
 var worldLayer = L.geoJson(null, {
     style: function (feature){
