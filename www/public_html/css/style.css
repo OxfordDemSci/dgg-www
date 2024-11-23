@@ -9,7 +9,30 @@ html, body, #map {
 }
 
 .navbar{
- background-color: #002147;    
+/* background-color: #002147;  #1c0d5a */ 
+ background-color: #eff7fb; 
+}
+
+.nav-link {
+    color: #1c0d5a;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: "Questrial", sans-serif;
+}
+
+.nav-link:hover {
+    color: #295cff;
+}
+
+.sidebar-header {
+    margin: -10px -20px 0;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    font-size: 12pt;
+    color: #fff;
+    background-color: #0074d9;
 }
 
 .mousechangeHand:hover {

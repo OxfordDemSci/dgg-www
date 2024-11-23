@@ -121,6 +121,8 @@ export function load_data_BottomTable(data,
         <tbody>`;
 
     for (var k in data) {
+       
+       if (data_sub[k] === undefined || data_sub[k] === null) continue;
         
        if  (!(_utils.isContains(countriesList, k))) continue;
 
