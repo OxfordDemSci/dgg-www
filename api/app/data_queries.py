@@ -91,7 +91,7 @@ def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
 
     result["national"] = {
         "countries": national_countries,
-        "dates": national_dates,
+        "dates": sorted(national_dates),
         "models": national_outcomes
     }
 
@@ -122,7 +122,7 @@ def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
 
     result["subnational"] = {
         "regions": subnational_regions,
-        "dates": subnational_dates,
+        "dates": sorted(subnational_dates),
         "models": subnational_outcomes
     }
     result["national_ground_truth"] = national_ground_truth_countries
