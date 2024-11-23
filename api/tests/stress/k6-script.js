@@ -13,8 +13,8 @@ export const options = {
     //vus: 5, // number of virtual users
     //duration: '30s', // duration of the test
     stages: [
-        { duration: '20s', target: 10 }, // ramp up to 50 users over 20 seconds
-        { duration: '20s', target: 10 }, // hold at 50 users for 30 seconds
+        { duration: '20s', target: 50 }, // ramp up to 50 users over 20 seconds
+        { duration: '120s', target: 50 }, // hold at 50 users for 30 seconds
         { duration: '20s', target: 0 },  // ramp down to 0 users over 10 seconds
     ],
     // stages: [
