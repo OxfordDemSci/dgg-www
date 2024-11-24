@@ -455,7 +455,7 @@ function main_query_national(vYear, vMonth, vModel, vGroundTruth, api_url, _map,
     let vModel_title = initJSONSettings["descriptions"]["indicator"][vModel].name;
     _utils.progressMenuTableOn();
     _api.query_national_promis(vYear, vMonth, vModel, vGroundTruth, api_url)
-            .then((data) => {   
+            .then((data) => {         
                 _worldLayer.load_data_to_worldLayer(
                         vYear,
                         vMonth,
@@ -702,7 +702,7 @@ $("#refreshButton").click(function(event) {
 });
 
 
-$('#datepicker').on('changeMonth', function (e) {
+$('#datepicker').on('changeDate', function (e) {
    main_query(prSubNational, prGroundTruth);
 });
 
