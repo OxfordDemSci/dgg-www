@@ -90,6 +90,9 @@
           <a class="nav-link" href="http://3.11.85.207" >Home</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="#" id="aBtnQuickStartMenu">Quick Start</a>
+        </li>        
+        <li class="nav-item">
           <a class="nav-link " aria-current="page" href="http://3.11.85.207/about/">About</a>
         </li>
           <li class="nav-item">
@@ -311,7 +314,7 @@
         <a id="downloadAnchorElem" style="display:none"></a>    
         
         <!--  Modal QuickStart -->
-        <div class="modal fade "  data-backdrop="false"  id="idMdQuickStart" tabindex="-1"  aria-labelledby="ModalQuickStart" style="opacity: 0.90;z-index: 2200" >
+        <div class="modal fade "  data-backdrop="false"  id="idMdQuickStart" tabindex="-1"  aria-labelledby="ModalQuickStart" style="top: 60px;opacity: 0.90;z-index: 2200" >
             <div class="modal-dialog shadow-lg modal-lg" style="overflow-y: initial !important"  role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="padding: 0.5rem;cursor: move;">
@@ -523,7 +526,7 @@
 <script type="text/javascript">
     window.mdebug = true;
 </script>
-<script src="./js/main.js?version=0.642" type="module"></script>
+<script src="./js/main.js?version=0.644" type="module"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -587,7 +590,14 @@ $('#lbIndicatorInfo').popover({
             e.preventDefault();
             e.stopPropagation();
             return false;
-        });        
+        }); 
+        
+         $("#aBtnQuickStartMenu").click(function(e) {
+            $('#idMdQuickStart').modal('toggle');
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });          
         
         $("#aBtnTeam").click(function(e) {
             $('#idMdTeam').modal('toggle');
@@ -620,6 +630,23 @@ $('#lbIndicatorInfo').popover({
     });
 </script>
 
+<script type="text/javascript">
 
+var milliseconds = new Date().getTime();
+
+jQuery.get('./md/quickstart.html?version='+milliseconds, function(data) {
+
+var TeamTabPopup = document.getElementById('QuickStartTabPopup');
+
+    var converterQuickStart = new showdown.Converter(),
+        html = converterQuickStart.makeHtml(data);
+        TeamTabPopup.innerHTML =data;
+});
+
+
+
+
+
+</script>
 <!--<script src="./js/MaxMinTable.js?version=0.3"></script>-->
 

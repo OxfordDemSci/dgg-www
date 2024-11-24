@@ -346,7 +346,7 @@ html, body, #map {
 
 #refreshButton {
   position: absolute;
-  top: 60px;
+  top: 70px;
   left: 30px;
   padding: 20px;
   z-index: 700;

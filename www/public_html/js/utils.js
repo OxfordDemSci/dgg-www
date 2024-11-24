@@ -282,3 +282,14 @@ export function loadLagent(title, colors, breaks, subtitles) {
     document.getElementById('legend_data_info').innerHTML = html;
 
 }
+
+
+export function check_if_date_exists_Sub(y, m, dSub) {
+
+    if (dSub.hasOwnProperty(y)  && dSub[y].includes(m)) {
+        return(true);
+    } else {
+        return(false);
+    }
+
+}
