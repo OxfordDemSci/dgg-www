@@ -44,5 +44,5 @@ def delete_data_from_csv(path_to_csv: Union[Path, str]):
 
 
 if __name__ == "__main__":
-    csv_path = BASE.joinpath(("test_post_delete_subnational.csv"))
-    delete_data_from_csv(csv_path)
+    CSV = BASE.joinpath(("test_post_delete_subnational.csv"))
+    delete_data_from_csv(CSV)

@@ -55,6 +55,19 @@ A single row example to be deleted from the database, would be:
 ```json
 [{'country': 'Afghanistan', 'gid_0': 'AFG', 'gid_1': 'AFG.1_1', 'date': '2024-08', 'outcome': 'mobile_women', 'predicted': 30.0, 'predicted_error': 5.6}]
 ```
+
+## Deleting and posting utility scripts
+In the same `./scripts` folder as above, there are utility scripts that can be run to delete or post small edits to the database. You will not be able to delete full tables. In these cases, it would be better to `ssh` into the server machine and delete the tables using `psql`:
+```ssh
+PGPASSWORD=XXXXXXXXXXXXX psql -h localhost -p 5432 -U oxford_dgg_admin -d localhost -c "DELETE FROM national_indicators;"
+```
+You will need to get the password from the `.env` file in the application root.
+
+1. `python ./scripts/delete_national.py` - You will need to copy a csv into the scripts folder detailing the rows you would like deleted, and update the `CSV` attribute pointing to the csv path.
+2. `python ./scripts/delete_subnational.py` - You will need to copy a csv into the scripts folder detailing the rows you would like deleted, and update the `CSV` attribute pointing to the csv path.
+3. `python ./scripts/post_national.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
+4. `python ./scripts/post_subnational.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
+
 ## Testing
 
 ### Stress/Load Testing
