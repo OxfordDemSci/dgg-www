@@ -2,7 +2,7 @@ var API_URL = "./api/v2/";
 var featureByName = {};
 
 import * as _init from './init.js?version=0.7'
-import * as _utils from './utils.js?version=0.66'
+import * as _utils from './utils.js?version=0.67'
 import * as _api from './api_requests.js?version=0.3'
 import * as _worldLayer from './worldLayer.js?version=0.495'
 import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.8'
@@ -47,14 +47,13 @@ const modelsList = _modelsList.loadModelsList();
 var initJSONSettings = _api.getSettings(API_URL);
 
 var ymDates = _init.getDates(initJSONSettings.national.dates);
+var ymDates_Subnational = _init.getDates(initJSONSettings.subnational.dates);
 
 var countriesList = _init.getCountriesList(initJSONSettings.national.countries);
-
 
 let last_year_month = _utils.getLastDates(ymDates);
 const lastYear   = last_year_month[0],
       lastMonth  = last_year_month[1];
-
 
 let first_year_month = _utils.getFirstDates(ymDates);
 const firstYear   = first_year_month[0],
@@ -62,6 +61,15 @@ const firstYear   = first_year_month[0],
 
 var monthsToDisable = _utils.MonthsYearsToDisable(ymDates,firstYear,lastYear);
 
+let last_year_month_Sub = _utils.getLastDates(ymDates_Subnational);
+const lastYear_Sub   = last_year_month_Sub[0],
+      lastMonth_Sub  = last_year_month_Sub[1];
+
+let first_year_month_Sub = _utils.getFirstDates(ymDates_Subnational);
+const firstYear_Sub   = first_year_month_Sub[0],
+      firstMonth_Sub  = first_year_month_Sub[1];      
+
+var monthsToDisable_Sub = _utils.MonthsYearsToDisable(ymDates_Subnational,firstYear_Sub,lastYear_Sub);
 
 _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
 
@@ -71,11 +79,6 @@ _init.load_models_to_menu(modelsList, initJSONSettings.descriptions);
 
 var world_geo_json = _init.getWorld_geo();
 var worldSubNational_geo_json = _init.getWorldSubNational_geo();
-
-
-
-
-
 
 var basemaps = {
         "OpenStreetMaps": L.tileLayer(
@@ -452,7 +455,7 @@ function main_query_national(vYear, vMonth, vModel, vGroundTruth, api_url, _map,
     let vModel_title = initJSONSettings["descriptions"]["indicator"][vModel].name;
     _utils.progressMenuTableOn();
     _api.query_national_promis(vYear, vMonth, vModel, vGroundTruth, api_url)
-            .then((data) => {   
+            .then((data) => {         
                 _worldLayer.load_data_to_worldLayer(
                         vYear,
                         vMonth,
@@ -565,15 +568,28 @@ function main_query(_prSubNational, _prGroundTruth) {
 
 $('#chSubNational').change(function () {
 
-        if ($(this).is(":checked")) {
-            
-            prSubNational = true;
-            
-        } else {
-            prSubNational = false;
+    var sParams = _utils.getSelectedParameters();
+
+    if ($(this).is(":checked")) {
+        _init.loadDatesToMenu(firstMonth_Sub, firstYear_Sub, lastMonth_Sub, lastYear_Sub, monthsToDisable_Sub);
+        if (_utils.check_if_date_exists_Sub(parseInt(sParams[0]), parseInt(sParams[1]), ymDates_Subnational) === true) {
+            $('#datepicker').datepicker('setDate', parseInt(sParams[0]) + '-' + parseInt(sParams[1]));
         }
-        main_query(prSubNational, prGroundTruth);
+        prSubNational = true;
+
+    } else {
         
+        _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
+        
+        prSubNational = false;
+        
+    }
+
+
+
+
+    main_query(prSubNational, prGroundTruth);
+
 });
 
 
@@ -686,7 +702,7 @@ $("#refreshButton").click(function(event) {
 });
 
 
-$('#datepicker').on('changeMonth', function (e) {
+$('#datepicker').on('changeDate', function (e) {
    main_query(prSubNational, prGroundTruth);
 });
 

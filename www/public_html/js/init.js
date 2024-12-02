@@ -47,7 +47,8 @@ export function getDates(data) {
 
 export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable) {
 
-
+    $("#datepicker").datepicker("destroy"); 
+    
     $("#datepicker").datepicker({
         format: "yyyy-mm",
         minViewMode: "months",
@@ -62,7 +63,7 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
             return $.inArray(formattedDate, monthsToDisable) < 0;
         }
     });
-
+    $('#datepicker').datepicker("refresh");
     $('#datepicker').datepicker('setDate', lastYear + '-' + lastMonth);
     
     
