@@ -1,0 +1,13 @@
+country,gid_0,gid_1,date,outcome,predicted,predicted_error
+Afghanistan,AFG,AFG.1_1,2024-08,mobile_women,30,5.6
+Afghanistan,AFG,AFG.1_1,2024-08,mobile_men,85.8,3.4
+Afghanistan,AFG,AFG.1_1,2024-08,mobile_fm_ratio,0.453,0.046
+Afghanistan,AFG,AFG.1_1,2024-08,internet_women,14.7,4.3
+Afghanistan,AFG,AFG.1_1,2024-08,internet_men,33,6.5
+Afghanistan,AFG,AFG.1_1,2024-08,internet_fm_ratio,0.193,0.082
+Afghanistan,AFG,AFG.10_1,2024-08,mobile_women,33.6,5.8
+Afghanistan,AFG,AFG.10_1,2024-08,mobile_men,81.9,3.5
+Afghanistan,AFG,AFG.10_1,2024-08,mobile_fm_ratio,0.41,0.095
+Afghanistan,AFG,AFG.10_1,2024-08,internet_women,14.1,3.9
+Afghanistan,AFG,AFG.10_1,2024-08,internet_men,31.1,6.7
+Afghanistan,AFG,AFG.10_1,2024-08,internet_fm_ratio,0.22,0.111
