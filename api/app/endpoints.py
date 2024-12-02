@@ -5,6 +5,7 @@ import io
 from flask import Blueprint, make_response, Response, request, jsonify, current_app
 from flask_jwt_extended import (create_access_token, decode_token, get_jwt,
                                 get_jwt_identity, jwt_required)
+from sqlalchemy import or_
 from .data_queries import (
     dq_get_init_data,
     dq_query_specific_country,
@@ -203,19 +204,27 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
 def post_national_data() -> Response:
     try:
         data_list = request.get_json()
-        for data in data_list:
-            new_record = NationalIndicators(
-                gid_0=data['gid_0'],
-                country=data['country'],
-                outcome=data['outcome'],
-                predicted=data.get('predicted'),
-                predicted_error=data.get('predicted_error'),
-                date=data['date']
-            )
-            db.session.add(new_record)
+
+        # Prepare the data for bulk insert
+        records = [
+            {
+                'gid_0': data['gid_0'],
+                'country': data['country'],
+                'outcome': data['outcome'],
+                'predicted': data.get('predicted'),
+                'predicted_error': data.get('predicted_error'),
+                'date': data['date']
+            }
+            for data in data_list
+        ]
+
+        # Perform a bulk insert operation
+        db.session.bulk_insert_mappings(NationalIndicators.__mapper__, records)
+
         db.session.commit()
         return make_response({"message": "Successfully posted data"}, 200)
     except Exception as e:
+        db.session.rollback()
         return make_response({"error": str(e)}, 500)
 
 
@@ -224,39 +233,53 @@ def post_national_data() -> Response:
 def post_subnational_data() -> Response:
     try:
         data_list = request.get_json()
-        for data in data_list:
-            new_record = SubNationalIndicators(
-                gid_0=data['gid_0'],
-                gid_1=data['gid_1'],
-                country=data['country'],
-                outcome=data['outcome'],
-                predicted=data.get('predicted'),
-                predicted_error=data.get('predicted_error'),
-                date=data['date']
-            )
-            db.session.add(new_record)
+
+        # Prepare the data for bulk insert
+        records = [
+            {
+                'gid_0': data['gid_0'],
+                'gid_1': data['gid_1'],
+                'country': data['country'],
+                'outcome': data['outcome'],
+                'predicted': data.get('predicted'),
+                'predicted_error': data.get('predicted_error'),
+                'date': data['date']
+            }
+            for data in data_list
+        ]
+
+        # Perform a bulk insert operation
+        db.session.bulk_insert_mappings(SubNationalIndicators.__mapper__, records)
+
         db.session.commit()
         return make_response({"message": "Successfully posted data"}, 200)
     except Exception as e:
+        db.session.rollback()
         return make_response({"error": str(e)}, 500)
-    
+
 
 @check_delete_scope
 @validate_delete_requests
 def delete_national_data() -> Response:
     try:
         data_list = request.get_json()
-        for data in data_list:
-            record = db.session.query(NationalIndicators).filter_by(
-                gid_0=data['gid_0'],
-                country=data['country'],
-                outcome=data['outcome'],
-                date=data['date']
-            ).first()
-            db.session.delete(record)
+        filters = [
+            (NationalIndicators.gid_0 == data['gid_0']) &
+            (NationalIndicators.country == data['country']) &
+            (NationalIndicators.outcome == data['outcome']) &
+            (NationalIndicators.date == data['date'])
+            for data in data_list
+        ]
+        
+        # Perform a bulk delete operation
+        db.session.query(NationalIndicators).filter(
+            or_(*filters)
+        ).delete(synchronize_session=False)
+        
         db.session.commit()
         return make_response({"message": "Successfully deleted data"}, 200)
     except Exception as e:
+        db.session.rollback()
         return make_response({"error": str(e)}, 500)
     
 
@@ -265,16 +288,22 @@ def delete_national_data() -> Response:
 def delete_subnational_data() -> Response:
     try:
         data_list = request.get_json()
-        for data in data_list:
-            record = db.session.query(SubNationalIndicators).filter_by(
-                gid_0=data['gid_0'],
-                gid_1=data['gid_1'],
-                country=data['country'],
-                outcome=data['outcome'],
-                date=data['date']
-            ).first()
-            db.session.delete(record)
+        filters = [
+            (SubNationalIndicators.gid_0 == data['gid_0']) &
+            (SubNationalIndicators.gid_1 == data['gid_1']) &
+            (SubNationalIndicators.country == data['country']) &
+            (SubNationalIndicators.outcome == data['outcome']) &
+            (SubNationalIndicators.date == data['date'])
+            for data in data_list
+        ]
+        
+        # Perform a bulk delete operation
+        db.session.query(SubNationalIndicators).filter(
+            or_(*filters)
+        ).delete(synchronize_session=False)
+        
         db.session.commit()
         return make_response({"message": "Successfully deleted data"}, 200)
     except Exception as e:
+        db.session.rollback()
         return make_response({"error": str(e)}, 500)
