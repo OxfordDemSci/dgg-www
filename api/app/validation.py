@@ -74,6 +74,14 @@ def validate_post_requests(f):
     def decorated_function(*args, **kwargs):
         data_list = request.get_json()
         invalid_rows = []
+        valid_outcomes = [
+            "mobile_women",
+            "internet_women",
+            "internet_men",
+            "mobile_fm_ratio",
+            "internet_fm_ratio",
+            "mobile_men"
+        ]
 
         for data in data_list:
             gid_0 = data.get("gid_0")
@@ -81,6 +89,11 @@ def validate_post_requests(f):
             country = data.get("country")
             outcome = data.get("outcome")
             date = data.get("date")
+
+            if outcome not in valid_outcomes:
+                invalid_rows.append(data)
+                continue
+
             if not gid_1:
                 existing_record = db.session.query(
                     NationalIndicators).filter_by(
@@ -94,7 +107,7 @@ def validate_post_requests(f):
             if existing_record:
                 invalid_rows.append(data)
         if invalid_rows:
-            return jsonify({"error": f"Duplicate rows - Please delete these and try again: {invalid_rows}"}), 400
+            return jsonify({"error": f"Duplicate rows or invalid outcome names - Please delete these and try again: {invalid_rows}"}), 400
         return f(*args, **kwargs)
     return decorated_function
 
@@ -104,6 +117,7 @@ def validate_delete_requests(f):
     def decorated_function(*args, **kwargs):
         data_list = request.get_json()
         invalid_rows = []
+        
         for data in data_list:
             gid_0 = data.get("gid_0")
             gid_1 = data.get("gid_1")
