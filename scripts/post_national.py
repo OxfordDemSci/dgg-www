@@ -6,7 +6,8 @@ How to run the script:
 1. Ensure you have a .env file in the parent directory with the necessary environment variables, including:
    - POSTGRES_USER
    - POSTGRES_PASSWORD
-2. Place the CSV file containing the data to be posted in the appropriate directory.
+2. Place the CSV file containing the data to be posted in the appropriate directory and point CSV_DIR below
+to this directory.
 3. Run the script using Python:
    ```
    python post_national.py
@@ -20,12 +21,11 @@ import os
 from pathlib import Path
 import dotenv
 import helpers
+from helpers import ROOT_URL
 from typing import Union
 import pycountry
 
 BASE = Path(__file__).resolve().parent
-
-ROOT_URL = "http://3.11.85.207/api/v2"
 
 ENV_FILE = BASE.parent / ".env"
 
@@ -39,7 +39,10 @@ def post_data(token: str, data: list[dict], level: helpers.Level):
     """Post data using a list of dictionaries representing the data to be posted."""
     url = f"{ROOT_URL}/post_{level.value}_data"
     response = requests.post(url, json=data, headers={"Authorization": f"Bearer {token}"})
-    assert response.status_code == 200, response.json()
+    if response.status_code != 200:
+        print(f"Error posting data: {response.json()}")
+    else:
+        print(f"Data posted successfully.")
 
 
 def post_data_from_csv(path_to_csv_dir: Union[Path, str], level: helpers.Level):
@@ -50,7 +53,7 @@ def post_data_from_csv(path_to_csv_dir: Union[Path, str], level: helpers.Level):
         df = pd.read_csv(path_to_csv)
         if "country" not in df.columns:
             df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-        chunk_size = 1000
+        chunk_size = 5000
         token = helpers.get_token(username=POST_USERNAME, password=POST_PASSWORD)
         print("POSTING DATA...")
         for start in range(0, len(df), chunk_size):

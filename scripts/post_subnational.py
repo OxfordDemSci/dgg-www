@@ -20,11 +20,11 @@ import os
 from pathlib import Path
 import dotenv
 import helpers
+from helpers import ROOT_URL
 from typing import Union
 
 BASE = Path(__file__).resolve().parent
 
-ROOT_URL = "http://3.11.85.207/api/v2"
 
 ENV_FILE = BASE.parent / ".env"
 
