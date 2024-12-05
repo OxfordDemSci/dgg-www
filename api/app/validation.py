@@ -44,13 +44,13 @@ def validate_request_params(f):
             if invalid_indicators:
                 return jsonify({"error": f"Invalid indicators: {', '.join(invalid_indicators)}"}), 400
         if date:
-            if not date_in_db(date, Level.NATIONAL):
+            if not date_in_db(date, Level.NATIONAL) and not date_in_db(date, Level.SUBNATIONAL):
                 return jsonify({"error": f"Invalid date {date}"}), 400
         if start_date:
-            if not date_in_db(start_date, Level.NATIONAL):
+            if not date_in_db(start_date, Level.NATIONAL) and not date_in_db(start_date, Level.SUBNATIONAL):
                 return jsonify({"error": f"Invalid start date {start_date}"}), 400
         if end_date:
-            if not date_in_db(end_date, Level.NATIONAL):
+            if not date_in_db(end_date, Level.NATIONAL) and not date_in_db(end_date, Level.SUBNATIONAL):
                 return jsonify({"error": "Invalid end date {end_date}"}), 400
         return f(*args, **kwargs)
 
