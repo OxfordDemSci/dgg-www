@@ -13,7 +13,7 @@ import dotenv
 from typing import Union
 
 import helpers
-from helpers import ROOT_URL
+ROOT_URL = "http://localhost:8000/api/v2"
 
 BASE = Path(__file__).resolve().parent
 

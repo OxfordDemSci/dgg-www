@@ -21,11 +21,12 @@ import os
 from pathlib import Path
 import dotenv
 import helpers
-from helpers import ROOT_URL
 from typing import Union
 import pycountry
 
 BASE = Path(__file__).resolve().parent
+
+ROOT_URL = "http://localhost:8000/api/v2"
 
 ENV_FILE = BASE.parent / ".env"
 
