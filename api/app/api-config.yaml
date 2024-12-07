@@ -23,6 +23,36 @@ paths:
           description: "Successfully initialized"
         "500":
           description: "Internal server error"
+  /valid_outcomes_by_date:
+    get:
+      tags:
+        - default
+      summary: "Get valid outcomes by date"
+      x-swagger-router-controller: app.endpoints
+      operationId: valid_outcomes_by_date
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+          description: "Date to get valid outcomes for (YYYY-MM)"
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: string
+        "400":
+          description: "Invalid request parameters"
+        "500":
+          description: "Internal server error"
   /query_specific_country:
     get:
       tags:

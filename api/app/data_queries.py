@@ -1,5 +1,5 @@
 import sqlalchemy
-from sqlalchemy import text
+from sqlalchemy import text, distinct
 from flask import Response
 from typing import Any, Optional
 
@@ -132,6 +132,27 @@ def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
 
     return result
 
+
+def dq_query_outcomes_by_date(date: str) -> dict[str, list[dict[str, Any]]]:
+    national_query = db.session.query(NationalIndicators.outcome).filter(NationalIndicators.date == date).distinct()
+    subnational_query = db.session.query(SubNationalIndicators.outcome).filter(SubNationalIndicators.date == date).distinct()
+
+    national_outcomes = [row[0] for row in national_query.all()]
+    subnational_outcomes = [row[0] for row in subnational_query.all()]
+
+    outcomes_to_check = [
+        "internet_men",
+        "internet_women",
+        "mobile_women",
+        "internet_fm_ratio",
+        "mobile_fm_ratio",
+        "mobile_men"
+    ]
+
+    result = {}
+    result["national"] = {outcome: (outcome in national_outcomes) for outcome in outcomes_to_check}
+    result["subnational"] = {outcome: (outcome in subnational_outcomes) for outcome in outcomes_to_check}
+    return result
 
 
 def dq_query_specific_country(country: str, indicators: list[str] | None = None):

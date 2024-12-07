@@ -19,6 +19,7 @@ from .data_queries import (
     get_user,
     dq_download_national_data_csv,
     dq_download_subnational_data_csv,
+    dq_query_outcomes_by_date,
 )
 
 from .models import SubNationalIndicators, NationalIndicators
@@ -102,6 +103,14 @@ def init_data() -> Response:
         return make_response(response, 200)
     except Exception as e:
         return make_response({"error": str(e)}, 500)
+
+@validate_request_params
+def valid_outcomes_by_date(date: str) -> Response:
+    try:
+        results = dq_query_outcomes_by_date(date)
+    except Exception as e:
+        return make_response({"error": str(e)}, 500)
+    return make_response(results, 200)
 
 @validate_request_params
 def query_specific_country(country: str, indicators: list[str] | None = None) -> Response:
