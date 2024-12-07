@@ -2,10 +2,10 @@
 The data for this project can be accessed via the dashboard (`http://3.11.85.207/dashboard/`) or the API (`http://3.11.85.207/api/v2/`). The API can be interacted with programatically, or via the Swagger UI (`http://3.11.85.207/api/v2/ui `), which also acts as the API documentation.
 
 
-## WordPress editing
-
-
 ## Helper Scripts
+
+**Please see API Client and automation scripts for automating the posting and deleting of data**
+
 There are a couple of the scripts in this repo that demonstrate how to access the data programmatically via the API, and also write and delete data to the database. There is an example script for Python, and the same functionality in R. The scripts can be found int `./scripts/python_example.[py][R]`. The functions demonstrate how to sign in, authenticate with a token, `GET`, `POST` and `DELETE` data.
 
 In order to use the Write and Delete endpoints, the user will need to be authenticated. There are project-wide passwords help in the `.env` file on the server, or contact Daniel Valdenegro if you are unable to `ssh` into the server. The `.env` file is held in the `~/dgg-www` directory.
@@ -115,7 +115,7 @@ should be placed above
 ```python
 client.create_backup()
 ```
-The `./script/` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
+The `./script/data` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
 
 
 ## Testing
