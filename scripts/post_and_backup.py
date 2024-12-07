@@ -17,7 +17,7 @@ def main(delete_national: bool = False, delete_subnational: bool = False):
     post_password = os.getenv("POSTGRES_PASSWORD", "")
     delete_username = os.getenv("POSTGRES_DELETE_USERNAME", "")
     delete_password = os.getenv("POSTGRES_DELETE_PASSWORD", "")
-    root_url = "http://localhost:8080/api/v2"
+    root_url = "http://3.11.85.207/api/v2"
     post_national_level_dir = BASE_DIR.joinpath("post/national")
     post_subnational_level_dir = BASE_DIR.joinpath("post/subnational")
     delete_national_level_dir = BASE_DIR.joinpath("delete/national")
