@@ -69,6 +69,55 @@ You will need to get the password from the `.env` file in the application root.
 3. `python ./scripts/post_national.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
 4. `python ./scripts/post_subnational.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
 
+## API Client and automation scripts
+In addition to the above, there is a client class in the `./scripts/` directory that helps to automate the posting, deleting and backing up of data. To carry out these tasks, you will need to edit `./scripts/post_and_backup.py`.
+1. Point the script to the location of your env file:
+```python
+BASE_DIR = Path(__file__).resolve().parent.joinpath('data')
+ENV = BASE_DIR.parent.joinpath('.env')
+```
+2. Set the root_url to point to the API:
+```python
+root_url = "http://3.11.85.207/api/v2"
+```
+3. Point the script to the directories holding the csv's to post for subnational and national data. These folders SHOULD BE CREATED BUT CAN BE EMPTY if one or the other level is available **NOTE - The post data should be replaced each time you make a post**:
+```python
+post_national_level_dir = BASE_DIR.joinpath("post/national")
+post_subnational_level_dir = BASE_DIR.joinpath("post/subnational")
+```
+3. Point the script to the directories holding the csv's to delete for subnational and national data. These folders SHOULD BE CREATED BUT CAN BE EMPTY if one or the other level is available. **NOTE - The post data should be replaced each time you make a post**:
+```python
+delete_national_level_dir = BASE_DIR.joinpath("delete/national")
+delete_subnational_level_dir = BASE_DIR.joinpath("delete/subnational")
+```
+The delete function is option and is flagged to not delete by default. You will need to change the parameters passed to the `main` function to set the script to delete
+```python
+# Change to True for levels you would like to delete (using csvs)
+main(delete_national=False, delete_subnational=False)
+```
+4. Point the script to a folder in which to save errors. If there are duplicates or invalid requests, the rows of the input csv will be saved to this csv. This csv will be suffixed with the date/time that it was saved:
+```python
+errors_csv_dir = BASE_DIR.joinpath("errors")
+```
+5. Point the script to the folder in which to save national and subnational backup csvs from the database. These will be suffixed with the date/time that it was saved. This folder may need some tidying up after some time to save space.
+```python
+backup_dir = BASE_DIR.joinpath("backup")
+```
+
+Running the script will try to post the data in the respective levels' directories, save a backup for each level, and then if set, will delete the data in the delete directories. If you would like to delete BEFORE backing up, the code:
+```python
+if delete_national:
+        client.delete_national_data()
+    if delete_subnational:
+        client.delete_subnational_data()
+```
+should be placed above 
+```python
+client.create_backup()
+```
+The `./script/` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
+
+
 ## Testing
 
 ### Stress/Load Testing

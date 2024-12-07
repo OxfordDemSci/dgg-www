@@ -5,9 +5,6 @@ from io import BytesIO
 from typing import Union
 import json
 
-#ROOT_URL = "http://3.11.85.207/api/v2"
-#ROOT_URL = "http://localhost:8080/api/v2"
-
 
 class Level(Enum):
     NATIONAL = "national"
@@ -38,7 +35,7 @@ def download_csv(root_url: str, national_or_subnational: Level, date_from: str, 
     if response.status_code == 200:
         csv_bytes = response.content
         df = pd.read_csv(BytesIO(csv_bytes))
-        return df# .to_dict(orient="records")
+        return df
     return None
 
 
