@@ -68,7 +68,11 @@ class APIClient:
                 data = chunk.to_dict(orient="records")
                 errors = self._post_data(self.post_token, data, helpers.Level.NATIONAL)
                 if errors:
-                    df_list.append(helpers.convert_to_df(errors))
+                    try:
+                        df_list.append(helpers.convert_to_df(errors))
+                    except Exception as e:
+                        print(f"Error converting errors to DataFrame: {e}")
+                print(f"Posted {start} to {end} records.")
         if df_list:
             errors_df = pd.concat(df_list)
             if not self.errors_csv_dir.exists():
@@ -87,7 +91,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 50000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
@@ -95,6 +99,7 @@ class APIClient:
                 errors = self._post_data(self.post_token, data, helpers.Level.SUBNATIONAL)
                 if errors:
                     df_list.append(helpers.convert_to_df(errors))
+                print(f"Posted {start} to {end} records.")
         if df_list:
             errors_df = pd.concat(df_list)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"post_subnational_errors_{self.todays_date}.csv"), index=False)
@@ -123,7 +128,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 50000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
@@ -147,7 +152,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 50000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
