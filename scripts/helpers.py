@@ -21,12 +21,13 @@ def get_token(root_url: str, username: str, password: str):
     return response.json()["access_token"]
 
 
-def get_date_range(root_url: str, national_or_subnational: Level) -> dict[str, str]:
+def get_date_range(root_url: str, national_or_subnational: Level) -> Union[dict[str, str] | None]:
     init_data = requests.get(f"{root_url}/init")
     dates = {}
-    dates["from"] = init_data.json()[national_or_subnational.value]["dates"][0]
-    dates["to"] = init_data.json()[national_or_subnational.value]["dates"][-1]
-    return dates
+    if init_data.json()[national_or_subnational.value]["dates"]:
+        dates["from"] = init_data.json()[national_or_subnational.value]["dates"][0]
+        dates["to"] = init_data.json()[national_or_subnational.value]["dates"][-1]
+        return dates
 
 
 def download_csv(root_url: str, national_or_subnational: Level, date_from: str, date_to: str) -> Union[list[dict], None]:

@@ -105,7 +105,12 @@ class APIClient:
         url = f"{self.root_url}/post_{level.value}_data"
         response = requests.post(url, json=data, headers={"Authorization": f"Bearer {token}"})
         if response.status_code != 200:
-            return response.json()
+            import json
+            try:
+                return response.json()
+            except json.JSONDecodeError:
+                # Return None or an error message if JSON parsing fails
+                return {"response_error": "Invalid JSON response", "status_code": response.status_code, "body": response.text}
         
     def delete_national_data(self) -> None:
         assert Path(self.delete_national_level_dir).exists(), "CSV File does not exist."
@@ -167,13 +172,17 @@ class APIClient:
             self.backup_dir.mkdir(parents=True)
         subnational_date_range = helpers.get_date_range(self.root_url, helpers.Level.SUBNATIONAL)
         national_date_range = helpers.get_date_range(self.root_url, helpers.Level.NATIONAL)
-        national_data = helpers.download_csv(self.root_url, helpers.Level.NATIONAL, national_date_range["from"], national_date_range["to"])
-        subnational_data = helpers.download_csv(self.root_url, helpers.Level.SUBNATIONAL, subnational_date_range["from"], subnational_date_range["to"])
-        if national_data is not None:
+        national_data = None
+        subnational_data = None
+        if national_date_range is not None:
+            national_data = helpers.download_csv(self.root_url, helpers.Level.NATIONAL, national_date_range["from"], national_date_range["to"])
+        if subnational_date_range is not None:
+            subnational_data = helpers.download_csv(self.root_url, helpers.Level.SUBNATIONAL, subnational_date_range["from"], subnational_date_range["to"])
+        if national_data is not None and not national_data.empty:
             national_data.to_csv(self.backup_dir.joinpath(f"national_backup_{self.todays_date}.csv"), index=False)
         else:
             print("No national data to backup.")
-        if subnational_data is not None:
+        if subnational_data is not None and not subnational_data.empty:
             subnational_data.to_csv(self.backup_dir.joinpath(f"subnational_backup_{self.todays_date}.csv"), index=False)
         else:
             print("No subnational data to backup.")
