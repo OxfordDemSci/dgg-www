@@ -18,7 +18,7 @@ export function display(s) {
 
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 
-export function updateData(c, d,  model, modelsList) {
+export function updateData(c, d,  model, modelsList, _prSubNational) {
     
     var _PredictedError = document.getElementById('chPredictedError');
     let PredictedType="predicted";
@@ -41,18 +41,34 @@ export function updateData(c, d,  model, modelsList) {
 //
 //    }
 
+ 
     var labels = [];
     var dataArray = [];
     var ym;
-    for (var k in d) {
-        ym = k.toString();
-        labels.push(ym);
-        dataArray.push(d[k][model][PredictedType]);
+
+    if (_prSubNational) {
+        Object.keys(d).forEach(function (key) {
+            ym = key.toString();
+            labels.push(ym);
+            dataArray.push(d[key][model][PredictedType]);
+        });
+    } else {
+        Object.keys(d).reverse().forEach(function (key) {
+            ym = key.toString();
+            labels.push(ym);
+            dataArray.push(d[key][model][PredictedType]);
+        });
     }
     
-var min = Math.floor(Math.min(...dataArray)),
-    max = Math.ceil(Math.max(...dataArray));    
-
+//    for (var k in d) {
+//        console.log(k);
+//        ym = k.toString();
+//        labels.push(ym);
+//        dataArray.push(d[k][model][PredictedType]);
+//    }
+    
+var min = (Math.min(...dataArray)),
+    max = (Math.max(...dataArray));    
 
     const data = {
         labels: labels,

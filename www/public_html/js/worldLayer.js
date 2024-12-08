@@ -204,7 +204,7 @@ export function load_data_to_worldLayer(
     let Quartile;
 
     for (var i = 0; i < 10; i++) {
-        Quartile = (_quartile.Quartile(_country_count, cont * 0.1).toFixed(2));
+        Quartile = (_quartile.Quartile(_country_count, cont * 0.1).toFixed(3));
         breaks.push(Quartile);
         cont++;
     }

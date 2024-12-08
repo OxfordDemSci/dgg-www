@@ -45,7 +45,7 @@ export function getDates(data) {
 }
 
 
-export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable) {
+export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable, initialTime) {
 
     $("#datepicker").datepicker("destroy"); 
     
@@ -64,10 +64,16 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
         }
     });
     $('#datepicker').datepicker("refresh");
-    $('#datepicker').datepicker('setDate', lastYear + '-' + lastMonth);
+    
+    if (initialTime){
+        $('#datepicker').datepicker('setDate', lastYear + '-' + lastMonth);
+    }
+    //
     
     
     
+     $("#datepicker_start_date").datepicker("destroy"); 
+     
      $("#datepicker_start_date").datepicker({
         format: "yyyy-mm",
         minViewMode: "months",
@@ -82,9 +88,11 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
             return $.inArray(formattedDate, monthsToDisable) < 0;
         }
     });
-
+    $('#datepicker_start_date').datepicker("refresh");
     $('#datepicker_start_date').datepicker('setDate', firstYear + '-' + firstMonth);   
     
+    
+    $("#datepicker_end_date").datepicker("destroy"); 
     
      $("#datepicker_end_date").datepicker({
         format: "yyyy-mm",
@@ -100,9 +108,8 @@ export function loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, mont
             return $.inArray(formattedDate, monthsToDisable) < 0;
         }
     });
-
+    $('#datepicker_end_date').datepicker("refresh");
     $('#datepicker_end_date').datepicker('setDate', lastYear + '-' + lastMonth);    
-
 }
 
 export function load_models_to_menu(models, d) {

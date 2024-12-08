@@ -8,7 +8,7 @@ import * as _worldLayer from './worldLayer.js?version=0.495'
 import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.8'
 import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.46'
 import * as _controlTable from './bottom_table.js?version=0.165'
-import * as _plotxyLayer from './plotxyLayer.js?version=0.31'
+import * as _plotxyLayer from './plotxyLayer.js?version=0.34'
 import * as _infoBox from './infoBox.js?version=0.2'
 
 import * as _palette from './palette.js?version=0.22'
@@ -71,7 +71,7 @@ const firstYear_Sub   = first_year_month_Sub[0],
 
 var monthsToDisable_Sub = _utils.MonthsYearsToDisable(ymDates_Subnational,firstYear_Sub,lastYear_Sub);
 
-_init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
+_init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable, true);
 
 const firstModelfromList = Object.keys(modelsList)[0];
 
@@ -207,7 +207,8 @@ var worldLayer = L.geoJson(null, {
                                     _infoBox.display("hide");
                                     _plotxyLayer.display("show");
                                     var sParams = _utils.getSelectedParameters();
-                                    _plotxyLayer.updateData(xy_Chart, data[iso_gid_0], sParams[2], initJSONSettings.descriptions);                                    
+                                    
+                                    _plotxyLayer.updateData(xy_Chart, data[iso_gid_0], sParams[2], initJSONSettings.descriptions, prSubNational);                                    
                                 }
 
                              }).then(() => {
@@ -218,8 +219,13 @@ var worldLayer = L.geoJson(null, {
                                      
                                 _api.query_national_promis(sParams[0], sParams[1], sParams[2], prGroundTruth, API_URL)
                                 .then((data) => {   
-                                    
                                     _utils.progressMenuTableOn();
+                            
+                                    data = Object.keys(data).filter(x => data[x][sParams[2]] !== undefined).reduce((obj, key) => {
+                                        obj[key] = data[key];
+                                        return obj;
+                                    }, {});                                
+                            
                                     _api.query_sub_national_promis(sParams[0], sParams[1], sParams[2], prGroundTruth, API_URL).then((data_sub) => {
                                         _controlTable.load_data_BottomTable(data, data_sub, prGroundTruth, _countriesList, _countriesListSubnational, sParams[2], modelsList, iso_gid_0, true, true);
                                     }).then(() => {
@@ -303,7 +309,7 @@ var worldSubNationalLayer = L.geoJson(null, {
                                 .then((data_naional) => {   
                                     _controlTable.load_data_BottomTable(data_naional, data, prGroundTruth, _countriesList, _countriesListSubnational, sParams[2], modelsList, iso_gid_0, true, true);
                                 }).then(() => {
-                                    _utils.progressMenuTableOff();  
+                                    //_utils.progressMenuTableOff();  
                                 }).catch((error) => {
                                     console.log(error);
                                 });                            
@@ -327,7 +333,7 @@ var worldSubNationalLayer = L.geoJson(null, {
                                 }else{
                                     _infoBox.display("hide");
                                     _plotxyLayer.display("show");
-                                    _plotxyLayer.updateData(xy_Chart, data[iso_gid_0][iso_gid_1], sParams[2], initJSONSettings.descriptions);
+                                    _plotxyLayer.updateData(xy_Chart, data[iso_gid_0][iso_gid_1], sParams[2], initJSONSettings.descriptions, prSubNational);
                                 }
                  
                             }).then(() => {
@@ -455,7 +461,13 @@ function main_query_national(vYear, vMonth, vModel, vGroundTruth, api_url, _map,
     let vModel_title = initJSONSettings["descriptions"]["indicator"][vModel].name;
     _utils.progressMenuTableOn();
     _api.query_national_promis(vYear, vMonth, vModel, vGroundTruth, api_url)
-            .then((data) => {         
+            .then((data) => {
+                //clean the data from undefined
+                data = Object.keys(data).filter(x => data[x][vModel] !== undefined).reduce((obj, key) => {
+                    obj[key] = data[key];
+                    return obj;
+                }, {});
+  
                 _worldLayer.load_data_to_worldLayer(
                         vYear,
                         vMonth,
@@ -470,11 +482,12 @@ function main_query_national(vYear, vMonth, vModel, vGroundTruth, api_url, _map,
                         _palette);
                 return(data);
             }).then(function (data) {
+
         let iso = null;
         _api.query_sub_national_promis(vYear, vMonth, vModel, vGroundTruth, api_url).then((data_sub) => {
-            _controlTable.load_data_BottomTable(data, data_sub, vGroundTruth, _countriesList, _countriesListSubnational, vModel, modelsList,  iso, true, false);
+            _controlTable.load_data_BottomTable(data, data_sub, vGroundTruth, _countriesList, _countriesListSubnational, vModel, modelsList, iso, true, false);
         }).then(() => {
-           _utils.progressMenuTableOff();  
+            _utils.progressMenuTableOff();
         }).catch((error) => {
             console.log(error);
         });
@@ -484,7 +497,7 @@ function main_query_national(vYear, vMonth, vModel, vGroundTruth, api_url, _map,
     })
             .catch((error) => {
                 _utils.hideCoverScreen();
-                _utils.progressMenuTableOff();  
+                _utils.progressMenuTableOff();
                 console.log(error);
             });
 
@@ -515,6 +528,13 @@ function main_query_sub_national(vYear, vMonth, vModel, vGroundTruth, api_url, _
             }).then((data_sub) => {
                 let iso=null; 
                 _api.query_national_promis(vYear, vMonth, vModel, vGroundTruth, api_url).then((data) => {
+                    
+                    //clean the data from undefined
+                    data = Object.keys(data).filter(x => data[x][vModel] !== undefined).reduce((obj, key) => {
+                        obj[key] = data[key];
+                        return obj;
+                    }, {});                    
+                    
                     _controlTable.load_data_BottomTable(data, data_sub, vGroundTruth, _countriesList, _countriesListSubnational, vModel, modelsList, iso, true, false);
                 }).then(() => {
                     _utils.progressMenuTableOff();  
@@ -545,7 +565,6 @@ function main_query(_prSubNational, _prGroundTruth) {
     
     var select_model = $('#select_models').find(":selected").val();
     var sParams = _utils.getSelectedParameters();
-
         if (_prSubNational) {
             if (worldLayer) {
                 worldLayer.clearLayers();
@@ -571,24 +590,26 @@ $('#chSubNational').change(function () {
     var sParams = _utils.getSelectedParameters();
 
     if ($(this).is(":checked")) {
-        _init.loadDatesToMenu(firstMonth_Sub, firstYear_Sub, lastMonth_Sub, lastYear_Sub, monthsToDisable_Sub);
-        if (_utils.check_if_date_exists_Sub(parseInt(sParams[0]), parseInt(sParams[1]), ymDates_Subnational) === true) {
-            $('#datepicker').datepicker('setDate', parseInt(sParams[0]) + '-' + parseInt(sParams[1]));
-        }
+        
         prSubNational = true;
-
+        
+        if (_utils.check_if_date_exists_Sub(parseInt(sParams[0]), parseInt(sParams[1]), ymDates_Subnational) === true) {
+        
+             _init.loadDatesToMenu(firstMonth_Sub, firstYear_Sub, lastMonth_Sub, lastYear_Sub, monthsToDisable_Sub, false); 
+            $('#datepicker').datepicker('setDate', parseInt(sParams[0]) + '-' + parseInt(sParams[1]));
+            
+        }else{
+             _init.loadDatesToMenu(firstMonth_Sub, firstYear_Sub, lastMonth_Sub, lastYear_Sub, monthsToDisable_Sub, true);
+        }
+        
     } else {
         
-        _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable);
-        
         prSubNational = false;
+        _init.loadDatesToMenu(firstMonth, firstYear, lastMonth, lastYear, monthsToDisable, true);
         
     }
 
-
-
-
-    main_query(prSubNational, prGroundTruth);
+   // main_query(prSubNational, prGroundTruth);
 
 });
 
@@ -702,8 +723,8 @@ $("#refreshButton").click(function(event) {
 });
 
 
-$('#datepicker').on('changeDate', function (e) {
-   main_query(prSubNational, prGroundTruth);
+$('#datepicker').datepicker().on('changeDate', function (e) {
+       main_query(prSubNational, prGroundTruth);
 });
 
 $('#chCountryLabels').change(function () {

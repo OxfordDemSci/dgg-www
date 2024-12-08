@@ -96,6 +96,13 @@ export function load_data_to_worldSubNationalLayer(year,
     var m = String(month).padStart(2, '0');
     var year_month = year + m;
 
+
+    // clean the data for missing model
+//    data_sub_national = Object.keys(data_sub_national).filter(x => data_sub_national[x][model] !== undefined).reduce((obj, key) => {
+//        obj[key] = data_sub_national[key];
+//        return obj;
+//    }, {});   
+
     let  _country_count_raw = [];
     json.dvalue = null;
     for (var i = 0; i < json.features.length; i++) {
@@ -222,7 +229,7 @@ export function load_data_to_worldSubNationalLayer_ISO(year,
     let Quartile;
 
     for (var i = 0; i < 10; i++) {
-       Quartile = (_quartile.Quartile(_country_count, cont*0.1).toFixed(2));
+       Quartile = (_quartile.Quartile(_country_count, cont*0.1).toFixed(3));
        breaks.push(Quartile);
         cont++;  
     }
