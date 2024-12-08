@@ -1,4 +1,4 @@
-import * as _utils from './utils.js?version=0.2'
+import * as _utils from './utils.js?version=0.21'
 
 export function restyleLayer(propertyName, _layer) {
 

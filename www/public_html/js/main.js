@@ -1,20 +1,20 @@
 var API_URL = "./api/v2/";
 var featureByName = {};
 
-import * as _init from './init.js?version=0.7'
-import * as _utils from './utils.js?version=0.67'
-import * as _api from './api_requests.js?version=0.3'
-import * as _worldLayer from './worldLayer.js?version=0.495'
-import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.8'
-import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.46'
-import * as _controlTable from './bottom_table.js?version=0.165'
-import * as _plotxyLayer from './plotxyLayer.js?version=0.34'
-import * as _infoBox from './infoBox.js?version=0.2'
+import * as _init from './init.js?version=0.71'
+import * as _utils from './utils.js?version=0.671'
+import * as _api from './api_requests.js?version=0.31'
+import * as _worldLayer from './worldLayer.js?version=0.4951'
+import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.81'
+import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.461'
+import * as _controlTable from './bottom_table.js?version=0.1651'
+import * as _plotxyLayer from './plotxyLayer.js?version=0.341'
+import * as _infoBox from './infoBox.js?version=0.21'
 
-import * as _palette from './palette.js?version=0.22'
-import * as _modelsList from './models_list.js?version=0.1'
+import * as _palette from './palette.js?version=0.221'
+import * as _modelsList from './models_list.js?version=0.11'
 
-import * as _download from './download_csv.js?version=0.1'
+import * as _download from './download_csv.js?version=0.11'
 
 
 var prSubNational = false;
