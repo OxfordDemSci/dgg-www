@@ -156,7 +156,7 @@ def dq_query_outcomes_by_date(date: str) -> dict[str, list[dict[str, Any]]]:
 
 
 def dq_query_specific_country(country: str, indicators: list[str] | None = None):
-    query = db.session.query(NationalIndicators).filter(NationalIndicators.gid_0 == country)
+    query = db.session.query(NationalIndicators).filter(NationalIndicators.gid_0 == country).order_by(NationalIndicators.date)
     
     if indicators is not None and len(indicators) > 0:
         query = query.filter(NationalIndicators.outcome.in_(indicators))
@@ -179,7 +179,7 @@ def dq_query_specific_country(country: str, indicators: list[str] | None = None)
 
 
 def dq_query_specific_region(region: str, indicators: list[str] | None = None):
-    query = db.session.query(SubNationalIndicators).filter(SubNationalIndicators.gid_1 == region)
+    query = db.session.query(SubNationalIndicators).filter(SubNationalIndicators.gid_1 == region).order_by(SubNationalIndicators.date)
     
     if indicators is not None and len(indicators) > 0:
         query = query.filter(SubNationalIndicators.outcome.in_(indicators))

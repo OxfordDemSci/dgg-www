@@ -7,8 +7,9 @@ import dotenv
 from api_client import APIClient
 
 BASE_DIR = Path(__file__).resolve().parent.joinpath('data')
-ENV = BASE_DIR.parent.joinpath('.env')
-
+ENV = BASE_DIR.parent.parent.joinpath('.env')
+print(ENV)
+assert ENV.exists(), f"{ENV} does not exist."
 dotenv.load_dotenv(ENV)
 
 
@@ -17,7 +18,9 @@ def main(delete_national: bool = False, delete_subnational: bool = False):
     post_password = os.getenv("POSTGRES_PASSWORD", "")
     delete_username = os.getenv("POSTGRES_DELETE_USERNAME", "")
     delete_password = os.getenv("POSTGRES_DELETE_PASSWORD", "")
-    root_url = "http://3.11.85.207/api/v2"
+    print(post_username, post_password, delete_username, delete_password)
+    #root_url = "http://3.11.85.207/api/v2"
+    root_url = "http://127.0.0.1/api/v2"
     post_national_level_dir = BASE_DIR.joinpath("post/national")
     post_subnational_level_dir = BASE_DIR.joinpath("post/subnational")
     delete_national_level_dir = BASE_DIR.joinpath("delete/national")
