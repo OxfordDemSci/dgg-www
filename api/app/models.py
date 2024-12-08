@@ -13,6 +13,8 @@ Base = declarative_base()
 class YearMonthType(TypeDecorator):
     impl = Date
 
+    cache_ok = True
+
     def process_bind_param(self, value, dialect):
         if value is not None:
             if isinstance(value, str):
