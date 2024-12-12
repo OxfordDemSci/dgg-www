@@ -26,7 +26,7 @@ import pycountry
 
 BASE = Path(__file__).resolve().parent
 
-ROOT_URL = "http://localhost:8000/api/v2"
+ROOT_URL = "http://3.11.85.207/api/v2"
 
 ENV_FILE = BASE.parent / ".env"
 
