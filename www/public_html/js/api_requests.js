@@ -1,4 +1,4 @@
-import * as _utils from './utils.js?version=0.1'
+import * as _utils from './utils.js?version=0.11'
 
 export function getSettings(api_url) {
 

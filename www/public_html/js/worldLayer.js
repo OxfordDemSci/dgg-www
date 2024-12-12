@@ -1,6 +1,6 @@
-import * as _utils from './utils.js?version=0.24'
-import * as _api from './api_requests.js?version=0.1'
-import * as _controlTable from './bottom_table.js?version=0.5'
+import * as _utils from './utils.js?version=0.241'
+import * as _api from './api_requests.js?version=0.11'
+import * as _controlTable from './bottom_table.js?version=0.51'
 import * as _quartile from './quartile.js?version=1'
 
 export function get_color(d) {
@@ -204,7 +204,7 @@ export function load_data_to_worldLayer(
     let Quartile;
 
     for (var i = 0; i < 10; i++) {
-        Quartile = (_quartile.Quartile(_country_count, cont * 0.1).toFixed(2));
+        Quartile = (_quartile.Quartile(_country_count, cont * 0.1).toFixed(3));
         breaks.push(Quartile);
         cont++;
     }
