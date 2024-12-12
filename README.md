@@ -60,7 +60,7 @@ A single row example to be deleted from the database, would be:
 In the same `./scripts` folder as above, there are utility scripts that can be run to delete or post small edits to the database. You will not be able to delete full tables. In these cases, it would be better to `ssh` into the server machine and delete the tables using `psql`:
 **NOTE** PLEASE RUN THE BELOW COMMAND WITH CAUTION
 ```ssh
-PGPASSWORD=XXXXXXXXXXXXX psql -h localhost -p 5432 -U oxford_dgg_admin -d localhost -c "DELETE FROM national_indicators;"
+PGPASSWORD=XXXXXXXXXXXXX psql -h localhost -p 5432 -U oxford_dgg_admin -d dgg -c "DELETE FROM national_indicators;"
 ``` 
 You will need to get the password from the `.env` file in the application root.
 
