@@ -1,20 +1,20 @@
 var API_URL = "./api/v2/";
 var featureByName = {};
 
-import * as _init from './init.js?version=0.71'
-import * as _utils from './utils.js?version=0.671'
-import * as _api from './api_requests.js?version=0.31'
-import * as _worldLayer from './worldLayer.js?version=0.4951'
-import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.81'
-import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.461'
-import * as _controlTable from './bottom_table.js?version=0.1651'
-import * as _plotxyLayer from './plotxyLayer.js?version=0.341'
-import * as _infoBox from './infoBox.js?version=0.21'
+import * as _init from './init.js?version=0.72'
+import * as _utils from './utils.js?version=0.672'
+import * as _api from './api_requests.js?version=0.32'
+import * as _worldLayer from './worldLayer.js?version=0.4952'
+import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.82'
+import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.462'
+import * as _controlTable from './bottom_table.js?version=0.1652'
+import * as _plotxyLayer from './plotxyLayer.js?version=0.34222'
+import * as _infoBox from './infoBox.js?version=0.22'
 
-import * as _palette from './palette.js?version=0.221'
-import * as _modelsList from './models_list.js?version=0.11'
+import * as _palette from './palette.js?version=0.222'
+import * as _modelsList from './models_list.js?version=0.12'
 
-import * as _download from './download_csv.js?version=0.11'
+import * as _download from './download_csv.js?version=0.12'
 
 
 var prSubNational = false;
@@ -43,6 +43,7 @@ const config_plot_xy_Chart = {
 const palette = _palette.loadPalette();
 const modelsList = _modelsList.loadModelsList();
 
+var data_plot=[];
 
 var initJSONSettings = _api.getSettings(API_URL);
 
@@ -208,6 +209,7 @@ var worldLayer = L.geoJson(null, {
                                     _plotxyLayer.display("show");
                                     var sParams = _utils.getSelectedParameters();
                                     
+                                    data_plot=data[iso_gid_0];
                                     _plotxyLayer.updateData(xy_Chart, data[iso_gid_0], sParams[2], initJSONSettings.descriptions, prSubNational);                                    
                                 }
 
@@ -333,6 +335,7 @@ var worldSubNationalLayer = L.geoJson(null, {
                                 }else{
                                     _infoBox.display("hide");
                                     _plotxyLayer.display("show");
+                                     data_plot=data[iso_gid_0][iso_gid_1];
                                     _plotxyLayer.updateData(xy_Chart, data[iso_gid_0][iso_gid_1], sParams[2], initJSONSettings.descriptions, prSubNational);
                                 }
                  
@@ -754,4 +757,24 @@ $('#customRangeOpacity').change(function () {
 
 $( "#btnDownloadData" ).on( "click", function() {
     _download.download_csv(API_URL);
+});
+
+
+$('#chPointPlot').change(function () {
+    
+        if ($(this).is(":checked")) {
+            document.getElementById('chPointRadius').disabled =false;
+        } else {
+              document.getElementById('chPointRadius').disabled =true;
+        }
+        var sParams = _utils.getSelectedParameters();
+        _plotxyLayer.updateData(xy_Chart, data_plot, sParams[2], initJSONSettings.descriptions, prSubNational);           
+
+});
+
+
+$('#chPointRadius').change(function () {
+     document.getElementById('lbPointRadius').innerHTML = $(this).val();
+     var sParams = _utils.getSelectedParameters();
+    _plotxyLayer.updateData(xy_Chart, data_plot, sParams[2], initJSONSettings.descriptions, prSubNational);    
 });

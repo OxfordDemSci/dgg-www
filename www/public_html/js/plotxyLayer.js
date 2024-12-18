@@ -16,6 +16,15 @@ export function display(s) {
   }
 }
 
+function round_value(value, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+}
+
+export function percentage(percent, total) {
+    return ((percent/ 100) * total);
+}
+
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 
 export function updateData(c, d,  model, modelsList, _prSubNational) {
@@ -66,9 +75,22 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
 //        labels.push(ym);
 //        dataArray.push(d[k][model][PredictedType]);
 //    }
+        let pointRadius=document.getElementById("chPointRadius").value;
+        if ($("#chPointPlot").is(":checked")) {
+              pointRadius=document.getElementById("chPointRadius").value;
+        } else {
+              pointRadius=0;
+        }
     
 var min = (Math.min(...dataArray)),
-    max = (Math.max(...dataArray));    
+    max = (Math.max(...dataArray));
+    
+    let min_f = percentage(35, min);
+    let max_f = percentage(35, max);
+    
+
+    min=round_value(min-min_f,2); 
+    max=round_value(max+max_f,2);
 
     const data = {
         labels: labels,
@@ -76,7 +98,8 @@ var min = (Math.min(...dataArray)),
                 label: '',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: dataArray
+                data: dataArray,
+                pointRadius: pointRadius
             }]
     };
 

@@ -276,8 +276,20 @@
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="chLegend" checked>
                             <label class="form-check-label" for="chLegend">Show legend </label>
-                        </div>                        
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="chPointPlot" checked>
+                            <label class="form-check-label" for="chPointPlot">Show points on the plot </label>
+                        </div>    
+<!--                        <div class="form-check form-switch">
+                            <input class="" type="" id="chPointRadius">
+                            <label class="" for="chPointRadius">Point Radius</label>
+                        </div>                         -->
                     </div> 
+                    <div class="pt-4">  
+                            <label for="customPointRadius" class="form-label">Point Radius [ <label id="lbPointRadius">2</label> ]</label>
+                            <input type="range" class="form-range" min="0" max="5" step="0.5" value="2" id="chPointRadius">
+                    </div>                       
                     <div class="pt-4">  
                             <label for="customRangeOpacity" class="form-label">Opacity</label>
                             <input type="range" class="form-range" min="0" max="1" step="0.1" value="0.9" id="customRangeOpacity">
@@ -529,7 +541,7 @@
 <script type="text/javascript">
     window.mdebug = true;
 </script>
-<script src="./js/main.js?version=0.6551" type="module"></script>
+<script src="./js/main.js?version=0.6554" type="module"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
