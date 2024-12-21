@@ -78,7 +78,7 @@ class APIClient:
             if not self.errors_csv_dir.exists():
                 self.errors_csv_dir.mkdir(parents=True)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"post_national_errors_{self.todays_date}.csv"), index=False)
-            print(f"Post National Errors saved to CSV in {self.errors_csv_dir}.")
+            print(f"Post National Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
 
     def post_subnational_data(self) -> None:
         assert Path(self.post_subnational_level_dir).exists(), "CSV DIR does not exist."
@@ -103,7 +103,7 @@ class APIClient:
         if df_list:
             errors_df = pd.concat(df_list)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"post_subnational_errors_{self.todays_date}.csv"), index=False)
-            print(f"Post Subnational Errors saved to CSV in {self.errors_csv_dir}.")
+            print(f"Post Subnational Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
 
     def _post_data(self, token: str, data: list[dict], level: helpers.Level) -> None:
         """Post data using a list of dictionaries representing the data to be posted."""
@@ -119,7 +119,7 @@ class APIClient:
         
     def delete_national_data(self) -> None:
         assert Path(self.delete_national_level_dir).exists(), "CSV File does not exist."
-        csv_files = list(Path(self.post_national_level_dir).rglob("*.csv"))
+        csv_files = list(Path(self.delete_national_level_dir).rglob("*.csv"))
         if not csv_files:
             print("No CSV files found in delete national directory.")
             return
@@ -139,11 +139,11 @@ class APIClient:
         if df_list:
             errors_df = pd.concat(df_list)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"delete_national_errors_{self.todays_date}.csv"), index=False)
-            print(f"Delete National Errors saved to CSV in {self.errors_csv_dir}.")
+            print(f"Delete National Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
         
     def delete_subnational_data(self) -> None:
         assert Path(self.delete_subnational_level_dir).exists(), "CSV File does not exist."
-        csv_files = list(Path(self.post_subnational_level_dir).rglob("*.csv"))
+        csv_files = list(Path(self.delete_subnational_level_dir).rglob("*.csv"))
         if not csv_files:
             print("No CSV files found in delete subnational directory.")
             return
@@ -163,14 +163,19 @@ class APIClient:
         if df_list:
             errors_df = pd.concat(df_list)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"delete_subnational_errors_{self.todays_date}.csv"), index=False)
-            print(f"Delete Subnational Errors saved to CSV in {self.errors_csv_dir}.")
+            print(f"Delete Subnational Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
 
     def _delete_data(self, token: str, data: list[dict], level: helpers.Level) -> None:
         """Delete data using a list of dictionaries representing the data to be deleted."""
         url = f"{self.root_url}/delete_{level.value}_data"
         response = requests.delete(url, json=data, headers={"Authorization": f"Bearer {token}"})
         if response.status_code != 200:
-            return response.json()
+            import json
+            try:
+                return response.json()
+            except json.JSONDecodeError:
+                # Return None or an error message if JSON parsing fails
+                return {"response_error": "Invalid JSON response", "status_code": response.status_code, "body": response.text}
 
     def create_backup(self) -> None:
         if not self.backup_dir.exists():

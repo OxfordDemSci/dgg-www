@@ -7,8 +7,7 @@ import dotenv
 from api_client import APIClient
 
 BASE_DIR = Path(__file__).resolve().parent.joinpath('data')
-ENV = BASE_DIR.parent.parent.joinpath('.env')
-print(ENV)
+ENV = BASE_DIR.parent.parent.joinpath('.env')   
 assert ENV.exists(), f"{ENV} does not exist."
 dotenv.load_dotenv(ENV)
 
@@ -50,4 +49,4 @@ def main(delete_national: bool = False, delete_subnational: bool = False):
 
 
 if __name__ == "__main__":
-    main(delete_national=False, delete_subnational=False)
+    main(delete_national=True, delete_subnational=True)

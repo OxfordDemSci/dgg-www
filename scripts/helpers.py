@@ -41,11 +41,25 @@ def download_csv(root_url: str, national_or_subnational: Level, date_from: str, 
 
 
 def convert_to_df(data: dict) -> pd.DataFrame:
+    import re
     if "error" not in data:
         raise Exception(f"Something went wrong - {data}")
     error_data_str = data['error'].split(": ", 1)[1]
-    error_data_str = error_data_str.replace("'", '"')
-    error_data_list = json.loads(error_data_str)
+    error_data_str = re.sub(r'(?<!\\)\'', '"', error_data_str)
+    error_data_str = re.sub(r'(?<=[a-zA-Z])"(?=[a-zA-Z])', "'", error_data_str)
+    try:
+        error_data_list = json.loads(error_data_str)
+    except json.JSONDecodeError as e:
+        print(f"JSONDecodeError: {e}")
+        print(f"Error at line {e.lineno}, column {e.colno}, char {e.pos}")
+        
+        # Extract the part of the JSON string around the error location
+        error_start = max(e.pos - 50, 0)
+        error_end = min(e.pos + 50, len(error_data_str))
+        print(f"Problematic part of the JSON string: {error_data_str[error_start:error_end]}")
+        
+        # Handle the error or raise an exception
+        raise
     df = pd.DataFrame(error_data_list)
     return df
 
