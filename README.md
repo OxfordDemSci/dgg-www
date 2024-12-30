@@ -72,6 +72,9 @@ You will need to get the password from the `.env` file in the application root.
 ## API Client and automation scripts
 **NOTE These scripts are not intended for large data insertions. Please do not attempt to bulk insert more than one month at a time to prevent timeout errors. See below for bulk-insert scripts**
 In addition to the above, there is a client class in the `./scripts/` directory that helps to automate the posting, deleting and backing up of data. To carry out these tasks, you will need to edit `./scripts/post_and_backup.py`.
+
+You will need to install the dependency `pycountry` to run this script (`pip install pycountry==24.6.1`)
+
 1. Point the script to the location of your env file:
 ```python
 BASE_DIR = Path(__file__).resolve().parent.joinpath('data')
@@ -121,9 +124,10 @@ The `./script/data` folder has all the necessary folders needed to run the scrip
 ## Bulk insert script
 This script is intended for large insertions. You will need to harmonise the data that you would like to insert with the data already in the database - this script will DELETE all rows the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation.
 
+A venv environment has been set up on the server with the required dependencies. Please activate this by going into the `./dgg-www/scripts` directory and running `source .venv/bin/activate`.
 1. Using ssh, copy the csv that you would like to replace in the database in the corresponding `./scripts/data/post/<national or subnational>` directory on the server machine. This will ONLY work with 1 csv. Please do not use this script with more than one csv in the directory.
 For example:
-`scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70:/dgg-www/scripts/data/post/national/`
+`scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70:dgg-www/scripts/data/post/national/`
 2. Run `python ./scripts/reinsert_all_data.py`.
 If there is not data in the national/subnational folders, it will be skipped. There is no need to delete data from the database with this script as it will be deleted in the script. This script does not create a backup of the table. You will need to do this manually.
 **PLEASE REMEMBER TO DELETE CSVS FROM THE SERVER MACHINE AFTER THIS PROCESS**
