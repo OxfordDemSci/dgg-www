@@ -1,1 +1,4 @@
 pycountry==24.6.1
+psycopg2-binary==2.9.6
+pandas==2.2.2
+SQLAlchemy==2.0.16

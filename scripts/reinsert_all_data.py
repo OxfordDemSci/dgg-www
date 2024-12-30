@@ -3,19 +3,11 @@ from pathlib import Path
 import sys
 import pycountry
 
-from alembic import command
-from alembic.config import Config
-
 sys.path.append(str(Path(__file__).resolve().parent.parent / "api"))
 
 import pandas as pd
-import fiona
-import geopandas as gpd
-from geoalchemy2 import shape
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from shapely import wkt
-from shapely.geometry import shape
 from dotenv import load_dotenv
 
 from app.models import (
