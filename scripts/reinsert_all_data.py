@@ -21,12 +21,6 @@ from dotenv import load_dotenv
 from app.models import (
     SubNationalIndicators,
     NationalIndicators,
-    SubNationalGeometries,
-    NationalGeomeries,
-    NationalGroundTruth,
-    SubNationalGroundTruth,
-    SubNationalNames,
-    DGGIndicatorDescription
 )
 
 BASE = Path(__file__).resolve().parent.joinpath("data/post")
@@ -98,22 +92,6 @@ def main():
             print(f"Uploaded {level} data to {table} table.")
         except StopIteration:
             print(f"No csv found for {level} data.")
-    # csv_path_subnational = BASE / "subnational_estimates_2024-05-01_2024-07_01.csv"
-    # csv_path_national = BASE / "national_estimates_2024-05-01_2024-07_01.csv"
-    # ground_truth_national_csv_path = BASE / "national_ground_truth.csv"
-    # national_ground_truth_model = NationalGroundTruth
-    # ground_truth_subnational_csv_path = BASE / "subnational_ground_truth.csv"
-    # subnational_ground_truth_model = SubNationalGroundTruth
-    # subnational_names_csv_path = BASE / "adm_1_names.csv"
-    # subnational_names_model = SubNationalNames
-    # indicator_descriptions_csv_path = BASE / "indicator_descriptions.csv"
-    # indicator_descriptions_model = DGGIndicatorDescription
-    # upload_csv_to_indicators(csv_path_subnational, SubNationalIndicators)
-    # upload_csv_to_indicators(csv_path_national, NationalIndicators)
-    # upload_ground_truth_data(ground_truth_national_csv_path, national_ground_truth_model)
-    # upload_ground_truth_data(ground_truth_subnational_csv_path, subnational_ground_truth_model)
-    # upload_ground_truth_data(subnational_names_csv_path, subnational_names_model)
-    # upload_ground_truth_data(indicator_descriptions_csv_path, indicator_descriptions_model)
     session.close()
 
 
