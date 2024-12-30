@@ -123,7 +123,7 @@ This script is intended for large insertions. You will need to harmonise the dat
 
 1. Using ssh, copy the csv that you would like to replace in the database in the corresponding `./scripts/data/post/<national or subnational>` directory on the server machine. This will ONLY work with 1 csv. Please do not use this script with more than one csv in the directory.
 For example:
-`scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70`
+`scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70:/dgg-www/scripts/data/post/national/`
 2. Run `python ./scripts/reinsert_all_data.py`.
 If there is not data in the national/subnational folders, it will be skipped. There is no need to delete data from the database with this script as it will be deleted in the script. This script does not create a backup of the table. You will need to do this manually.
 **PLEASE REMEMBER TO DELETE CSVS FROM THE SERVER MACHINE AFTER THIS PROCESS**
