@@ -70,6 +70,7 @@ You will need to get the password from the `.env` file in the application root.
 4. `python ./scripts/post_subnational.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
 
 ## API Client and automation scripts
+**NOTE These scripts are not intended for large data insertions. Please do not attempt to bulk insert more than one month at a time to prevent timeout errors. See below for bulk-insert scripts**
 In addition to the above, there is a client class in the `./scripts/` directory that helps to automate the posting, deleting and backing up of data. To carry out these tasks, you will need to edit `./scripts/post_and_backup.py`.
 1. Point the script to the location of your env file:
 ```python
@@ -116,6 +117,16 @@ should be placed above
 client.create_backup()
 ```
 The `./script/data` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
+
+## Bulk insert script
+This script is intended for large insertions. You will need to harmonise the data that you would like to insert with the data already in the database - this script will DELETE all rows the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation.
+
+1. Using ssh, copy the csv that you would like to replace in the database in the corresponding `./scripts/data/post/<national or subnational>` directory on the server machine. This will ONLY work with 1 csv. Please do not use this script with more than one csv in the directory.
+For example:
+`scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70`
+2. Run `python ./scripts/reinsert_all_data.py`.
+If there is not data in the national/subnational folders, it will be skipped. There is no need to delete data from the database with this script as it will be deleted in the script. This script does not create a backup of the table. You will need to do this manually.
+**PLEASE REMEMBER TO DELETE CSVS FROM THE SERVER MACHINE AFTER THIS PROCESS**
 
 
 ## Testing
