@@ -3,3 +3,4 @@ app/api_logs.log
 *.pyc
 *.log
 .venv
+.vscode

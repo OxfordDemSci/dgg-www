@@ -1,9 +1,0 @@
-{
-    "python.testing.pytestArgs": [
-        ".",
-        "--disable-warnings"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true,
-    "python.testing.cwd": "${workspaceFolder}/src/dashboard/api"
-}
