@@ -1,6 +1,9 @@
 # Digital Gender Gaps V2
 The data for this project can be accessed via the dashboard (`http://3.11.85.207/dashboard/`) or the API (`http://3.11.85.207/api/v2/`). The API can be interacted with programatically, or via the Swagger UI (`http://3.11.85.207/api/v2/ui `), which also acts as the API documentation.
 
+The application is managed by docker containers in the server machine. The `docker-compose.yaml` file orchestrating the application is in `/dgg-www`, and can be launched by running `docker-compose up --build` and torn down by running `docker-compose down` in this directory. The database is reinstantiated each time the containers are started, and the csvs in `/dgg-www/api/scripts/data` will be used for the database. This data can be replaced if required, but their names should stay the same. If you need to rename the csvs, please see the script `/dgg-www/api/scripts/insert_data.py` where these names are defined.
+
+**If you need to replace indicator tables in the database, you can either replace them here, or run a script on the server machine to replace data in the running database. See Bulk Insert Script below for instructions**
 
 ## Helper Scripts
 
@@ -122,15 +125,15 @@ client.create_backup()
 The `./script/data` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
 
 ## Bulk insert script
-This script is intended for large insertions. You will need to harmonise the data that you would like to insert with the data already in the database - this script will DELETE all rows the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation.
+This script is intended for large insertions and will replace all data in the national/subnational table. You will need to harmonise the data that you would like to insert into with the data already in the database - this script will DELETE all rows of the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation other than the datatypes used.
 
 A venv environment has been set up on the server with the required dependencies. Please activate this by going into the `./dgg-www/scripts` directory and running `source .venv/bin/activate`.
-1. Using ssh, copy the csv that you would like to replace in the database in the corresponding `./scripts/data/post/<national or subnational>` directory on the server machine. This will ONLY work with 1 csv. Please do not use this script with more than one csv in the directory.
+1. Using ssh, copy the csv that you would like to replace in the database in the corresponding `./dgg-www/scripts/data/post/<national or subnational>` directory on the server machine. This will ONLY work with 1 csv. Please do not use this script with more than one csv in the directory.
 For example:
 `scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70:dgg-www/scripts/data/post/national/`
 2. Run `python ./scripts/reinsert_all_data.py`.
-If there is not data in the national/subnational folders, it will be skipped. There is no need to delete data from the database with this script as it will be deleted in the script. This script does not create a backup of the table. You will need to do this manually.
-**PLEASE REMEMBER TO DELETE CSVS FROM THE SERVER MACHINE AFTER THIS PROCESS**
+If there is no data in the national/subnational folders, they will be skipped. There is no need to delete data from the database with this script as it will be deleted in the script. This script does not create a backup of the table. You will need to do this manually. You should also remember to replace the csvs with replaced data for when/if the server is restarted in `/dgg-www/api/scripts/data`.
+**PLEASE REMEMBER TO DELETE CSVS FROM ./scripts/data/post/ DIRECTORY AFTER THIS PROCESS**
 
 
 ## Testing
