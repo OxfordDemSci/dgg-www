@@ -37,8 +37,8 @@ def main(delete_national: bool = False, delete_subnational: bool = False):
         delete_national_level_dir=delete_national_level_dir,
         delete_subnational_level_dir=delete_subnational_level_dir,
     )
-    #client.post_national_data()
-    #client.post_subnational_data()
+    client.post_national_data()
+    client.post_subnational_data()
     client.create_backup()
     # These should be put before backup if you want ALL the data backed up 
     # before deleting it.
