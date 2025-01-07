@@ -61,7 +61,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
@@ -91,7 +91,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
@@ -128,7 +128,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
@@ -152,7 +152,7 @@ class APIClient:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
                 df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
-            chunk_size = 5000
+            chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
                 chunk = df.iloc[start:end]
