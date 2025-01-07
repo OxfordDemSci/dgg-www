@@ -72,7 +72,6 @@ def upload_ground_truth_data(csv_path, table_model):
     session.commit()
 
 
-
 def main():
     tables = {"subnational": "subnational_indicators", "national": "national_indicators"}
     for level, table in tables.items():

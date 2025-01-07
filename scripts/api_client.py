@@ -191,8 +191,8 @@ class APIClient:
         if national_data is not None and not national_data.empty:
             national_data.to_csv(self.backup_dir.joinpath(f"national_backup_{self.todays_date}.csv"), index=False)
         else:
-            print("No national data to backup.")
+            print("No national data to backup. This could be because the table is too large. Please download manually from the API UI")
         if subnational_data is not None and not subnational_data.empty:
             subnational_data.to_csv(self.backup_dir.joinpath(f"subnational_backup_{self.todays_date}.csv"), index=False)
         else:
-            print("No subnational data to backup.")
+            print("No subnational data to backup. This could be because the table is too large. Please download manually from the API UI")

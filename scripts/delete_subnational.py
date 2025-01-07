@@ -40,7 +40,7 @@ def delete_data_from_csv(path_to_csv: Union[Path, str]):
     assert Path(path_to_csv).exists(), "CSV File does not exist."
     df = pd.read_csv(path_to_csv)
     data = df.to_dict(orient="records")
-    token = helpers.get_token(username=DELETE_USERNAME, password=DELETE_PASSWORD)
+    token = helpers.get_token(root_url=ROOT_URL, username=DELETE_USERNAME, password=DELETE_PASSWORD)
     response = delete_data(token, data, helpers.Level.SUBNATIONAL)
     print(response)
 
