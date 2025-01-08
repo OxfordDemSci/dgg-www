@@ -28,24 +28,17 @@ POSTGRES_DB = os.getenv("POSTGRES_DB", "")
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
-session = Session()
 
 def delete_all_rows(table_name):
-    # Check if the table exists
-    table_exists_query = text(f"""
-        SELECT EXISTS (
-            SELECT FROM information_schema.tables 
-            WHERE table_name = :table_name
-        )
-    """)
-    result = session.execute(table_exists_query, {'table_name': table_name}).scalar()
-    
-    if result:
-        # If the table exists, truncate it
+    session = Session()
+    try:
         session.execute(text(f'TRUNCATE TABLE {table_name} RESTART IDENTITY CASCADE'))
         session.commit()
-    else:
-        print(f"Table {table_name} does not exist.")
+    except Exception as e:
+        print(f"Error deleting rows from {table_name}: {e}")
+        session.rollback()
+    finally:
+        session.close()
 
 
 def get_country_name(row):
@@ -57,19 +50,19 @@ def get_country_name(row):
 
 
 def upload_csv_to_indicators(csv_path, table_model):
-    df = pd.read_csv(csv_path)
-    df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
-    df['country'] = df.apply(get_country_name, axis=1)
-    data = df.to_dict(orient='records')
-    session.bulk_insert_mappings(table_model, data)
-    session.commit()
-
-
-def upload_ground_truth_data(csv_path, table_model):
-    df = pd.read_csv(csv_path)
-    data = df.to_dict(orient='records')
-    session.bulk_insert_mappings(table_model, data)
-    session.commit()
+    session = Session()
+    try:
+        df = pd.read_csv(csv_path)
+        df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
+        df['country'] = df.apply(get_country_name, axis=1)
+        data = df.to_dict(orient='records')
+        session.bulk_insert_mappings(table_model, data)
+        session.commit()
+    except Exception as e:
+        print(f"Error uploading data to {table_model.__tablename__}: {e}")
+        session.rollback()
+    finally:
+        session.close()
 
 
 def main():
@@ -83,7 +76,6 @@ def main():
             print(f"Uploaded {level} data to {table} table.")
         except StopIteration:
             print(f"No csv found for {level} data.")
-    session.close()
 
 
 if __name__ == "__main__":
