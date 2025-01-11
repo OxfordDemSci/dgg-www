@@ -80,7 +80,6 @@ def validate_post_requests(f):
         set_to_check, existing_gids = get_existing_gids(data_list)
 
         matching_tuple = set_to_check.intersection(existing_gids)
-
         for match in matching_tuple:
             invalid_rows.append({
                 "gid_0": match[0],
@@ -153,16 +152,14 @@ def get_existing_gids(data_list):
         existing_gids = db.session.execute(
             text("""
             SELECT gid_0, date, country, outcome
-            FROM subnational_indicators
+            FROM national_indicators
             WHERE gid_0 IN :gid_0_set
-            AND gid_1 IN :gid_1_set
             AND date IN :date_set
             AND outcome IN :outcome_set
             AND country IN :country_set
             """),
             {
                 "gid_0_set": tuple(gid_0_set),
-                "gid_1_set": tuple(gid_1_set),
                 "date_set": tuple(date_set),
                 "outcome_set": tuple(outcome_set),
                 "country_set": tuple(country_set),
