@@ -136,6 +136,7 @@ class APIClient:
                 errors = self._delete_data(self.delete_token, data, helpers.Level.NATIONAL)
                 if errors:
                     df_list.append(helpers.convert_to_df(errors))
+                print(f"Tried to delete {start} to {end} national records.")
         if df_list:
             errors_df = pd.concat(df_list)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"delete_national_errors_{self.todays_date}.csv"), index=False)
@@ -160,6 +161,7 @@ class APIClient:
                 errors = self._delete_data(self.delete_token, data, helpers.Level.SUBNATIONAL)
                 if errors:
                     df_list.append(helpers.convert_to_df(errors))
+                print(f"Tried to delete {start} to {end} subnational records.")
         if df_list:
             errors_df = pd.concat(df_list)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"delete_subnational_errors_{self.todays_date}.csv"), index=False)

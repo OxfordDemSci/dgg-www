@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy import text, distinct
 from flask import Response
 from typing import Any, Optional
+from sqlalchemy import text
 
 from app import db
 from .datatypes import CountriesEnum3
@@ -254,7 +255,7 @@ def dq_query_subnational_data(
 
 
 def dq_download_national_data_with_dates(start_date: str, end_date: str, country: str | None = None):
-    query = db.session.query(NationalIndicators).filter(NationalIndicators.date.between(start_date, end_date))
+    query = db.session.query(NationalIndicators).filter(NationalIndicators.date.between(start_date, end_date)).order_by(NationalIndicators.date)
 
     if country is not None:
         query = query.filter(NationalIndicators.gid_0 == country)
@@ -277,7 +278,7 @@ def dq_download_national_data_with_dates(start_date: str, end_date: str, country
 
 
 def dq_download_subnational_data_with_dates(start_date: str, end_date: str, region: str | None = None):
-    query = db.session.query(SubNationalIndicators).filter(SubNationalIndicators.date.between(start_date, end_date))
+    query = db.session.query(SubNationalIndicators).filter(SubNationalIndicators.date.between(start_date, end_date)).order_by(SubNationalIndicators.date)
 
     if region is not None:
         query = query.filter(SubNationalIndicators.gid_1 == region)
@@ -359,49 +360,75 @@ def dq_get_ground_truth_national(indicators: list[str] | None = None):
 
 
 def dq_download_national_data_csv(start_date: str, end_date: str, indicators: list[str] | None = None):
-    query = db.session.query(NationalIndicators).filter(NationalIndicators.date.between(start_date, end_date))
+    # query = db.session.query(NationalIndicators).filter(NationalIndicators.date.between(start_date, end_date))
 
-    if indicators is not None and len(indicators) > 0:
-        query = query.filter(NationalIndicators.outcome.in_(indicators))
+    # if indicators is not None and len(indicators) > 0:
+    #     query = query.filter(NationalIndicators.outcome.in_(indicators))
 
-    results: list[NationalIndicators] = query.all()
+    # results: list[NationalIndicators] = query.all()
 
-    response: list[dict[str, Any]] = []
-    for result in results:
-        response.append({
-            "country": result.country,
-            "gid_0": result.gid_0,
-            "date": result.date,
-            "outcome": result.outcome,
-            "predicted": round(float(result.predicted), 3),
-            "predicted_error": round(float(result.predicted_error), 3)
-        })
+    # response: list[dict[str, Any]] = []
+    # for result in results:
+    #     response.append({
+    #         "country": result.country,
+    #         "gid_0": result.gid_0,
+    #         "date": result.date,
+    #         "outcome": result.outcome,
+    #         "predicted": round(float(result.predicted), 3),
+    #         "predicted_error": round(float(result.predicted_error), 3)
+    #     })
 
-    return response
+    # return response
+    start_date = start_date + "-01"
+    end_date = end_date + "-01"
+    query = text(
+        """
+        SELECT * from national_indicators
+        WHERE date BETWEEN :start_date AND :end_date;
+        """
+    )
+    results = db.session.execute(query, {"start_date": start_date, "end_date": end_date})
+
+    return results
 
 
 def dq_download_subnational_data_csv(start_date: str, end_date: str, indicators: list[str] | None = None):
-    query = (db.session.query(
-        SubNationalIndicators,
-        SubNationalNames.name_1
-    ).join(SubNationalNames, SubNationalNames.gid_1 == SubNationalIndicators.gid_1).filter(SubNationalIndicators.date.between(start_date, end_date))
+    # query = (db.session.query(
+    #     SubNationalIndicators,
+    #     SubNationalNames.name_1
+    # ).join(SubNationalNames, SubNationalNames.gid_1 == SubNationalIndicators.gid_1).filter(SubNationalIndicators.date.between(start_date, end_date))
+    # )
+    # if indicators is not None and len(indicators) > 0:
+    #     query = query.filter(SubNationalIndicators.outcome.in_(indicators))
+
+    # results = query.all()
+
+    # response: list[dict[str, Any]] = []
+    # for result, region_name in results:
+    #     response.append({
+    #         "country": result.country,
+    #         "gid_0": result.gid_0,
+    #         "gid_1": result.gid_1,
+    #         "region_name": region_name,
+    #         "date": result.date,
+    #         "outcome": result.outcome,
+    #         "predicted": round(float(result.predicted), 3),
+    #         "predicted_error": round(float(result.predicted_error), 3)
+    #     })
+    start_date = start_date + "-01"
+    end_date = end_date + "-01"
+    query = text(
+        """
+        SELECT s.*, n.name_1 as region_name
+            FROM subnational_indicators s
+            INNER JOIN (
+                SELECT DISTINCT ON (gid_1) gid_1, name_1 
+                FROM subnational_names
+            ) n 
+            ON s.gid_1 = n.gid_1
+            WHERE s.date BETWEEN :start_date AND :end_date;
+        """
     )
-    if indicators is not None and len(indicators) > 0:
-        query = query.filter(SubNationalIndicators.outcome.in_(indicators))
+    results = db.session.execute(query, {"start_date": start_date, "end_date": end_date})
 
-    results = query.all()
-
-    response: list[dict[str, Any]] = []
-    for result, region_name in results:
-        response.append({
-            "country": result.country,
-            "gid_0": result.gid_0,
-            "gid_1": result.gid_1,
-            "region_name": region_name,
-            "date": result.date,
-            "outcome": result.outcome,
-            "predicted": round(float(result.predicted), 3),
-            "predicted_error": round(float(result.predicted_error), 3)
-        })
-
-    return response
+    return results

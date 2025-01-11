@@ -1,5 +1,7 @@
 from functools import wraps
 from flask import request, jsonify
+from sqlalchemy import text
+from sqlalchemy.sql import bindparam
 from .models import (
     SubNationalIndicators,
     NationalIndicators,
@@ -74,38 +76,20 @@ def validate_post_requests(f):
     def decorated_function(*args, **kwargs):
         data_list = request.get_json()
         invalid_rows = []
-        valid_outcomes = [
-            "mobile_women",
-            "internet_women",
-            "internet_men",
-            "mobile_fm_ratio",
-            "internet_fm_ratio",
-            "mobile_men"
-        ]
 
-        for data in data_list:
-            gid_0 = data.get("gid_0")
-            gid_1 = data.get("gid_1")
-            country = data.get("country")
-            outcome = data.get("outcome")
-            date = data.get("date")
+        set_to_check, existing_gids = get_existing_gids(data_list)
 
-            if outcome not in valid_outcomes:
-                invalid_rows.append(data)
-                continue
+        matching_tuple = set_to_check.intersection(existing_gids)
 
-            if not gid_1:
-                existing_record = db.session.query(
-                    NationalIndicators).filter_by(
-                    gid_0=gid_0, country=country, outcome=outcome, date=date
-                ).first()
-            else:
-                existing_record = db.session.query(
-                    SubNationalIndicators).filter_by(
-                    gid_0=gid_0, gid_1=gid_1, country=country, outcome=outcome, date=date
-                ).first()
-            if existing_record:
-                invalid_rows.append(data)
+        for match in matching_tuple:
+            invalid_rows.append({
+                "gid_0": match[0],
+                "gid_1": match[1],
+                "date": match[2][:-3],
+                "country": match[3],
+                "outcome": match[4]
+            })
+
         if invalid_rows:
             return jsonify({"error": f"Duplicate rows or invalid outcome names - Please delete these and try again: {invalid_rows}"}), 400
         return f(*args, **kwargs)
@@ -117,26 +101,72 @@ def validate_delete_requests(f):
     def decorated_function(*args, **kwargs):
         data_list = request.get_json()
         invalid_rows = []
-        
-        for data in data_list:
-            gid_0 = data.get("gid_0")
-            gid_1 = data.get("gid_1")
-            country = data.get("country")
-            outcome = data.get("outcome")
-            date = data.get("date")
-            if not gid_1:
-                existing_record = db.session.query(
-                    NationalIndicators).filter_by(
-                    gid_0=gid_0, country=country, outcome=outcome, date=date
-                ).first()
-            else:
-                existing_record = db.session.query(
-                    SubNationalIndicators).filter_by(
-                    gid_0=gid_0, gid_1=gid_1, country=country, outcome=outcome, date=date
-                ).first()
-            if not existing_record:
-                invalid_rows.append(data)
+
+        set_to_check, existing_gids = get_existing_gids(data_list)
+
+        differing_tuple = set_to_check.difference(existing_gids)
+
+        for match in differing_tuple:
+            invalid_rows.append({
+                "gid_0": match[0],
+                "gid_1": match[1],
+                "date": match[2][:-3],
+                "country": match[3],
+                "outcome": match[4]
+            })
         if invalid_rows:
             return jsonify({"error": f"Rows not found: {invalid_rows}"}), 400
         return f(*args, **kwargs)
     return decorated_function
+
+
+def get_existing_gids(data_list):
+    # Batch process data
+    gid_0_set = {data.get("gid_0") for data in data_list}
+    gid_1_set = {data.get("gid_1") for data in data_list}
+    country_set = {data.get("country") for data in data_list}
+    outcome_set = {data.get("outcome") for data in data_list}
+    date_set = {data.get("date") + "-01" for data in data_list}
+    set_to_check = set([(data.get("gid_0"), data.get("gid_1"), data.get("date") + "-01", data.get("country"), data.get("outcome")) for data in data_list])
+
+    if len(gid_1_set) > 0:
+        existing_gids = db.session.execute(
+            text("""
+            SELECT gid_0, gid_1, date, country, outcome
+            FROM subnational_indicators
+            WHERE gid_0 IN :gid_0_set
+            AND gid_1 IN :gid_1_set
+            AND date IN :date_set
+            AND outcome IN :outcome_set
+            AND country IN :country_set
+            """),
+            {
+                "gid_0_set": tuple(gid_0_set),
+                "gid_1_set": tuple(gid_1_set),
+                "date_set": tuple(date_set),
+                "outcome_set": tuple(outcome_set),
+                "country_set": tuple(country_set),
+            }
+        ).fetchall()
+        existing_gids = {(row[0], row[1], row[2].strftime('%Y-%m-%d'), row[3], row[4]) for row in existing_gids}
+    else:
+        existing_gids = db.session.execute(
+            text("""
+            SELECT gid_0, date, country, outcome
+            FROM subnational_indicators
+            WHERE gid_0 IN :gid_0_set
+            AND gid_1 IN :gid_1_set
+            AND date IN :date_set
+            AND outcome IN :outcome_set
+            AND country IN :country_set
+            """),
+            {
+                "gid_0_set": tuple(gid_0_set),
+                "gid_1_set": tuple(gid_1_set),
+                "date_set": tuple(date_set),
+                "outcome_set": tuple(outcome_set),
+                "country_set": tuple(country_set),
+            }
+        ).fetchall()
+        existing_gids = {(row[0], None, row[1].strftime('%Y-%m-%d'), row[2], row[3]) for row in existing_gids}
+    return set_to_check, existing_gids

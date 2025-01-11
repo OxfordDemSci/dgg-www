@@ -37,6 +37,8 @@ def download_csv(root_url: str, national_or_subnational: Level, date_from: str, 
         csv_bytes = response.content
         df = pd.read_csv(BytesIO(csv_bytes))
         return df
+    else:
+        print(f"Error: {response.status_code}, {response.text} when downloading CSV for {national_or_subnational.value}") 
     return None
 
 
