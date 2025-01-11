@@ -47,25 +47,25 @@ class NationalIndicators(Base):  # type: ignore
     __tablename__ = "national_indicators"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    gid_0 = Column(String(255), nullable=False)
-    country = Column(String(255), nullable=False)
-    outcome = Column(String(255), nullable=False)
+    gid_0 = Column(String(255), nullable=False, index=True)
+    country = Column(String(255), nullable=False, index=True)
+    outcome = Column(String(255), nullable=False, index=True)
     predicted = Column(Float)
     predicted_error = Column(Float)
-    date = Column(YearMonthType, nullable=False)
+    date = Column(YearMonthType, nullable=False, index=True)
 
 
 class SubNationalIndicators(Base):  # type: ignore
     __tablename__ = "subnational_indicators"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    gid_0 = Column(String(255), nullable=False)
-    gid_1 = Column(String(255), nullable=False)
-    country = Column(String(255), nullable=False)
-    outcome = Column(String(255), nullable=False)
+    gid_0 = Column(String(255), nullable=False, index=True)
+    gid_1 = Column(String(255), nullable=False, index=True)
+    country = Column(String(255), nullable=False, index=True)
+    outcome = Column(String(255), nullable=False, index=True)
     predicted = Column(Float)
     predicted_error = Column(Float)
-    date = Column(YearMonthType, nullable=False)
+    date = Column(YearMonthType, nullable=False, index=True)
 
 
 class NationalGeomeries(Base):  # type: ignore
@@ -93,10 +93,10 @@ class NationalGroundTruth(Base):  # type: ignore
     __tablename__ = "national_ground_truth"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    gid_0 = Column(String(255), nullable=False)
-    survey_year = Column(Integer, nullable=False)
-    source = Column(String(255), nullable=False)
-    outcome = Column(String(255), nullable=False)
+    gid_0 = Column(String(255), nullable=False, index=True)
+    survey_year = Column(Integer, nullable=False, index=True)
+    source = Column(String(255), nullable=False, index=True)
+    outcome = Column(String(255), nullable=False, index=True)
     observed = Column(Float)
 
 
@@ -104,12 +104,12 @@ class SubNationalGroundTruth(Base):  # type: ignore
     __tablename__ = "subnational_ground_truth"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    gid_1 = Column(String(255), nullable=False)
-    gid_0 = Column(String(255), nullable=False)
-    survey_year = Column(Integer, nullable=False)
-    outcome = Column(String(255), nullable=False)
+    gid_1 = Column(String(255), nullable=False, index=True)
+    gid_0 = Column(String(255), nullable=False, index=True)
+    survey_year = Column(Integer, nullable=False, index=True)
+    outcome = Column(String(255), nullable=False, index=True)
     observed = Column(Float)
-    source = Column(String(255), nullable=False)
+    source = Column(String(255), nullable=False, index=True)
 
 
 class SubNationalNames(Base):  # type: ignore
@@ -117,15 +117,15 @@ class SubNationalNames(Base):  # type: ignore
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     gid_0 = Column(String(255), nullable=False)
-    country = Column(String(255), nullable=False)
-    gid_1 = Column(String(255), nullable=False)
-    name_1 = Column(String(255), nullable=False)
+    country = Column(String(255), nullable=False, index=True)
+    gid_1 = Column(String(255), nullable=False, index=True)
+    name_1 = Column(String(255), nullable=False, index=True)
 
 
 class DGGIndicatorDescription(Base):  # type: ignore
     __tablename__ = 'indicator_descriptions'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True, index=True)
     indicator_type = Column(String, nullable=False)
     mobile_women_description = Column(String(255), nullable=False)
     mobile_women_name = Column(String(255), nullable=False)

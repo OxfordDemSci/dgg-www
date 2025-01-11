@@ -431,7 +431,7 @@ def post_subnational_data() -> Response:
 #         return make_response({"error": str(e)}, 500)
 
 @check_delete_scope
-@validate_delete_requests
+#@validate_delete_requests
 def delete_national_data() -> Response:
     try:
         data_list = request.get_json()

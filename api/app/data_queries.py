@@ -26,7 +26,6 @@ def get_user(username: str) -> Optional[User]:
 
 def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
     result = {}
-
     national_countries_query = db.session.query(NationalIndicators.gid_0, NationalIndicators.country).distinct()
     national_dates_query = db.session.query(NationalIndicators.date).distinct()
     national_outcomes_query = db.session.query(NationalIndicators.outcome).distinct()
@@ -55,7 +54,6 @@ def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
     national_countries = [{"iso3code": x.gid_0, "country": x.country} for x in national_countries_query.all()]
     national_dates = [x[0] for x in national_dates_query.all()]
     national_outcomes = [x.outcome for x in national_outcomes_query.all()]
-
     national_ground_truth_countries = [{"iso3code": x.gid_0, "country": x.country} for x in national_ground_truth_query.all()]
     subnational_ground_truth_regions = [{"admin_id": x.gid_1, "iso3code": x.gid_0, "country": x.country, "region_name": x.name_1} for x in subnational_ground_truth_query.all()]
 
@@ -96,20 +94,14 @@ def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
         "models": national_outcomes
     }
 
-    subnational_regions_query = (
-        db.session.query(
-            SubNationalIndicators.gid_1,
-            SubNationalIndicators.gid_0,
-            SubNationalIndicators.country,
-            SubNationalNames.name_1
-        )
-        .join(SubNationalNames, SubNationalIndicators.gid_1 == SubNationalNames.gid_1)
-        .order_by(SubNationalIndicators.gid_0, SubNationalIndicators.gid_1)
-        .distinct()
-    )
+    subnational_regions_query = db.session.query(
+        SubNationalNames.gid_1,
+        SubNationalNames.gid_0,
+        SubNationalNames.country,
+        SubNationalNames.name_1
+    ).order_by(SubNationalNames.gid_0, SubNationalNames.gid_1).distinct()
     subnational_dates_query = db.session.query(SubNationalIndicators.date).distinct()
     subnational_outcomes_query = db.session.query(SubNationalIndicators.outcome).distinct()
-
     subnational_regions = [
         {
             "admin_id": x.gid_1,
@@ -120,7 +112,6 @@ def dq_get_init_data() -> dict[str, dict[str, list[dict[str, str]]]]:
     ]
     subnational_dates = [x[0] for x in subnational_dates_query.all()]
     subnational_outcomes = [x.outcome for x in subnational_outcomes_query.all()]
-
     result["subnational"] = {
         "regions": subnational_regions,
         "dates": sorted(subnational_dates),
