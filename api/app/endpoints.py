@@ -1,6 +1,7 @@
 from functools import wraps
 import csv
 import io
+import time
 
 from flask import Blueprint, make_response, Response, request, jsonify, current_app
 from flask_jwt_extended import (create_access_token, decode_token, get_jwt,
@@ -97,9 +98,22 @@ def login():
     return jsonify(access_token=access_token), 200
 
 
+cache = {
+    "data": None,
+    "timestamp": 0
+}
+CACHE_DURATION = 60 * 60  # Cache duration in seconds (e.g., 1 hr)
+
+
 def init_data() -> Response:
     try:
-        response = dq_get_init_data()
+        current_time = time.time()
+        if cache["data"] is None or (current_time - cache["timestamp"]) > CACHE_DURATION:
+            # Cache is empty or expired, fetch new data
+            cache["data"] = dq_get_init_data()
+            cache["timestamp"] = current_time
+        
+        response = cache["data"]
         return make_response(response, 200)
     except Exception as e:
         return make_response({"error": str(e)}, 500)
@@ -193,17 +207,7 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
             results = dq_download_subnational_data_csv(start_date, end_date)
     except Exception as e:
         return make_response({"error": str(e)}, 500)
-    # headers = results[0].keys()
-    # output = io.StringIO()
-    # output.write(','.join(headers) + '\n')
-    # for row in results:
-    #     output.write(",".join(map(str, row.values())) + '\n')
-    # # writer = csv.DictWriter(output, fieldnames=results[0].keys())
-    # # writer.writeheader()
-    # # writer.writerows(results)
-    # # csv_content = output.getvalue()
-    # # output.close()
-    # output.seek(0)
+    
     def generate():
         output = io.StringIO()
         if level == Level.NATIONAL.value:
@@ -255,40 +259,11 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
 
     filename = f"{level}_data_{start_date}_to_{end_date}.csv"
     response = Response(generate(), mimetype="text/csv")
-    #response = make_response(output)
     response.headers["Content-Disposition"] = f"attachment; filename={filename}"
     response.headers["Content-Type"] = "text/csv"
     return response
 
 
-# @check_scope("write")
-# @validate_post_requests
-# def post_national_data() -> Response:
-#     try:
-#         data_list = request.get_json()
-
-#         # Prepare the data for bulk insert
-#         records = [
-#             {
-#                 'gid_0': data['gid_0'],
-#                 'country': data['country'],
-#                 'outcome': data['outcome'],
-#                 'predicted': data.get('predicted'),
-#                 'predicted_error': data.get('predicted_error'),
-#                 'date': data['date']
-#             }
-#             for data in data_list
-#         ]
-
-#         # Perform a bulk insert operation
-#         db.session.bulk_insert_mappings(NationalIndicators.__mapper__, records)
-
-#         db.session.commit()
-#         return make_response({"message": "Successfully posted data"}, 200)
-#     except Exception as e:
-#         db.session.rollback()
-#         return make_response({"error": str(e)}, 500)
-    
 @check_scope("write")
 @validate_post_requests
 def post_national_data() -> Response:
@@ -350,86 +325,6 @@ def post_subnational_data() -> Response:
         return make_response({"error": str(e)}, 500)
 
 
-# @check_scope("write")
-# @validate_post_requests
-# def post_subnational_data() -> Response:
-#     try:
-#         data_list = request.get_json()
-
-#         # Prepare the data for bulk insert
-#         records = [
-#             {
-#                 'gid_0': data['gid_0'],
-#                 'gid_1': data['gid_1'],
-#                 'country': data['country'],
-#                 'outcome': data['outcome'],
-#                 'predicted': data.get('predicted'),
-#                 'predicted_error': data.get('predicted_error'),
-#                 'date': data['date']
-#             }
-#             for data in data_list
-#         ]
-
-#         # Perform a bulk insert operation
-#         db.session.bulk_insert_mappings(SubNationalIndicators.__mapper__, records)
-
-#         db.session.commit()
-#         return make_response({"message": "Successfully posted data"}, 200)
-#     except Exception as e:
-#         db.session.rollback()
-#         return make_response({"error": str(e)}, 500)
-
-
-# @check_delete_scope
-# @validate_delete_requests
-# def delete_national_data() -> Response:
-#     try:
-#         data_list = request.get_json()
-#         filters = [
-#             (NationalIndicators.gid_0 == data['gid_0']) &
-#             (NationalIndicators.country == data['country']) &
-#             (NationalIndicators.outcome == data['outcome']) &
-#             (NationalIndicators.date == data['date'])
-#             for data in data_list
-#         ]
-        
-#         # Perform a bulk delete operation
-#         db.session.query(NationalIndicators).filter(
-#             or_(*filters)
-#         ).delete(synchronize_session=False)
-        
-#         db.session.commit()
-#         return make_response({"message": "Successfully deleted data"}, 200)
-#     except Exception as e:
-#         db.session.rollback()
-#         return make_response({"error": str(e)}, 500)
-    
-
-# @check_delete_scope
-# @validate_delete_requests
-# def delete_subnational_data() -> Response:
-#     try:
-#         data_list = request.get_json()
-#         filters = [
-#             (SubNationalIndicators.gid_0 == data['gid_0']) &
-#             (SubNationalIndicators.gid_1 == data['gid_1']) &
-#             (SubNationalIndicators.country == data['country']) &
-#             (SubNationalIndicators.outcome == data['outcome']) &
-#             (SubNationalIndicators.date == data['date'])
-#             for data in data_list
-#         ]
-        
-#         # Perform a bulk delete operation
-#         db.session.query(SubNationalIndicators).filter(
-#             or_(*filters)
-#         ).delete(synchronize_session=False)
-        
-#         db.session.commit()
-#         return make_response({"message": "Successfully deleted data"}, 200)
-#     except Exception as e:
-#         db.session.rollback()
-#         return make_response({"error": str(e)}, 500)
-
 @check_delete_scope
 #@validate_delete_requests
 def delete_national_data() -> Response:
@@ -471,16 +366,6 @@ def delete_subnational_data() -> Response:
         outcome_set = {data['outcome'] for data in data_list}
         date_set = {data['date'] + "-01" for data in data_list}
 
-        # Perform a bulk delete operation using the IN clause
-        # db.session.query(SubNationalIndicators).filter(
-        #     and_(
-        #         #SubNationalIndicators.gid_0.in_(gid_0_set),
-        #         SubNationalIndicators.gid_1.in_(gid_1_set),
-        #         #SubNationalIndicators.country.in_(country_set),
-        #         SubNationalIndicators.outcome.in_(outcome_set),
-        #         SubNationalIndicators.date.in_(date_set)
-        #     )
-        # ).delete(synchronize_session=False)
         query = text(
             """
             DELETE FROM subnational_indicators
