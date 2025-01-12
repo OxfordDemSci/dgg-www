@@ -51,29 +51,44 @@ export function resetHighlight(e, _layer, palette) {
     
 }
 
-export function zoomToFeature(_e, _map, data_raw, countriesList) {
+export function zoomToFeature(_e, _map, _world_geo_json) {
 
     //var data_national = data_raw.data;
+//    var layer = _e.target;
+//    var countryCode = _e.target.feature.properties.iso_a2;
+//
+//    if (window.mdebug === true)
+//        console.log("clicked countryCode " + countryCode);
+//    
+//    var su_dif = _e.target.feature.properties.su_dif;
+//    
+//
+//    if ((su_dif !== undefined) && (su_dif !== null) && (su_dif !== "")) {
+//        
+//        
+//        
+//       _map.fitBounds(layer.getBounds(), {paddingBottomRight: [0, 100]});
+//        
+//       var iso = _e.target.feature.properties.iso_a2; 
+//       var sParams = _utils.getSelectedParameters();
+//
+//      
+//    }
+
     var layer = _e.target;
-    var countryCode = _e.target.feature.properties.iso_a2;
+    var iso_gid_0 = _e.target.feature.properties.GID_0;
 
-    if (window.mdebug === true)
-        console.log("clicked countryCode " + countryCode);
-    
-    var su_dif = _e.target.feature.properties.su_dif;
-    
-
-    if ((su_dif !== undefined) && (su_dif !== null) && (su_dif !== "")) {
-        
-        
-        
-       _map.fitBounds(layer.getBounds(), {paddingBottomRight: [0, 100]});
-        
-       var iso = _e.target.feature.properties.iso_a2; 
-       var sParams = _utils.getSelectedParameters();
-
-      
+    for (var i = 0; i < _world_geo_json.features.length; i++) {
+			
+            var iso = _world_geo_json.features[i].properties.GID_0;
+            
+            if (iso===iso_gid_0){
+                var geoJsonLayer = L.geoJson(_world_geo_json.features[i]);
+            }
     }
+
+     _map.fitBounds(geoJsonLayer.getBounds(), {paddingBottomRight: [0, 100]});
+    
 
 }
 

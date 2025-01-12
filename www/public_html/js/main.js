@@ -4,11 +4,11 @@ var featureByName = {};
 import * as _init from './init.js?version=0.72'
 import * as _utils from './utils.js?version=0.672'
 import * as _api from './api_requests.js?version=0.32'
-import * as _worldLayer from './worldLayer.js?version=0.4952'
+import * as _worldLayer from './worldLayer.js?version=0.5'
 import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.82'
 import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.462'
-import * as _controlTable from './bottom_table.js?version=0.1652'
-import * as _plotxyLayer from './plotxyLayer.js?version=0.34222'
+import * as _controlTable from './bottom_table.js?version=0.1653'
+import * as _plotxyLayer from './plotxyLayer.js?version=0.35'
 import * as _infoBox from './infoBox.js?version=0.22'
 
 import * as _palette from './palette.js?version=0.222'
@@ -240,7 +240,7 @@ var worldLayer = L.geoJson(null, {
                                     console.log(error);
                                 });
 
-                                    
+                             _worldLayer.zoomToFeature(e, map, world_geo_json);         
                              }).then(() => {
                               _utils.progressMenuOff();  
                             }).catch((error) => {
@@ -311,7 +311,7 @@ var worldSubNationalLayer = L.geoJson(null, {
                                 .then((data_naional) => {   
                                     _controlTable.load_data_BottomTable(data_naional, data, prGroundTruth, _countriesList, _countriesListSubnational, sParams[2], modelsList, iso_gid_0, true, true);
                                 }).then(() => {
-                                    //_utils.progressMenuTableOff();  
+                                    _utils.progressMenuTableOff();  
                                 }).catch((error) => {
                                     console.log(error);
                                 });                            
@@ -751,7 +751,10 @@ $('#customRangeOpacity').change(function () {
 
         worldLayer.setStyle({
             fillOpacity: $(this).val()
-        });     
+        });    
+        worldSubNationalLayer.setStyle({
+            fillOpacity: $(this).val()
+        });         
 });
 
 

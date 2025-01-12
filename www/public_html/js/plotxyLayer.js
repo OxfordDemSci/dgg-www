@@ -62,7 +62,7 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
             dataArray.push(d[key][model][PredictedType]);
         });
     } else {
-        Object.keys(d).reverse().forEach(function (key) {
+        Object.keys(d).forEach(function (key) {
             ym = key.toString();
             labels.push(ym);
             dataArray.push(d[key][model][PredictedType]);
@@ -85,12 +85,16 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
 var min = (Math.min(...dataArray)),
     max = (Math.max(...dataArray));
     
-    let min_f = percentage(35, min);
-    let max_f = percentage(35, max);
+    let min_f = percentage(15, min);
+    let max_f = percentage(15, max);
     
 
     min=round_value(min-min_f,2); 
     max=round_value(max+max_f,2);
+    
+    if (max > 1) {
+        max = 1;
+    }
 
     const data = {
         labels: labels,

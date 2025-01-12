@@ -2,7 +2,7 @@ import * as _utils from './utils.js?version=0.241'
 import * as _api from './api_requests.js?version=0.11'
 import * as _quartile from './quartile.js?version=11'
 
-export function zoomToFeature(_e, _map, _world_geo_json,) {
+export function zoomToFeature(_e, _map, _world_geo_json) {
 
     var layer = _e.target;
     var iso_gid_0 = _e.target.feature.properties.GID_0;
