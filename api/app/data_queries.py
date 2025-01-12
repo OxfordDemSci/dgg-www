@@ -258,8 +258,8 @@ def dq_download_national_data_with_dates(start_date: str, end_date: str, country
     for result in results:
         gid_0_value = str(result.gid_0)
         outcome = str(result.outcome)
-        predicted = round(float(result.predicted), 3) if not math.isnan(result.predicted) else None
-        predicted_error = round(float(result.predicted_error), 3) if not math.isnan(result.predicted_error) else None
+        predicted = round(float(result.predicted), 3) if result.predicted else None
+        predicted_error = round(float(result.predicted_error), 3) if result.predicted_error else None
         date_key = result.date
         if result.gid_0 not in response:
             response[gid_0_value] = {}
@@ -282,8 +282,8 @@ def dq_download_subnational_data_with_dates(start_date: str, end_date: str, regi
         gid_0_value = str(result.gid_0)
         gid_1_value = str(result.gid_1)
         outcome = str(result.outcome)
-        predicted = round(float(result.predicted), 3) if not math.isnan(result.predicted) else None
-        predicted_error = round(float(result.predicted_error), 3) if not math.isnan(result.predicted_error) else None
+        predicted = round(float(result.predicted), 3) if result.predicted else None
+        predicted_error = round(float(result.predicted_error), 3) if result.predicted_error else None
         date_key = result.date
         
         if gid_0_value not in response:

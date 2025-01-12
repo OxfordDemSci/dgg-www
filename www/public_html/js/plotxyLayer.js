@@ -96,6 +96,8 @@ var min = (Math.min(...dataArray)),
         max = 1;
     }
 
+    const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+
     const data = {
         labels: labels,
         datasets: [{
@@ -103,7 +105,12 @@ var min = (Math.min(...dataArray)),
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: dataArray,
-                pointRadius: pointRadius
+                pointRadius: pointRadius,
+                segment: {
+                    borderColor: ctx => skipped(ctx, 'rgb(0, 0, 0)'),
+                    borderDash: ctx => skipped(ctx, [4, 4]),
+                  },
+                  spanGaps: true
             }]
     };
 

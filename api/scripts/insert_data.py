@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import sys
 import pycountry
+import numpy as np
 
 from alembic import command
 from alembic.config import Config
@@ -90,6 +91,7 @@ def upload_csv_to_indicators(csv_path, table_model):
     df = pd.read_csv(csv_path)
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
     df['country'] = df.apply(get_country_name, axis=1)
+    df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
     data = df.to_dict(orient='records')
     session.bulk_insert_mappings(table_model, data)
     session.commit()
@@ -97,6 +99,7 @@ def upload_csv_to_indicators(csv_path, table_model):
 
 def upload_ground_truth_data(csv_path, table_model):
     df = pd.read_csv(csv_path)
+    df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
     data = df.to_dict(orient='records')
     session.bulk_insert_mappings(table_model, data)
     session.commit()
