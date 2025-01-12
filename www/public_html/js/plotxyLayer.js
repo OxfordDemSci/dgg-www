@@ -90,9 +90,11 @@ var min = (Math.min(...dataArray)),
     
 
     min=round_value(min-min_f,2); 
-    //max=round_value(max+max_f,2);
+    max=round_value(max+max_f,2);
     
-    //max = (max > 1 ) ? 1 : max;
+    if (max > 1) {
+        max = 1;
+    }
 
     const data = {
         labels: labels,
