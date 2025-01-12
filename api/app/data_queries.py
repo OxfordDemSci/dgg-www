@@ -3,6 +3,7 @@ from sqlalchemy import text, distinct
 from flask import Response
 from typing import Any, Optional
 from sqlalchemy import text
+import math
 
 from app import db
 from .datatypes import CountriesEnum3
@@ -257,8 +258,8 @@ def dq_download_national_data_with_dates(start_date: str, end_date: str, country
     for result in results:
         gid_0_value = str(result.gid_0)
         outcome = str(result.outcome)
-        predicted = round(float(result.predicted), 3)
-        predicted_error = round(float(result.predicted_error), 3)
+        predicted = round(float(result.predicted), 3) if not math.isnan(result.predicted) else None
+        predicted_error = round(float(result.predicted_error), 3) if not math.isnan(result.predicted_error) else None
         date_key = result.date
         if result.gid_0 not in response:
             response[gid_0_value] = {}
@@ -281,8 +282,8 @@ def dq_download_subnational_data_with_dates(start_date: str, end_date: str, regi
         gid_0_value = str(result.gid_0)
         gid_1_value = str(result.gid_1)
         outcome = str(result.outcome)
-        predicted = round(float(result.predicted), 3)
-        predicted_error = round(float(result.predicted_error), 3)
+        predicted = round(float(result.predicted), 3) if not math.isnan(result.predicted) else None
+        predicted_error = round(float(result.predicted_error), 3) if not math.isnan(result.predicted_error) else None
         date_key = result.date
         
         if gid_0_value not in response:
@@ -351,25 +352,6 @@ def dq_get_ground_truth_national(indicators: list[str] | None = None):
 
 
 def dq_download_national_data_csv(start_date: str, end_date: str, indicators: list[str] | None = None):
-    # query = db.session.query(NationalIndicators).filter(NationalIndicators.date.between(start_date, end_date))
-
-    # if indicators is not None and len(indicators) > 0:
-    #     query = query.filter(NationalIndicators.outcome.in_(indicators))
-
-    # results: list[NationalIndicators] = query.all()
-
-    # response: list[dict[str, Any]] = []
-    # for result in results:
-    #     response.append({
-    #         "country": result.country,
-    #         "gid_0": result.gid_0,
-    #         "date": result.date,
-    #         "outcome": result.outcome,
-    #         "predicted": round(float(result.predicted), 3),
-    #         "predicted_error": round(float(result.predicted_error), 3)
-    #     })
-
-    # return response
     start_date = start_date + "-01"
     end_date = end_date + "-01"
     query = text(
@@ -384,28 +366,6 @@ def dq_download_national_data_csv(start_date: str, end_date: str, indicators: li
 
 
 def dq_download_subnational_data_csv(start_date: str, end_date: str, indicators: list[str] | None = None):
-    # query = (db.session.query(
-    #     SubNationalIndicators,
-    #     SubNationalNames.name_1
-    # ).join(SubNationalNames, SubNationalNames.gid_1 == SubNationalIndicators.gid_1).filter(SubNationalIndicators.date.between(start_date, end_date))
-    # )
-    # if indicators is not None and len(indicators) > 0:
-    #     query = query.filter(SubNationalIndicators.outcome.in_(indicators))
-
-    # results = query.all()
-
-    # response: list[dict[str, Any]] = []
-    # for result, region_name in results:
-    #     response.append({
-    #         "country": result.country,
-    #         "gid_0": result.gid_0,
-    #         "gid_1": result.gid_1,
-    #         "region_name": region_name,
-    #         "date": result.date,
-    #         "outcome": result.outcome,
-    #         "predicted": round(float(result.predicted), 3),
-    #         "predicted_error": round(float(result.predicted_error), 3)
-    #     })
     start_date = start_date + "-01"
     end_date = end_date + "-01"
     query = text(
