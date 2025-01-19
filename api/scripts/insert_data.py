@@ -135,8 +135,8 @@ def main():
     tables = ["subnational_geometries", "national_geometries", "subnational_indicators", "national_indicators"] #, "indicator_descriptions"]
     for table in tables:
         delete_all_rows(table)
-    csv_path_subnational = BASE / "subnational_estimates_2024-05-01_2024-07_01.csv"
-    csv_path_national = BASE / "national_estimates_2024-05-01_2024-07_01.csv"
+    csv_path_subnational = BASE / "subnational_estimates.csv"
+    csv_path_national = BASE / "national_estimates.csv"
     ground_truth_national_csv_path = BASE / "national_ground_truth.csv"
     national_ground_truth_model = NationalGroundTruth
     ground_truth_subnational_csv_path = BASE / "subnational_ground_truth.csv"
