@@ -59,19 +59,6 @@ A single row example to be deleted from the database, would be:
 [{'country': 'Afghanistan', 'gid_0': 'AFG', 'gid_1': 'AFG.1_1', 'date': '2024-08', 'outcome': 'mobile_women', 'predicted': 30.0, 'predicted_error': 5.6}]
 ```
 
-## Deleting and posting utility scripts
-In the same `./scripts` folder as above, there are utility scripts that can be run to delete or post small edits to the database. You will not be able to delete full tables. In these cases, it would be better to `ssh` into the server machine and delete the tables using `psql`:
-**NOTE** PLEASE RUN THE BELOW COMMAND WITH CAUTION
-```ssh
-PGPASSWORD=XXXXXXXXXXXXX psql -h localhost -p 5432 -U oxford_dgg_admin -d dgg -c "DELETE FROM national_indicators;"
-``` 
-You will need to get the password from the `.env` file in the application root.
-
-1. `python ./scripts/delete_national.py` - You will need to copy a csv into the scripts folder detailing the rows you would like deleted, and update the `CSV` attribute pointing to the csv path.
-2. `python ./scripts/delete_subnational.py` - You will need to copy a csv into the scripts folder detailing the rows you would like deleted, and update the `CSV` attribute pointing to the csv path.
-3. `python ./scripts/post_national.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
-4. `python ./scripts/post_subnational.py` - You will need to copy a csv into the scripts folder detailing the rows you would like posted to the database, and update the `CSV` attribute pointing to the csv path.
-
 ## API Client and automation scripts
 **NOTE These scripts are not intended for large data insertions. Please do not attempt to bulk insert more than one month at a time to prevent timeout errors. See below for bulk-insert scripts**
 In addition to the above, there is a client class in the `./scripts/` directory that helps to automate the posting, deleting and backing up of data. To carry out these tasks, you will need to edit `./scripts/post_and_backup.py`.
