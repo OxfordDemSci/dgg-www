@@ -12,6 +12,9 @@ services:
       - type: bind
         source: ./www/public_html/
         target: /var/www/public_html/
+      - type: bind
+        source: ./www/nginx.conf
+        target: /etc/nginx/nginx.conf
     ports:
       - "80:80"
       - "443:443"

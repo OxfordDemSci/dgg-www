@@ -118,6 +118,23 @@ def init_data() -> Response:
     except Exception as e:
         return make_response({"error": str(e)}, 500)
 
+
+def get_subnational_geometries() -> Response:
+    try:
+        response = current_app.config["SUBNATIONAL_GEOMS"]
+        return make_response(response, 200)
+    except Exception as e:
+        return make_response({"error": str(e)}, 500)
+
+
+def get_national_geometries() -> Response:
+    try:
+        response = current_app.config["NATIONAL_GEOMS"]
+        return make_response(response, 200)
+    except Exception as e:
+        return make_response({"error": str(e)}, 500)
+
+
 @validate_request_params
 def valid_outcomes_by_date(date: str) -> Response:
     try:

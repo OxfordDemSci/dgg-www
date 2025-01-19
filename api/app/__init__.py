@@ -12,6 +12,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
+import json
 
 from alembic import command
 from alembic.config import Config
@@ -20,6 +21,13 @@ from app.datatypes import UserRoleEnum
 from app.models import User
 
 BASE = Path(__file__).resolve().parent
+SUBNATIONAL_GEOMS = BASE.parent.joinpath("scripts", "data", "simplified_l1_v2_1_13.geojson")
+NATIONAL_GEOMS = BASE.parent.joinpath("scripts", "data", "simplified_l0_v2.geojson")
+with open(SUBNATIONAL_GEOMS, "r", encoding='utf-8') as f:
+    SUBNATIONAL_GEOMS = json.load(f)
+
+with open(NATIONAL_GEOMS, "r", encoding='utf-8') as f:
+    NATIONAL_GEOMS = json.load(f)
 
 
 def get_nginx_ip():
@@ -60,6 +68,12 @@ def create_app(config_name: str) -> Flask:
     app.config["ENV"] = config_name
     Compress(app)
     app.config["COMPRESS_ALWAYS"] = True
+    app.config['COMPRESS_MIMETYPES'] = ['application/json']  # Compress only JSON responses
+    app.config['COMPRESS_LEVEL'] = 6  # Compression level (default: 6)
+    app.config['COMPRESS_MIN_SIZE'] = 500
+    app.config["SUBNATIONAL_GEOMS"] = SUBNATIONAL_GEOMS
+    app.config["NATIONAL_GEOMS"] = NATIONAL_GEOMS
+
     db.init_app(app)
     bcrypt.init_app(app)
     _ = JWTManager(app)

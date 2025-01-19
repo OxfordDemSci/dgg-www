@@ -23,6 +23,48 @@ paths:
           description: "Successfully initialized"
         "500":
           description: "Internal server error"
+  /subnational_geometries:
+    get:
+      tags:
+        - default
+      summary: "Get subnational geometries"
+      x-swagger-router-controller: app.endpoints
+      operationId: get_subnational_geometries
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "500":
+          description: "Internal server error"
+  /national_geometries:
+    get:
+      tags:
+        - default
+      summary: "Get national geometries"
+      x-swagger-router-controller: app.endpoints
+      operationId: get_national_geometries
+      responses:
+        "200":
+          description: "Successfully retrieved data"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "500":
+          description: "Internal server error"
   /valid_outcomes_by_date:
     get:
       tags:
