@@ -229,8 +229,8 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
                     "gid_0": row.gid_0,
                     "date": row.date,
                     "outcome": row.outcome,
-                    "predicted": round(float(row.predicted), 3),
-                    "predicted_error": round(float(row.predicted_error), 3)
+                    "predicted": round(float(row.predicted), 3) if row.predicted else None,
+                    "predicted_error": round(float(row.predicted_error), 3) if row.predicted_error else None
                 })
             else:
                 chunk.append({
@@ -240,8 +240,8 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
                     "region_name": row.region_name if row.region_name else "NA",
                     "date": row.date,
                     "outcome": row.outcome,
-                    "predicted": round(float(row.predicted), 3),
-                    "predicted_error": round(float(row.predicted_error), 3)
+                    "predicted": round(float(row.predicted), 3) if row.predicted else None,
+                    "predicted_error": round(float(row.predicted_error), 3) if row.predicted_error else None
                 })
             if len(chunk) >= chunk_size:
                 writer.writerows(chunk)
