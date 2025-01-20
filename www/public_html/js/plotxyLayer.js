@@ -107,8 +107,8 @@ var min = (Math.min(...dataArray)),
                 data: dataArray,
                 pointRadius: pointRadius,
                 segment: {
-                    borderColor: ctx => skipped(ctx, 'rgb(0, 0, 0)'),
-                    borderDash: ctx => skipped(ctx, [4, 4]),
+                    borderColor: ctx => skipped(ctx, 'rgb(255, 99, 132)'),
+                    //borderDash: ctx => skipped(ctx, [4, 4]),
                   },
                   spanGaps: true
             }]
