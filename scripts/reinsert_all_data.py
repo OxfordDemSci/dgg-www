@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import pycountry
 import numpy as np
+from contextlib import contextmanager
 
 sys.path.append(str(Path(__file__).resolve().parent.parent / "api"))
 
@@ -30,6 +31,21 @@ POSTGRES_DB = os.getenv("POSTGRES_DB", "")
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 
+
+@contextmanager
+def session_scope():
+    """Provide a transactional scope around a series of operations."""
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except Exception as e:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+
 def delete_all_rows(table_name):
     session = Session()
     try:
@@ -50,21 +66,13 @@ def get_country_name(row):
         return row['gid_0']
 
 
-def upload_csv_to_indicators(csv_path, table_model):
-    session = Session()
-    try:
-        df = pd.read_csv(csv_path)
-        df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
-        df['country'] = df.apply(get_country_name, axis=1)
-        df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
-        data = df.to_dict(orient='records')
-        session.bulk_insert_mappings(table_model, data)
-        session.commit()
-    except Exception as e:
-        print(f"Error uploading data to {table_model.__tablename__}: {e}")
-        session.rollback()
-    finally:
-        session.close()
+def upload_csv_to_indicators(csv_path, table_model, session):
+    df = pd.read_csv(csv_path)
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
+    df['country'] = df.apply(get_country_name, axis=1)
+    df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
+    data = df.to_dict(orient='records')
+    session.bulk_insert_mappings(table_model, data)
 
 
 def main():
@@ -72,12 +80,15 @@ def main():
     for level, table in tables.items():
         try:
             csv = next(x for x in BASE.joinpath(level).iterdir() if x.suffix == ".csv")
-            delete_all_rows(table)
-            model = SubNationalIndicators if level == "subnational" else NationalIndicators
-            upload_csv_to_indicators(csv, model)
-            print(f"Uploaded {level} data to {table} table.")
+            with session_scope() as session:
+                delete_all_rows(table)
+                model = SubNationalIndicators if level == "subnational" else NationalIndicators
+                upload_csv_to_indicators(csv, model, session)
+                print(f"Uploaded {level} data to {table} table.")
         except StopIteration:
             print(f"No csv found for {level} data.")
+        except Exception as e:
+            print(f"Error uploading {level} data: {e}")
 
 
 if __name__ == "__main__":
