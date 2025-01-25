@@ -5,6 +5,7 @@ import pycountry
 import numpy as np
 from contextlib import contextmanager
 from memory_profiler import profile
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 sys.path.append(str(Path(__file__).resolve().parent.parent / "api"))
 
@@ -67,16 +68,47 @@ def get_country_name(row):
         return row['gid_0']
 
 
+# @profile
+# def upload_csv_to_indicators(csv_path, table_model, session, chunk_size=1000):
+#     df = pd.read_csv(csv_path)
+#     df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
+#     df['country'] = df.apply(get_country_name, axis=1)
+#     df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
+#     for i in range(0, len(df), chunk_size):
+#         data_chunk = df.iloc[i:i+chunk_size].to_dict(orient='records')
+#         session.bulk_insert_mappings(table_model, data_chunk)
+#         session.commit()
+
 @profile
-def upload_csv_to_indicators(csv_path, table_model, session, chunk_size=1000):
+def upload_csv_to_indicators(csv_path, table_model, session, chunk_size=1000, max_workers=4):
     df = pd.read_csv(csv_path)
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
     df['country'] = df.apply(get_country_name, axis=1)
     df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
-    for i in range(0, len(df), chunk_size):
-        data_chunk = df.iloc[i:i+chunk_size].to_dict(orient='records')
-        session.bulk_insert_mappings(table_model, data_chunk)
-        session.commit()
+
+    def upload_chunk(data_chunk):
+        print("DONE A CHUNK")
+        local_session = sessionmaker(bind=session.get_bind())()
+        try:
+            local_session.bulk_insert_mappings(table_model, data_chunk)
+            local_session.commit()
+        except Exception as e:
+            local_session.rollback()
+            raise e
+        finally:
+            local_session.close()
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = []
+        for i in range(0, len(df), chunk_size):
+            data_chunk = df.iloc[i:i+chunk_size].to_dict(orient='records')
+            futures.append(executor.submit(upload_chunk, data_chunk))
+
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception as e:
+                print(f"Error occurred: {e}")
 
 
 def main():
