@@ -4,6 +4,7 @@ import sys
 import pycountry
 import numpy as np
 from contextlib import contextmanager
+from memory_profiler import profile
 
 sys.path.append(str(Path(__file__).resolve().parent.parent / "api"))
 
@@ -28,7 +29,7 @@ POSTGRES_USER = os.getenv("POSTGRES_USER", "")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "")
 POSTGRES_DB = os.getenv("POSTGRES_DB", "")
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool_size=50, max_overflow=10)
 Session = sessionmaker(bind=engine)
 
 
@@ -66,13 +67,16 @@ def get_country_name(row):
         return row['gid_0']
 
 
-def upload_csv_to_indicators(csv_path, table_model, session):
+@profile
+def upload_csv_to_indicators(csv_path, table_model, session, chunk_size=1000):
     df = pd.read_csv(csv_path)
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
     df['country'] = df.apply(get_country_name, axis=1)
     df = df.replace({np.nan: None, 'NaN': None, 'nan': None, 'null': None, 'NULL': None, 'None': None})
-    data = df.to_dict(orient='records')
-    session.bulk_insert_mappings(table_model, data)
+    for i in range(0, len(df), chunk_size):
+        data_chunk = df.iloc[i:i+chunk_size].to_dict(orient='records')
+        session.bulk_insert_mappings(table_model, data_chunk)
+        session.commit()
 
 
 def main():

@@ -74,3 +74,4 @@ tzdata==2024.1
 urllib3==2.2.2
 Werkzeug==2.3.8
 wrapt==1.16.0
+memory-profiler==0.61.0
