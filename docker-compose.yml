@@ -60,6 +60,7 @@ services:
     volumes:
       #- ./sql/init-scripts:/docker-entrypoint-initdb.d
       - dgg_db_data:/var/lib/postgresql/data
+    command: ["postgres", "-c","shared_buffers=512MB", "-c", "work_mem=32MB"]
     networks:
       - dgg_net
     ports:
