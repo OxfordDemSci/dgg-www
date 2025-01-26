@@ -3,7 +3,7 @@ var featureByName = {};
 
 import * as _init from './init.js?version=0.72'
 import * as _utils from './utils.js?version=0.672'
-import * as _api from './api_requests.js?version=0.32'
+import * as _api from './api_requests.js?version=0.34'
 import * as _worldLayer from './worldLayer.js?version=0.5'
 import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.82'
 import * as _worldBoundariesLayer from './worldBoundariesLayer.js?version=0.462'
@@ -21,6 +21,7 @@ var prSubNational = false;
 var prGroundTruth = false;
 var prPredictedError = false;
 
+var loadGeoBoundaryFroDB = false;
 
 const config_plot_xy_Chart = {
             type: 'line',
@@ -78,8 +79,16 @@ const firstModelfromList = Object.keys(modelsList)[0];
 
 _init.load_models_to_menu(modelsList, initJSONSettings.descriptions);
 
-var world_geo_json = _init.getWorld_geo();
-var worldSubNational_geo_json = _init.getWorldSubNational_geo();
+    var world_geo_json = [];
+    var worldSubNational_geo_json = [];
+    
+if (loadGeoBoundaryFroDB){
+    world_geo_json = _api.getWorld_geo_db(API_URL);
+    worldSubNational_geo_json = _api.getWorldSubNational_geo_db(API_URL);
+}else{
+    world_geo_json = _init.getWorld_geo();
+    worldSubNational_geo_json = _init.getWorldSubNational_geo();
+}
 
 var basemaps = {
         "OpenStreetMaps": L.tileLayer(
@@ -776,8 +785,20 @@ $('#chPointPlot').change(function () {
 });
 
 
-$('#chPointRadius').change(function () {
+$('#chPointRadius').on("input", function () {
      document.getElementById('lbPointRadius').innerHTML = $(this).val();
+});
+$('#chPointRadius').change(function () {
      var sParams = _utils.getSelectedParameters();
     _plotxyLayer.updateData(xy_Chart, data_plot, sParams[2], initJSONSettings.descriptions, prSubNational);    
 });
+
+
+$('#chLineStrokeWidth').on("input", function () {
+     document.getElementById('lbLineStrokeWidth').innerHTML = $(this).val();
+});
+$('#chLineStrokeWidth').change(function () {
+    var sParams = _utils.getSelectedParameters();
+    _plotxyLayer.updateData(xy_Chart, data_plot, sParams[2], initJSONSettings.descriptions, prSubNational);    
+});
+

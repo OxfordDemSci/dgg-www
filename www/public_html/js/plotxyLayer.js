@@ -75,12 +75,19 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
 //        labels.push(ym);
 //        dataArray.push(d[k][model][PredictedType]);
 //    }
-        let pointRadius=document.getElementById("chPointRadius").value;
+        let pointRadius=Math.round(Number(document.getElementById("chPointRadius").value));
         if ($("#chPointPlot").is(":checked")) {
               pointRadius=document.getElementById("chPointRadius").value;
         } else {
               pointRadius=0;
         }
+        
+        let lineBorderWidth=Math.round(Number(document.getElementById("chLineStrokeWidth").value));
+        let lineShowLine=true; 
+        if (lineBorderWidth === 0) {
+              lineShowLine=false;
+        }       
+        
     
 var min = (Math.min(...dataArray)),
     max = (Math.max(...dataArray));
@@ -105,12 +112,17 @@ var min = (Math.min(...dataArray)),
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: dataArray,
+                pointStyle: 'circle',
                 pointRadius: pointRadius,
+                pointHoverRadius: Math.round(pointRadius*2),
                 segment: {
-                    borderColor: ctx => skipped(ctx, 'rgb(255, 99, 132)'),
+                    borderColor: ctx => skipped(ctx, 'rgb(255, 99, 132)')
                     //borderDash: ctx => skipped(ctx, [4, 4]),
                   },
-                  spanGaps: true
+                spanGaps: true,
+                borderWidth: lineBorderWidth,
+                showLine: lineShowLine, // show line in scatter plot
+                fill: false // only show line                    
             }]
     };
 
@@ -118,6 +130,13 @@ var min = (Math.min(...dataArray)),
     const options = {
         scales: {
             x: {
+                type: 'time',
+                time: {
+                    unit: 'year',
+                    displayFormats: {
+                            year: 'yyyy-01'
+                        }                    
+                },
                 ticks: {
                     maxRotation: 60,
                     minRotation: 60
