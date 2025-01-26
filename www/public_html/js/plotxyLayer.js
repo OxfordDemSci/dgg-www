@@ -77,7 +77,7 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
 //    }
         let pointRadius=Math.round(Number(document.getElementById("chPointRadius").value));
         if ($("#chPointPlot").is(":checked")) {
-              pointRadius=document.getElementById("chPointRadius").value;
+              pointRadius=Math.round(Number(document.getElementById("chPointRadius").value));
         } else {
               pointRadius=0;
         }
