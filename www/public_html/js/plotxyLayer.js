@@ -135,7 +135,8 @@ var min = (Math.min(...dataArray)),
                     unit: 'year',
                     displayFormats: {
                             year: 'yyyy-01'
-                        }                    
+                        },
+                    tooltipFormat: 'MMM yyyy'    
                 },
                 ticks: {
                     maxRotation: 60,
