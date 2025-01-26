@@ -12,7 +12,8 @@ while ! database_ready; do
 done
 
 # Run insert_data.py 
-python3 ./scripts/insert_data.py
+#python3 ./scripts/insert_data.py
+alembic upgrade head
 
 # Start the Flask app
 gunicorn --config gunicorn.config.py --preload wsgi:app

@@ -36,7 +36,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
 if os.getenv("ENV") == "dev":
-    DATABASE_URL = os.getenv("DATABASE_URL", "")
+    #DATABASE_URL = os.getenv("DATABASE_URL", "")
+    DATABASE_URL = os.getenv("DATABASE_URL_LOCAL", "")
 else:
     DATABASE_URL = os.getenv("DATABASE_URL_LOCAL", "")
 POSTGRES_USER = os.getenv("POSTGRES_USER", "")
@@ -130,8 +131,9 @@ def upload_geopackage_to_subnational_geometries(geopackage_path, layer_name):
     session.commit()
 
 
-def main():
-    upgrade_alembic()
+def main(update_alembic=False):
+    if update_alembic:
+        upgrade_alembic()
     tables = ["subnational_geometries", "national_geometries", "subnational_indicators", "national_indicators"] #, "indicator_descriptions"]
     for table in tables:
         delete_all_rows(table)
@@ -159,4 +161,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(update_alembic=False)
