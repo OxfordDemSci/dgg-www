@@ -20,7 +20,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"/> 
 
-        <link rel="stylesheet" href="./css/style.css?v=63">
+        <link rel="stylesheet" href="./css/style.css?v=64">
         <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>-->
 
         <link rel="stylesheet" type="text/css" href="./utils/DataTables/datatables.min.css"/>
@@ -287,10 +287,14 @@
                         </div>                         -->
                     </div> 
                     <div class="pt-4">  
+                            <label for="customPointRadius" class="form-label">Line stroke width [ <label id="lbLineStrokeWidth">1</label> ]</label>
+                            <input type="range" class="form-range" min="0" max="5" step="1" value="1" id="chLineStrokeWidth">
+                    </div>                     
+                    <div class="pt-2">  
                             <label for="customPointRadius" class="form-label">Point Radius [ <label id="lbPointRadius">2</label> ]</label>
-                            <input type="range" class="form-range" min="0" max="5" step="0.5" value="2" id="chPointRadius">
+                            <input type="range" class="form-range" min="0" max="5" step="1" value="2" id="chPointRadius">
                     </div>                       
-                    <div class="pt-4">  
+                    <div class="pt-2">  
                             <label for="customRangeOpacity" class="form-label">Map opacity</label>
                             <input type="range" class="form-range" min="0" max="1" step="0.1" value="0.9" id="customRangeOpacity">
                     </div>                     
@@ -515,6 +519,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js'></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.0.1/leaflet-omnivore.min.js'></script>
 
@@ -541,7 +546,7 @@
 <script type="text/javascript">
     window.mdebug = true;
 </script>
-<script src="./js/main.js?version=0.66" type="module"></script>
+<script src="./js/main.js?version=0.68" type="module"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

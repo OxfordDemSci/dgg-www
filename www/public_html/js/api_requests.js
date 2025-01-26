@@ -1,5 +1,43 @@
 import * as _utils from './utils.js?version=0.11'
 
+export function getWorld_geo_db(api_url) {
+
+    var result = "";
+    $.ajax({
+        url: api_url+'national_geometries',
+        async: false,
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            result = data;
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+        }
+    });
+    return result;
+}
+
+export function getWorldSubNational_geo_db(api_url) {
+
+    var result = "";
+    $.ajax({
+        url: api_url+'subnational_geometries',
+        async: false,
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            result = data;
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+        }
+    });
+    return result;
+}
+
 export function getSettings(api_url) {
 
     var result = "";
