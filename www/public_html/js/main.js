@@ -2,7 +2,7 @@ var API_URL = "./api/v2/";
 var featureByName = {};
 
 import * as _init from './init.js?version=0.73'
-import * as _utils from './utils.js?version=0.673'
+import * as _utils from './utils.js?version=0.674'
 import * as _api from './api_requests.js?version=0.35'
 import * as _worldLayer from './worldLayer.js?version=0.51'
 import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.82'
