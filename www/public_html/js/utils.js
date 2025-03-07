@@ -171,10 +171,10 @@ export function updateModelInfoonPanel(m, d, g) {
     var titleModelDescription = document.getElementById('titleModelDescription');
 
     if (g) {
-        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["ground_truth"][m].description +".</br><strong>Data Frequency:</strong> "+ d["ground_truth"]["data_frequency"] + "</br><strong>Geographical Coverage:</strong> " + d["ground_truth"]["geographical_coverage"] +"</p>" ;
+        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["ground_truth"][m].description +".</br><strong>Data Frequency:</strong> "+ d["ground_truth"]["data_frequency"] + "</p>" ;
         titleModelDescription.innerHTML = txt;
     } else {
-        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["indicator"][m].description +".</br><strong>Data Frequency:</strong> "+ d["indicator"]["data_frequency"] + "</br><strong>Geographical Coverage:</strong> " + d["indicator"]["geographical_coverage"] +"</p>" ;
+        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["indicator"][m].description +".</br><strong>Data Frequency:</strong> "+ d["indicator"]["data_frequency"] + "</p>" ;
         titleModelDescription.innerHTML = txt;
     }
 
