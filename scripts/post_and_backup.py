@@ -53,4 +53,4 @@ def main(delete_national: bool = False, delete_subnational: bool = False):
 
 
 if __name__ == "__main__":
-    main(delete_national=True, delete_subnational=True)
+    main(delete_national=False, delete_subnational=False)
