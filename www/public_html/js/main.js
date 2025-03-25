@@ -2,7 +2,7 @@ var API_URL = "./api/v2/";
 var featureByName = {};
 
 import * as _init from './init.js?version=0.73'
-import * as _utils from './utils.js?version=0.673'
+import * as _utils from './utils.js?version=0.676'
 import * as _api from './api_requests.js?version=0.35'
 import * as _worldLayer from './worldLayer.js?version=0.51'
 import * as _worldSubNationalLayer from './worldSubNationalLayer.js?version=0.82'
@@ -198,7 +198,6 @@ var worldLayer = L.geoJson(null, {
                 var iso_gid_0 = e.target.feature.properties.GID_0;
                     _api.query_national_data_with_dates(firstYear, firstMonth, lastYear, lastMonth , iso_gid_0, prGroundTruth, API_URL)
                         .then((data) => {
-                            
                                 var sParams = _utils.getSelectedParameters();
                                 if (prGroundTruth){
                                     
@@ -328,7 +327,7 @@ var worldSubNationalLayer = L.geoJson(null, {
                           
                         }).then(() => {
                             
-                    _api.query_sub_national_data_with_dates(firstYear, firstMonth, lastYear, lastMonth, iso_gid_1, prGroundTruth, API_URL)
+                    _api.query_sub_national_data_with_dates(firstYear_Sub, firstMonth_Sub, lastYear_Sub, lastMonth_Sub, iso_gid_1, prGroundTruth, API_URL)
                             .then((data) => {
                                 var sParams = _utils.getSelectedParameters();
                                 if (prGroundTruth){
