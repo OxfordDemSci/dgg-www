@@ -1,4 +1,4 @@
-import * as _ImageFromRGB from './createImageFromRGBdata.js?version=1'
+import * as _ImageFromRGB from './createImageFromRGBdata.js?version=2.0'
 
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 

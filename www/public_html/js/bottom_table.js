@@ -1,5 +1,5 @@
-import * as _utils from './utils.js?version=0.221'
-import * as _init from './init.js?version=0.31'
+import * as _utils from './utils.js?version=2.0'
+import * as _init from './init.js?version=2.0'
 
 function sort_subnational_child_rows(iso, data, _GroundTruth, modelsList, countriesListSubnational) {
     
