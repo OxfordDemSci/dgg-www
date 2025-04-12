@@ -1,6 +1,6 @@
-import * as _utils from './utils.js?version=0.241'
-import * as _api from './api_requests.js?version=0.11'
-import * as _quartile from './quartile.js?version=11'
+import * as _utils from './utils.js?version=2.0'
+import * as _api from './api_requests.js?version=2.0'
+import * as _quartile from './quartile.js?version=2.0'
 
 export function zoomToFeature(_e, _map, _world_geo_json) {
 

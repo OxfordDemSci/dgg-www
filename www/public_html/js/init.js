@@ -1,4 +1,4 @@
-import * as _utils from './utils.js?version=61'
+import * as _utils from './utils.js?version=2.0'
 
 export function getDates(data) {
   

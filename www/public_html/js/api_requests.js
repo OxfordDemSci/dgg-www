@@ -1,4 +1,4 @@
-import * as _utils from './utils.js?version=0.11'
+import * as _utils from './utils.js?version=2.0'
 
 export function getWorld_geo_db(api_url) {
 

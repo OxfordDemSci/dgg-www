@@ -1,7 +1,7 @@
-import * as _utils from './utils.js?version=0.241'
-import * as _api from './api_requests.js?version=0.11'
-import * as _controlTable from './bottom_table.js?version=0.51'
-import * as _quartile from './quartile.js?version=1'
+import * as _utils from './utils.js?version=2.0'
+import * as _api from './api_requests.js?version=2.0'
+import * as _controlTable from './bottom_table.js?version=2.0'
+import * as _quartile from './quartile.js?version=2.0'
 
 export function get_color(d) {
     for (let i = 0;
@@ -119,7 +119,7 @@ export function getColor(v, palette, model) {
     if (v === undefined || v === null) {
         return "#FFFFFF00";
     }
-
+    
     let xcase = false;
     let color;
     let breaks = palette["breaks"][model];
@@ -223,8 +223,7 @@ export function load_data_to_worldLayer(
         breaks.push(Quartile);
         cont++;
     }
-
-
+    
     breaks[0] = Math.floor(Math.min(..._country_count) * 100) / 100;
     palette["breaks"][model] = breaks;
     

@@ -54,20 +54,43 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
     var labels = [];
     var dataArray = [];
     var ym;
-
+    
     if (_prSubNational) {
         Object.keys(d).forEach(function (key) {
             ym = key.toString();
             labels.push(ym);
-            dataArray.push(d[key][model][PredictedType]);
+            // replacing null with 0
+            let val_from_array=d[key][model][PredictedType];
+            if (val_from_array == null) {
+                val_from_array=0;
+            }
+            dataArray.push(val_from_array);
         });
     } else {
         Object.keys(d).forEach(function (key) {
             ym = key.toString();
             labels.push(ym);
-            dataArray.push(d[key][model][PredictedType]);
+            let val_from_array=d[key][model][PredictedType];
+            if (val_from_array == null) {
+                val_from_array=0;
+            }            
+            dataArray.push(val_from_array);
         });
-    }
+    }    
+
+//    if (_prSubNational) {
+//        Object.keys(d).forEach(function (key) {
+//            ym = key.toString();
+//            labels.push(ym);
+//            dataArray.push(d[key][model][PredictedType]);
+//        });
+//    } else {
+//        Object.keys(d).forEach(function (key) {
+//            ym = key.toString();
+//            labels.push(ym);
+//            dataArray.push(d[key][model][PredictedType]);
+//        });
+//    }
     
 //    for (var k in d) {
 //        console.log(k);

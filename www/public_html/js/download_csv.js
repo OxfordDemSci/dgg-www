@@ -1,4 +1,4 @@
-import * as _utils from './utils.js?version=0.751'
+import * as _utils from './utils.js?version=2.0'
 
 export function download_csv(api_url) {
             

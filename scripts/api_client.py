@@ -60,7 +60,7 @@ class APIClient:
         for path_to_csv in csv_files:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
-                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
+                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name if x["gid_0"]!='XKX' else "Kosovo", axis=1)
             chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
@@ -102,6 +102,8 @@ class APIClient:
                 print(f"Posted {start} to {end} records.")
         if df_list:
             errors_df = pd.concat(df_list)
+            if not self.errors_csv_dir.exists():
+                self.errors_csv_dir.mkdir(parents=True)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"post_subnational_errors_{self.todays_date}.csv"), index=False)
             print(f"Post Subnational Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
 
@@ -127,7 +129,7 @@ class APIClient:
         for path_to_csv in csv_files:
             df = pd.read_csv(path_to_csv)
             if "country" not in df.columns:
-                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
+                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name if x!='XKX' else "Kosovo", axis=1)
             chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
@@ -139,6 +141,8 @@ class APIClient:
                 print(f"Tried to delete {start} to {end} national records.")
         if df_list:
             errors_df = pd.concat(df_list)
+            if not self.errors_csv_dir.exists():
+                self.errors_csv_dir.mkdir(parents=True)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"delete_national_errors_{self.todays_date}.csv"), index=False)
             print(f"Delete National Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
         
@@ -164,6 +168,8 @@ class APIClient:
                 print(f"Tried to delete {start} to {end} subnational records.")
         if df_list:
             errors_df = pd.concat(df_list)
+            if not self.errors_csv_dir.exists():
+                self.errors_csv_dir.mkdir(parents=True)
             errors_df.to_csv(self.errors_csv_dir.joinpath(f"delete_subnational_errors_{self.todays_date}.csv"), index=False)
             print(f"Delete Subnational Errors saved to CSV in {self.errors_csv_dir}. These errors could be the result of duplication of other errors")
 

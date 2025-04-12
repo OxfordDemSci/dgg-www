@@ -1,4 +1,4 @@
-import * as _ImageFromRGB from './createImageFromRGBdata.js?version=1'
+import * as _ImageFromRGB from './createImageFromRGBdata.js?version=2.0'
 
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 
@@ -171,10 +171,10 @@ export function updateModelInfoonPanel(m, d, g) {
     var titleModelDescription = document.getElementById('titleModelDescription');
 
     if (g) {
-        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["ground_truth"][m].description +".</br><strong>Data Frequency:</strong> "+ d["ground_truth"]["data_frequency"] + "</br><strong>Geographical Coverage:</strong> " + d["ground_truth"]["geographical_coverage"] +"</p>" ;
+        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["ground_truth"][m].description +".</br><strong>Data Frequency:</strong> "+ d["ground_truth"]["data_frequency"] + "</p>" ;
         titleModelDescription.innerHTML = txt;
     } else {
-        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["indicator"][m].description +".</br><strong>Data Frequency:</strong> "+ d["indicator"]["data_frequency"] + "</br><strong>Geographical Coverage:</strong> " + d["indicator"]["geographical_coverage"] +"</p>" ;
+        let txt = "<p class='pt-2'><strong>Description:</strong>&nbsp;"+ d["indicator"][m].description +".</br><strong>Data Frequency:</strong> "+ d["indicator"]["data_frequency"] + "</p>" ;
         titleModelDescription.innerHTML = txt;
     }
 
@@ -250,6 +250,29 @@ function hexToRGB(hexStr) {
     return col;
 }
 
+export function getUniqueArray(array){
+    var uniqueArray = [];
+    if (array.length > 0) {
+       uniqueArray[0] = array[0];
+    }
+    for(var i = 0; i < array.length; i++){
+        var isExist = false;
+        for(var j = 0; j < uniqueArray.length; j++){
+            if(array[i] == uniqueArray[j]){
+                isExist = true;
+                break;
+            }
+            else{
+                isExist = false;
+            }
+        }
+        if(isExist == false){
+            uniqueArray[uniqueArray.length] = array[i];
+        }
+    }
+    return uniqueArray;
+}
+
 export function loadLagent(title, colors, breaks, subtitles) {
     
     var _PredictedError = document.getElementById('chPredictedError');
@@ -257,7 +280,9 @@ export function loadLagent(title, colors, breaks, subtitles) {
     if(_PredictedError.checked) {
         subtitles_="Predicted error";
     }
-
+    
+    //let uniqueBreaks=getUniqueArray(breaks);
+    let uniqueBreaks=breaks;
 
     //breaks=breaks.sort(function(a, b){return b - a});
     var html = '<div style="width:130px">' + title + '</div>';
@@ -271,11 +296,19 @@ export function loadLagent(title, colors, breaks, subtitles) {
     html += '<ul style="list-style-type: none;margin-top: 2px;margin-bottom: 2px;padding-inline-start: 10px;">';
     //for (var i = 0, len = colors.length; i < len; i++) {
     let len = colors.length;
-    for (var i = len -1;  i >= 0; i--) {        
-        var rgb = hexToRGB(colors[i]);
+    let len_unique = uniqueBreaks.length;
+    let val_old=999999;
+    for (var i = 1;  i <= len_unique; i++) {
+        
+        if (val_old===uniqueBreaks[len_unique-i]){
+            continue;
+        }
+        
+        var rgb = hexToRGB(colors[len-i]);
         var mCanvas = _ImageFromRGB.createImageFromRGBdata(rgb.r, rgb.g, rgb.b, 20, 20);
 
-        html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + breaks[i] + '</span></li>';
+        html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + uniqueBreaks[len_unique-i] + '</span></li>';
+        val_old=uniqueBreaks[len_unique-i];
     }
     html += '</ul>';
     //html += '<div style="width:100px">' + subtitles_ + '</div>';

@@ -90,6 +90,7 @@ export function loadPalette() {
                 0.7,
                 0.8,
                 0.9,
+                1
             ],
             "mobile_online_offline_model_prediction": [
                 10,
