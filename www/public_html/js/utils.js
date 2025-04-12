@@ -281,7 +281,8 @@ export function loadLagent(title, colors, breaks, subtitles) {
         subtitles_="Predicted error";
     }
     
-    let uniqueBreaks=getUniqueArray(breaks);
+    //let uniqueBreaks=getUniqueArray(breaks);
+    let uniqueBreaks=breaks;
 
     //breaks=breaks.sort(function(a, b){return b - a});
     var html = '<div style="width:130px">' + title + '</div>';
@@ -296,11 +297,18 @@ export function loadLagent(title, colors, breaks, subtitles) {
     //for (var i = 0, len = colors.length; i < len; i++) {
     let len = colors.length;
     let len_unique = uniqueBreaks.length;
-    for (var i = 1;  i <= len_unique; i++) {       
+    let val_old=999999;
+    for (var i = 1;  i <= len_unique; i++) {
+        
+        if (val_old===uniqueBreaks[len_unique-i]){
+            continue;
+        }
+        
         var rgb = hexToRGB(colors[len-i]);
         var mCanvas = _ImageFromRGB.createImageFromRGBdata(rgb.r, rgb.g, rgb.b, 20, 20);
 
         html += '<li><img width="20px" height="20px" src="' + mCanvas.toDataURL() + '"><span>&#32;&#32;&#32;&#32;	&nbsp;&nbsp;' + uniqueBreaks[len_unique-i] + '</span></li>';
+        val_old=uniqueBreaks[len_unique-i];
     }
     html += '</ul>';
     //html += '<div style="width:100px">' + subtitles_ + '</div>';
