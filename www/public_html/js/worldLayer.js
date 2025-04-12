@@ -119,7 +119,9 @@ export function getColor(v, palette, model) {
     if (v === undefined || v === null) {
         return "#FFFFFF00";
     }
-
+    
+    v=v.toFixed(4);
+    
     let xcase = false;
     let color;
     let breaks = palette["breaks"][model];
@@ -219,7 +221,7 @@ export function load_data_to_worldLayer(
     let Quartile;
 
     for (var i = 0; i < 10; i++) {
-        Quartile = (_quartile.Quartile(_country_count, cont * 0.1).toFixed(3));
+        Quartile = (_quartile.Quartile(_country_count, cont * 0.1).toFixed(4));
         breaks.push(Quartile);
         cont++;
     }
