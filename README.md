@@ -1,9 +1,9 @@
 # Digital Gender Gaps V2
 The data for this project can be accessed via the dashboard (`http://3.11.85.207/dashboard/`) or the API (`http://3.11.85.207/api/v2/`). The API can be interacted with programatically, or via the Swagger UI (`http://3.11.85.207/api/v2/ui `), which also acts as the API documentation. **THIS PAGE IS NOT INTENDED FOR DIRECT API INTERACTION, JUST AS DOCUMENTATION**
 
-The application is managed by docker containers in the server machine. The `docker-compose.yaml` file orchestrating the application is in `/dgg-www`, and can be launched by running `docker-compose up --build` and torn down by running `docker-compose down` in this directory. The database data is persisted in a docker volume when the app is torn down (`docker-compose down`) unless the `-v` flag is used, in which case the data will be deleted. The csvs in `/dgg-www/api/scripts/data` will be used for the database. This data can be replaced if required, but their names should stay the same. If you need to insert data into the database after it has been wiped, please use the script `/dgg-www/api/scripts/insert_data.py`. Indicator tables can also be replaced/inserted using the `dgg-www/scripts/reinsert_all_data` - See `bulk insert script` below for instructions.
+The application is managed by docker containers in the server machine. The `docker-compose.yaml` file orchestrating the application is in `/dgg-www`, and can be launched by running `docker-compose up --build` and torn down by running `docker-compose down` in this directory. The database data is persisted in a docker volume when the app is torn down (`docker-compose down`) unless the `-v` flag is used, in which case the data will be deleted. The csvs in `/dgg-www/api/scripts/data` will be used for the database (Subnational unit names and indicator descriptions). This data can be replaced if required, but their names should stay the same. If you need to insert data into the database after it has been wiped, please use the script `/dgg-www/api/scripts/insert_data.py`. Indicator and ground truth tables can be replaced/inserted using the `dgg-www/scripts/reinsert_all_data` - See `bulk insert script` below for instructions.
 
-**If you need to replace indicator tables in the database, you can either replace them here, or run a script on the server machine to replace data in the running database. See Bulk Insert Script below for instructions**
+**If you need to replace indicator tables in the database see Bulk Insert Script below for instructions. If you need to replace subnational unit names or indicator descriptions, they should be replaced in `/dgg-www/api/scripts/data` and `/dgg-www/api/scripts/insert_data.py` should be run**
 
 ## Helper Scripts
 
@@ -112,14 +112,15 @@ client.create_backup()
 The `./script/data` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
 
 ## Bulk insert script
-This script is intended for large insertions and will replace all data in the national/subnational table. You will need to harmonise the data that you would like to insert into with the data already in the database - this script will DELETE all rows of the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation other than the datatypes used.
+This script is intended for large insertions and will replace all data in the national/subnational table. You will need to harmonise the data that you would like to insert into with the data already in the database - this script will DELETE all rows of the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation other than the datatypes used. When starting the server without a docker-volume holding data, you will need to instantiate national and subnational indicator tables, along with their corresponding ground truth data with these scripts. **DATA WILL NOT 
+BE AUTOMATICALLY INSERTED WHEN THE DATABASE STARTS**
 
 A venv environment has been set up on the server with the required dependencies. Please activate this by going into the `./dgg-www/scripts` directory and running `source .venv/bin/activate`.
-1. Using ssh, copy the csv that you would like to replace in the database in the corresponding `./dgg-www/scripts/data/post/<national or subnational>` directory on the server machine. This will ONLY work with 1 csv. Please do not use this script with more than one csv in the directory.
+1. Using ssh, copy the csv(s) that you would like to replace in the database in the corresponding `./dgg-www/scripts/data/post/<national and/or subnational and/or national_ground_truth and/or subnational_ground_truth >` directory on the server machine. This will ONLY work with 1 csv per folder at a time. Please do not use this script with more than one csv in the directory. Please also remember to remove the csv from the folder once this script has successfully been run.
 For example:
 `scp ./scripts/data/post/national/dgg_national_combined_cleaned.csv ubuntu@13.41.46.70:dgg-www/scripts/data/post/national/`
 2. Run `python reinsert_all_data.py`.
-If there is no data in the national/subnational folders, they will be skipped. There is no need to delete data from the database with this script as it will be deleted in the script. This script does not create a backup of the table. You will need to do this manually. You should also remember to replace the csvs with replaced data for when/if the server is restarted in `/dgg-www/api/scripts/data`.
+If there is no data in the national/subnational/national_ground_truth/subnational_ground_truth folders, they will be skipped. There is no need to delete data from the database with this script as ALL EXISTING ROWS will be deleted in the script. This script does not create a backup of the table. You will need to do this manually.
 **PLEASE REMEMBER TO DELETE CSVS FROM ./scripts/data/post/ DIRECTORY AFTER THIS PROCESS**
 
 

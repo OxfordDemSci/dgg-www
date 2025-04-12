@@ -134,25 +134,23 @@ def upload_geopackage_to_subnational_geometries(geopackage_path, layer_name):
 def main(update_alembic=False):
     if update_alembic:
         upgrade_alembic()
-    tables = ["subnational_geometries", "national_geometries", "subnational_indicators", "national_indicators"] #, "indicator_descriptions"]
+    tables = ["subnational_geometries", "national_geometries", "indicator_descriptions", "subnational_names"]
     for table in tables:
         delete_all_rows(table)
-    csv_path_subnational = BASE / "subnational_estimates.csv"
-    csv_path_national = BASE / "national_estimates.csv"
-    ground_truth_national_csv_path = BASE / "national_ground_truth.csv"
-    national_ground_truth_model = NationalGroundTruth
-    ground_truth_subnational_csv_path = BASE / "subnational_ground_truth.csv"
-    subnational_ground_truth_model = SubNationalGroundTruth
+    #csv_path_subnational = BASE / "subnational_estimates.csv"
+    #csv_path_national = BASE / "national_estimates.csv"
+    #ground_truth_national_csv_path = BASE / "national_ground_truth.csv"
+    #national_ground_truth_model = NationalGroundTruth
+    #ground_truth_subnational_csv_path = BASE / "subnational_ground_truth.csv"
+    #subnational_ground_truth_model = SubNationalGroundTruth
     subnational_names_csv_path = BASE / "adm_1_names.csv"
     subnational_names_model = SubNationalNames
     indicator_descriptions_csv_path = BASE / "indicator_descriptions.csv"
     indicator_descriptions_model = DGGIndicatorDescription
-    geopackage_path = BASE / "simplified_l0_l1.gpkg"
-    layers = ["L0", "L1"]
-    upload_csv_to_indicators(csv_path_subnational, SubNationalIndicators)
-    upload_csv_to_indicators(csv_path_national, NationalIndicators)
-    upload_ground_truth_data(ground_truth_national_csv_path, national_ground_truth_model)
-    upload_ground_truth_data(ground_truth_subnational_csv_path, subnational_ground_truth_model)
+    # upload_csv_to_indicators(csv_path_subnational, SubNationalIndicators)
+    # upload_csv_to_indicators(csv_path_national, NationalIndicators)
+    # upload_ground_truth_data(ground_truth_national_csv_path, national_ground_truth_model)
+    # upload_ground_truth_data(ground_truth_subnational_csv_path, subnational_ground_truth_model)
     upload_ground_truth_data(subnational_names_csv_path, subnational_names_model)
     upload_ground_truth_data(indicator_descriptions_csv_path, indicator_descriptions_model)
     # for layer_name in layers:

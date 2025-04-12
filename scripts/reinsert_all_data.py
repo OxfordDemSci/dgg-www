@@ -4,7 +4,6 @@ import sys
 import pycountry
 import numpy as np
 from contextlib import contextmanager
-from memory_profiler import profile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 sys.path.append(str(Path(__file__).resolve().parent.parent / "api"))
@@ -17,6 +16,8 @@ from dotenv import load_dotenv
 from app.models import (
     SubNationalIndicators,
     NationalIndicators,
+    SubNationalGroundTruth,
+    NationalGroundTruth,
 )
 
 BASE = Path(__file__).resolve().parent.joinpath("data/post")
@@ -70,8 +71,9 @@ def get_country_name(row):
 
 def upload_csv_to_indicators(csv_path, table_model, session, chunk_size=1000, max_workers=4):
     df = pd.read_csv(csv_path)
-    df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
-    df['country'] = df.apply(get_country_name, axis=1)
+    if table_model not in [NationalGroundTruth, SubNationalGroundTruth]:
+        df['date'] = pd.to_datetime(df['date'], format="%Y-%m").dt.strftime('%Y-%m')
+        df['country'] = df.apply(get_country_name, axis=1)
 
     def upload_chunk(data_chunk):
         local_session = sessionmaker(bind=session.get_bind())()
@@ -98,13 +100,23 @@ def upload_csv_to_indicators(csv_path, table_model, session, chunk_size=1000, ma
 
 
 def main():
-    tables = {"subnational": "subnational_indicators", "national": "national_indicators"}
+    tables = {
+        "subnational": "subnational_indicators",
+        "national": "national_indicators",
+        "subnational_ground_truth": "subnational_ground_truth",
+        "national_ground_truth": "national_ground_truth"}
+    models = {
+        "national": NationalIndicators,
+        "subnational": SubNationalIndicators,
+        "national_ground_truth": NationalGroundTruth,
+        "subnational_ground_truth": SubNationalGroundTruth,
+    }
     for level, table in tables.items():
         try:
             csv = next(x for x in BASE.joinpath(level).iterdir() if x.suffix == ".csv")
             with session_scope() as session:
                 delete_all_rows(table)
-                model = SubNationalIndicators if level == "subnational" else NationalIndicators
+                model = models[level]
                 upload_csv_to_indicators(csv, model, session)
                 print(f"Uploaded {level} data to {table} table.")
         except StopIteration:

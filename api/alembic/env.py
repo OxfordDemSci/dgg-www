@@ -2,20 +2,20 @@ from logging.config import fileConfig
 import os
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+from pathlib import Path
 
 from dotenv import load_dotenv
 
 from alembic import context
 
-load_dotenv()
-environment = os.getenv("ENV", "DEV")
-if environment.lower() == "local":
+load_dotenv(override=True)
+environment = os.getenv("ENV")
+if environment.lower().strip() == "local":
     DATABASE_URL = os.getenv("DATABASE_URL_LOCAL")
 elif environment.lower() == "test":
     DATABASE_URL = os.getenv("DATABASE_URL_TEST")
 else:
     DATABASE_URL = os.getenv("DATABASE_URL")
-
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

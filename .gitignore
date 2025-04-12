@@ -4,3 +4,4 @@ app/api_logs.log
 *.log
 .venv
 .vscode
+scripts/data/post/BACKUP_TABLES
