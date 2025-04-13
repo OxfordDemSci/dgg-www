@@ -1,5 +1,6 @@
 from functools import wraps
 import csv
+from datetime import datetime
 import io
 import time
 
@@ -240,11 +241,12 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
         chunk_size = 1000  # Adjust the chunk size as needed
         chunk = []
         for row in results:
+            formatted_date = row.date.strftime("%Y-%m")
             if level == Level.NATIONAL.value:
                 chunk.append({
                     "country": row.country,
                     "gid_0": row.gid_0,
-                    "date": row.date,
+                    "date": formatted_date,
                     "outcome": row.outcome,
                     "predicted": round(float(row.predicted), 3) if row.predicted else None,
                     "predicted_error": round(float(row.predicted_error), 3) if row.predicted_error else None
@@ -255,7 +257,7 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
                     "gid_0": row.gid_0,
                     "gid_1": row.gid_1 if row.gid_1 else "NA",
                     "region_name": row.region_name if row.region_name else "NA",
-                    "date": row.date,
+                    "date": formatted_date,
                     "outcome": row.outcome,
                     "predicted": round(float(row.predicted), 3) if row.predicted else None,
                     "predicted_error": round(float(row.predicted_error), 3) if row.predicted_error else None
