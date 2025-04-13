@@ -1,5 +1,16 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Enum, Integer, String, Float, Date, Boolean, TypeDecorator
+from sqlalchemy import (
+    Column,
+    Enum,
+    Integer,
+    String,
+    Float,
+    Date,
+    Boolean,
+    TypeDecorator,
+    TIMESTAMP,
+    Text,
+)
 from geoalchemy2 import Geometry
 from datetime import datetime
 
@@ -141,3 +152,14 @@ class DGGIndicatorDescription(Base):  # type: ignore
     internet_gender_gap_name = Column(String(255), nullable=False)
     data_frequency = Column(String(255), nullable=False)
     geographical_coverage = Column(String(255), nullable=False)
+
+
+class EndpointLogs(Base):  # type: ignore
+    __tablename__ = "endpoint_logs"
+
+    id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    hashed_ip = Column(String(64))
+    endpoint = Column(Text)
+    method = Column(String(10))
+    timestamp = Column(TIMESTAMP)
+    table_size = Column(Integer)

@@ -25,6 +25,7 @@ paths:
           description: "Internal server error"
   /subnational_geometries:
     get:
+      deprecated: true
       tags:
         - default
       summary: "Get subnational geometries"
@@ -46,6 +47,7 @@ paths:
           description: "Internal server error"
   /national_geometries:
     get:
+      deprecated: true
       tags:
         - default
       summary: "Get national geometries"
@@ -658,6 +660,51 @@ paths:
           description: "Unauthorized"
         "500":
           description: "Internal server error"
+  /get_endpoint_logs:
+    get:
+      tags:
+        - internal
+      summary: "Get logs for the endpoints"
+      x-internal: true
+      x-swagger-router-controller: app.endpoints
+      operationId: get_endpoint_logs
+      parameters:
+        - name: from_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: "Start date for filtering logs (YYYY-MM-DD)"
+        - name: to_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: "End date for filtering logs (YYYY-MM-DD)"
+      security:
+        - {}
+        - JWTAuth: []
+      responses:
+        "200":
+          description: "Successfully retrieved logs"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "400":
+          description: "Invalid request parameters"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+      
 components:
   securitySchemes:
     JWTAuth:

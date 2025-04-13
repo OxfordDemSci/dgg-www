@@ -1,7 +1,9 @@
 from functools import wraps
 import csv
-from datetime import datetime
+from datetime import datetime, UTC
+import hashlib
 import io
+import requests
 import time
 
 from flask import Blueprint, make_response, Response, request, jsonify, current_app
@@ -24,12 +26,46 @@ from .data_queries import (
     dq_query_outcomes_by_date,
 )
 
-from .models import SubNationalIndicators, NationalIndicators
+from .models import SubNationalIndicators, NationalIndicators, EndpointLogs
 from .datatypes import Level
 from .validation import validate_request_params, validate_post_requests, validate_delete_requests
 from app import db
 
 api_bp = Blueprint('api/v2', __name__)
+
+
+def log_api_call(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        ip = request.remote_addr
+        log = EndpointLogs(
+            hashed_ip=hash_ip(ip),
+            endpoint=request.full_path,
+            method=request.method,
+            timestamp=datetime.now(tz=UTC),
+        )
+        db.session.add(log)
+        db.session.commit()
+        return func(*args, **kwargs)
+    return wrapper
+
+
+def log_api_call_rowcount(endpoint, method, ip, row_count):
+    log = EndpointLogs(
+        hashed_ip=hash_ip(ip),
+        endpoint=endpoint,
+        method=method,
+        timestamp=datetime.now(tz=UTC),
+        table_size=row_count
+    )
+    db.session.add(log)
+    db.session.commit()
+
+
+def hash_ip(ip_address):
+    if ip_address:
+        return hashlib.sha256(ip_address.encode()).hexdigest()
+    return None
 
 
 def check_scope(required_scope):
@@ -106,6 +142,7 @@ cache = {
 CACHE_DURATION = 60 * 60  # Cache duration in seconds (e.g., 1 hr)
 
 
+@log_api_call
 def init_data() -> Response:
     try:
         current_time = time.time()
@@ -137,6 +174,7 @@ def get_national_geometries() -> Response:
 
 
 @validate_request_params
+@log_api_call
 def valid_outcomes_by_date(date: str) -> Response:
     try:
         results = dq_query_outcomes_by_date(date)
@@ -145,6 +183,7 @@ def valid_outcomes_by_date(date: str) -> Response:
     return make_response(results, 200)
 
 @validate_request_params
+@log_api_call
 def query_specific_country(country: str, indicators: list[str] | None = None) -> Response:
     try:
         results = dq_query_specific_country(country, indicators)
@@ -154,6 +193,7 @@ def query_specific_country(country: str, indicators: list[str] | None = None) ->
 
 
 @validate_request_params
+@log_api_call
 def query_specific_region(region: str, indicators: list[str] | None = None) -> Response:
     try:
         results = dq_query_specific_region(region, indicators)
@@ -163,6 +203,7 @@ def query_specific_region(region: str, indicators: list[str] | None = None) -> R
 
 
 @validate_request_params
+@log_api_call
 def get_national_data(date: str, indicators: list[str] | None = None) -> Response:
     try:
         results = dq_query_national_data(date, indicators)
@@ -172,6 +213,7 @@ def get_national_data(date: str, indicators: list[str] | None = None) -> Respons
 
 
 @validate_request_params
+@log_api_call
 def get_subnational_data(date: str, country: str | None = None, indicators: list[str] | None = None) -> Response:
     try:
         results = dq_query_subnational_data(date, country, indicators)
@@ -181,6 +223,7 @@ def get_subnational_data(date: str, country: str | None = None, indicators: list
 
 
 @validate_request_params
+@log_api_call
 def download_national_data_with_dates(start_date: str, end_date: str, country: str | None = None) -> Response:
     try:
         results = dq_download_national_data_with_dates(start_date, end_date, country)
@@ -190,6 +233,7 @@ def download_national_data_with_dates(start_date: str, end_date: str, country: s
 
 
 @validate_request_params
+@log_api_call
 def download_subnational_data_with_dates(start_date: str, end_date: str, region: str | None = None) -> Response:
     try:
         results = dq_download_subnational_data_with_dates(start_date, end_date, region)
@@ -199,6 +243,7 @@ def download_subnational_data_with_dates(start_date: str, end_date: str, region:
 
 
 @validate_request_params
+@log_api_call
 def get_ground_truth_subnational(indicators: list[str] | None = None) -> Response:
     try:
         results = dq_get_ground_truth_subnational(indicators)
@@ -208,6 +253,7 @@ def get_ground_truth_subnational(indicators: list[str] | None = None) -> Respons
 
 
 @validate_request_params
+@log_api_call
 def get_ground_truth_national(indicators: list[str] | None = None) -> Response:
     try:
         results = dq_get_ground_truth_national(indicators)
@@ -220,12 +266,20 @@ def get_ground_truth_national(indicators: list[str] | None = None) -> Response:
 def download_csv(level: Level, start_date: str, end_date: str) -> Response:
     try:
         if level == Level.NATIONAL.value:
-            results = dq_download_national_data_csv(start_date, end_date)
+            results = list(dq_download_national_data_csv(start_date, end_date))
         elif level == Level.SUBNATIONAL.value:
-            results = dq_download_subnational_data_csv(start_date, end_date)
+            results = list(dq_download_subnational_data_csv(start_date, end_date))
     except Exception as e:
         return make_response({"error": str(e)}, 500)
     
+    ip = request.remote_addr
+    log_api_call_rowcount(
+        endpoint=request.full_path,
+        method=request.method,
+        ip=ip,
+        row_count=len(results)
+    )
+ 
     def generate():
         output = io.StringIO()
         if level == Level.NATIONAL.value:
@@ -285,6 +339,7 @@ def download_csv(level: Level, start_date: str, end_date: str) -> Response:
 
 @check_scope("write")
 @validate_post_requests
+@log_api_call
 def post_national_data() -> Response:
     try:
         data_list = request.get_json()
@@ -315,6 +370,7 @@ def post_national_data() -> Response:
 
 @check_scope("write")
 @validate_post_requests
+@log_api_call
 def post_subnational_data() -> Response:
     try:
         data_list = request.get_json()
@@ -346,6 +402,7 @@ def post_subnational_data() -> Response:
 
 @check_delete_scope
 #@validate_delete_requests
+@log_api_call
 def delete_national_data() -> Response:
     try:
         data_list = request.get_json()
@@ -374,6 +431,7 @@ def delete_national_data() -> Response:
 
 @check_delete_scope
 #@validate_delete_requests
+@log_api_call
 def delete_subnational_data() -> Response:
     try:
         data_list = request.get_json()
@@ -407,3 +465,50 @@ def delete_subnational_data() -> Response:
     except Exception as e:
         db.session.rollback()
         return make_response({"error": str(e)}, 500)
+    
+
+@check_scope("write")
+def get_endpoint_logs() -> Response:
+    try:
+        # Get query parameters
+        from_date_str = request.args.get("from_date")
+        to_date_str = request.args.get("to_date")
+
+        # Validate and parse dates
+        if not from_date_str or not to_date_str:
+            return make_response({"error": "from_date and to_date are required"}, 400)
+
+        try:
+            from_date = datetime.strptime(from_date_str, "%Y-%m-%d")
+            to_date = datetime.strptime(to_date_str, "%Y-%m-%d").replace(hour=23, minute=59, second=59)
+        except ValueError:
+            return make_response({"error": "Invalid date format. Use YYYY-MM-DD"}, 400)
+
+        # Query logs within the date range
+        query = (
+            db.session.query(EndpointLogs)
+            .filter(EndpointLogs.timestamp >= from_date, EndpointLogs.timestamp <= to_date)
+            .order_by(EndpointLogs.timestamp.desc())
+        )
+        total_count = query.count()
+        logs = query.all()
+
+        # Prepare response data
+        response_data = {
+            "total_count": total_count,
+            "logs": [
+                {
+                    "id": log.id,
+                    "hashed_ip": log.hashed_ip,
+                    "endpoint": log.endpoint,
+                    "method": log.method,
+                    "timestamp": log.timestamp.isoformat(),
+                    "table_size": log.table_size,
+                }
+                for log in logs
+            ],
+        }
+    except Exception as e:
+        return make_response({"error": str(e)}, 500)
+
+    return make_response(response_data, 200)
