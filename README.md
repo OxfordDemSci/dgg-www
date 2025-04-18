@@ -9,7 +9,7 @@ The application is managed by docker containers in the server machine. The `dock
 The data for the database is stored in 2 locations. 
 
 #### Default data
-The default data csvs in `/dgg-www/api/scripts/data` will be used for the database metadata and information (i.e. subnational unit names or indicator descriptsion). This data can be replaced if required, but the csv names should stay the same. If you need to insert data into the database after it has been wiped, please use the script `/dgg-www/api/scripts/insert_data.py`. **If you have restarted the application after deleting a volume, the data will need to be inserted or the application will not work**
+The default data csvs in `/dgg-www/api/scripts/data` will be used for the database metadata and information (i.e. subnational unit names or indicator descriptsion). This data can be replaced if required, but the csv names should stay the same. If you need to insert data into the database after it has been wiped, please use the script `/dgg-www/api/scripts/insert_data.py`, but it should be run from `dgg-www/api` as `python ./scripts/insert_data.py` as this is how the Alembic database migrtations have been configured. **If you have restarted the application after deleting a volume, the data will need to be inserted or the application will not work**
 
 #### Indicator and ground truth data
 The indicator and ground truth data (national and subnational) should be inserted into the database by logging into the server, copying csvs to the `/dgg-www/api/scripts/data` folder and running the `/dgg-www/api/scripts/insert_data.py` script. This script will replace any data that is currently in the database. See below for detailed instructions.
