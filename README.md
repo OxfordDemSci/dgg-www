@@ -1,17 +1,26 @@
 # Digital Gender Gaps V2
+
+## Starting the server and inserting data
 The data for this project can be accessed via the dashboard (`http://3.11.85.207/dashboard/`) or the API (`http://3.11.85.207/api/v2/`). The API can be interacted with programatically, or via the Swagger UI (`http://3.11.85.207/api/v2/ui `), which also acts as the API documentation. **THIS PAGE IS NOT INTENDED FOR DIRECT API INTERACTION, JUST AS DOCUMENTATION**
 
-The application is managed by docker containers in the server machine. The `docker-compose.yaml` file orchestrating the application is in `/dgg-www`, and can be launched by running `docker-compose up --build` and torn down by running `docker-compose down` in this directory. The database data is persisted in a docker volume when the app is torn down (`docker-compose down`) unless the `-v` flag is used, in which case the data will be deleted. The csvs in `/dgg-www/api/scripts/data` will be used for the database (Subnational unit names and indicator descriptions). This data can be replaced if required, but their names should stay the same. If you need to insert data into the database after it has been wiped, please use the script `/dgg-www/api/scripts/insert_data.py`. Indicator and ground truth tables can be replaced/inserted using the `dgg-www/scripts/reinsert_all_data` - See `bulk insert script` below for instructions.
+The application is managed by docker containers in the server machine. The `docker-compose.yaml` file orchestrating the application is in `/dgg-www`, and can be launched by running `docker-compose up --build` and torn down by running `docker-compose down` in this directory. The database data is persisted in a docker volume when the app is torn down (`docker-compose down`) unless the `-v` flag is used, in which case the data will be deleted from the volume and will need to be reinserted the next time the application is started.
 
-**If you need to replace indicator tables in the database see Bulk Insert Script below for instructions. If you need to replace subnational unit names or indicator descriptions, they should be replaced in `/dgg-www/api/scripts/data` and `/dgg-www/api/scripts/insert_data.py` should be run**
+### Data
+The data for the database is stored in 2 locations. 
+
+#### Default data
+The default data csvs in `/dgg-www/api/scripts/data` will be used for the database metadata and information (i.e. subnational unit names or indicator descriptsion). This data can be replaced if required, but the csv names should stay the same. If you need to insert data into the database after it has been wiped, please use the script `/dgg-www/api/scripts/insert_data.py`. **If you have restarted the application after deleting a volume, the data will need to be inserted or the application will not work**
+
+#### Indicator and ground truth data
+The indicator and ground truth data (national and subnational) should be inserted into the database by logging into the server, copying csvs to the `/dgg-www/api/scripts/data` folder and running the `/dgg-www/api/scripts/insert_data.py` script. This script will replace any data that is currently in the database. See below for detailed instructions.
 
 ## Helper Scripts
 
 **Please see API Client and automation scripts for automating the posting and deleting of data**
 
-There are a couple of the scripts in this repo that demonstrate how to access the data programmatically via the API, and also write and delete data to the database. There is an example script for Python, and the same functionality in R. The scripts can be found int `./scripts/python_example.[py][R]`. The functions demonstrate how to sign in, authenticate with a token, `GET`, `POST` and `DELETE` data.
+There are a couple of the scripts in this repo that demonstrate how to access the data programmatically via the API, and also write and delete data to the database. There is an example script for Python, and the same functionality in R. The scripts can be found in `/dgg-www/api/scripts/python_example.[py][R]`. The functions demonstrate how to sign in, authenticate with a token, `GET`, `POST` and `DELETE` data.
 
-In order to use the Write and Delete endpoints, the user will need to be authenticated. There are project-wide passwords help in the `.env` file on the server, or contact Daniel Valdenegro if you are unable to `ssh` into the server. The `.env` file is held in the `~/dgg-www` directory.
+In order to use the Write and Delete endpoints, the user will need to be authenticated. There are project-wide passwords held in the `.env` file on the server, or contact Daniel Valdenegro if you are unable to `ssh` into the server. The `.env` file is held in the `~/dgg-www` directory.
 
 In order to write to the database, you will need the `POSTGRES_USER` (username) and `POSTGRES_PASSWORD` (password) variables from the `.env` file.
 
@@ -112,7 +121,7 @@ client.create_backup()
 The `./script/data` folder has all the necessary folders needed to run the script, and you will just need to add the csv's to the folders in which they belong.
 
 ## Bulk insert script
-This script is intended for large insertions and will replace all data in the national/subnational table. You will need to harmonise the data that you would like to insert into with the data already in the database - this script will DELETE all rows of the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation other than the datatypes used. When starting the server without a docker-volume holding data, you will need to instantiate national and subnational indicator tables, along with their corresponding ground truth data with these scripts. **DATA WILL NOT 
+This script is intended for large insertions and will replace all data in the national/subnational indicators/ground truth tables. You will need to harmonise the data that you would like to insert into with the data already in the database - this script will DELETE all rows of the table you are inserting to, and will replace the data with the csv that you specify. Use with caution as there is no validation other than the datatypes used. When starting the server without a docker-volume holding data, you will need to instantiate national and subnational indicator tables, along with their corresponding ground truth data with these scripts. **DATA WILL NOT 
 BE AUTOMATICALLY INSERTED WHEN THE DATABASE STARTS**
 
 A venv environment has been set up on the server with the required dependencies. Please activate this by going into the `./dgg-www/scripts` directory and running `source .venv/bin/activate`.
@@ -122,6 +131,13 @@ For example:
 2. Run `python reinsert_all_data.py`.
 If there is no data in the national/subnational/national_ground_truth/subnational_ground_truth folders, they will be skipped. There is no need to delete data from the database with this script as ALL EXISTING ROWS will be deleted in the script. This script does not create a backup of the table. You will need to do this manually.
 **PLEASE REMEMBER TO DELETE CSVS FROM ./scripts/data/post/ DIRECTORY AFTER THIS PROCESS**
+
+## Endpoint Logs
+An endpoint has been created that will return all logs to respective endpoints in the API within specified times ranges. The returned data includes `hashed_ip` (which can help to aggregate queries by individual users), `endpoint` queried, http `method`, `timestamp` (in UTC timeazone), `table_size` (indicates number of rows downloaded as csv from the `download_csv` endpoint).
+
+This endpoint returns data as an array of JSON objects detailing the above fields, along with the aggregate sum of queries in the time range. See the scripts in `./dgg-www/scripts` for examples on how to convert json responses to dataframes and save as csvs (Note that these examples do not query this endpoint, but give a good example on how you can build your own script).
+
+**Queries to this enpoint should include the JWT token associated with the `$POSTGRES_USER` and `$POSTGRES_PASSWORD` login. See authentication above**.
 
 
 ## Testing
