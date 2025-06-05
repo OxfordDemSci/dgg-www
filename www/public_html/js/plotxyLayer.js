@@ -58,25 +58,61 @@ export function updateData(c, d,  model, modelsList, _prSubNational) {
     if (_prSubNational) {
         Object.keys(d).forEach(function (key) {
             ym = key.toString();
-            labels.push(ym);
-            // replacing null with 0
-            let val_from_array=d[key][model][PredictedType];
-            if (val_from_array == null) {
-                val_from_array=0;
-            }
-            dataArray.push(val_from_array);
+            try {
+                let val_from_array=d[key][model][PredictedType];
+                     // replacing null with 0
+                if (val_from_array === null) {
+                    val_from_array=0;
+                }
+                labels.push(ym);    
+                dataArray.push(val_from_array);    
+            } catch (e) {
+              console.log("Warning: ", ym);
+              console.log("Warning: ", e);
+            }            
         });
     } else {
         Object.keys(d).forEach(function (key) {
             ym = key.toString();
-            labels.push(ym);
-            let val_from_array=d[key][model][PredictedType];
-            if (val_from_array == null) {
-                val_from_array=0;
-            }            
-            dataArray.push(val_from_array);
+             try {
+                let val_from_array=d[key][model][PredictedType];
+                if (val_from_array === null) {
+                    val_from_array=0;
+                }       
+                labels.push(ym);    
+                dataArray.push(val_from_array);    
+            } catch (e) {
+              console.log("Warning: ", e);
+            }               
         });
     }    
+    
+//    if (_prSubNational) {
+//        Object.keys(d).forEach(function (key) {
+//            ym = key.toString();
+//            labels.push(ym);
+//            // replacing null with 0
+//            let val_from_array=d[key][model][PredictedType];
+//            if (val_from_array == null) {
+//                val_from_array=0;
+//            }
+//            dataArray.push(val_from_array);
+//        });
+//    } else {
+//        Object.keys(d).forEach(function (key) {
+//            ym = key.toString();
+//            labels.push(ym);
+//            let val_from_array=d[key][model][PredictedType];
+//            if (val_from_array == null) {
+//                val_from_array=0;
+//            }
+//            dataArray.push(val_from_array);
+//        });
+//    }
+    
+    
+    
+    
 
 //    if (_prSubNational) {
 //        Object.keys(d).forEach(function (key) {
