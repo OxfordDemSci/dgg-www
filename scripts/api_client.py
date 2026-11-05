@@ -8,6 +8,24 @@ from datetime import datetime
 
 import helpers
 
+# gid_0 codes that pycountry does not know
+EXTRA_COUNTRY_NAMES = {"XKX": "Kosovo"}
+
+
+def country_name(gid_0: str) -> str:
+    if gid_0 in EXTRA_COUNTRY_NAMES:
+        return EXTRA_COUNTRY_NAMES[gid_0]
+    country = pycountry.countries.get(alpha_3=gid_0)
+    if country is None:
+        raise ValueError(f"Unknown gid_0 {gid_0!r}: add it to EXTRA_COUNTRY_NAMES in api_client.py")
+    return country.name
+
+
+def add_country_column(df: pd.DataFrame) -> pd.DataFrame:
+    if "country" not in df.columns:
+        df["country"] = [country_name(x) for x in df["gid_0"]]
+    return df
+
 
 class APIClient:
     def __init__(
@@ -59,8 +77,7 @@ class APIClient:
         df_list = []
         for path_to_csv in csv_files:
             df = pd.read_csv(path_to_csv)
-            if "country" not in df.columns:
-                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name if x["gid_0"]!='XKX' else "Kosovo", axis=1)
+            df = add_country_column(df)
             chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
@@ -89,8 +106,7 @@ class APIClient:
         df_list = []
         for path_to_csv in csv_files:
             df = pd.read_csv(path_to_csv)
-            if "country" not in df.columns:
-                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
+            df = add_country_column(df)
             chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
@@ -128,8 +144,7 @@ class APIClient:
         df_list = []
         for path_to_csv in csv_files:
             df = pd.read_csv(path_to_csv)
-            if "country" not in df.columns:
-                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name if x!='XKX' else "Kosovo", axis=1)
+            df = add_country_column(df)
             chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
@@ -155,8 +170,7 @@ class APIClient:
         df_list = []
         for path_to_csv in csv_files:
             df = pd.read_csv(path_to_csv)
-            if "country" not in df.columns:
-                df["country"] = df.apply(lambda x: pycountry.countries.get(alpha_3=x["gid_0"]).name, axis=1)
+            df = add_country_column(df)
             chunk_size = 1000
             for start in range(0, len(df), chunk_size):
                 end = start + chunk_size
