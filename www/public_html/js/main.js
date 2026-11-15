@@ -92,7 +92,7 @@ if (loadGeoBoundaryFroDB){
 
 var basemaps = {
         "OpenStreetMaps": L.tileLayer(
-            "https://cartodb-basemaps-b.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png", {
+            "https://cartodb-basemaps-b.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png?key=cb1_3048_1_3d76b249d98248678895a6c6", {
                 attribution: "<a href='http://www.esri.com/'>Esri</a>, HERE, Garmin, (c) OpenStreetMap",
                 minZoom: 1,
                 maxZoom: 14,
@@ -452,9 +452,17 @@ _infoBox.display("hide");
 map.createPane('labels');
 map.getPane('labels').style.zIndex = 650;
 map.getPane('labels').style.pointerEvents = 'none';
-var cartocdn = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png',{ 
-    pane: 'labels'
-}).addTo(map);
+//var cartocdn = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png',{ 
+//    pane: 'labels'
+//}).addTo(map);
+
+var cartocdn = L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png?key=cb1_3048_1_3d76b249d98248678895a6c6',
+    {
+        pane: 'labels',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }
+).addTo(map);
 
 //var cartocdn = L.tileLayer('https://{s}.basemaps.cartocdn.com/{z}/{x}/{y}' + (L.Browser.retina ? 'light_only_labels@2x.png' : '.png'), {
 //   attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
