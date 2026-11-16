@@ -160,3 +160,18 @@ The durations and target are probably the only values that need to be changed, b
 
 The tests can be disabled by removing the `k6-test` element in the `jobs` section of the `./.github/workflows/ci.yaml` file, or by deleting the `workflows` directory in the `./.github/` folder.
 
+## OSM Basemap API key
+An API key is required to access background tiles from cartodb basemaps. This should be set in [`www/public_html/js/main.js`](https://github.com/OxfordDemSci/dgg-www/blob/e739c2f7c61132916921d04c6c9343f1716e114f/www/public_html/js/main.js#L72)
+```javascript
+var basemaps = {
+        "OpenStreetMaps": L.tileLayer(
+            "https://cartodb-basemaps-b.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png?key=<API_KEY>", {
+                attribution: "<a href='http://www.esri.com/'>Esri</a>, HERE, Garmin, (c) OpenStreetMap",
+                minZoom: 1,
+                maxZoom: 14,
+                // noWrap: true,
+                id: "osm.streets"
+            }
+        )
+```
+
